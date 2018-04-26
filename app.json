@@ -11,7 +11,7 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Winsen's First Mini Program",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "position": "bottom",
