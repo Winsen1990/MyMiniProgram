@@ -3,14 +3,17 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://qlvxcnsu.qcloud.la';
+var host = 'https://wx.winsen.top';
 
 var config = {
 
     // 下面的地址配合云端 Demo 工作
     service: {
         host,
-
+        indexUrl: `${host}/index.json`,
+        categories: `${host}/categories.json`,
+        products: `${host}/products.json`,
+        productDetail: `${host}/products/1.json`,
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,
 

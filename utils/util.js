@@ -14,7 +14,6 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
     title: text,

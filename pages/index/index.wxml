@@ -1,39 +1,35 @@
 <!--index.wxml-->
-<view class="container">
-    <!-- 用户登录测试 -->
-    <view class="userinfo" bindtap="login">
-        <image
-            class="userinfo-avatar"
-            src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
-            background-size="cover"
-        ></image>
-        <view>
-            <text class="userinfo-nickname">{{logged ? userInfo.nickName : '点击测试登录接口'}}</text>
-            <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
-        </view>
-    </view>
+<view class="search-bar">
+  <input type="text" name="keyword" id="keyword" value="{{keyword}}" class="search-keyword-input" bindblur="getKeyword"/>
+  <button name="search-submit" id="search-submit" class="search-btn iconfont icon-search" bindtap="keywordSearch"></button>
+</view>
 
-    <!-- 上传图片测试 -->
-    <view class="uploader">
-        <view class="uploader-text" bindtap="doUpload">
-            <text>上传图片</text>
-        </view>
-        <view class="uploader-container" wx:if="{{imgUrl}}">
-            <image
-                class="uploader-image"
-                src="{{imgUrl}}"
-                mode="aspectFit"
-                bindtap="previewImg"
-            ></image>
-        </view>
-    </view>
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+  style="height:{{banner_heights[current_banner]}}px"
+  bindchange="bindChange"
+  >
+  <block wx:for="{{imgUrls}}" wx:key="{{_index}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" style="height:{{banner_heights[current_banner]}}px;width:{{screen_width}}px;" bindload="imageLoad" bindtap="bannerTap" data-id="{{_index}}"/>
+    </swiper-item>
+  </block>
+</swiper>
 
-    
-
-    <!-- 上传图片测试 -->
-    <view class="uploader">
-        <navigator url="../addCgi/addCgi" open-type="navigate" class="uploader-text">
-            <text>快速增加 CGI</text>
-        </navigator>
-    </view>
+<wxs module="filters" src="utils.wxs"></wxs>
+<text class="h2">
+  <text class="iconfont icon-gift"></text>
+  <text>热销产品</text>
+</text>
+<view class="product-grid-list">
+    <block wx:for="{{recommendProducts}}" wx:key="{{_index}}">
+      <view class="product-item">
+        <image src="{{item.image}}" data-id="{{item.id}}"></image>
+        <text class="product-item-name">{{item.name}}</text>
+        <view class="product-item-info">
+          <span class="product-item-price">￥{{filters.toFix(item.price, 2)}}</span>
+          <span class="product-item-sale-count">销量:{{item.sale_count}}</span>
+        </view>
+      </view>
+    </block>
 </view>
