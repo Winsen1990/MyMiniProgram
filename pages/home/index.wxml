@@ -1,2 +1,49 @@
 <!--pages/home/index.wxml-->
-<text>pages/home/index.wxml</text>
+<view class="home">
+  <view class="home-header">
+    <image class="home-avatar" src="{{user.avatar}}"></image>
+    <view class="home-user-info">
+      <text class="home-user-nickname">{{user.nickname}}</text>
+      <text class="home-user-level">{{user.level}}</text>
+    </view>
+  </view>
+
+  <view class="home-order-list">
+      <text>我的订单</text>
+      <view class="home-order-list-placeholder">
+        <text>全部订单</text>
+        <text class="iconfont icon-arrow-right"></text>
+      </view>
+  </view>
+  <view class="home-order-tags">
+    <view class="home-order-tag">
+      <text class="iconfont icon-unpaid"></text>
+      <text>待支付</text>
+    </view>
+    <view class="home-order-tag">
+      <text class="iconfont icon-await-shipping"></text>
+      <text>待发货</text>
+    </view>
+    <view class="home-order-tag">
+      <text class="iconfont icon-await-receive"></text>
+      <text>待收货</text>
+    </view>
+    <view class="home-order-tag">
+      <text class="iconfont icon-comment"></text>
+      <text>待评价</text>
+    </view>
+  </view>
+
+  <view class="home-list-view">
+    <view class="home-list-item">
+      <text class="iconfont icon-favourite"></text>
+      我的收藏
+      <text class="iconfont icon-arrow-right"></text>
+    </view>
+    <view class="home-list-item">
+      <text class="iconfont icon-comments"></text>
+      我的评价
+      <text class="iconfont icon-arrow-right"></text>
+    </view>
+  </view>
+</view>

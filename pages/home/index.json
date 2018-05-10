@@ -1,1 +1,9 @@
-{}
+{
+  "window": {
+    "backgroundColor": "#cecece",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "Mini Program",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -1,16 +1,16 @@
 {
   "debug": true,
   "pages": [
+    "pages/home/index",
     "pages/index/index",
     "pages/category/index",
     "pages/product/index",
     "pages/cart/index",
     "pages/order/checkout",
-    "pages/address/select",
-    "pages/home/index"
+    "pages/address/select"
   ],
   "window":{
-    "backgroundColor":"#f1f1f1",
+    "backgroundColor":"#cecece",
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Mini Program",

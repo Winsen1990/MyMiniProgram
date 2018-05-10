@@ -52,6 +52,7 @@ var pageModel = Page({
     //关键词搜索
     keywordSearch: function(e) {
       console.info(this.data.keyword);
+      wx.navigateTo("/pages/product/index");
     },
     onLoad: function() {
       var that = this;

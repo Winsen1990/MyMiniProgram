@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    user: {
+      avatar: '../../assets/user-unlogin.png',
+      nickname: '大王叫我来巡山',
+      level: '普通客户'
+    }
   },
 
   /**
