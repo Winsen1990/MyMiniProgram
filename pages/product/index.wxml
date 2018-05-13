@@ -1,0 +1,17 @@
+<!--pages/product/index.wxml-->
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
+<scroll-view class="product-list">
+  <block wx:for="{{products}}">
+    <view class="product-item" data-id="{{item.id}}" bindtap="selectProduct">
+      <image src="{{item.image}}" class="product-image" mode="widthFix"></image>
+      <view class="product-item-info">
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-item-meta">
+          <text class="product-price">￥{{filters.toFix(item.price, 2)}}</text>
+          <text class="product-sale-count">销量: {{item.sale_count}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

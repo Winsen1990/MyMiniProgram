@@ -1,18 +1,49 @@
 // pages/category/index.js
+var config = require('../../config')
+var util = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    categories: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    wx.request({
+      url: config.service.categories,
+      success: (response) => {
+        that.setData({
+          categories: response.data.categories
+        });
+      }
+    })
+  },
+
+  /**
+   * 操作函数--点击产品分类
+   */
+  selectCategory: function (e) {
+    var category_id = e.currentTarget.dataset.id;
+
+    console.info("tap on category id:" + category_id);
+    category_id = parseInt(category_id);
+
+    if(isNaN(category_id) || category_id <= 0) {
+      wx.showToast({
+        title: '参数错误',
+      });
+    } else {
+      wx.navigateTo({
+        url: '/pages/product/index?c_id=' + category_id,
+      });
+    }
   },
 
   /**

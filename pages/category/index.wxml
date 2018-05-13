@@ -1,2 +1,9 @@
 <!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<view class="categories">
+  <block wx:for="{{categories}}">
+    <view class="category-item" data-id="{{item.id}}" bindtap="selectCategory">
+      <image src="{{item.image}}" class="category-image" mode="widthFix"></image>
+      <text class="category-name">{{item.name}}</text>
+    </view>
+  </block>
+</view>

@@ -16,7 +16,7 @@
   </block>
 </swiper>
 
-<wxs module="filters" src="utils.wxs"></wxs>
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
 <text class="h2">
   <text class="iconfont icon-gift"></text>
   <text>热销产品</text>
@@ -24,7 +24,7 @@
 <view class="product-grid-list">
     <block wx:for="{{recommendProducts}}" wx:key="{{_index}}">
       <view class="product-item">
-        <image src="{{item.image}}" data-id="{{item.id}}"></image>
+        <image src="{{item.image}}" mode="widthFix" data-id="{{item.id}}"></image>
         <text class="product-item-name">{{item.name}}</text>
         <view class="product-item-info">
           <span class="product-item-price">￥{{filters.toFix(item.price, 2)}}</span>

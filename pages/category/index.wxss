@@ -1,1 +1,24 @@
 /* pages/category/index.wxss */
+.categories {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  align-content:center;
+  justify-content:left;
+  padding:8px;
+}
+
+.categories .category-item {
+  flex: 0 0 30%;
+  width: 30%;
+  margin-right: 3.33%;
+  margin-bottom: 1rem;
+}
+
+.categories .category-item:nth-child(3n) {
+  margin-right: 0;
+}
+
+.categories .category-image {
+  width: 100%;
+}

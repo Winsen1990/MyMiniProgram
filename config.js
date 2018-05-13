@@ -11,9 +11,9 @@ var config = {
     service: {
         host,
         indexUrl: `${host}/index.json`,
-        categories: `${host}/categories.json`,
+        categories: `${host}/category.json`,
         products: `${host}/products.json`,
-        productDetail: `${host}/products/1.json`,
+        productDetail: `${host}/products/`,
         // 登录地址，用于建立会话
         loginUrl: `${host}/weapp/login`,
 

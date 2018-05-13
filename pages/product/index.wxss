@@ -1,0 +1,35 @@
+.product-list .product-item {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  display: flex;
+}
+
+.product-list .product-item .product-image {
+  width: 90px;
+}
+
+.product-list .product-item .product-item-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-list .product-item .product-item-info .product-name {
+  flex-grow: 1;
+}
+
+.product-list .product-item .product-item-info .product-item-meta {
+  position: relative; 
+}
+
+.product-list .product-item .product-item-info .product-item-meta .product-price {
+  color: #f10000;
+}
+
+.product-list .product-item .product-item-info .product-item-meta .product-sale-count {
+  color: #ddd;
+  position: absolute;
+  font-size: .8rem;
+  top: .2rem;
+  right: 0;
+}
