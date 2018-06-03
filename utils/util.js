@@ -38,4 +38,9 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+// 登录检查
+var checkAuthorization = () => {
+
+}
+
+module.exports = { checkAuthorization, formatTime, showBusy, showSuccess, showModel }

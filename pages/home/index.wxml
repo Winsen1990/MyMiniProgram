@@ -45,5 +45,10 @@
       我的评价
       <text class="iconfont icon-arrow-right"></text>
     </view>
+    <view class="home-list-item" bindtap="addressManager">
+      <text class="iconfont icon-address"></text>
+      收货地址
+      <text class="iconfont icon-arrow-right"></text>
+    </view>
   </view>
 </view>

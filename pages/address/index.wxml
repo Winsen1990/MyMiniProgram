@@ -1,0 +1,29 @@
+<view class="address">
+<block wx:if="{{address.length > 0}}">
+  <view wx:for="{{address}}" class="address-item">
+    <view>
+      <view class="address-meta">
+        <text>{{address.consignee}}</text>
+        <text>{{address.mobile}}</text>
+      </view>
+
+      <text>{{address.address}}</text>
+    </view>
+    <view class="address-opera">
+      <label>
+        <checkbox name="is_default" checked="{{item.is_default}}" data-id="{{item.id}}" bindtap="defaultAddress"/>
+      </label>
+
+      <a href="javascript:void(0);" class="address-trash iconfont icon-trash" data-id="{{item.id}}" bindtap="deleteAddress">删除</a>
+      <a href="javascript:void(0);" class="address-edit iconfont icon-edit" data-id="{{item.id}}" bindtap="editAddress">编辑</a>
+    </view>
+  </view>
+</block>
+
+<block wx:if="{{address.length == 0}}">
+  <icon class="iconfont icon-address-empty"></icon>
+  <text>您还没有保存常用地址哦~</text>
+</block>
+</view>
+
+<button type="warn" bindtap="addAddress" class="btn btn-primary">新建地址</button>

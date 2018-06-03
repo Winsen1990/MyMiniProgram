@@ -8,6 +8,9 @@
     "pages/product/detail",
     "pages/cart/index",
     "pages/order/checkout",
+    "pages/address/index",
+    "pages/address/add",
+    "pages/address/edit",
     "pages/address/select"
   ],
   "window":{

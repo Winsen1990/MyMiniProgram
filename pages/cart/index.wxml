@@ -1,2 +1,28 @@
 <!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<view class="cart">
+<block wx:if="{{cart.length > 0}}">
+  <view wx:for="{{cart}}" class="cart-item">
+    <input type="checkbox" name="cart-item" value="{{item.id}}"/>
+    <image src="{{item.image}}"/>
+    <view class="cart-item-info">
+      <text class="cart-item-name">{{item.name}}</text>
+      <view>
+        <text class="cart-item-price">￥{{item.price}}</text>
+        <view class="cart-item-opera">
+          <button class="btn-minus iconfont icon-minus"></button>
+          <input type="text" name="cart-item-number" value="{{item.number}}"/>
+          <button class="btn-plus iconfont icon-plus"></button>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:if="{{cart.length == 0}}">
+  <view>
+    <icon class="iconfont icon-cart-empty"></icon>
+    <text>亲，您的购物车没有商品<br/>赶快去挑选吧~</text>
+    <button type="warn" class="btn btn-warning">去挑选</button>
+  </view>
+</block>
+</view>
