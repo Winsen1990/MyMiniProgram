@@ -1,1 +1,4 @@
 /* pages/product/detail.wxss */
+@import "../../assets/common.wxss";
+@import "../../assets/icon/iconfont.wxss";
+@import "/wxParse/wxParse.wxss";

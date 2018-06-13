@@ -2,16 +2,17 @@
   "debug": true,
   "pages": [
     "pages/index/index",
+    "pages/product/detail",
     "pages/category/index",
     "pages/home/index",
     "pages/product/index",
-    "pages/product/detail",
     "pages/cart/index",
     "pages/order/checkout",
     "pages/address/index",
     "pages/address/add",
     "pages/address/edit",
-    "pages/address/select"
+    "pages/address/select",
+    "pages/feed/index"
   ],
   "window":{
     "backgroundColor":"#cecece",
@@ -30,7 +31,12 @@
         "selectedIconPath": "assets/icon/icon_index.png"
       }, {
         "pagePath": "pages/category/index",
-        "text": "品类",
+        "text": "分类",
+        "iconPath": "assets/icon/icon_index.png",
+        "selectedIconPath": "assets/icon/icon_index.png"
+      }, {
+        "pagePath": "pages/feed/index",
+        "text": "种草",
         "iconPath": "assets/icon/icon_index.png",
         "selectedIconPath": "assets/icon/icon_index.png"
       }, {
