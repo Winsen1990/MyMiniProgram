@@ -18,26 +18,6 @@ Page({
   },
 
   /**
-   * 操作函数--编辑收货地址
-   */
-  editAddress: function (e) {
-    var category_id = e.currentTarget.dataset.id;
-
-    console.info("tap on category id:" + category_id);
-    category_id = parseInt(category_id);
-
-    if (isNaN(category_id) || category_id <= 0) {
-      wx.showToast({
-        title: '参数错误',
-      });
-    } else {
-      wx.navigateTo({
-        url: '/pages/product/index?c_id=' + category_id,
-      });
-    }
-  },
-
-  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {

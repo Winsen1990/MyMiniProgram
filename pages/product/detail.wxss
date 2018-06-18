@@ -2,3 +2,326 @@
 @import "../../assets/common.wxss";
 @import "../../assets/icon/iconfont.wxss";
 @import "/wxParse/wxParse.wxss";
+
+input {
+  outline: none;
+  border: none;
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  line-height: 1rem;
+  font-size: 1rem;
+}
+
+button::after {
+  border: none;
+}
+
+.product-name {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  padding: .5rem;
+  display: block;
+  background-color: #ffffff;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  padding: 0 .5rem .5rem;
+  background-color: #ffffff;
+}
+
+.product-info .product-price {
+  color: #870020;
+  margin-right: .5rem;
+  display: inline-flex;
+}
+
+.product-info .product-market-price {
+  font-size: .8rem;
+  color: #a3a3a3;
+  display: inline-flex;
+  flex-grow: 1;
+}
+
+.product-info .product-market-price text:last-child {
+  text-decoration: line-through;
+}
+
+.product-info .produce-sale-count {
+  font-size: .8rem;
+  color: #a3a3a3;
+}
+
+.product-opera {
+  display: block;
+  background-color: #ffffff;
+  text-align: right;
+  padding: 0 .5rem .5rem;
+}
+
+.product-opera view, .product-opera button {
+  color: #870020;
+  font-size: 1.2rem;
+  margin-left: .5rem;
+  display: inline-block;
+  background-color: transparent;
+  line-height: 1rem;
+  padding: 0;
+}
+
+/* 标签面板 */
+.product-detail-tabs {
+  display: block;
+  margin-top: .5rem;
+  color: #a3a3a3;
+  background-color: #ffffff;
+}
+
+.product-detail-tabs li {
+  padding: .5rem 0;
+  display: inline-block;
+  width: 50%;
+  border-bottom: 2px solid #e5e5e5;
+  text-align: center;
+}
+
+.product-detail-tabs li.current {
+  border-color: #870020;
+  color: #870020;
+}
+
+.product-detail-panels {
+  margin-bottom: 5rem;
+}
+
+.product-detail-panels .product-detail-panel {
+  padding: .5rem;
+  background-color: #ffffff;
+}
+
+/* 操作栏 */
+.product-detail-toolbar {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  max-height: 3rem;
+  overflow: hidden;
+}
+
+.product-detail-toolbar .product-nav-btn {
+  border-right: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  padding: .3rem 0;
+  color: #a3a3a3;
+  flex-grow: 1;
+}
+
+.product-detail-toolbar icon {
+  display: block;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.product-detail-toolbar text {
+  display: block;
+  font-size: .8rem;
+  line-height: 1rem;
+}
+
+.product-detail-toolbar .product-nav-btn:last-child {
+  border-right: 0;
+}
+
+.product-detail-toolbar .product-cart-btn, .product-detail-toolbar .product-buy-btn {
+  flex-grow: 1;
+  background-color: #870020;
+  text-align: center;
+  color: #ffffff;
+  line-height: 2rem;
+  padding: .4rem 0;
+}
+
+.product-detail-toolbar .product-cart-btn {
+  background-color: #ffffff;
+  color: #870020;
+  border-left: 1px solid #e5e5e5;
+}
+
+/* 数量选择弹窗 */
+.mask {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.product-detail-popup {
+  display: block;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  min-height: 50%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.product-detail-popup .product-toolkit {
+  padding: .5rem;
+  position: relative;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.product-detail-popup .product-toolkit text {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+.product-detail-popup .product-toolkit button {
+  display: inline-block;
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  color: #a3a3a3;
+}
+
+.product-detail-popup .product-info {
+  display: flex;
+  padding: .5rem;
+  border-bottom: 1px solid #e5e5e5;
+  align-items: center;
+}
+
+.product-detail-popup .product-info image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  margin-right: .5rem;
+}
+
+.product-detail-popup .product-info .product-meta {
+  flex-grow: 1;
+}
+
+.product-detail-popup .product-info .product-meta .product-name {
+  font-size: .8rem;
+  line-height: 1rem;
+  display: block;
+  min-height: 2rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.product-detail-popup .product-info .product-meta .product-price {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.product-detail-popup .product-detail-opera {
+  padding: .5rem;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: .5rem;
+  display: block;
+  text-align: left;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item label {
+  font-size: 1rem;
+  line-height: 1rem;
+  color: #333333;
+  vertical-align: middle;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: .5rem;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .btn-minus,
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .btn-plus,
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .product-sole-out,
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .product-opera-input  {
+  display: inline-block;
+  color: #333333;
+  background-color: #ffffff;
+  border: 1px solid #d0d0d0;
+  font-size: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 .3rem;
+  line-height: 1.4rem;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .btn-minus {
+  border-right: 0;
+  border-radius: 5px 0 0 5px;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .btn-plus {
+  border-left: 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .product-opera-input {
+  width: 3rem;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .product-opera-input input {
+  -webkit-appearance: none;
+  height: 100%;
+  display: block;
+  min-height: auto;
+  max-height: auto;
+  padding: 0;
+  float: left;
+}
+
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .product-sole-out,
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .btn-minus.disabled,
+.product-detail-popup .product-detail-opera .product-opera-item .product-opera-number .btn-plus.disabled {
+  color: #a3a3a3;
+}
+
+.btn {
+  display:inline-block;
+  padding:.5rem 1rem;
+  font-size:1rem;
+  width:50%;
+  border-radius:5px;
+}
+
+.btn-primary {
+  background-color: #870020;
+  color: #ffffff;
+}
+
+.product-detail-popup .product-popup-confirm {
+  border-radius: 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: .8rem;
+}

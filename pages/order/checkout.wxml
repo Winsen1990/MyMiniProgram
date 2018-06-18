@@ -1,0 +1,108 @@
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
+<view class="address" wx:if="{{address.id > 0}}">
+  <navigator url="/pages/address/select">
+    <icon class="iconfont icon-add-location"></icon>
+    <view class="address-info">
+      <view class="address-info-concat">
+        <text>{{address.consignee}}</text>
+        <text>{{address.mobile}}</text>
+      </view>
+
+      <view class="address-info-detail">
+        <text>{{address.detail}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+<view class="address" wx:if="{{address.id == 0}}">
+  <navigator url="/pages/address/add">
+    <icon class="iconfont icon-location"></icon>
+    <view class="address-info">
+      <text>新增收货地址</text>
+    </view>
+  </navigator>
+</view>
+
+<view class="product-info">
+  <view class="shop-info">
+    <icon class="iconfont icon-shop-title"></icon>
+    <text>{{shop.name}}</text>
+  </view>
+  <view class="product-list">
+    <view class="product-item" wx:for="{{cart}}">
+      <image class="product-item-image" src="{{item.image}}"/>
+      <view class="product-item-info">
+        <text class="product-item-name">{{item.product_name}}</text>
+        <view class="product-item-meta">
+          <text>￥{{filters.toFix(item.price, 2)}}</text>
+          <text>x{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="meta-info-list">
+  <view class="meta-info">
+    <label>配送方式</label>
+    <block wx:for="{{shipping}}">
+      <text wx:if="{{item.selected}}">{{item.name}}</text>
+    </block>
+  </view>
+
+  <view class="meta-info">
+    <label>留言</label>
+    <view class="meta-info-input-view">
+      <input class="meta-info-input-text" type="text" placeholder="点击给商家留言"/>
+      </view>
+  </view>
+
+  <view class="meta-info">
+    <label>合计</label>
+    <text class="meta-info-price">￥{{filters.toFix(summary.product_amount, 2)}}</text>
+  </view>
+</view>
+
+<view class="meta-info-list">
+  <view class="meta-info meta-info-with-arrow">
+    <label>优惠券</label>
+    <text>{{coupon.desc}}</text>
+  </view>
+</view>
+
+<view class="meta-info-list">
+  <view class="meta-info">
+    <label>短信通知收件人</label>
+    <view>
+      <switch bindtap="messageNotice" checked="checked"></switch>
+    </view>
+  </view>
+</view>
+
+<view class="summary">
+  <view class="summary-item">
+    <label>商品金额</label>
+    <text>￥{{filters.toFix(summary.product_amount, 2)}}</text>
+  </view>
+
+  <view class="summary-item">
+    <label>运费</label>
+    <text>+ ￥{{filters.toFix(summary.shipping_amount, 2)}}</text>
+  </view>
+
+  <view wx:if="{{summary.coupon_decrement != 0}}" class="summary-item">
+    <label>优惠减免</label>
+    <text>- ￥{{filters.toFix(summary.coupon_decrement, 2)}}</text>
+  </view>
+</view>
+
+<view class="checkout-toolbar">
+  <view class="block-empty"></view>
+  <view class="checkout-summary">
+    <text>合计:</text>
+    <text class="checkout-summary-amount">￥{{filters.toFix(summary.amount, 2)}}</text>
+  </view>
+  <view class="btn btn-primary">提交订单</view>
+</view>

@@ -1,28 +1,50 @@
 <!--pages/cart/index.wxml-->
-<view class="cart">
 <block wx:if="{{cart.length > 0}}">
-  <view wx:for="{{cart}}" class="cart-item">
-    <input type="checkbox" name="cart-item" value="{{item.id}}"/>
-    <image src="{{item.image}}"/>
-    <view class="cart-item-info">
-      <text class="cart-item-name">{{item.name}}</text>
-      <view>
-        <text class="cart-item-price">￥{{item.price}}</text>
-        <view class="cart-item-opera">
-          <button class="btn-minus iconfont icon-minus"></button>
-          <input type="text" name="cart-item-number" value="{{item.number}}"/>
-          <button class="btn-plus iconfont icon-plus"></button>
+  <wxs module="filters" src="../../assets/utils.wxs"></wxs>
+  <view class="cart">
+    <view wx:for="{{cart}}" class="cart-item">
+      <checkbox bindtap="toogleCartItem" class="cart-checkbox" data-id="{{item.id}}" value="{{item.id}}" checked="{{item.checked}}"/>
+      <!-- <navigator url="/pages/product/detail?id={{item.product_id}}"> -->
+      <image src="{{item.image}}"/>
+      <!-- </navigator> -->
+      <view class="cart-item-info">
+        <text class="cart-item-name">{{item.product_name}}</text>
+        <view class="cart-item-toolkit">
+          <text class="cart-item-price">￥{{filters.toFix(item.price, 2)}}</text>
+          <view class="cart-item-opera">
+            <button wx:if="{{item.count > 1}}" class="btn-minus iconfont icon-minus" data-id="{{item.id}}" bindtap="cartItemMinus"></button>
+            <button wx:else class="btn-minus iconfont icon-minus disabled" data-id="{{item.id}}" bindtap="cartItemMinus"></button>
+            <view class="cart-item-number">
+              <input type="text" name="cart-item-number" value="{{item.count}}" disabled="true"/>
+            </view>
+            <button wx:if="{{item.count < item.inventory}}" class="btn-plus iconfont icon-plus" data-id="{{item.id}}" bindtap="cartItemPlus"></button>
+            <button wx:else class="btn-plus iconfont icon-plus disabled" data-id="{{item.id}}" bindtap="cartItemPlus"></button>
+          </view>
         </view>
       </view>
     </view>
   </view>
+  <view class="cart-toolbar">
+    <checkbox-group bindchange="checkAllProduct">
+      <label class="cart-check-all">
+        <checkbox value="checkAll" checked="{{checkAll}}"/>全选
+      </label>
+    </checkbox-group>
+    <view class="block-empty"></view>
+    <view class="cart-summary">
+      <text>合计: </text>
+      <text class="cart-summary-amount">￥{{filters.toFix(amount, 2)}}</text>
+      <view class="cart-notice">不含运费</view>
+    </view>
+    <view class="btn btn-checkout" bindtap="checkOrder">去结算({{checkedCount}})</view>
+  </view>
 </block>
 
 <block wx:if="{{cart.length == 0}}">
-  <view>
-    <icon class="iconfont icon-cart-empty"></icon>
-    <text>亲，您的购物车没有商品<br/>赶快去挑选吧~</text>
-    <button type="warn" class="btn btn-warning">去挑选</button>
+  <view class="cart-empty">
+    <icon class="iconfont icon-cart"></icon>
+    <text>亲，您的购物车没有商品</text>
+    <text class="last-line">赶快去挑选吧~</text>
+    <navigator url="/pages/index/index" class="btn btn-primary">去挑选</navigator>
   </view>
 </block>
-</view>

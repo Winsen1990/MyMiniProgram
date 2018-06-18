@@ -7,7 +7,7 @@ swiper {
 
 .search-bar {
   border-radius:5px;
-  border:1px solid #f10000;
+  border:1px solid #870020;
   margin:5px 8px;
   display:flex;
 }
@@ -24,11 +24,11 @@ swiper {
   padding:0 8px;
   line-height:2rem;
   color:#fff;
-  background-color:#f10000;
+  background-color:#870020;
 }
 
 .h2 {
-  color: #f10000;
+  color: #870020;
   padding: 8px;
   display: block;
 }
@@ -80,14 +80,14 @@ swiper {
 }
 
 .product-item .product-item-info .product-item-price {
-  color: #f10000;
+  color: #870020;
   flex-grow: 1;
   font-size: .8rem;
   line-height: 1.1rem;
 }
 
 .product-item .product-item-info .product-item-sale-count {
-  color: #dddddd;
+  color: #d0d0d0;
   text-align: right;
   flex-grow: 1;
   font-size: .8rem;

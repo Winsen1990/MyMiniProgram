@@ -1,12 +1,12 @@
 {
   "debug": true,
   "pages": [
-    "pages/index/index",
     "pages/product/detail",
+    "pages/index/index",
+    "pages/cart/index",
     "pages/category/index",
     "pages/home/index",
     "pages/product/index",
-    "pages/cart/index",
     "pages/order/checkout",
     "pages/address/index",
     "pages/address/add",
@@ -15,40 +15,43 @@
     "pages/feed/index"
   ],
   "window":{
-    "backgroundColor":"#cecece",
+    "backgroundColor":"#fafafa",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Mini Program",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#870020",
+    "navigationBarTitleText": "澳臻世Ozonsh",
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
+    "color": "#656565",
+    "selectedColor": "#870020",
+    "backgroundColor": "#ffffff",
     "position": "bottom",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "assets/icon/icon_index.png",
-        "selectedIconPath": "assets/icon/icon_index.png"
+        "iconPath": "assets/icon/index.png",
+        "selectedIconPath": "assets/icon/index@active.png"
       }, {
         "pagePath": "pages/category/index",
         "text": "分类",
-        "iconPath": "assets/icon/icon_index.png",
-        "selectedIconPath": "assets/icon/icon_index.png"
+        "iconPath": "assets/icon/category.png",
+        "selectedIconPath": "assets/icon/category@active.png"
       }, {
         "pagePath": "pages/feed/index",
         "text": "种草",
-        "iconPath": "assets/icon/icon_index.png",
-        "selectedIconPath": "assets/icon/icon_index.png"
+        "iconPath": "assets/icon/feed.png",
+        "selectedIconPath": "assets/icon/feed@active.png"
       }, {
         "pagePath": "pages/cart/index",
         "text": "购物车",
-        "iconPath": "assets/icon/icon_index.png",
-        "selectedIconPath": "assets/icon/icon_index.png"
+        "iconPath": "assets/icon/cart.png",
+        "selectedIconPath": "assets/icon/cart@active.png"
       }, {
         "pagePath": "pages/home/index",
         "text": "我的",
-        "iconPath": "assets/icon/icon_index.png",
-        "selectedIconPath": "assets/icon/icon_index.png"
+        "iconPath": "assets/icon/home.png",
+        "selectedIconPath": "assets/icon/home@active.png"
       }
     ]
   },
