@@ -1,8 +1,8 @@
 {
   "debug": true,
   "pages": [
-    "pages/product/detail",
     "pages/index/index",
+    "pages/product/detail",
     "pages/cart/index",
     "pages/category/index",
     "pages/home/index",

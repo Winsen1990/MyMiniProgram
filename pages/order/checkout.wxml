@@ -2,7 +2,7 @@
 
 <view class="address" wx:if="{{address.id > 0}}">
   <navigator url="/pages/address/select">
-    <icon class="iconfont icon-add-location"></icon>
+    <icon class="iconfont icon-location"></icon>
     <view class="address-info">
       <view class="address-info-concat">
         <text>{{address.consignee}}</text>
@@ -17,7 +17,7 @@
 </view>
 
 <view class="address" wx:if="{{address.id == 0}}">
-  <navigator url="/pages/address/add">
+  <navigator url="/pages/address/add?from_checkout=true">
     <icon class="iconfont icon-location"></icon>
     <view class="address-info">
       <text>新增收货地址</text>
