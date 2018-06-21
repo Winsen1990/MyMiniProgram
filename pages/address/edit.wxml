@@ -1,0 +1,39 @@
+<view class="address-form">
+  <view class="address-form-item">
+    <label>  收 货 人</label>
+    <view class="address-form-input">
+      <input type="text" name="consignee" data-name="consignee" value="{{consignee}}" placeholder="请输入收货人姓名" bindblur="dataValidation"/>
+    </view>
+  </view>
+
+  <view class="address-form-item">
+    <label>手机号码</label>
+    <view class="address-form-input">
+      <input type="number" name="mobile" data-name="mobile" value="{{mobile}}" placeholder="请输入您的手机号码" bindblur="dataValidation"/>
+    </view>
+  </view>
+
+  <view class="address-form-item">
+    <label>省/市/区</label>
+    <view class="address-form-input">
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class="picker"> 
+          {{region[0]}} {{region[1]}} {{region[2]}}
+        </view>
+      </picker>
+      <!--
+      <button class="iconfont icon-location btn-location">定位</button>
+      -->
+    </view>
+  </view>
+
+  <view class="address-form-item">
+    <label>详情地址</label>
+    <view class="address-form-input">
+      <textarea placeholder="请输入路名门牌号" bindblur="dataValidation" data-name="detail" value="{{detail}}"></textarea>
+    </view>
+  </view>
+
+  <button class="btn btn-primary disabled" wx:if="{{consignee == '' || mobile == '' || region[0] == '' || region[1] == '' || region[2] == '' || detail == ''}}">保存</button>
+  <button wx:else class="btn btn-primary" bindtap="saveAddress">保存</button>
+</view>

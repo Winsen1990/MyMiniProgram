@@ -36,6 +36,22 @@ page {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.address .address-info-concat {
+  display: flex;
+  margin-bottom: .5rem;
+}
+
+.address .address-info-concat text:first-child {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.address .address-info-concat text:last-child {
+  flex-grow: 1;
+  text-align: right;
+}
+
+
 /* 产品列表 */
 .product-info {
   margin-top: .5rem;

@@ -6,7 +6,6 @@
     "pages/cart/index",
     "pages/category/index",
     "pages/home/index",
-    "pages/product/detail",
     "pages/product/index",
     "pages/order/checkout",
     "pages/address/index",

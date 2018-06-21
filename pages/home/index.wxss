@@ -79,14 +79,14 @@ page {
 }
 
 .home-list-view {
-  background-color: #ffffff;
   margin-top: .5rem;
 }
 
 .home-list-view .home-list-item {
   padding: 8px;
-  border-bottom: 1px solid #dddddd;
   position: relative;
+  margin-top: .5rem;
+  background-color: #ffffff;
 }
 
 .home-list-view .home-list-item::after {
@@ -97,8 +97,8 @@ page {
   font-size: .8rem;
   top: 50%;
   transform: translateY(-50%);
-}
-
-.home-list-view .home-list-item:last-child {
-  border-bottom: 0;
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -14,7 +14,7 @@ Page({
 
   building: () => {
     wx.showToast({
-      title: '努力建设中，敬请期待',
+      title: '努力建设中',
     });
   },
 

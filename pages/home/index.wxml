@@ -11,6 +11,7 @@
       <text>我的订单</text>
       <navigator url="/pages/order/index" class="home-order-list-placeholder">
         <text>查看全部订单</text>
+        <text class="iconfont icon-arrow-right"></text>
       </navigator>
   </view>
   <view class="home-order-tags">
@@ -33,14 +34,14 @@
   </view>
 
   <view class="home-list-view">
-    <navigator bingtap="building" class="home-list-item">
+    <view bindtap="building" class="home-list-item">
       为你选酒
-    </navigator>
+    </view>
     <navigator url="/pages/address/index" class="home-list-item">
       收货地址
     </navigator>
-    <navigator bingtap="building" class="home-list-item">
+    <view bindtap="building" class="home-list-item">
       优惠券
-    </navigator>
+    </view>
   </view>
 </view>

@@ -1,0 +1,71 @@
+@import "../../assets/common.wxss";
+@import "../../assets/icon/iconfont.wxss";
+
+.address {
+  margin-bottom: 4rem;
+}
+
+.address .address-item {
+  padding: .5rem;
+  background-color: #ffffff;
+  margin-bottom: .5rem;
+  border: 1px solid #e5e5e5;
+  border-left: 0;
+  border-right: 0;
+}
+
+.address .address-item .address-meta {
+  display: flex;
+}
+
+.address .address-item .address-meta text:first-child {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.address .address-item .address-meta text:last-child {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.address .address-item .address-meta .address-default-tag {
+  color: #870020;
+}
+
+.address .address-item .address-opera {
+  border-top: 1px solid #e5e5e5;
+  padding: .5rem 0;
+  display: flex;
+  margin-top: .5rem;
+}
+
+.address .address-item .address-opera .address-edit, .address .address-item .address-opera .address-trash {
+  color: #a3a3a3;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  margin-left: .5rem;
+}
+
+.block-empty {
+  flex-grow: 1;
+  display: inline-flex;
+}
+
+/* 工具栏 */
+.address-toolbar {
+  position: fixed;
+  bottom: 0;
+  display: block;
+  text-align: center;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.address-toolbar .btn {
+  color: #ffffff;
+  width: 95%;
+  margin: .5rem auto;
+  border-radius: 5px;
+  background-color: #870020;
+  line-height: 2rem;
+}

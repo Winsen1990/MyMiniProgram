@@ -59,7 +59,7 @@ Page({
    */
   saveAddress: function() {
     var address = {
-      id: 1,
+      id: this.data.id,
       province: this.data.region[0],
       city: this.data.region[1],
       district: this.data.region[2],
@@ -95,11 +95,7 @@ Page({
       return false;
     }
 
-    
-    if(this.data.from_checkout) {
-      //从下单页面过来的，需要选中并返回
-      wx.setStorageSync('address', address);
-    }
+    //提交修改
 
     wx.navigateBack();
   },

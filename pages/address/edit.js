@@ -8,13 +8,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address: []
+    consignee: '',//收货人
+    mobile: '',//手机号码
+    region: ['广东省', '广州市', '海珠区'],//省市区
+    detail: '',//详细地址
+    id: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.data.id = options.id || 0;
+    this.data.id = parseInt(this.data.id);
+
+    if(isNaN(this.data.id) || this.data.id <= 0) {
+      wx.showModal({
+        title: '提示',
+        content: '参数错误',
+        showCancel: false,
+        complete: function() {
+          wx.navigateBack();
+        }
+      });
+    }
   },
 
   /**
