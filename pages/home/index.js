@@ -12,9 +12,9 @@ Page({
     }
   },
 
-  addressManager: () => {
-    wx.redirectTo({
-      url: '/pages/address/index',
+  building: () => {
+    wx.showToast({
+      title: '努力建设中，敬请期待',
     });
   },
 
