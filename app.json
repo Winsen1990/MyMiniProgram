@@ -2,6 +2,7 @@
   "debug": true,
   "pages": [
     "pages/index/index",
+    "pages/product/detail",
     "pages/cart/index",
     "pages/category/index",
     "pages/home/index",
