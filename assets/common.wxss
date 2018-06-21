@@ -2,20 +2,32 @@ page {
   background-color: #fafafa;
 }
 
-.checkbox {
-  font-family:"iconfont" !important;
-  font-size:16px;
-  font-style:normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "\e628";
-  color: #870020;
+/* checkbox未选中时样式 */
+checkbox.checkbox {
   border: none;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
 }
 
-.checkbox:checked {
-  content: "\e620";
+/* 未选中的 背景样式 */
+checkbox.checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 1.4rem; /* 背景的宽 */
+   height: 1.4rem; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox.checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: none;
+   background: #870020;
+}
+
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox.checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 1.4rem;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 1.4rem;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 1.6rem;
+   text-align: center;
+   font-size: .8rem; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
 }

@@ -15,6 +15,7 @@
     <view class="address-opera">
       <label>
         <checkbox class="checkbox" name="is_default" checked="{{item.is_default}}" data-id="{{item.id}}" bindtap="defaultAddress"/>
+        设为默认地址
       </label>
       <view class="block-empty"></view>
 

@@ -35,6 +35,84 @@ Page({
   },
 
   /**
+   * 信息校验
+   */
+  dataValidation: function (e) {
+    var data = {};
+    switch (e.currentTarget.dataset.name) {
+      case 'consignee':
+        data['consignee'] = e.detail.value;
+        break;
+
+      case 'mobile':
+        data['mobile'] = e.detail.value;
+        break;
+
+      case 'detail':
+        data['detail'] = e.detail.value;
+        break;
+    }
+
+    this.setData(data);
+  },
+
+  /**
+   * 地区选择
+   */
+  bindRegionChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
+    })
+  },
+
+  /**
+   * 保存地址
+   */
+  saveAddress: function () {
+    var address = {
+      id: this.data.id,
+      province: this.data.region[0],
+      city: this.data.region[1],
+      district: this.data.region[2],
+      detail: this.data.detail,
+      consignee: this.data.consignee,
+      mobile: this.data.mobile
+    };
+
+    if (address.consignee == '') {
+      wx.showToast({
+        title: '请输入收货人姓名',
+      });
+      return false;
+    }
+
+    if (address.mobile == '') {
+      wx.showToast({
+        title: '请输入您的手机号码',
+      });
+    }
+
+    if (address.province == '' || address.city == '' || address.district == '') {
+      wx.showToast({
+        title: '请选择省/市/区',
+      });
+      return false;
+    }
+
+    if (address.detail == '') {
+      wx.showToast({
+        title: '请输入路名门牌号',
+      });
+      return false;
+    }
+
+    //提交修改
+
+    wx.navigateBack();
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {

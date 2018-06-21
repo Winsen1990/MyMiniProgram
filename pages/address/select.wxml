@@ -1,0 +1,49 @@
+<view class="address">
+<block wx:if="{{address.length > 0}}">
+  <view wx:for="{{address}}" class="address-item" bindtap="selectAddress" data-id="{{item.id}}">
+    <view wx:if="{{item.is_selected}}" class="address-item-info selected">
+      <view class="address-meta">
+        <text>{{item.consignee}}</text>
+        <text>{{item.mobile}}</text>
+      </view>
+
+      <text class="address-detail">
+        <icon class="address-default-tag" wx:if="{{item.is_default}}">[默认]</icon>
+        {{item.address}}
+      </text>
+    </view>
+    <view wx:else class="address-item-info" bindtap="selectAddress" data-id="{{item.id}}">
+      <view class="address-meta">
+        <text>{{item.consignee}}</text>
+        <text>{{item.mobile}}</text>
+      </view>
+
+      <text class="address-detail">
+        <icon class="address-default-tag" wx:if="{{item.is_default}}">[默认]</icon>
+        {{item.address}}
+      </text>
+    </view>
+    <view class="address-opera">
+      <label>
+        <checkbox class="checkbox" name="is_default" checked="{{item.is_default}}" data-id="{{item.id}}" bindtap="defaultAddress"/>
+        设为默认地址
+      </label>
+      <view class="block-empty"></view>
+
+      <navigator url="/pages/address/edit?id={{item.id}}" class="address-edit iconfont icon-edit"></navigator>
+      <view href="javascript:void(0);" class="address-trash iconfont icon-trash" data-id="{{item.id}}" bindtap="deleteAddress"></view>
+    </view>
+  </view>
+</block>
+
+<block wx:else>
+<view class="address-empty">
+  <icon class="iconfont icon-location"></icon>
+  <text>您还没有保存常用地址哦~</text>
+</view>
+</block>
+</view>
+
+<view class="address-toolbar">
+  <navigator url="/pages/address/add" class="btn btn-primary iconfont icon-plus">添加新地址</navigator>
+</view>

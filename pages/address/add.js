@@ -59,7 +59,7 @@ Page({
    */
   saveAddress: function() {
     var address = {
-      id: this.data.id,
+      id: 0,
       province: this.data.region[0],
       city: this.data.region[1],
       district: this.data.region[2],
@@ -95,7 +95,17 @@ Page({
       return false;
     }
 
-    //提交修改
+    //新增地址
+
+    if (this.data.from_checkout) {
+      wx.setStorageSync('address', {
+        id: 1,
+        detail: this.data.region[0] + ' ' + this.data.region[1] + ' ' + this.data.region[2] + ' ' + this.data.detail,
+        consignee: this.data.consignee,
+        mobile: this.data.mobile
+      });
+    }
+
 
     wx.navigateBack();
   },

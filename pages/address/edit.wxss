@@ -1,0 +1,37 @@
+@import "../../assets/common.wxss";
+@import "../../assets/icon/iconfont.wxss";
+
+page {
+  background-color: #ffffff;
+}
+
+.address-form {
+
+}
+
+.address-form .address-form-item {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  padding: .5rem;
+}
+
+.address-form .address-form-item label {
+  color: #a3a3a3;
+  margin-right: .5rem;
+  min-width: 4rem;
+}
+
+.address-form .address-form-item .address-form-input {
+  flex-grow: 1;
+}
+
+.btn {
+  color: #ffffff;
+  width: 95%;
+  margin: .5rem auto;
+  background-color: #870020;
+}
+
+.btn.disabled {
+  background-color: #a3a3a3;
+}

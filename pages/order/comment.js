@@ -1,21 +1,11 @@
-// pages/home/index.js
+// pages/order/comment.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user: {
-      avatar: '../../assets/user-unlogin.png',
-      nickname: '登录',
-      level: '普通客户'
-    }
-  },
-
-  building: () => {
-    wx.showToast({
-      title: '努力建设中',
-    });
+  
   },
 
   /**
