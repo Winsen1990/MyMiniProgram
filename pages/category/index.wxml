@@ -1,9 +1,35 @@
 <!--pages/category/index.wxml-->
-<view class="categories">
-  <block wx:for="{{categories}}">
-    <view class="category-item" data-id="{{item.id}}" bindtap="selectCategory">
-      <image src="{{item.image}}" class="category-image" mode="widthFix"></image>
-      <text class="category-name">{{item.name}}</text>
-    </view>
-  </block>
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+<view class="category">
+  <scroll-view class="categories">
+    <block wx:for="{{categories}}">
+      <view wx:if="{{current_id == item.id}}" class="category-item current" data-id="{{item.id}}" bindtap="selectCategory">
+        <text class="category-name">{{item.name}}</text>
+      </view>
+      <view wx:else class="category-item" data-id="{{item.id}}" bindtap="selectCategory">
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <scroll-view class="product-list" scroll-y="true" enable-back-to-top scroll-into-view="{{current_view}}" bindscroll="scroll">
+    <block wx:for="{{categories}}" wx:for-item="parent_category">
+      <view wx:for="{{parent_category.sub_categories}}" class="product-group" wx:for-item="sub_category" wx:for-index="index">
+        <view class="sub-category" wx:if="{{index == 0}}" id="category-{{parent_category.id}}">{{sub_category.name}}</view>
+        <view class="sub-category" wx:else>{{sub_category.name}}</view>
+        <view class="product-group-list">
+          <navigator url="/pages/product/detail?id={{item.id}}" wx:for="{{sub_category.product_list}}" class="product-item">
+            <image src="{{item.image}}" class="product-image" mode="widthFix"></image>
+            <view class="product-item-info">
+              <text class="product-name">{{item.name}}</text>
+              <view class="product-item-meta">
+                <text class="product-price">￥{{filters.toFix(item.price, 2)}}</text>
+                <text class="product-sale-count">销量: {{item.sale_count}}</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
 </view>

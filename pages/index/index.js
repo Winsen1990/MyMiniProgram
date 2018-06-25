@@ -70,7 +70,7 @@ var pageModel = Page({
       });
 
       wx.request({
-        url: config.service.indexUrl,
+        url: config.service.index,
         success: (response) => {
           var ad_list = [];
 

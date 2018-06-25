@@ -2,9 +2,9 @@
   "debug": true,
   "pages": [
     "pages/index/index",
+    "pages/category/index",
     "pages/product/detail",
     "pages/cart/index",
-    "pages/category/index",
     "pages/home/index",
     "pages/product/index",
     "pages/order/checkout",

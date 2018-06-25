@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    categories: []
+    categories: [],
+    current_view: '',
+    current_id: 0
   },
 
   /**
@@ -17,11 +19,17 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: config.service.categories,
+      url: config.service.category,
       success: (response) => {
         that.setData({
           categories: response.data.categories
         });
+
+        if(response.data.categories.length) {
+          this.setData({
+            current_id: response.data.categories[0].id
+          });
+        }
       }
     })
   },
@@ -35,15 +43,10 @@ Page({
     console.info("tap on category id:" + category_id);
     category_id = parseInt(category_id);
 
-    if(isNaN(category_id) || category_id <= 0) {
-      wx.showToast({
-        title: '参数错误',
-      });
-    } else {
-      wx.navigateTo({
-        url: '/pages/product/index?c_id=' + category_id,
-      });
-    }
+    this.setData({
+      current_view: 'category-' + category_id,
+      current_id: category_id
+    })
   },
 
   /**
