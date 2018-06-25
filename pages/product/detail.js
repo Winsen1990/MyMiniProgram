@@ -1,4 +1,6 @@
 // pages/product/detail.js
+var config = require('../../config');
+var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
@@ -16,6 +18,7 @@ Page({
     current_banner: 0,
     screen_width: 0,
     screen_height: 0,
+    current_tab: 'detail_panel',
     product: {
       id: 1,
       name: "澳大利亚原瓶原装进口君叶RL88长相思干白葡萄酒",
@@ -31,7 +34,7 @@ Page({
       sort: 1,
       star: 4,
       inventory: 10,
-      favouriate: false,
+      favorite: false,
       is_recommend: true,
       detail: "<div><h2>产品详情</h2><img src=\"http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg\"/><img src=\"http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg\"/></div>",
       comments: []
@@ -91,8 +94,42 @@ Page({
         });
       }
     });
-    //加载产品详情富文本
-    WxParse.wxParse('product_detail', 'html', that.data.product.detail, that, 5);
+
+    //
+    wx.request({
+      url: config.service.product,
+      data: {id: options.id},
+      success: (response) => {
+        if(response.data.error != 0) {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            complete: function() {
+              wx.navigateBack();
+            }
+          });
+        } else {
+          that.setData({
+            product: response.data.product
+          });
+
+          //加载产品详情富文本
+          WxParse.wxParse('product_detail', 'html', that.data.product.detail, that, 5);
+        }
+      }
+    });
+  },
+
+  showDetailPanel: function() {
+    this.setData({
+      current_tab: 'detail_panel'
+    });
+  },
+
+  showCommentPanel: function() {
+    this.setData({
+      current_tab: 'comment_panel'
+    });
   },
 
   onShareAppMessage: function (res) {
@@ -113,22 +150,42 @@ Page({
    * 收藏/取消收藏
    */
   toogleFav: function() {
-    this.data.product.favouriate ^= true;
+    var that = this;
+    wx.request({
+      url: config.service.collection,
+      data: { id: this.data.product.id },
+      method: 'POST',
+      success: function(response) {
+        if(response.data.error == 0) {
+          that.data.product.favouriate ^= true;
 
-    if(this.data.product.favouriate) {
-      wx.showToast({
-        title: '收藏成功',
-        icon: 'success'
-      });
-    } else {
-      wx.showToast({
-        title: '取消收藏成功',
-        icon: 'success'
-      });
-    }
+          if (that.data.product.favouriate) {
+            wx.showToast({
+              title: '收藏成功',
+              icon: 'success'
+            });
+          } else {
+            wx.showToast({
+              title: '取消收藏成功',
+              icon: 'success'
+            });
+          }
 
-    this.setData({
-      product: this.data.product
+          that.setData({
+            product: that.data.product
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            complete: function() {
+              if(response.data.error == 503) {
+                util.login();
+              }
+            }
+          });
+        }
+      }
     });
   },
 

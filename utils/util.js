@@ -43,4 +43,33 @@ var checkAuthorization = () => {
 
 }
 
-module.exports = { checkAuthorization, formatTime, showBusy, showSuccess, showModel }
+//登录
+var login = () => {
+  wx.login({
+    success: res => {
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      if (res.errMsg == 'login:ok') {
+        console.info(res);
+        getUserInfo(res.code);
+      }
+    }
+  });
+}
+
+var config = require('../config.js');
+
+function getUserInfo(code) {
+  wx.request({
+    url: config.service.login,
+    data: { code: code },
+    method: 'POST',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    success: function(response) {
+      console.info(response);
+    }
+  });
+}
+
+module.exports = { checkAuthorization, formatTime, showBusy, showSuccess, showModel, login }

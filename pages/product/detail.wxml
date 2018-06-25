@@ -31,22 +31,31 @@
 
 <view class="product-detail-tabs">
   <ul>
-    <li class="current">商品详情</li>
-    <li>买家评论</li>
+    <li wx:if="{{current_tab == 'detail_panel'}}" class="current">商品详情</li>
+    <li wx:else bindtap="showDetailPanel">商品详情</li>
+    <li wx:if="{{current_tab == 'comment_panel'}}" class="current">买家评论</li> 
+    <li wx:else bindtap="showCommentPanel">买家评论</li> 
   </ul>
 </view>
 
 <view class="product-detail-panels">
-  <view class="product-detail-panel">
+  <view class="product-detail-panel" wx:if="{{current_tab == 'detail_panel'}}">
     <import src="../../wxParse/wxParse.wxml"/>
     <template is="wxParse" data="{{wxParseData:product_detail.nodes}}"/>
   </view>
 
-  <view class="product-detail-panel" style="display: none;">
+  <view class="product-detail-panel" wx:else>
     <block wx:if="{{product.comments.length > 0}}">
+      <view wx:for="{{product.comments}}">
+        <view>
+          <image src="{{item.avatar}}"/>
+          <text>{{item.nickname}}</text>
+        </view>
+        <view>{{item.comment}}</view>
+      </view>
     </block>
 
-    <view wx:if="{{product.comments.length == 0}}">
+    <view wx:else>
       <icon class="iconfont icon-comments"></icon>
       <text>亲，暂无任何评论！</text>
     </view>
