@@ -1,2 +1,4 @@
 <!--pages/order/detail.wxml-->
-<text>pages/order/detail.wxml</text>
+<view class="order">
+  
+</view>

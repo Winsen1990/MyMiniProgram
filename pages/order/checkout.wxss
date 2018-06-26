@@ -4,6 +4,15 @@ page {
   background-color: #f5f5f5;
 }
 
+button {
+  line-height:auto;
+}
+
+button::after {
+  border: none;
+  line-height:auto;
+}
+
 /* 地址栏 */
 .address navigator {
   border-bottom: 2px dashed #870020;

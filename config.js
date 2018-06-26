@@ -19,6 +19,7 @@ var config = {
         order: `${host}${api_path}/order.php`,//订单
         cart: `${host}${api_path}/cart.php`,//购物车
         feed: `${host}${api_path}/feed.php`,//信息流
+        member: `${host}${api_path}/member.php`,//用户信息
         // 登录地址，用于建立会话
         login: `${host}${api_path}/authorization.php`,//登录
         // 上传图片接口

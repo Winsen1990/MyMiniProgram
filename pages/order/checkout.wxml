@@ -55,8 +55,8 @@
   <view class="meta-info">
     <label>留言</label>
     <view class="meta-info-input-view">
-      <input class="meta-info-input-text" type="text" placeholder="点击给商家留言"/>
-      </view>
+      <input class="meta-info-input-text" type="text" placeholder="点击给商家留言" bindblur="recordRemark"/>
+    </view>
   </view>
 
   <view class="meta-info">
@@ -104,5 +104,5 @@
     <text>合计:</text>
     <text class="checkout-summary-amount">￥{{filters.toFix(summary.amount, 2)}}</text>
   </view>
-  <view class="btn btn-primary">提交订单</view>
+  <view class="btn btn-primary" catchtap="submitOrder">提交订单</view>
 </view>

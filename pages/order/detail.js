@@ -1,18 +1,21 @@
 // pages/order/detail.js
-Page({
+var config = require('../../config');
+var util = require('../../utils/util.js');
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-  
+    order: null,
+    order_sn: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.data.order_sn = options.sn;
   },
 
   /**
@@ -26,7 +29,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    wx.showToast({
+      icon: 'loading'
+    });
+
+    wx.request({
+      url: config.service.order,
+      method: 'GET',
+      data: { sn: that.data.order_sn },
+      success: function(response) {
+        if(response.data.error == 0) {
+          that.setData({
+            order: response.data.order
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            showCancel: false
+          });
+        }
+      },
+      complete: function() {
+        wx.hideToast();
+      }
+    });
   },
 
   /**

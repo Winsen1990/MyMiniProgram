@@ -36,7 +36,8 @@
       <text class="cart-summary-amount">￥{{filters.toFix(amount, 2)}}</text>
       <view class="cart-notice">不含运费</view>
     </view>
-    <view class="btn btn-checkout" catchtap="checkOrder">去结算({{checkedCount}})</view>
+    <button open-type="getUserInfo" class="btn btn-checkout" bindgetuserinfo="getUserInfo" wx:if="{{!has_user_info && can_use}}">去结算({{checkedCount}})</button>
+    <view class="btn btn-checkout" catchtap="checkOrder" wx:else>去结算({{checkedCount}})</view>
   </view>
 </block>
 

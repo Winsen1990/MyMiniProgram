@@ -11,7 +11,9 @@ Page({
     cart: [],
     checkAll: false,
     amount: 0,
-    checkedCount: 0
+    checkedCount: 0,
+    has_user_info: false,
+    can_use: wx.canIUse('button.open-type.getUserInfo'),
   },
 
   /**
@@ -35,6 +37,12 @@ Page({
     if (!util.checkAuthorization()) {
       util.login(this.getCart);
       return false;
+    }
+
+    if(getApp().globalData.userInfo != null) {
+      this.setData({
+        has_user_info: true
+      });
     }
 
     this.getCart();
@@ -206,6 +214,55 @@ Page({
 
     wx.navigateTo({
       url: '/pages/order/checkout',
+    });
+  },
+
+  /**
+   * 获取用户信息
+   */
+  getUserInfo: function(e) {
+    var that = this;
+    wx.showToast({
+      icon: 'loading',
+    });
+    console.info(e);
+
+    wx.request({
+      url: config.service.member,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: { opera: 'sync', nickname: e.detail.userInfo.nickName, avatar: e.detail.userInfo.avatarUrl, sex: e.detail.userInfo.gender, token: getApp().globalData.token },
+      success: function(response) {
+        if(response.data.error != 0) {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            showCancel: false
+          });
+        } else {
+          getApp().globalData.userInfo = {
+            nickname: e.detail.userInfo.nickName,
+            sex: e.detail.userInfo.gender,
+            avatar: e.detail.userInfo.avatarUrl
+          };
+
+          wx.showModal({
+            title: '提示',
+            content: '登录成功',
+            showCancel: false,
+            complete: function() {
+              that.setData({
+                has_user_info: true
+              });
+            }
+          });
+        }
+      },
+      complete: function() {
+        wx.hideToast();
+      }
     });
   },
 

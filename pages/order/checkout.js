@@ -1,6 +1,8 @@
 // pages/cart/index.js
-Page({
+var config = require('../../config');
+var util = require('../../utils/util.js');
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -149,6 +151,79 @@ Page({
   messageNotice: function() {
     this.data.messageNotice ^= true;
     console.info(this.data.messageNotice);
+  },
+
+  /**
+   * 记录留言
+   */
+  recordRemark: function(e) {
+    this.data.remark = e.detail.value;
+  },
+
+  /**
+   * 提交订单
+   */
+  submitOrder: function() {
+    var data = {
+      address_id: this.data.address.id,
+      cart: [],
+      remark: this.data.remark,
+      opera: 'add',
+      token: getApp().globalData.token
+    }
+
+    for(var i = 0; i < this.data.cart.length; i++) {
+      var cart_item = this.data.cart[i];
+      data.cart.push({
+        id: cart_item.id,
+        count: cart_item.count
+      });
+    }
+
+    wx.showToast({
+      icon: 'loading'
+    });
+    wx.request({
+      url: config.service.order,
+      data: data,
+      method: 'POST',
+      success: function(response) {
+        wx.showModal({
+          title: '提示',
+          content: response.data.message,
+          showCancel: false,
+          success: function() {
+            if(response.data.error == 0) {
+              wx.showModal({
+                title: '提示',
+                content: response.data.message,
+                confirmText: '前往支付',
+                cancelText: '查看订单',
+                success: function() {
+                  wx.redirectTo({
+                    url: '/pages/order/pay?sn=' + response.data.order_sn
+                  });
+                },
+                fail: function() {
+                  wx.redirectTo({
+                    url: '/pages/order/detail?sn=' + response.data.order_sn
+                  });
+                }
+              });
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: response.data.message,
+                showCancel: false
+              });
+            }
+          },
+          complete: function() {
+            wx.hideToast();
+          }
+        });
+      }
+    });
   },
 
   /**
