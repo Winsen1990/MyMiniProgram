@@ -33,6 +33,9 @@ App({
       */
     },
     globalData: {
-      userInfo: null
+      userInfo: null,
+      token: null,
+      expired: 0,
+      logining: false
     }
 });

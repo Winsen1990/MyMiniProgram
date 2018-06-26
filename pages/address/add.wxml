@@ -35,5 +35,5 @@
   </view>
 
   <button class="btn btn-primary disabled" wx:if="{{consignee == '' || mobile == '' || region[0] == '' || region[1] == '' || region[2] == '' || detail == ''}}">保存</button>
-  <button wx:else class="btn btn-primary" bindtap="saveAddress">保存</button>
+  <button wx:else class="btn btn-primary" catchtap="saveAddress">保存</button>
 </view>

@@ -3,7 +3,7 @@
   <wxs module="filters" src="../../assets/utils.wxs"></wxs>
   <view class="cart">
     <view wx:for="{{cart}}" class="cart-item">
-      <checkbox bindtap="toogleCartItem" class="cart-checkbox" data-id="{{item.id}}" value="{{item.id}}" checked="{{item.checked}}"/>
+      <checkbox catchtap="toogleCartItem" class="cart-checkbox" data-id="{{item.id}}" value="{{item.id}}" checked="{{item.checked}}"/>
       <!-- <navigator url="/pages/product/detail?id={{item.product_id}}"> -->
       <image src="{{item.image}}"/>
       <!-- </navigator> -->
@@ -12,13 +12,13 @@
         <view class="cart-item-toolkit">
           <text class="cart-item-price">￥{{filters.toFix(item.price, 2)}}</text>
           <view class="cart-item-opera">
-            <button wx:if="{{item.count > 1}}" class="btn-minus iconfont icon-minus" data-id="{{item.id}}" bindtap="cartItemMinus"></button>
-            <button wx:else class="btn-minus iconfont icon-minus disabled" data-id="{{item.id}}" bindtap="cartItemMinus"></button>
+            <button wx:if="{{item.count > 1}}" class="btn-minus iconfont icon-minus" data-id="{{item.id}}" catchtap="cartItemMinus"></button>
+            <button wx:else class="btn-minus iconfont icon-minus disabled" data-id="{{item.id}}" catchtap="cartItemMinus"></button>
             <view class="cart-item-number">
               <input type="text" name="cart-item-number" value="{{item.count}}" disabled="true"/>
             </view>
-            <button wx:if="{{item.count < item.inventory}}" class="btn-plus iconfont icon-plus" data-id="{{item.id}}" bindtap="cartItemPlus"></button>
-            <button wx:else class="btn-plus iconfont icon-plus disabled" data-id="{{item.id}}" bindtap="cartItemPlus"></button>
+            <button wx:if="{{item.count < item.inventory}}" class="btn-plus iconfont icon-plus" data-id="{{item.id}}" catchtap="cartItemPlus"></button>
+            <button wx:else class="btn-plus iconfont icon-plus disabled" data-id="{{item.id}}" catchtap="cartItemPlus"></button>
           </view>
         </view>
       </view>
@@ -36,7 +36,7 @@
       <text class="cart-summary-amount">￥{{filters.toFix(amount, 2)}}</text>
       <view class="cart-notice">不含运费</view>
     </view>
-    <view class="btn btn-checkout" bindtap="checkOrder">去结算({{checkedCount}})</view>
+    <view class="btn btn-checkout" catchtap="checkOrder">去结算({{checkedCount}})</view>
   </view>
 </block>
 

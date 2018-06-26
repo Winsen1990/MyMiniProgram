@@ -38,27 +38,55 @@ var showModel = (title, content) => {
     })
 }
 
+var getTimestamp = () => {
+  return new Date().getTime();
+}
+
 // 登录检查
 var checkAuthorization = () => {
+  var token = getApp().globalData.token;
+  var expired = getApp().globalData.expired;
 
+  if(!token) {
+    return false;
+  }
+
+  if(expired < getTimestamp()) {
+    return false;
+  }
+
+  var user_info = getApp().globalData.userInfo;
+  if(!user_info) {
+    return false;
+  }
+
+  return true;
 }
 
 //登录
-var login = () => {
+var login = (callback) => {
+  if (getApp().globalData.logining) {
+    return false;
+  }
+  getApp().globalData.logining = true;
+
   wx.login({
     success: res => {
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
       if (res.errMsg == 'login:ok') {
         console.info(res);
-        getUserInfo(res.code);
+        getToken(res.code, callback);
       }
+    },
+    complete: () => {
+      getApp().globalData.logining = false;
     }
   });
 }
 
 var config = require('../config.js');
 
-function getUserInfo(code) {
+function getToken(code, callback) {
   wx.request({
     url: config.service.login,
     data: { code: code },
@@ -68,6 +96,19 @@ function getUserInfo(code) {
     },
     success: function(response) {
       console.info(response);
+      if(response.data.error == 0) {
+        getApp().globalData.userInfo = response.data.user;
+        getApp().globalData.token = response.data.token;
+        getApp().globalData.expired = response.data.token;
+        if (typeof (callback) == 'function') {
+          callback.apply(this);
+        }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: response.data.message,
+        });
+      }
     }
   });
 }

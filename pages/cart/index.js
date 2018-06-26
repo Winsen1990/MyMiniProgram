@@ -1,38 +1,14 @@
 // pages/cart/index.js
+var config = require('../../config');
+var util = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cart: [{
-      id: 1,
-      image: 'http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg',
-      product_id: 1,
-      product_name: '产品名称',
-      price: 38.00,
-      count: 1,
-      checked: false,
-      inventory: 1
-    }, {
-      id: 2,
-      image: 'http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg',
-      product_id: 1,
-      product_name: '产品名称',
-      price: 38.00,
-      count: 2,
-      checked: true,
-      inventory: 2
-    }, {
-      id: 3,
-      image: 'http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg',
-      product_id: 1,
-      product_name: '澳大利亚原瓶原装进口君叶RL88长相思干白葡萄酒',
-      price: 3800.00,
-      count: 999,
-      checked: false,
-      inventory: 1000
-    }],
+    cart: [],
     checkAll: false,
     amount: 0,
     checkedCount: 0
@@ -56,7 +32,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.summary();
+    if (!util.checkAuthorization()) {
+      util.login(this.getCart);
+      return false;
+    }
+
+    this.getCart();
+  },
+
+  /**
+   * 初始化数据
+   */
+  getCart: function() {
+    var that = this;
+    wx.request({
+      url: config.service.cart,
+      method: 'GET',
+      data: { act: 'view', token: getApp().globalData.token },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (response) {
+        if (response.data.error == 0) {
+          that.setData({
+            cart: response.data.cart
+          });
+          that.summary();
+        }
+      }
+    });
   },
 
   /**

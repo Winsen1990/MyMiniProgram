@@ -58,6 +58,11 @@ Page({
    * 保存地址
    */
   saveAddress: function() {
+    var that = this;
+    wx.showToast({
+      icon: 'loading'
+    });
+
     var address = {
       id: 0,
       province: this.data.region[0],
@@ -96,18 +101,52 @@ Page({
     }
 
     //新增地址
+    wx.request({
+      url: config.service.address,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        province: that.data.region[0],
+        city: that.data.region[1],
+        district: that.data.region[2],
+        address: that.data.detail,
+        consignee: that.data.consignee,
+        mobile: that.data.mobile,
+        token: getApp().globalData.token,
+        opera: 'add'
+      },
+      success: function(response) {
+        if(response.data.error == 0) {
+          wx.showModal({
+            title: '',
+            content: '新增地址成功',
+            complete: function() {
+              if (that.data.from_checkout) {
+                wx.setStorageSync('address', {
+                  id: response.data.id,
+                  detail: that.data.region[0] + ' ' + that.data.region[1] + ' ' + that.data.region[2] + ' ' + that.data.detail,
+                  consignee: that.data.consignee,
+                  mobile: that.data.mobile
+                });
+              }
 
-    if (this.data.from_checkout) {
-      wx.setStorageSync('address', {
-        id: 1,
-        detail: this.data.region[0] + ' ' + this.data.region[1] + ' ' + this.data.region[2] + ' ' + this.data.detail,
-        consignee: this.data.consignee,
-        mobile: this.data.mobile
-      });
-    }
-
-
-    wx.navigateBack();
+              wx.navigateBack();
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            showCancel: false
+          });
+        }
+      },
+      complete: function() {
+        wx.hideToast();
+      }
+    });
   },
 
   /**

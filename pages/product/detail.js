@@ -19,24 +19,22 @@ Page({
     screen_width: 0,
     screen_height: 0,
     current_tab: 'detail_panel',
+    login: false,
+    can_use: wx.canIUse('button.open-type.getUserInfo'),
     product: {
-      id: 1,
-      name: "澳大利亚原瓶原装进口君叶RL88长相思干白葡萄酒",
-      price: 1.00,
-      market_price: 10.00,
-      sale_count: 9999,
-      image: "http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg",
-      gallery: [
-        "http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg",
-        "http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg",
-        "http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg"
-      ],
-      sort: 1,
-      star: 4,
-      inventory: 10,
+      id: 0,
+      name: "",
+      price: 0.00,
+      market_price: 0.00,
+      sale_count: 0,
+      image: "",
+      gallery: [],
+      sort: 0,
+      star: 0,
+      inventory: 0,
       favorite: false,
       is_recommend: true,
-      detail: "<div><h2>产品详情</h2><img src=\"http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg\"/><img src=\"http://img3m0.ddimg.cn/28/30/24198400-1_e_4.jpg\"/></div>",
+      detail: "",
       comments: []
     },
     count: 1,//购买数量
@@ -104,6 +102,7 @@ Page({
           wx.showModal({
             title: '提示',
             content: response.data.message,
+            showCancel: false,
             complete: function() {
               wx.navigateBack();
             }
@@ -151,10 +150,18 @@ Page({
    */
   toogleFav: function() {
     var that = this;
+    if(!util.checkAuthorization()) {
+      util.login(this.toogleFav);
+      return false;
+    }
+
     wx.request({
       url: config.service.collection,
-      data: { id: this.data.product.id },
+      data: { id: this.data.product.id, token: getApp().globalData.token },
       method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       success: function(response) {
         if(response.data.error == 0) {
           that.data.product.favouriate ^= true;
@@ -178,6 +185,7 @@ Page({
           wx.showModal({
             title: '提示',
             content: response.data.message,
+            showCancel: false,
             complete: function() {
               if(response.data.error == 503) {
                 util.login();
@@ -281,23 +289,13 @@ Page({
    * 提交购物车
    */
   confirmBuy: function() {
-    var product = this.data.product;
-    var cart_item = {
-      id: product.id,
-      image: product.image,
-      product_id: product.id,
-      product_name: product.name,
-      price: product.price,
-      count: Math.min(product.inventory, this.data.count),
-      checked: true,
-      inventory: product.inventory
-    };
-
-    var cart = wx.getStorageSync('cart');
-    var current_index = -1;
-    if (!cart) {
-      cart = [];
+    var that = this;
+    if (!util.checkAuthorization()) {
+      util.login(this.confirmBuy);
+      return false;
     }
+
+    var product = this.data.product;
     var url = '/pages/cart/index';
 
     //直接购买
@@ -305,49 +303,61 @@ Page({
       url = '/pages/order/checkout';
     }
 
-    for(var i = 0; i < cart.length; i++) {
-      if (this.data.direct_buy && cart[i].id != product.id) {
-        cart[i].checked = false;
-      }
+    wx.request({
+      url: config.service.cart,
+      data: { opera: 'add', product_id: product.id, count: this.data.count, token: getApp().globalData.token },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function(response) {
+        if(response.data.error == 0) {
+          if (that.data.direct_buy) {
+            var cart_item = {
+              id: response.data.id,
+              image: product.image,
+              product_id: product.id,
+              product_name: product.name,
+              price: product.price,
+              count: response.data.count,
+              checked: true,
+              inventory: product.inventory
+            };
 
-      if(cart[i].id == product.id) {
-        current_index = i;
-      }
-    }
+            wx.setStorageSync('cart', [cart_item]);
 
-    if(current_index != -1) {
-      cart_item.count = Math.min(product.inventory, cart[current_index].count + this.data.count);
-      cart[current_index] = cart_item;
-    } else {
-      cart.push(cart_item);
-    }
-
-    wx.setStorageSync('cart', cart);
-
-    if (this.data.direct_buy) {
-      wx.navigateTo({
-        url: url
-      });
-    } else {
-      wx.showModal({
-        title: '',
-        content: '加入购物车成功',
-        cancelText: '继续逛逛',
-        cancelColor: '#a3a3a3',
-        confirmText: '去购物车',
-        confirmColor: '#870020',
-        success: function() {
-          wx.switchTab({
-            url: url
-          });
-        },
-        fail: function() {
-          wx.switchTab({
-            url: '/pages/index/index',
+            wx.navigateTo({
+              url: url
+            });
+          } else {
+            wx.showModal({
+              title: '',
+              content: '加入购物车成功',
+              cancelText: '继续逛逛',
+              cancelColor: '#a3a3a3',
+              confirmText: '去购物车',
+              confirmColor: '#870020',
+              success: function () {
+                wx.switchTab({
+                  url: url
+                });
+              },
+              fail: function () {
+                wx.switchTab({
+                  url: '/pages/index/index',
+                });
+              }
+            });
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            showCancel: false
           });
         }
-      });
-    }
+      }
+    });
   },
 
   /**
@@ -368,7 +378,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
