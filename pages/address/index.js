@@ -7,29 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address: [
-      {
-        consignee: '刘邦',//收货人
-        mobile: '13900000000',//手机号码
-        address: '广东省 深圳市 罗湖区 龙珠大道北121号',//详细地址
-        id: 1,
-        is_default: true
-      },
-      {
-        consignee: '项羽',//收货人
-        mobile: '13900000001',//手机号码
-        address: '广东省 广州市 天河区 广园中路',//详细地址
-        id: 2,
-        is_default: false
-      },
-      {
-        consignee: '胡亥',//收货人
-        mobile: '13900000002',//手机号码
-        address: '广东省 汕头市 澄海区 莲上镇',//详细地址
-        id: 3,
-        is_default: false
-      }
-    ]
+    address: []
   },
 
   /**
@@ -42,18 +20,43 @@ Page({
 
     console.info(address_id);
 
-    for (var i = 0; i < this.data.address.length; i++) {
-      var address = this.data.address[i];
+    wx.showLoading({
+      title: '正在设置默认地址...',
+      mask: true
+    });
 
-      if (address.id == address_id) {
-        this.data.address[i].is_default = true;
-      } else {
-        this.data.address[i].is_default = false;
+    wx.request({
+      url: config.service.address,
+      method: 'POST',
+      data: { opera: 'default', id: address_id, token: getApp().globalData.token },
+      success: function(response) {
+        if(response.data.error == 0) {
+          wx.showToast({
+            title: '默认地址设置成功',
+          });
+
+          for (var i = 0; i < that.data.address.length; i++) {
+            var address = that.data.address[i];
+
+            if (address.id == address_id) {
+              that.data.address[i].is_default = true;
+            } else {
+              that.data.address[i].is_default = false;
+            }
+          }
+
+          that.setData({
+            address: that.data.address
+          });
+        } else {
+          wx.showToast({
+            title: response.data.message,
+          });
+        }
+      },
+      complete: function() {
+        wx.hideLoading();
       }
-    }
-
-    this.setData({
-      address: this.data.address
     });
   },
 
@@ -75,11 +78,21 @@ Page({
         console.info(o);
         if(o.confirm) {
           //提交删除地址
-          wx.showToast({
-            title: '删除成功',
-          });
+          var data = { opera: 'delete', id: address_id, token: getApp().globalData.token };
 
-          that.renewData(address_id);
+          util.request(config.service.address, data, 'POST', function(response) {
+            if(response.data.error == 0) {
+              wx.showToast({
+                title: '删除成功',
+              });
+
+              that.renewData(address_id);
+            } else {
+              wx.showToast({
+                title: response.data.message,
+              });
+            }
+          }, null, '正在删除地址...');
         }
       }
     });
@@ -116,14 +129,22 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    //获取地址列表
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    var data = { act: 'view', token: getApp().globalData.token };
+    util.request(config.service.address, data, 'GET', function(response) {
+      if(response.data.error == 0) {
+        that.setData({
+          address: response.data.address
+        });
+      }
+    });
   },
 
   /**

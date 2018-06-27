@@ -1,5 +1,6 @@
 var filters = {
   toFix: function (value) {
+    value = parseFloat(value);
     return value.toFixed(2)//此处2为保留两位小数
   }
 }

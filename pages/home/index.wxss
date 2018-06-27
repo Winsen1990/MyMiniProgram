@@ -29,6 +29,13 @@ page {
   color: #333333;
 }
 
+.home-header .home-user-info button {
+  background-color: #870020;
+  color: #ffffff;
+  width: 33%;
+  display: inline-block;
+}
+
 .home-header .home-user-info .home-user-nickname {
   display: block;
   font-size: 1rem;

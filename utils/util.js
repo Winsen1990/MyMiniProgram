@@ -42,6 +42,36 @@ var getTimestamp = () => {
   return new Date().getTime();
 }
 
+// 发起请求
+var request = (url, data, method, success, fail, loading_text) => {
+  loading_text = loading_text || '';
+
+  wx.showLoading({
+    title: loading_text,
+    mask: true
+  });
+
+  var header = {};
+
+  if(method == 'GET') {
+    header = {
+      'content-type': 'application/x-www-form-urlencoded'
+    };
+  }
+
+  wx.request({
+    url: url,
+    data: data,
+    method: method,
+    success: success,
+    header: header,
+    fail: fail,
+    complete: function() {
+      wx.hideLoading();
+    }
+  });
+}
+
 // 登录检查
 var checkAuthorization = () => {
   var token = getApp().globalData.token;
@@ -113,4 +143,4 @@ function getToken(code, callback) {
   });
 }
 
-module.exports = { checkAuthorization, formatTime, showBusy, showSuccess, showModel, login }
+module.exports = { checkAuthorization, formatTime, showBusy, showSuccess, showModel, login, request }

@@ -19,6 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     this.data.id = options.id || 0;
     this.data.id = parseInt(this.data.id);
 
@@ -32,6 +33,20 @@ Page({
         }
       });
     }
+
+    var data = { id: this.data.id, token: getApp().globalData.token, act: 'show' };
+
+    util.request(config.service.address, data, 'GET', function(response) {
+      if(response.data.error == 0) {
+        that.setData({
+          consignee: response.data.address.consignee,//收货人
+          mobile: response.data.address.mobile,//手机号码
+          region: response.data.address.region,//省市区
+          detail: response.data.address.detail,//详细地址
+          id: data.id
+        });
+      }
+    });
   },
 
   /**
@@ -70,6 +85,7 @@ Page({
    * 保存地址
    */
   saveAddress: function () {
+    var that = this;
     var address = {
       id: this.data.id,
       province: this.data.region[0],
@@ -108,8 +124,35 @@ Page({
     }
 
     //提交修改
+    var data = {
+      province: that.data.region[0],
+      city: that.data.region[1],
+      district: that.data.region[2],
+      address: that.data.detail,
+      consignee: that.data.consignee,
+      mobile: that.data.mobile,
+      token: getApp().globalData.token,
+      id: that.data.id,
+      opera: 'edit'
+    };
 
-    wx.navigateBack();
+    util.request(config.service.address, data, 'POST', function(response) {
+      if(response.data.error == 0) {
+        wx.showModal({
+          title: '提示',
+          content: response.data.message,
+          showCancel: false,
+          confirmText: '查看地址',
+          complete: function() {
+            wx.navigateBack();
+          }
+        });
+      } else {
+        wx.showToast({
+          title: response.data.message,
+        });
+      }
+    });
   },
 
   /**
