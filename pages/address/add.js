@@ -121,6 +121,7 @@ Page({
         if(response.data.error == 0) {
           wx.showModal({
             title: '',
+            showCancel: false,
             content: '新增地址成功',
             complete: function() {
               if (that.data.from_checkout) {

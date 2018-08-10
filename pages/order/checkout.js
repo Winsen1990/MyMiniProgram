@@ -75,12 +75,31 @@ Page({
     }
 
     if(!address) {
-      address = {
-        consignee: '',//收件人
-        id: 0,//地址ID
-        detail: '',//详细地址
-        mobile: ''//手机号码
+      var get_default_address = {
+        act: 'get_default',
+        token: getApp().globalData.token
       };
+
+      util.request(config.service.address, get_default_address, 'GET', function(response) {
+        if(response.data.error == 0) {
+          address = response.data.address;
+        } else {
+          address = {
+            consignee: '',//收件人
+            id: 0,//地址ID
+            detail: '',//详细地址
+            mobile: ''//手机号码
+          };
+        }
+
+        that.setData({
+          address: address
+        });
+      });
+    } else {
+      that.setData({
+        address: address
+      });
     }
 
     if(!coupon) {
@@ -94,7 +113,6 @@ Page({
 
     this.setData({
       cart: cart,
-      address: address,
       coupon: coupon
     });
 
@@ -180,48 +198,42 @@ Page({
       });
     }
 
-    wx.showToast({
-      icon: 'loading'
+    wx.showLoading({
+      title: '正在提交订单',
     });
+
     wx.request({
       url: config.service.order,
       data: data,
       method: 'POST',
       success: function(response) {
-        wx.showModal({
-          title: '提示',
-          content: response.data.message,
-          showCancel: false,
-          success: function() {
-            if(response.data.error == 0) {
-              wx.showModal({
-                title: '提示',
-                content: response.data.message,
-                confirmText: '前往支付',
-                cancelText: '查看订单',
-                success: function() {
-                  wx.redirectTo({
-                    url: '/pages/order/pay?sn=' + response.data.order_sn
-                  });
-                },
-                fail: function() {
-                  wx.redirectTo({
-                    url: '/pages/order/detail?sn=' + response.data.order_sn
-                  });
-                }
+        if (response.data.error == 0) {
+          wx.showModal({
+            title: '',
+            content: response.data.message,
+            confirmText: '前往支付',
+            cancelText: '查看订单',
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/order/pay?sn=' + response.data.order_sn
               });
-            } else {
-              wx.showModal({
-                title: '提示',
-                content: response.data.message,
-                showCancel: false
+            },
+            fail: function () {
+              wx.redirectTo({
+                url: '/pages/order/detail?sn=' + response.data.order_sn
               });
             }
-          },
-          complete: function() {
-            wx.hideToast();
-          }
-        });
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: response.data.message,
+            showCancel: false
+          });
+        }
+      },
+      complete: function () {
+        wx.hideLoading();
       }
     });
   },

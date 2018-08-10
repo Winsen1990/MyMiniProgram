@@ -1,0 +1,52 @@
+<view class="order-status-tabs">
+  <view class="order-status-tab current" wx:if="{{status == 0}}" data-status="0">全部</view>
+  <view class="order-status-tab" wx:else data-status="0" catchtap="switchTab">全部</view>
+
+  <view class="order-status-tab current" wx:if="{{status == 1}}" data-status="1">待付款</view>
+  <view class="order-status-tab" wx:else data-status="1" catchtap="switchTab">待付款</view>
+
+  <view class="order-status-tab current" wx:if="{{status == 4}}" data-status="4">待发货</view>
+  <view class="order-status-tab" wx:else data-status="4" catchtap="switchTab">待发货</view>
+
+  <view class="order-status-tab current" wx:if="{{status == 8}}" data-status="8">售后/退款</view>
+  <view class="order-status-tab" wx:else data-status="8" catchtap="switchTab">售后/退款</view>
+</view>
+
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
+<scroll-view scroll-y="true" class="order-list">
+  <navigator url="/pages/order/detail?sn={{order.order_sn}}" wx:for="{{order_list}}" wx:for-item="order" class="order-item">
+    <view class="order-item-header">
+      <text class="order-sn">订单号: {{order.order_sn}}</text>
+      <text class="order-status">{{order.show_status}}</text>
+    </view>
+
+    <view class="order-shop-info">商家: {{order.shop_name}}</view>
+    <view class="order-detail">
+      <view class="order-detail-item" wx:for="{{order.order_detail}}" wx:for-item="order_detail">
+        <image src="{{order_detail.image}}" mode="widthFix"/>
+        <view class="order-detail-item-info">
+          <text class="order-detail-name">{{order_detail.product_name}}</text>
+          <view class="order-detail-meta">
+            <text class="order-detail-price">￥{{filters.toFix(order_detail.price, 2)}}</text>
+            <text class="order-detail-count">x{{order_detail.count}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="order-detail-summary">
+        共{{order.detail_count}}件，实付<text class="order-detail-price">￥{{filters.toFix(order.amount)}}</text>
+      </view>
+    </view>
+    <view class="order-item-toolkit">
+      <block wx:if="{{order.status == 1}}">
+        <button class="btn btn-negative" catchtap="cancelOrder" data-sn="{{order.order_sn}}">取消订单</button>
+        <navigator url="/pages/order/pay?sn={{order.order_sn}}" class="btn btn-positive">立即支付</navigator>
+      </block>
+
+      <block wx:if="{{order.status == 6}}">
+        <navigator url="/pages/order/track?sn={{order.order_sn}}" class="btn btn-negative">物流跟踪</navigator>
+        <button class="btn btn-positive" catchtap="receiveOrder" data-sn="{{order.order_sn}}">确认收货</button>
+      </block>
+    </view>
+  </navigator>
+</scroll-view>

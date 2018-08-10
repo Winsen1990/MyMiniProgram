@@ -2,8 +2,10 @@
 <view class="home">
   <view class="home-header">
     <image class="home-avatar" src="{{user.avatar}}"></image>
+
     <view class="home-user-info">
-      <text class="home-user-nickname">{{user.nickname}}</text>
+      <button open-type="getUserInfo" class="home-user-nickname" bindgetuserinfo="getUserInfo" wx:if="{{!login}}">{{user.nickname}}</button>
+      <text class="home-user-nickname" wx:else>{{user.nickname}}</text>
     </view>
   </view>
 

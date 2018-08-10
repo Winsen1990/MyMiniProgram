@@ -15,11 +15,12 @@
     "pages/address/add",
     "pages/address/edit",
     "pages/address/select",
-    "pages/feed/index"
+    "pages/feed/index",
+    "pages/order/pay"
   ],
-  "window":{
-    "backgroundColor":"#fafafa",
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundColor": "#fafafa",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#870020",
     "navigationBarTitleText": "森云酒业",
     "navigationBarTextStyle":"white"
@@ -35,22 +36,26 @@
         "text": "首页",
         "iconPath": "assets/icon/index.png",
         "selectedIconPath": "assets/icon/index@active.png"
-      }, {
+      },
+      {
         "pagePath": "pages/category/index",
         "text": "分类",
         "iconPath": "assets/icon/category.png",
         "selectedIconPath": "assets/icon/category@active.png"
-      }, {
+      },
+      {
         "pagePath": "pages/feed/index",
         "text": "种草",
         "iconPath": "assets/icon/feed.png",
         "selectedIconPath": "assets/icon/feed@active.png"
-      }, {
+      },
+      {
         "pagePath": "pages/cart/index",
         "text": "购物车",
         "iconPath": "assets/icon/cart.png",
         "selectedIconPath": "assets/icon/cart@active.png"
-      }, {
+      },
+      {
         "pagePath": "pages/home/index",
         "text": "我的",
         "iconPath": "assets/icon/home.png",
