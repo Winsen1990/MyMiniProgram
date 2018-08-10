@@ -24,9 +24,9 @@
     "backgroundColor": "#fafafa",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#870020",
-    "navigationBarTitleText": "澳臻世Ozonsh",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "森云酒业",
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "color": "#656565",
