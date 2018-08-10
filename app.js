@@ -1,9 +1,42 @@
 //app.js
-var config = require('./config')
+var config = require('./config');
+var util = require('./utils/util');
 
 App({
     onLaunch: function () {
+      var that = this;
       // 登录
+      if (!this.globalData.token) {
+        this.globalData.logining = true;
+
+        wx.login({
+          success: res => {
+            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            if (res.errMsg == 'login:ok') {
+              console.info(res);
+              wx.request({
+                url: config.service.login,
+                data: { code: res.code },
+                method: 'POST',
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded'
+                },
+                success: function (response) {
+                  console.info(response);
+                  if (response.data.error == 0) {
+                    that.globalData.userInfo = response.data.user;
+                    that.globalData.token = response.data.token;
+                    that.globalData.expired = response.data.expired;
+                  }
+                }
+              });
+            }
+          },
+          complete: () => {
+            that.globalData.logining = false;
+          }
+        });
+      }
       /*
       wx.login({
         success: res => {

@@ -45,6 +45,6 @@
     <icon class="iconfont icon-cart"></icon>
     <text>亲，您的购物车没有商品</text>
     <text class="last-line">赶快去挑选吧~</text>
-    <navigator url="/pages/index/index" class="btn btn-primary">去挑选</navigator>
+    <navigator open-type="switchTab" url="/pages/index/index" class="btn btn-primary">去挑选</navigator>
   </view>
 </block>

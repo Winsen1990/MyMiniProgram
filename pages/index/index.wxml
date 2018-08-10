@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="search-bar">
+<view class="search-bar" style="display: none">
   <input type="text" name="keyword" id="keyword" value="{{keyword}}" class="search-keyword-input" bindblur="getKeyword"/>
   <button name="search-submit" id="search-submit" class="search-btn iconfont icon-search" bindtap="keywordSearch"></button>
 </view>

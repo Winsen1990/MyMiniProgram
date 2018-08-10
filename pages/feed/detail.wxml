@@ -1,0 +1,7 @@
+<!--pages/feed/detail.wxml-->
+<text class="feed-title">{{feed.title}}</text>
+
+<view class="feed-content">
+  <import src="../../wxParse/wxParse.wxml"/>
+  <template is="wxParse" data="{{wxParseData:wap_content.nodes}}"/>
+</view>

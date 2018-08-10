@@ -1,0 +1,4 @@
+<navigator url="/pages/feed/detail?id={{item.id}}" class="feed-item" wx:for="{{feeds}}">
+  <image src="{{item.original}}" mode="widthFix"/>
+  <text class="feed-title">{{item.title}}</text>
+</navigator>

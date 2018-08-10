@@ -129,7 +129,7 @@ function getToken(code, callback) {
       if(response.data.error == 0) {
         getApp().globalData.userInfo = response.data.user;
         getApp().globalData.token = response.data.token;
-        getApp().globalData.expired = response.data.token;
+        getApp().globalData.expired = response.data.expired;
         if (typeof (callback) == 'function') {
           callback.apply(this);
         }

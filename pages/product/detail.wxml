@@ -55,7 +55,7 @@
       </view>
     </block>
 
-    <view wx:else>
+    <view class="product-detail-panel product-comment-empty" wx:else>
       <icon class="iconfont icon-comments"></icon>
       <text>亲，暂无任何评论！</text>
     </view>

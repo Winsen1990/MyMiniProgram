@@ -213,15 +213,21 @@ Page({
             content: response.data.message,
             confirmText: '前往支付',
             cancelText: '查看订单',
-            success: function () {
-              wx.redirectTo({
-                url: '/pages/order/pay?sn=' + response.data.order_sn
-              });
+            success: function (e) {
+              if(e.confirm) {
+                wx.redirectTo({
+                  url: '/pages/order/pay?sn=' + response.data.order_sn
+                });
+              }
+
+              if(e.cancel) {
+                wx.redirectTo({
+                  url: '/pages/order/detail?sn=' + response.data.order_sn
+                });
+              }
             },
             fail: function () {
-              wx.redirectTo({
-                url: '/pages/order/detail?sn=' + response.data.order_sn
-              });
+              
             }
           });
         } else {
@@ -256,7 +262,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
   },
 
   /**

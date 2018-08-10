@@ -3,6 +3,10 @@
 @import "../../assets/icon/iconfont.wxss";
 @import "/wxParse/wxParse.wxss";
 
+page {
+  padding-bottom: 2rem;
+}
+
 input {
   outline: none;
   border: none;
@@ -156,6 +160,18 @@ button::after {
   background-color: #ffffff;
   color: #870020;
   border-left: 1px solid #e5e5e5;
+}
+
+.product-comment-empty {
+  padding: .5rem;
+  text-align: center;
+  color: #a3a3a3;
+}
+
+.product-comment-empty icon {
+  font-size: 3rem;
+  margin-bottom: .5rem;
+  display: block;
 }
 
 /* 数量选择弹窗 */

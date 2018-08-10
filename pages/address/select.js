@@ -130,6 +130,7 @@ Page({
    * 选中地址
    */
   selectAddress: function(e) {
+    console.info('trigger select address');
     var selected_address = null;
     var address_id = e.currentTarget.dataset.id;
 
@@ -215,7 +216,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
   },
 
   /**

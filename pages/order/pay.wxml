@@ -1,2 +1,64 @@
 <!--pages/order/pay.wxml-->
-<text>pages/order/pay.wxml</text>
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
+<view class="order-pay">
+  <view class="order-shipping-info">
+    <icon class="iconfont icon-location"></icon>
+    <view class="order-shipping">
+      <view>
+        <text>收货人: {{order.consignee}}</text>
+        <text>{{order.mobile}}</text>
+      </view>
+
+      <view>
+        <label>收货地址: </label>
+        <text>{{order.address}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="product-info">
+    <view class="shop-info">
+      <icon class="iconfont icon-shop-title"></icon>
+      <text>{{order.shop_name}}</text>
+    </view>
+    <view class="product-list">
+      <view class="product-item" wx:for="{{order.order_detail}}">
+        <image class="product-item-image" src="{{item.img}}"/>
+        <view class="product-item-info">
+          <text class="product-item-name">{{item.product_name}}</text>
+          <view class="product-item-meta">
+            <text>￥{{filters.toFix(item.product_price, 2)}}</text>
+            <text>x{{item.count}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="summary">
+    <view class="summary-item">
+      <label>商品金额</label>
+      <text>￥{{filters.toFix(order.product_amount, 2)}}</text>
+    </view>
+
+    <view class="summary-item">
+      <label>运费</label>
+      <text>+ ￥{{filters.toFix(order.delivery_fee, 2)}}</text>
+    </view>
+
+    <view class="summary-item">
+      <label>实付</label>
+      <text>￥{{filters.toFix(order.amount, 2)}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="checkout-toolbar">
+  <view class="block-empty"></view>
+  <view class="checkout-summary">
+    <text>合计:</text>
+    <text class="checkout-summary-amount">￥{{filters.toFix(order.amount, 2)}}</text>
+  </view>
+  <view class="btn btn-primary" catchtap="pay">微信支付</view>
+</view>

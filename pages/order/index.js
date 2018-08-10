@@ -18,7 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     this.data.status = options.status || 0;
+
+    this.setData({
+      status: that.data.status
+    });
   },
 
   /**
@@ -64,6 +69,18 @@ Page({
 
       that.data.loading = false;
     });
+  },
+
+  /**
+   * 
+   */
+  switchTab: function(e) {
+    console.info(e);
+    this.setData({
+      status: e.currentTarget.dataset.status
+    });
+
+    this.onPullDownRefresh();
   },
 
   /**
@@ -188,6 +205,117 @@ Page({
 
         // 隐藏加载框
         wx.hideLoading();
+      }
+    });
+  },
+
+  cancelOrder: function(e) {
+    var that = this;
+
+    var sn = e.currentTarget.dataset.sn;
+
+    wx.showModal({
+      title: '',
+      content: '您确定要取消该订单？',
+      success: function(e) {
+        console.info(e);
+
+        if(e.cancel) {
+          return false;
+        }
+
+        var data = {
+          sn: sn,
+          opera: 'cancel',
+          token: getApp().globalData.token
+        };
+
+        util.request(config.service.order, data, 'POST', function(response) {
+          wx.showModal({
+            title: '',
+            content: response.data.message,
+            showCancel: false,
+            complete: function() {
+              if(response.data.error == 0) {
+                that.onPullDownRefresh();
+              }
+            }
+          });
+        });
+      }
+    });
+  },
+
+  receiveOrder: function (e) {
+    var that = this;
+    console.info(e);
+
+    var sn = e.currentTarget.dataset.sn;
+
+    wx.showModal({
+      title: '',
+      content: '您确定已收货？',
+      success: function (e) {
+        console.info(e);
+        if (e.cancel) {
+          return false;
+        }
+
+        var data = {
+          sn: sn,
+          opera: 'receive',
+          token: getApp().globalData.token
+        };
+
+        util.request(config.service.order, data, 'POST', function (response) {
+          wx.showModal({
+            title: '',
+            content: response.data.message,
+            showCancel: false,
+            complete: function () {
+              if (response.data.error == 0) {
+                that.onPullDownRefresh();
+              }
+            }
+          });
+        });
+      }
+    });
+  },
+
+  rollbackOrder: function (e) {
+    var that = this;
+    console.info(e);
+
+    var sn = e.currentTarget.dataset.sn;
+
+    wx.showModal({
+      title: '',
+      content: '要申请退单？',
+      success: function (e) {
+        console.info(e);
+        if (e.cancel) {
+          return false;
+        }
+
+        var data = {
+          sn: sn,
+          opera: 'rollback',
+          token: getApp().globalData.token
+        };
+
+        util.request(config.service.order, data, 'POST', function (response) {
+          wx.showModal({
+            title: '',
+            content: response.data.message,
+            showCancel: false,
+            complete: function () {
+              if (response.data.error == 0) {
+                that.onPullDownRefresh();
+              }
+            }
+          });
+        });
       }
     });
   },

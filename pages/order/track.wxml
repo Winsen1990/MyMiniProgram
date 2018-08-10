@@ -1,0 +1,37 @@
+<!--pages/order/track.wxml-->
+<view class="express-head">
+  <image src="{{order.image}}" mode="widthFix"/>
+  <view class="express-meta">
+    <view class="meta-info">
+      <label>物流公司:</label>
+      <text>{{track.name}}</text>
+    </view>
+
+    <view class="meta-info">
+      <label>物流单号:</label>
+      <text>{{order.express_sn}}</text>
+    </view>
+
+    <view class="meta-info">
+      <label>物流状态:</label>
+      <text>{{track.status}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="express-info" wx:if="{{track.info}}">
+  <view class="express-detail" wx:for="{{track.info}}" wx:for-key="index">
+    <icon class="iconfont icon-await-receive" wx:if="{{index == 0}}"></icon>
+    <icon class="iconfont" wx:else></icon>
+
+    <view class="express-detail-context">
+      <text>{{item.context}}</text>
+      <text>{{item.time}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="express-info-empty" wx:else>
+  <icon class="iconfont icon-await-receive"></icon>
+  <text>暂无物流信息</text>
+</view>

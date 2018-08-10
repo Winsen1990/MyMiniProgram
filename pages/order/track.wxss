@@ -1,0 +1,80 @@
+/* pages/order/track.wxss */
+@import "../../assets/icon/iconfont.wxss";
+@import "../../assets/common.wxss";
+
+.express-head {
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.express-head image {
+  width: 3.5rem;
+  margin-right: .5rem;
+}
+
+.express-head .express-meta {
+  flex-grow: 1;
+}
+
+.express-head .express-meta .meta-info {
+  margin-bottom: .5rem;
+}
+
+.express-head .express-meta .meta-info:last-child {
+  margin-bottom: 0;
+}
+
+.express-head .express-meta .meta-info label {
+  color: #333333;
+}
+
+.express-head .express-meta .meta-info text {
+  margin-left: .3rem;
+}
+
+.express-info-empty {
+  padding: .5rem;
+  text-align: center;
+}
+
+.express-info-empty icon {
+  display: block;
+  font-size: 3rem;
+  color: #a3a3a3;
+  margin-bottom: .5rem;
+}
+
+.express-info {
+  padding-bottom: 2rem;
+}
+
+.express-info .express-detail {
+  display: flex;
+  padding: .5rem;
+}
+
+.express-info .express-detail:nth-child(2n) {
+  background-color: #e5e5e5;
+}
+
+.express-info .express-detail icon {
+  font-size: 2rem;
+  min-width: 2rem;
+  margin-right: .5rem;
+}
+
+.express-info .express-detail .express-detail-context {
+  flex-grow: 1;
+  font-size: .8rem;
+  line-height: 1.6rem;
+}
+
+.express-info .express-detail .express-detail-context text:last-child {
+  display: block;
+  color: #870020;
+  text-align: right;
+  margin-top: .3rem;
+}

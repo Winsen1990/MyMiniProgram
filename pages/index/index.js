@@ -84,5 +84,8 @@ var pageModel = Page({
           });
         }
       });
+    },
+    onPullDownRefresh: function() {
+      wx.stopPullDownRefresh();
     }
 });

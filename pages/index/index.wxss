@@ -1,6 +1,10 @@
 /**index.wxss**/
 @import "../../assets/icon/iconfont.wxss";
 
+page {
+  padding-bottom: 2rem;
+}
+
 swiper {
   width: 100%;
 }
@@ -43,8 +47,7 @@ swiper {
   flex-direction:row;
   flex-wrap:wrap;
   align-content:center;
-  justify-content:space-around;
-  background-color: #cecece;
+  /* justify-content:space-around; */
   padding: 0 8px 8px;
 }
 

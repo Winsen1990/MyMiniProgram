@@ -1,0 +1,14 @@
+/* pages/feed/detail.wxss */
+
+.feed-title {
+  display: block;
+  padding: .5rem;
+}
+
+.feed-content {
+  padding: .5rem;
+}
+
+.feed-content image {
+  width: 100%;
+}

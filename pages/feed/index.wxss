@@ -1,0 +1,25 @@
+@import "../../assets/icon/iconfont.wxss";
+
+page {
+  background-color: #f5f5f5;
+  padding-top: .5rem;
+}
+
+.feed-item {
+  display: block;
+  width: 90%;
+  margin: .5rem auto;
+  background-color: #ffffff;
+  border-radius: 5px 5px 0 0;
+}
+
+.feed-item image {
+  width: 100%;
+}
+
+.feed-item .feed-title {
+  display: block;
+  padding: .5rem;
+  font-size: 1rem;
+  line-height: 1.4rem;
+}

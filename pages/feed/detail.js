@@ -1,18 +1,33 @@
-// pages/order/comment.js
+// pages/feed/detail.js
+var config = require('../../config')
+var util = require('../../utils/util')
+var WxParse = require('../../wxParse/wxParse');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    feed: {},
+    id: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    this.data.id = options.id || 0;
+
+    util.request(config.service.feed, { act: 'show', id: this.data.id }, 'GET', function(response) {
+      that.setData({
+        feed: response.data.feed
+      });
+      
+      //加载产品详情富文本
+      WxParse.wxParse('wap_content', 'html', that.data.feed.wap_content, that, 5);
+    });
   },
 
   /**
