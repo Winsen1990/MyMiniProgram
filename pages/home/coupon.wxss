@@ -1,1 +1,21 @@
 /* pages/home/coupon.wxss */
+	.hdj-coupon-list .hdj-coupon-item {width: 690rpx; height: 330rpx; margin: 10rpx 30rpx; background-color: #FFFFFF;}
+	.hdj-coupon-list .hdj-coupon-item .item-content {width: 690rpx; height: 218rpx; line-height: 100rpx; background-color: #FF638D;  padding: 20rpx 0;}
+	.hdj-coupon-list .hdj-coupon-item .item-footer {width: 690rpx; height: 66rpx; line-height: 66rpx; text-align: center; color: #666666;}
+	.hdj-coupon-list .hdj-coupon-item .item-content-l {color: #FFFFFF; font-size: 28rpx; width:280rpx; border-right: 4rpx dashed #FFFFFF;}
+	.hdj-coupon-list .hdj-coupon-item .item-content-l .text1 {font-size: 72rpx;}
+	.hdj-coupon-list .hdj-coupon-item .item-content-r {color: #FFFFFF; font-size: 24rpx; width:390rpx; line-height: 40rpx; padding-left:20rpx;}
+	.hdj-coupon-list .hdj-coupon-item .item-content-r .action {color: #FF638D;background-color: #FFFFFF; border-radius: 8rpx; margin-top:6rpx; padding: 6rpx 20rpx; width:140rpx; text-align:center;}
+
+
+  .item-content-r-detail {
+    min-height: 160rpx;
+  }
+
+  .item-content-r-action {
+    margin-left: 100rpx;
+  }
+
+  .mt-20 {
+    margin-top: 20rpx;
+  }

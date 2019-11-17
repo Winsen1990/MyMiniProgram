@@ -26,7 +26,9 @@
     "pages/order/pay",
     "pages/order/track",
     "pages/home/balance",
-    "pages/block/index"
+    "pages/block/index",
+    "pages/member/index",
+    "pages/home/index2"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,7 +48,7 @@
         "selectedIconPath": "assets/images/index@active.png"
       },
       {
-        "pagePath": "pages/block/index",
+        "pagePath": "pages/member/index",
         "text": "会员专区",
         "iconPath": "assets/images/vip.png",
         "selectedIconPath": "assets/images/vip@active.png"

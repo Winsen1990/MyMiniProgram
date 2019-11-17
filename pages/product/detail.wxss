@@ -78,14 +78,19 @@
 
 /* 商户信息 */
 .shop-info {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   margin-top: 24rpx;
 }
 
+.shop-info .meta-with-arrow {
+  background-color: #ffffff;
+  margin-bottom: 20rpx;
+}
+
 .shop-info icon {
-  font-size: 40rpx;
+  /* font-size: 40rpx; */
   vertical-align: middle;
-  margin-top: -14rpx;
+  margin-top: -18rpx;
 }
 
 .shop-info .shop-name {
@@ -259,7 +264,7 @@
   position: absolute;
   right: 30rpx;
   top: 30rpx;
-  font-size: 60rpx;
+  /* font-size: 60rpx; */
 }
 
 .panel-count-picker {

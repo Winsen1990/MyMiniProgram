@@ -19,7 +19,7 @@
   <!-- 二级分类-产品列表 -->
   <scroll-view class="category-product-list" scroll-y bindscroll="categoryScroll" enable-back-to-top scroll-into-view="{{current_sub_category}}">
     <view class="category-segement" data-id="{{item.id}}" id="category-{{item.id}}" wx:for="{{categories}}" wx:key="index">
-      <block wx:for="{{item.products}}" wx:key="index" wx:for-item="product">
+      <block wx:for="{{item.products}}" wx:key="index" wx:for-item="product" wx:if="{{item.sub_categories == ''}}">
         <navigator url="/pages/product/detail?id={{product.id}}" class="category-product-item">
           <image class="product-image" src="{{product.img}}" mode="widthFix"/>
           <view class="product-info">
@@ -33,8 +33,8 @@
           <button class="category-add-to-cart iconfont icon-cart" catchtap="addToCart" data-id="{{product.id}}"></button>
         </navigator>
       </block>
-      <!--
-      <block wx:for="{{item.sub_categories}}" wx:key="index" wx:for-item="category">
+ 
+      <block wx:for="{{item.sub_categories}}" wx:key="index" wx:for-item="category" wx:if="{{item.sub_categories != ''}}">
         <text class="sub-category category-segement" data-id="{{category.id}}" id="category-{{category.id}}">{{category.name}}</text>
         <block wx:for="{{category.products}}" wx:key="index" wx:for-item="product">
           <navigator url="/pages/product/detail?id={{product.id}}" class="category-product-item">
@@ -46,7 +46,7 @@
           </navigator>
         </block>
       </block>
-      -->
+   
     </view>
   </scroll-view>
 </view>

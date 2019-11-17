@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import 'assets/wxParse/wxParse.wxss';
+/* @import 'assets/wxParse/wxParse.wxss'; */
 @import 'assets/css/iconfont.wxss';
 
 page {
@@ -76,7 +76,7 @@ button::after {
 
 .meta-with-arrow {
   padding: 30rpx;
-  border-bottom: 2rpx solid #e5e5e5;
+  /* border-bottom: 2rpx solid #e5e5e5; */
   font-size: 30rpx;
   color: #a3a3a3;
   vertical-align: middle;
@@ -153,4 +153,49 @@ button::after {
 .float-icon.fl {
   right: auto;
   left: 20rpx;
+}
+
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-r {
+  flex-direction: row-reverse;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-column-r {
+  flex-direction: column-reverse;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
 }

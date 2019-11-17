@@ -50,7 +50,8 @@
 
 .block .block-cubes .block-cube {
   flex-grow: 1;
-  color: #E9577C;
+  /* color: #E9577C; */
+  color: #121212;
   text-align: center;
   width: 25%;
   padding: 30rpx 0;

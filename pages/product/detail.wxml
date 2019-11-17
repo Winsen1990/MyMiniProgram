@@ -149,7 +149,7 @@
     <text>客服</text>
   </view>
 -->
-  <button class="menu-service" open-type="contact">
+  <!-- <button class="menu-service" open-type="contact">
     <icon class="iconfont icon-service"></icon>
     <text>客服</text>
   </button>
@@ -157,7 +157,7 @@
   <navigator url="/pages/index/index" open-type="switchTab" class="menu-home">
     <icon class="iconfont icon-cup"></icon>
     <text>首页</text>
-  </navigator>
+  </navigator> -->
 
   <navigator url="/pages/cart/index" open-type="switchTab" class="menu-cart">
     <icon class="iconfont icon-cart"></icon>

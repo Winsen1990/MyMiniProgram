@@ -7,15 +7,13 @@ App({
     console.info(e);
     // 展示本地存储能力
     var that = this;
-
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.info(res);
         utils.request(config.service.login, { code: res.code, recommend: e.query.recommend }, 'POST', function(response) {
-          console.info('login success ' + response.data.user.account);
-          console.info(response);
+          console.log(response);
+          console.log('login success ' + response.data.user.account);
           if (response.data.error == 0) {
             that.globalData.account = response.data.user.account;
             if (response.data.user.nickname) {

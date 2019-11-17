@@ -13,46 +13,31 @@
 <view class="cart" wx:else>
   <view class="shop" wx:for="{{cart}}" wx:key="shop_id" wx:for-item="shop" wx:for-index="shop_index">
     <!-- 商户信息 -->
-    <view class="shop-info">
-        <checkbox data-shop-id="{{shop.shop_id}}" class="checkbox font-xxl" data-tag="shop" data-name="[{{shop_index}}]" checked="{{shop.checked}}" catchtap="selectShopItem"></checkbox>
+    <!-- <view class="shop-info">
+        <checkbox data-shop-id="{{shop.shop_id}}" class="checkbox font-xl" data-tag="shop" data-name="[{{shop_index}}]" checked="{{shop.checked}}" catchtap="selectShopItem"></checkbox>
         <text class="shop-name font-l">{{shop.shop_name}}</text>
-    </view>
+    </view> -->
     <!-- 产品信息 -->
     <view class="shop-products">
       <checkbox-group bindchange="selectCartItem">
         <view wx:for="{{shop.products}}" wx:for-item="product" wx:for-index="product_index" wx:key="id" class="cart-product">
-          <checkbox value="{{product.id}}" class="checkbox font-xxl" data-tag="product" data-name="[{{shop_index}}.products[{{product_index}}]" checked="{{product.checked}}" disabled="{{product.is_gift}}"></checkbox>
-          <image src="{{product.img}}" class="cart-product-img" mode="widthFix"/>
-          <view class="cart-product-info">
-            <text class="cart-product-name font-m">{{product.name}}</text>
-            <view class="cart-product-placeholder"></view>
-            <view class="cart-product-toolkit">
-              <text class="cart-product-price font-m">
-              <block wx:if="{{!product.is_gift}}">
-              ￥{{filters.toFix(product.price, 2)}}
-              </block>
-              </text>
-            </view>
-            <view class="cart-product-toolkit">
-              <view class="blank-block">
-                <text class="gift-tag" wx:if="{{product.is_gift}}">赠</text>
-              </view>
-
-              <block wx:if="{{!product.is_gift}}">
-              <view class="cart-product-count-group">
-                <button class="cart-product-minus iconfont icon-minus" disabled="{{product.count <= 1}}" hover-class="cart-product-minus-hover" data-id="{{product.id}}" catchtap="cartItemMinus"></button>
-                <input type="number" class="cart-product-count font-m" data-id="{{product.id}}" value="{{product.count}}" bindblur="inputCartCount"/>
-                <button class="cart-product-plus iconfont icon-plus" disabled="{{product.count >= product.inventory}}" data-id="{{product.id}}" hover-class="cart-product-plus-hover" catchtap="cartItemPlus"></button>
-              </view>
-
-              <button class="cart-remove iconfont icon-trash" data-id="{{product.id}}" catchtap="removeCartItem"></button>
-              </block>
-
-              <block wx:else>
-              <view class="cart-product-count-group gift-number">
-                x{{product.count}}
-              </view>
-              </block>
+          <checkbox value="{{product.id}}" class="checkbox font-xl" data-tag="product" data-name="[{{shop_index}}.products[{{product_index}}]" checked="{{product.checked}}" disabled="{{product.is_gift}}"></checkbox>
+          <view class="cart-product-l">
+            <image src="{{product.img}}" class="cart-product-img" mode="widthFix"/>
+          </view>
+          <view class="cart-product-r flex flex-column flex-between">
+            <view class="text1 flex">{{product.name}}</view>
+            
+            <view class="action flex flex-between">
+                <view class="text2">
+                  <text wx:if="{{!product.is_gift}}">￥{{filters.toFix(product.price, 2)}}</text>
+                  <text class="gift-tag" wx:if="{{product.is_gift}}">赠</text>
+                </view>            
+                <view class="cart-product-count-group flex flex-row flex-items-center flex-between" wx:if="{{!product.is_gift}}">
+                  <view class="cart-product-minus iconfont icon-minus" disabled="{{product.count <= 1}}" hover-class="cart-product-minus-hover" data-id="{{product.id}}" catchtap="cartItemMinus"></view>
+                  <input type="number" class="cart-product-count font-m" data-id="{{product.id}}" value="{{product.count}}" bindblur="inputCartCount"/>
+                  <view class="cart-product-plus iconfont icon-plus" disabled="{{product.count >= product.inventory}}" data-id="{{product.id}}" hover-class="cart-product-plus-hover" catchtap="cartItemPlus"></view>
+                </view>
             </view>
           </view>
         </view>
@@ -65,7 +50,7 @@
 
 <view class="cart-checkout-toolkit" wx:if="{{cart.length > 0}}">
   <label for="check-all" class="cart-check-all font-l">
-    <checkbox value="1" checked="{{checkAll}}" class="checkbox font-xxl" catchtap="selectAll"></checkbox>
+    <checkbox value="1" checked="{{checkAll}}" class="checkbox font-xl" catchtap="selectAll"></checkbox>
     <text>全选</text>
   </label>
 

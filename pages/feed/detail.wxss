@@ -1,4 +1,6 @@
 /* pages/feed/detail.wxss */
+@import '/assets/wxParse/wxParse.wxss';
+
 /* 正文 */
 .feed-header {
   padding: 30rpx;

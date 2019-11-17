@@ -112,7 +112,6 @@ Page({
   /*------------------------ 轮播图 End -------------------------------*/
   /*-------------------------------------------------------------------*/
   switchCategory: function(e) {
-    console.info(e);
     var index = e.currentTarget.dataset.index;
     var url = this.data.functions[index].url;
 
