@@ -1,9 +1,21 @@
 var filters = {
-  toFix: function (value) {
+  toFix: function (value, digital) {
     value = parseFloat(value);
-    return value.toFixed(2)//此处2为保留两位小数
+    return value.toFixed(digital);//此处2为保留两位小数
+  },
+  getInt: function (value) {
+    return parseInt(value);
+  },
+  getDigital: function (value, digital) {
+    value = parseFloat(value);
+    var str = value.toFixed(digital);
+
+    return str.slice(str.indexOf('.') + 1);
   }
 }
+
 module.exports = {
-  toFix: filters.toFix
+  toFix: filters.toFix,
+  getInt: filters.getInt,
+  getDigital: filters.getDigital
 }

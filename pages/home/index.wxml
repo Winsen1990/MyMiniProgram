@@ -1,49 +1,97 @@
 <!--pages/home/index.wxml-->
-<view class="home">
-  <view class="home-header">
-    <image class="home-avatar" src="{{user.avatar}}"></image>
+<!-- 用户信息 -->
+<view class="user-info">
+  <block wx:if="{{!hasUserInfo && canIUse}}" >
+    <image class="avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
+    <button class="nickname login-btn font-m" open-type="getUserInfo" bindgetuserinfo="getUserInfo">{{userInfo.nickname}}</button>
+  </block>
 
-    <view class="home-user-info">
-      <button open-type="getUserInfo" class="home-user-nickname" bindgetuserinfo="getUserInfo" wx:if="{{!login}}">{{user.nickname}}</button>
-      <text class="home-user-nickname" wx:else>{{user.nickname}}</text>
-    </view>
-  </view>
+  <block wx:else>
+    <image class="avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
+    <text class="nickname font-m">{{userInfo.nickname}}</text>
+  </block>
+</view>
 
-  <view class="home-order-list">
-      <text>我的订单</text>
-      <navigator url="/pages/order/index" class="home-order-list-placeholder">
-        <text>查看全部订单</text>
-        <text class="iconfont icon-arrow-right"></text>
-      </navigator>
-  </view>
-  <view class="home-order-tags">
-    <navigator url="/pages/order/index?status=1" class="home-order-tag">
-      <text class="iconfont icon-unpaid"></text>
-      <text>待支付</text>
+<!-- 我的订单 -->
+<view class="block">
+  <navigator url="/pages/order/index" class="meta-with-arrow">
+    <text class="block-title">我的订单</text>
+    <text class="meta-tail">查看全部订单</text>
+  </navigator>
+
+  <view class="block-cubes">
+    <navigator url="/pages/order/index?status=1" class="block-cube">
+      <icon class="iconfont icon-order-pay"></icon>
+      <text>待付款</text>
     </navigator>
-    <navigator url="/pages/order/index?status=4" class="home-order-tag">
-      <text class="iconfont icon-await-shipping"></text>
-      <text>待发货</text>
-    </navigator>
-    <navigator url="/pages/order/index?status=6" class="home-order-tag">
-      <text class="iconfont icon-await-receive"></text>
+
+    <navigator url="/pages/order/index?status=6" class="block-cube">
+      <icon class="iconfont icon-shipping"></icon>
       <text>待收货</text>
     </navigator>
-    <navigator url="/pages/order/index?status=7" class="home-order-tag">
-      <text class="iconfont icon-comment"></text>
+
+    <navigator url="/pages/order/index?status=7" class="block-cube">
+      <icon class="iconfont icon-comment"></icon>
+      <text>待评价</text>
+    </navigator>
+
+    <navigator url="/pages/order/index?status=8" class="block-cube">
+      <icon class="iconfont icon-order-refund"></icon>
       <text>退款/售后</text>
     </navigator>
   </view>
+</view>
 
-  <view class="home-list-view">
-    <view bindtap="building" class="home-list-item">
-      为你选酒
-    </view>
-    <navigator url="/pages/address/index" class="home-list-item">
-      收货地址
+<!-- 我的资产 -->
+<view class="block">
+  <navigator url="/pages/home/wallet" class="meta-with-arrow">
+    <text class="block-title">我的资产</text>
+    <text class="meta-tail">查看全部资产</text>
+  </navigator>
+
+  <view class="block-cubes">
+    <navigator url="/pages/home/reward" class="block-cube">
+      <icon class="iconfont icon-reward"></icon>
+      <text>佣金</text>
     </navigator>
-    <view bindtap="building" class="home-list-item">
-      优惠券
-    </view>
+
+    <navigator url="/pages/home/integral" class="block-cube">
+      <icon class="iconfont icon-integral"></icon>
+      <text>积分</text>
+    </navigator>
+
+    <navigator url="/pages/home/coupon" class="block-cube">
+      <icon class="iconfont icon-coupon"></icon>
+      <text>优惠券</text>
+    </navigator>
+
+    <navigator url="/pages/home/balance" class="block-cube">
+      <icon class="iconfont icon-balance"></icon>
+      <text>余额</text>
+    </navigator>
   </view>
 </view>
+
+<!--
+<navigator class="single-block meta-with-arrow">
+  <text>我的资料</text>
+</navigator>
+
+<navigator class="single-block meta-with-arrow">
+  <text>我的银行卡</text>
+</navigator>
+-->
+
+<navigator url="/pages/address/index" class="single-block meta-with-arrow">
+  <text>收货地址</text>
+</navigator>
+
+<!--
+<navigator class="single-block meta-with-arrow">
+  <text>我要推广</text>
+</navigator>
+
+<navigator class="single-block meta-with-arrow">
+  <text>我要加盟</text>
+</navigator>
+-->

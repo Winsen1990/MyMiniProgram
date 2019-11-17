@@ -1,0 +1,28 @@
+<!--pages/feed/comment.wxml-->
+<text class="comment-title">{{feed.title}}</text>
+
+<view class="comment-textarea-wrapper">
+  <textarea placeholder="留言将由公众号筛选后显示，对所有人可见" show-confirm-bar="true" placeholder-class="comment-textarea-placeholder" class="comment-textarea" bindblur="watchTextArea" value="{{comment}}">
+  </textarea>
+  <view class="comment-emoji">
+    <icon class="iconfont icon-emoji" catchtap="toggleEmoji"></icon>
+  </view>
+  <view class="comment-emoji-input {{showEmoji ? 'comment-emoji-input-show': ''}}">
+    <swiper indicator-dots="true">
+      <swiper-item wx:for="{{emojis}}" wx:key="index" class="comment-emoji-page">
+        <block wx:for="{{item}}" wx:key="index" wx:for-item="emoji">
+          <template is="emojiItem" data="{{emoji}}"/>
+        </block>
+        <view class="comment-emoji-item"></view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
+
+<button class="comment-btn" bindtap="submitComment" disabled="{{!can_submit}}">留言</button>
+
+<template name="emojiItem">
+<view class="comment-emoji-item" data-name="{{emoji.name}}" catchtap="selectEmoji">
+  <image src="../../assets/wxParse/emojis/{{emoji.src}}" mode="widthFix"/>
+</view>
+</template>

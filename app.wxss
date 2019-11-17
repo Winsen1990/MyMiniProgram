@@ -1,7 +1,156 @@
 /**app.wxss**/
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-} 
+@import 'assets/wxParse/wxParse.wxss';
+@import 'assets/css/iconfont.wxss';
+
+page {
+  background-color: #fafafa;
+  color: #565656;
+  font-size: 16px;
+}
+
+input {
+  min-height:auto;
+  height:auto;
+  overflow:auto;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+button {
+  padding:0;
+  font-size:16px;
+  line-height:auto;
+  border-radius:0;
+  border:none;
+  box-sizing:auto;
+  margin:0;
+  background: none;
+  vertical-align: middle;
+}
+
+.wxParse-img {
+  width: 100%!important;
+}
+
+.wxParse-p {
+  font-size: 32rpx;
+  line-height: 64rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.font-red {
+  color: #870020;
+}
+
+.font-gray {
+  color: #a3a3a3;
+}
+
+.font-blue {
+  color: #7e8494;
+}
+
+.font-m {
+  font-size: 32rpx;
+}
+
+.font-l {
+  font-size: 36rpx;
+}
+
+.font-s {
+  font-size: 28rpx;
+}
+
+.font-xl {
+  font-size: 40rpx;
+}
+
+.font-xxl {
+  font-size: 66rpx;
+}
+
+.meta-with-arrow {
+  padding: 30rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  font-size: 30rpx;
+  color: #a3a3a3;
+  vertical-align: middle;
+  position: relative;
+}
+
+.meta-with-arrow::after {
+  position: absolute;
+  right: 30rpx;
+  content: "\e66b";
+  font-family: "iconfont" !important;
+  font-style: normal;
+  vertical-align: middle;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.meta-with-arrow:last-child {
+  border-bottom: 0;
+}
+
+.meta-with-arrow .meta-tail {
+  position: absolute;
+  right: 70rpx;
+  vertical-align: middle;
+}
+
+.meta-with-arrow .meta-label {
+  color: #565656;
+}
+
+.checkbox {
+  border: none;
+  display: inline-block;
+}
+
+.checkbox::before {
+  content: "\e619";
+  font-family: "iconfont" !important;
+  font-style: normal;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.checkbox[checked]::before {
+  content: "\e676";
+}
+
+.wx-checkbox-input, .wx-radio-input{
+    display: none;
+}
+
+.blank-block {
+  flex-grow: 1;
+}
+
+.float-icon {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2rpx solid #e5e5e5;
+  color: #565656;
+  position: fixed;
+  right: 20rpx;
+  bottom: 140rpx;
+  text-align: center;
+  text-shadow: 0 6rpx 12rpx #ffffff;
+}
+
+.float-icon.fl {
+  right: auto;
+  left: 20rpx;
+}

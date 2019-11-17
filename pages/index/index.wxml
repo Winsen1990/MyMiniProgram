@@ -1,37 +1,107 @@
-<!--index.wxml-->
-<view class="search-bar" style="display: none">
-  <input type="text" name="keyword" id="keyword" value="{{keyword}}" class="search-keyword-input" bindblur="getKeyword"/>
-  <button name="search-submit" id="search-submit" class="search-btn iconfont icon-search" bindtap="keywordSearch"></button>
+<!--pages/index/index.wxml-->
+<!-- 搜索框 -->
+<view class="index-search-bar-wrapper">
+  <navigator url="/pages/search/index" class="index-search-bar">
+    <view class="index-search-input">
+      <text class="index-search-placeholder iconfont icon-search"> 海参</text>
+    </view>
+  </navigator>
 </view>
 
-<swiper indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
-  style="height:{{banner_heights[current_banner]}}px"
-  bindchange="bindChange"
+<swiper indicator-dots="{{banner.displayDots}}"
+  autoplay="{{banner.autoplay}}" duration="{{banner.duration}}"
+  interval="{{banner.interval}}"
+  style="height:{{banner.heights[banner.index]}}px"
+  bindchange="bannerChange"
   >
-  <block wx:for="{{imgUrls}}" wx:key="{{_index}}">
+  <block wx:for="{{banners}}" wx:key="index">
     <swiper-item>
-      <image src="{{item}}" class="slide-image" style="height:{{banner_heights[current_banner]}}px;width:{{screen_width}}px;" bindload="imageLoad" bindtap="bannerTap" data-id="{{_index}}"/>
+      <image src="{{item.img}}" class="slide-image" style="height:{{banner.heights[banner.index]}}px;width:{{banner.width}}px;" bindload="bannerLoad" bindtap="bannerTap" data-id="{{index}}"/>
     </swiper-item>
   </block>
 </swiper>
+<block wx:for="{{under_banner_ads}}" wx:key="id" wx:for-item="ad">
+<block wx:if="{{ad.url == '/pages/category/index' || ad.url == '/pages/feed/index'}}">
+<navigator url="{{ad.url}}" class="index-ad" open-type="switchTab">
+  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
+</navigator>
+</block>
 
-<wxs module="filters" src="../../assets/utils.wxs"></wxs>
-<text class="h2">
-  <text class="iconfont icon-gift"></text>
-  <text>热销产品</text>
-</text>
-<view class="product-grid-list">
-    <block wx:for="{{recommendProducts}}" wx:key="{{_index}}">
-      <view class="product-item">
-        <navigator url="/pages/product/detail?id={{item.id}}">
-          <image src="{{item.image}}" mode="widthFix" data-id="{{item.id}}"></image>
-          <text class="product-item-name">{{item.name}}</text>
-          <view class="product-item-info">
-            <span class="product-item-price">￥{{filters.toFix(item.price, 2)}}</span>
-            <span class="product-item-sale-count">销量:{{item.sale_count}}</span>
-          </view>
-        </navigator>
-      </view>
-    </block>
+<block wx:else>
+<navigator url="{{ad.url}}" class="index-ad">
+  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
+</navigator>
+</block>
+</block>
+
+<!-- 功能区 -->
+<view class="index-functions">
+  <view wx:for="{{functions}}" data-index="{{index}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
+    <image src="{{item.icon}}" mode="widthFix"/>
+    <text>{{item.name}}</text>
+  </view>
 </view>
+<block wx:for="{{before_block_ads}}" wx:key="id" wx:for-item="ad">
+<block wx:if="{{ad.url == '/pages/category/index' || ad.url == '/pages/feed/index'}}">
+<navigator url="{{ad.url}}" class="index-ad" open-type="switchTab">
+  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
+</navigator>
+</block>
+
+<block wx:else>
+<navigator url="{{ad.url}}" class="index-ad">
+  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
+</navigator>
+</block>
+</block>
+<!-- 首页产品专区 -->
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+<view wx:for="{{blocks}}" class="index-block" wx:key="index">
+  <view data-id="{{item.id}}" catchtap="switchCategory">
+    <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>
+  </view>
+  <block wx:if="{{item.products.length%2}}">
+    <!-- 产品总数为单数 -->
+    <view class="index-block-product-single">
+      <navigator url="/pages/product/detail?id={{item.products[0].id}}">
+        <image src="{{item.products[0].img}}" class="product-image" mode="widthFix"/>
+        <text class="product-name">{{item.products[0].name}}</text>
+        <text class="product-price">￥{{filters.toFix(item.products[0].price, 2)}}</text>
+      </navigator>
+    </view>
+    <view class="index-block-product-list">
+    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
+      <block wx:if="{{index != 0}}">
+        <template is="productItem" data="{{...product}}"/>
+      </block>
+    </block>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 产品总数为双数 -->
+    <view class="index-block-product-list">
+    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
+        <template is="productItem" data="{{...product}}"/>
+    </block>
+    </view>
+  </block>
+</view>
+
+<!-- 查看更多 -->
+<!--
+<navigator url="/pages/category/index" class="index-more" open-type="switchTab">
+  查看更多 >
+</navigator>
+-->
+
+<!-- 产品专区产品模板 -->
+<template name="productItem">
+  <view class="index-block-product">
+    <navigator url="/pages/product/detail?id={{id}}">
+      <image src="{{img}}" class="product-image" mode="widthFix"/>
+      <text class="product-name">{{name}}</text>
+      <text class="product-price">￥{{filters.toFix(price, 2)}}</text>
+    </navigator>
+  </view>
+</template>

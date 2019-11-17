@@ -1,139 +1,75 @@
-// pages/home/index.js
+//index.js
+//获取应用实例
+var utils = require('../../utils/util');
 var config = require('../../config');
-var util = require('../../utils/util.js');
+const app = getApp();
 
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
-    user: {
-      avatar: '../../assets/user-unlogin.png',
-      nickname: '登录',
-      level: '普通客户'
+    userInfo: {
+      avatar: '../../assets/images/user-unlogin.png',
+      nickname: '获取微信信息',
+      level_id: 1
     },
-    login: false
+    wine_stock: [
+      {
+        id: 1,
+        name: "西拉子马克贝尔",
+        img: "../../assets/images/wine-1.png",
+        quantity: 1,
+        grow: false
+      },
+      {
+        id: 2,
+        name: "成长红酒",
+        img: "../../assets/images/wine-2.png",
+        quantity: 0.6,
+        grow: true
+      }
+    ],
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-
-  building: () => {
-    wx.showToast({
-      title: '努力建设中',
-    });
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    if (!util.checkAuthorization()) {
-      util.login(this.onLoad);
-      return false;
-    }
-
-    if(getApp().globalData.userInfo && getApp().globalData.userInfo.nickname != '') {
-      var user_info = getApp().globalData.userInfo;
+  onLoad: function () {
+    if (app.globalData.userInfo) {
       this.setData({
-        login: true,
-        user: {
-          avatar: user_info.avatar,
-          nickname: user_info.nickname
+        'userInfo.avatar': app.globalData.userInfo.avatar,
+        'userInfo.nickname': app.globalData.userInfo.nickname,
+        hasUserInfo: true
+      });
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          'userInfo.avatar': res.userInfo.avatarUrl,
+          'userInfo.nickname': res.userInfo.nickName,
+          hasUserInfo: true
+        });
+      };
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            'userInfo.avatar': res.userInfo.avatarUrl,
+            'userInfo.nickname': res.userInfo.nickName,
+            hasUserInfo: true
+          });
+
+          utils.syncUserInfo(res);
         }
       });
     }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
   /**
    * 获取用户信息
    */
   getUserInfo: function (e) {
     var that = this;
-    wx.showToast({
-      icon: 'loading',
-    });
-    console.info(e);
-
-    wx.request({
-      url: config.service.member,
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: { opera: 'sync', nickname: e.detail.userInfo.nickName, avatar: e.detail.userInfo.avatarUrl, sex: e.detail.userInfo.gender, token: getApp().globalData.token },
-      success: function (response) {
-        if (response.data.error != 0) {
-          wx.showModal({
-            title: '提示',
-            content: response.data.message,
-            showCancel: false
-          });
-        } else {
-          getApp().globalData.userInfo = {
-            nickname: e.detail.userInfo.nickName,
-            sex: e.detail.userInfo.gender,
-            avatar: e.detail.userInfo.avatarUrl
-          };
-
-          that.setData({
-            login: true,
-            user: {
-              avatar: e.detail.userInfo.avatarUrl,
-              nickname: e.detail.userInfo.nickName
-            }
-          });
-        }
-      },
-      complete: function () {
-        wx.hideToast();
-      }
+    utils.syncUserInfo(e.detail, function () {
+      that.onLoad();
     });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
-})
+});

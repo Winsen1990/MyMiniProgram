@@ -1,0 +1,63 @@
+/* pages/order/serve.wxss */
+.product {
+  background-color: #ffffff;
+  padding: 30rpx;
+  display: flex;
+}
+
+.product .product-img {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 30rpx;
+}
+
+.product .product-info {
+  flex-grow: 1;
+}
+
+.product .product-info text {
+  display: block;
+}
+
+.product .product-info .product-attributes {
+  color: #a3a3a3;
+  margin-top: 20rpx;
+}
+
+.order-serve {
+  background-color: #ffffff;
+  margin-top: 20rpx;
+}
+
+.order-serve .order-serve-title {
+  color: #a3a3a3;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.order-serve .title {
+  color: #565656;
+  display: block;
+}
+
+.order-serve .message {
+  margin-top: 20rpx;
+  display: block;
+}
+
+.toolbar {
+  margin-top: 30rpx;
+}
+
+.toolbar .toolbar-btn {
+  background-color: #E9577C;
+  color: #ffffff;
+  border-radius: 15rpx;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.meta-with-arrow.selected {
+  background-color: #fcf8f9;
+}

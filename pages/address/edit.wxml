@@ -1,39 +1,42 @@
-<view class="address-form">
-  <view class="address-form-item">
-    <label>  收 货 人</label>
-    <view class="address-form-input">
-      <input type="text" name="consignee" data-name="consignee" value="{{consignee}}" placeholder="请输入收货人姓名" bindblur="dataValidation"/>
+<!--pages/address/edit.wxml-->
+<view class="form">
+  <view class="form-row">
+    <label for="consignee">收货人姓名</label>
+    <view class="form-input">
+      <input type="text" placeholder="请输入收货人姓名" value="{{consignee}}" data-name="consignee"/>
     </view>
   </view>
 
-  <view class="address-form-item">
-    <label>手机号码</label>
-    <view class="address-form-input">
-      <input type="number" name="mobile" data-name="mobile" value="{{mobile}}" placeholder="请输入您的手机号码" bindblur="dataValidation"/>
+  <view class="form-row">
+    <label for="mobile">手机号码</label>
+    <view class="form-input">
+      <input type="number" placeholder="请输入您的手机号码" value="{{mobile}}" data-name="mobile"/>
     </view>
   </view>
 
-  <view class="address-form-item">
+  <view class="form-row">
     <label>省/市/区</label>
-    <view class="address-form-input">
-      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
-        <view class="picker"> 
-          {{region[0]}} {{region[1]}} {{region[2]}}
-        </view>
+    <view class="form-input">
+      <picker mode="multiSelector" bindchange="bindRegionChange" bindcolumnchange="bindRegionColumnChange" range="{{regions}}" range-key="name" value="{{region_index}}">
+        <text>{{region[0]}} {{region[1]}} {{region[2]}} {{region[3]}}</text>
       </picker>
       <!--
-      <button class="iconfont icon-location btn-location">定位</button>
+      <view class="region-location">
+        <icon class="iconfont icon-location"></icon>
+        <text>定位</text>
+      </view>
       -->
     </view>
   </view>
 
-  <view class="address-form-item">
-    <label>详情地址</label>
-    <view class="address-form-input">
-      <textarea placeholder="请输入路名门牌号" bindblur="dataValidation" data-name="detail" value="{{detail}}"></textarea>
+  <view class="form-row">
+    <label for="address">详情地址</label>
+    <view class="form-text-area">
+      <textarea placeholder="请输入门牌号码" data-name="detail" value="{{detail}}" bind></textarea>
     </view>
   </view>
+</view>
 
-  <button class="btn btn-primary disabled" wx:if="{{consignee == '' || mobile == '' || region[0] == '' || region[1] == '' || region[2] == '' || detail == ''}}">保存</button>
-  <button wx:else class="btn btn-primary" bindtap="saveAddress">保存</button>
+<view class="toolbar">
+  <button class="toolbar-btn" disabled="{{!can_submit}}" catchtap="saveAddress">保存</button>
 </view>

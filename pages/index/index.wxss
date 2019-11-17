@@ -1,98 +1,153 @@
 /**index.wxss**/
-@import "../../assets/icon/iconfont.wxss";
+.index-ad {
 
-page {
-  padding-bottom: 2rem;
 }
 
-swiper {
+.index-ad .index-ad-img {
   width: 100%;
 }
 
-.search-bar {
-  border-radius:5px;
-  border:1px solid #870020;
-  margin:5px 8px;
+/* 搜索框 */
+.index-search-bar-wrapper {
+  background-image: linear-gradient(180deg,rgba(255,196,38,1) 0%,rgba(255,219,38,1) 100%);
+  padding: 46rpx 0;
+}
+
+.index-search-bar {
+  text-align:left;
+  margin:0 auto;
   display:flex;
+  width:90%;
 }
 
-.search-bar .search-keyword-input {
-  flex-grow: 1;
-  height:100%;
-  font-size:1rem;
-  padding:5px 8px;
-}
-
-.search-bar .search-btn {
-  border-radius:0 5px 5px 0;
-  padding:0 8px;
-  line-height:2rem;
-  color:#fff;
-  background-color:#870020;
-}
-
-.h2 {
-  color: #870020;
-  padding: 8px;
-  display: block;
-}
-
-.h2 text.iconfont {
-  display: inline-block;
-  margin-right: .5rem;
-}
-
-.product-grid-list {
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  align-content:center;
-  /* justify-content:space-around; */
-  padding: 0 8px 8px;
-}
-
-.product-grid-list .product-item {
-  width: 49%;
-}
-
-.product-item {
-  margin: 8px 2% 0 0;
+.index-search-bar .index-search-input {
+  flex-grow:1;
+  border:1px solid #e5e5e5;
+  border-radius: 10rpx;
+  height:1.8rem;
+  line-height:1.8rem;
   background-color: #ffffff;
+  padding-left: 30rpx;
 }
 
-.product-item:nth-child(2n) {
-  margin-right: 0;
+.index-search-bar .index-search-placeholder {
+  line-height: 1.8rem;
+  color: #a3a3a3;
 }
 
-.product-item image {
-  width: 98%;
-  margin: 1%;
+.index-search-bar .index-search-btn {
+  vertical-align:middle;
+  line-height:1.8rem;
+  margin-left:.3rem;
 }
 
-.product-item .product-item-name {
-  display: block;
-  padding: 5px;
-  height: 2.2rem;
-  font-size: .8rem;
-  line-height: 1.1rem;
-}
-
-.product-item .product-item-info {
+/* 功能区 */
+.index-functions {
+  margin: 20rpx auto;
   display: flex;
-  padding: 5px;
+  text-align: center;
+  width: 90%;
+  align-items: center;
 }
 
-.product-item .product-item-info .product-item-price {
+.index-functions .index-function-item {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.index-functions .index-function-item image {
+  width: 50%;
+  display: block;
+  margin: 0 auto 8rpx;
+}
+
+.index-functions .index-function-item text {
+  display: block;
+  font-size: 24rpx;
+  line-height: 34rpx;
+}
+
+/* 产品专区 */
+.index-block {
+  background-color: #fafafa;
+}
+
+.index-block-cover {
+  height: auto;
+  width: 100%;
+}
+
+.index-block-product-single {
+  display: block;
+  width: 90%;
+  margin: .8rem auto .5rem;
+}
+
+.index-block-product-list {
+  display: block;
+  margin: .8rem auto 0;
+  padding-bottom: 3rem; 
+  width: 90%;
+}
+
+.index-block-product-list .index-block-product {
+  display: inline-block;
+  width: 48%;
+}
+
+.index-block-product-list .index-block-product:nth-child(2n) {
+  margin-left: 4%;
+}
+
+.index-block-product-single .product-image, .index-block-product .product-image {
+  width: 100%;
+}
+
+.index-block-product-single .product-name, .index-block-product .product-name {
+  color: #565656;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  margin: .5rem auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.index-block-product-single .product-price, .index-block-product .product-price {
   color: #870020;
-  flex-grow: 1;
-  font-size: .8rem;
-  line-height: 1.1rem;
+  display: block;
 }
 
-.product-item .product-item-info .product-item-sale-count {
-  color: #d0d0d0;
-  text-align: right;
-  flex-grow: 1;
-  font-size: .8rem;
-  line-height: 1.1rem;
+/* 查看更多 */
+.index-more {
+  text-align: center;
+  font-size: 1rem;
+  color: #565656;
+  border-top: 1px solid #e5e5e5;
+  line-height: 2.2rem;
+}
+
+.float-icon {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation-delay: 2s;
+  animation-iteration-count: 5;
+  color: #870020;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1rpx, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2rpx, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4rpx, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4rpx, 0, 0);
+  }
 }

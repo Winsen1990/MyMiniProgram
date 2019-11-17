@@ -1,6 +1,4 @@
 /* pages/order/track.wxss */
-@import "../../assets/icon/iconfont.wxss";
-@import "../../assets/common.wxss";
 
 .express-head {
   padding: .5rem;
@@ -11,7 +9,8 @@
 }
 
 .express-head image {
-  width: 3.5rem;
+  width: 180rpx;
+  height: 180rpx;
   margin-right: .5rem;
 }
 
@@ -74,7 +73,7 @@
 
 .express-info .express-detail .express-detail-context text:last-child {
   display: block;
-  color: #870020;
+  color: #E9577C;
   text-align: right;
   margin-top: .3rem;
 }

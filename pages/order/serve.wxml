@@ -1,0 +1,38 @@
+<!--pages/order/serve.wxml-->
+<view class="product">
+  <image src="{{detail.img}}" mode="widthFix" class="product-img"/>
+  <view class="product-info">
+    <text class="product-name">订单编号:{{order_sn}}</text>
+    <text class="product-attributes font-s">{{detail.attributes}}</text>
+  </view>
+</view>
+
+<view class="order-serve">
+  <view class="order-serve-title">发起新申请</view>
+
+  <view class="meta-with-arrow {{serve_type == 1 ? 'selected': ''}}" catchtap="selectServeType" data-type="1">
+    <text class="title">退款</text>
+    <text class="message">包含七天保价、破损漏发退货</text>
+  </view>
+
+  <!--
+  <view class="meta-with-arrow">
+    <text class="title">退货退款</text>
+    <text class="message">已收到货，需要退还已收到的货物</text>
+  </view>
+  -->
+
+  <view class="meta-with-arrow {{serve_type == 3 ? 'selected': ''}}" catchtap="selectServeType" data-type="3">
+    <text class="title">换货</text>
+    <text class="message">已收到货，需要换货</text>
+  </view>
+
+  <view class="meta-with-arrow {{serve_type == 4 ? 'selected': ''}}" catchtap="selectServeType" data-type="4">
+    <text class="title">补货</text>
+    <text class="message">已收到货，发现漏发少发破损</text>
+  </view>
+</view>
+
+<view class="toolbar">
+  <button class="toolbar-btn" catchtap="requireServe">发起申请</button>
+</view>

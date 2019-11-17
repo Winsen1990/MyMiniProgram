@@ -1,0 +1,112 @@
+<!--pages/cart/checkout.wxml-->
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+<!-- 收货地址 -->
+<view class="address meta-with-arrow">
+  <block wx:if="{{address.id == 0}}">
+  <navigator url="/pages/address/add?from=checkout">
+    <icon class="address-plus iconfont icon-plus"></icon>
+    <text>新增收货地址</text>
+  </navigator>
+  </block>
+
+  <block wx:else>
+  <navigator url="/pages/address/select">
+    <icon class="iconfont icon-location"></icon>
+    <view class="address-info">
+      <view class="address-consignee">
+        <text>{{address.consignee}}</text>
+        <text class="address-mobile">{{address.mobile}}</text>
+      </view>
+      <text class="address-detail">{{address.detail}}</text>
+    </view>
+  </navigator>
+  </block>
+</view>
+
+<!-- 产品信息 -->
+<view class="shop" wx:for="{{cart}}" wx:key="shop_id" wx:for-item="shop">
+  <view class="shop-info">
+    <icon class="iconfont icon-shop-title font-xl"></icon>
+    <text class="font-m">{{shop.shop_name}}</text>
+  </view>
+
+  <view class="shop-products">
+    <view class="shop-product" wx:for="{{shop.products}}" wx:key="id" wx:for-item="product">
+      <image src="{{product.img}}" class="shop-product-img" mode="widthFix"/>
+      <view class="shop-product-info">
+        <view class="shop-product-name font-m">
+          <text class="name">{{product.name}}</text>
+          <text class="gift-tag" wx:if="{{product.is_gift}}">赠</text>
+        </view>
+        <view class="shop-product-amount">
+          <text class="shop-product-price font-m">
+            <block wx:if="{{!product.is_gift}}">
+            ￥{{filters.toFix(product.price, 2)}}
+            </block>
+          </text>
+          <text class="shop-product-count font-m">x{{product.count}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="shop-meta">
+    <text>配送方式</text>
+    <text class="shop-meta-tail">{{shipping[0].name}}</text>
+  </view>
+
+  <view class="shop-meta">
+    <text>留言</text>
+    <view class="shop-remark-input">
+      <input type="text" placeholder="点击给商家留言" value="{{shop.remark}}" bindblur="recordRemark"/>
+    </view>
+  </view>
+
+  <view class="shop-meta">
+    <text>合计</text>
+    <text class="shop-meta-tail font-red">￥{{filters.toFix(shop.amount, 2)}}</text>
+  </view>
+</view>
+
+<!-- 优惠券 -->
+<view class="meta-with-arrow coupon">
+  <text class="meta-label">优惠券</text>
+  <text class="meta-tail" wx:if="{{coupons.length == 0}}">{{coupon.name}}</text>
+  <picker wx:else range="{{coupons}}" range-key="name" bindchange="selectCoupon">
+    <text class="meta-tail">{{coupon.name}}</text>
+  </picker>
+</view>
+
+<!-- 短信通知收件人 -->
+<view class="notice">
+  <text class="meta-label">接收订单消息提醒</text>
+  <switch class="notice-switch" checked="{{notice_checked}}" bindtap="messageNotice"></switch>
+</view>
+
+<!-- 合计 -->
+<view class="summary">
+  <view class="summary-row">
+    <text class="label">商品金额</text>
+    <text class="value">{{filters.toFix(summary.product_amount, 2)}}</text>
+  </view>
+
+  <view class="summary-row">
+    <text class="label">运费</text>
+    <text class="value">+{{filters.toFix(summary.shipping_amount, 2)}}</text>
+  </view>
+
+  <view class="summary-row" wx:if="{{summary.coupon_decrement > 0}}">
+    <text class="label">优惠减免</text>
+    <text class="value">-{{filters.toFix(summary.coupon_decrement, 2)}}</text>
+  </view>
+</view>
+
+<view class="toolbar-block"></view>
+<view class="toolbar">
+  <view class="blank-block"></view>
+  <view class="toolbar-summary">
+    <text>合计：</text>
+    <text class="font-red">￥{{filters.toFix(summary.amount, 2)}}</text>
+  </view>
+  <button class="toolbar-submit-btn" disabled="{{!can_submit}}" catchtap="submitOrder">提交订单</button>
+</view>

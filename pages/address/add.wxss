@@ -1,37 +1,69 @@
-@import "../../assets/common.wxss";
-@import "../../assets/icon/iconfont.wxss";
-
-page {
-  background-color: #ffffff;
-}
-
-.address-form {
+/* pages/address/add.wxss */
+.form {
 
 }
 
-.address-form .address-form-item {
+.form .form-row {
   display: flex;
-  border-bottom: 1px solid #e5e5e5;
-  padding: .5rem;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #e5e5e5;
 }
 
-.address-form .address-form-item label {
+.form .form-row label {
   color: #a3a3a3;
-  margin-right: .5rem;
-  min-width: 4rem;
+  width: 200rpx;
 }
 
-.address-form .address-form-item .address-form-input {
+.form .form-row .form-input {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.form .form-row .form-input input {
+  width: 100%;
+}
+
+.form .form-row .form-input picker {
+}
+
+.form .form-row .form-input .region-location {
+  display: auto;
+  text-align: right;
+  flex-grow: 1;
+  color: #870020;
+  align-items: center;
+  margin-left: 20rpx;
+  vertical-align: middle;
+}
+
+.form .form-row .form-input .region-location icon {
+  font-size: 50rpx;
+  margin-right: 10rpx;
+  margin-top: -6rpx;
+}
+
+.form .form-row .form-input .region-location text {
+  line-height: 50rpx;
+}
+
+.form .form-row .form-text-area {
   flex-grow: 1;
 }
 
-.btn {
-  color: #ffffff;
-  width: 95%;
-  margin: .5rem auto;
-  background-color: #870020;
+.form .form-row .form-text-area textarea {
+  width: 100%;
 }
 
-.btn.disabled {
-  background-color: #a3a3a3;
+.toolbar {
+  margin-top: 30rpx;
+}
+
+.toolbar .toolbar-btn {
+  background-color: #ff1400;
+  color: #ffffff;
+  border-radius: 15rpx;
+  width: 90%;
+  margin: auto;
+  text-align: center;
 }

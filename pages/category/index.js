@@ -1,6 +1,8 @@
 // pages/category/index.js
-var config = require('../../config')
-var util = require('../../utils/util.js')
+const utils = require('../../utils/util');
+const config = require('../../config');
+var app = getApp();
+var category_segements = [];
 
 Page({
 
@@ -9,8 +11,9 @@ Page({
    */
   data: {
     categories: [],
-    current_view: '',
-    current_id: 0
+    current: 0,
+    current_category: '',
+    tap_category: false
   },
 
   /**
@@ -18,83 +21,110 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.request({
-      url: config.service.category,
-      success: (response) => {
+    utils.request(config.service.category, null, 'GET', function(response) {
+      that.setData({
+        categories: response.data.categories
+      });
+
+      if(response.data.categories.length) {
         that.setData({
-          categories: response.data.categories
+          current: response.data.categories[0].id
         });
 
-        if(response.data.categories.length) {
-          this.setData({
-            current_id: response.data.categories[0].id
+        setTimeout(function() {
+          const query = wx.createSelectorQuery().in(that);
+          query.selectAll('.category-segement').boundingClientRect();
+          query.exec(function (rects) {
+            for (var i = 0; i < rects[0].length; i++) {
+              console.info(rects[0][i]);
+              category_segements.push({
+                id: rects[0][i].dataset.id,
+                top: i == 0 ? 0 : rects[0][i].top
+              });
+            }
+
+            console.info(category_segements);
+
+            var params = wx.getStorageSync('category_param');
+            console.info(params);
+
+            if(params) {
+              that.setData({
+                current: params.category_id,
+                current_sub_category: 'category-' + params.category_id,
+                tap_category: true
+              });
+
+              wx.removeStorageSync('category_param');
+            }
           });
-        }
+        }, 800);
       }
-    })
+    });
   },
 
-  /**
-   * 操作函数--点击产品分类
-   */
-  selectCategory: function (e) {
-    var category_id = e.currentTarget.dataset.id;
+  onShow: function() {
+    var params = wx.getStorageSync('category_param');
+    console.info(params);
 
-    console.info("tap on category id:" + category_id);
-    category_id = parseInt(category_id);
+    if (params && category_segements.length) {
+      this.setData({
+        current: params.category_id,
+        current_sub_category: 'category-' + params.category_id,
+        tap_category: true
+      });
 
+      wx.removeStorageSync('category_param');
+    }
+  },
+
+  //一级分类点击事件
+  categoryTap: function(e) {
     this.setData({
-      current_view: 'category-' + category_id,
-      current_id: category_id
-    })
+      current: e.currentTarget.dataset.id,
+      current_sub_category: 'category-' + e.currentTarget.dataset.id,
+      tap_category: true
+    });
+  },
+
+  categoryScroll: function(e) {
+    var category = 0;
+    for(var i = 0; i < category_segements.length; i++) {
+      if (e.detail.scrollTop >= category_segements[i].top) {
+        category = category_segements[i].id;
+      }
+    }
+
+    if(category > 0 && category != this.data.current) {
+      if(this.data.tap_category) {
+        this.setData({
+          tap_category: false
+        });
+      } else {
+        this.setData({
+          current: category
+        });
+      }
+    }
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 产品添加到购物车
    */
-  onReady: function () {
-  
-  },
+  addToCart: function (e) {
+    var data = {
+      opera: 'add',
+      product_id: e.currentTarget.dataset.id,
+      count: 1,
+      token: app.globalData.token
+    };
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    utils.request(config.service.cart, data, 'POST', function (response) {
+      wx.showToast({
+        title: response.data.message,
+        icon: response.data.error != 0 ? 'none' : 'success',
+        duration: 3000
+      });
+    });
   }
-})
+});

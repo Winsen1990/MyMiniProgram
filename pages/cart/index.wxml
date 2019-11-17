@@ -1,50 +1,87 @@
 <!--pages/cart/index.wxml-->
-<block wx:if="{{cart.length > 0}}">
-  <wxs module="filters" src="../../assets/utils.wxs"></wxs>
-  <view class="cart">
-    <view wx:for="{{cart}}" class="cart-item">
-      <checkbox catchtap="toogleCartItem" class="cart-checkbox" data-id="{{item.id}}" value="{{item.id}}" checked="{{item.checked}}"/>
-      <!-- <navigator url="/pages/product/detail?id={{item.product_id}}"> -->
-      <image src="{{item.image}}"/>
-      <!-- </navigator> -->
-      <view class="cart-item-info">
-        <text class="cart-item-name">{{item.product_name}}</text>
-        <view class="cart-item-toolkit">
-          <text class="cart-item-price">￥{{filters.toFix(item.price, 2)}}</text>
-          <view class="cart-item-opera">
-            <button wx:if="{{item.count > 1}}" class="btn-minus iconfont icon-minus" data-id="{{item.id}}" catchtap="cartItemMinus"></button>
-            <button wx:else class="btn-minus iconfont icon-minus disabled" data-id="{{item.id}}" catchtap="cartItemMinus"></button>
-            <view class="cart-item-number">
-              <input type="text" name="cart-item-number" value="{{item.count}}" disabled="true"/>
+<view class="cart-empty" wx:if="{{cart.length == 0}}">
+  <icon class="iconfont icon-cart-empty"></icon>
+  <text class="empty-primary-message font-l">购物车快饿瘪了 T.T</text>
+  <text class="empty-message font-m">快给我挑点宝贝</text>
+
+  <navigator url="/pages/index/index" open-type="switchTab" class="empty-btn font-m">
+    随便逛逛
+  </navigator>
+</view>
+
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+<view class="cart" wx:else>
+  <view class="shop" wx:for="{{cart}}" wx:key="shop_id" wx:for-item="shop" wx:for-index="shop_index">
+    <!-- 商户信息 -->
+    <view class="shop-info">
+        <checkbox data-shop-id="{{shop.shop_id}}" class="checkbox font-xxl" data-tag="shop" data-name="[{{shop_index}}]" checked="{{shop.checked}}" catchtap="selectShopItem"></checkbox>
+        <text class="shop-name font-l">{{shop.shop_name}}</text>
+    </view>
+    <!-- 产品信息 -->
+    <view class="shop-products">
+      <checkbox-group bindchange="selectCartItem">
+        <view wx:for="{{shop.products}}" wx:for-item="product" wx:for-index="product_index" wx:key="id" class="cart-product">
+          <checkbox value="{{product.id}}" class="checkbox font-xxl" data-tag="product" data-name="[{{shop_index}}.products[{{product_index}}]" checked="{{product.checked}}" disabled="{{product.is_gift}}"></checkbox>
+          <image src="{{product.img}}" class="cart-product-img" mode="widthFix"/>
+          <view class="cart-product-info">
+            <text class="cart-product-name font-m">{{product.name}}</text>
+            <view class="cart-product-placeholder"></view>
+            <view class="cart-product-toolkit">
+              <text class="cart-product-price font-m">
+              <block wx:if="{{!product.is_gift}}">
+              ￥{{filters.toFix(product.price, 2)}}
+              </block>
+              </text>
             </view>
-            <button wx:if="{{item.count < item.inventory}}" class="btn-plus iconfont icon-plus" data-id="{{item.id}}" catchtap="cartItemPlus"></button>
-            <button wx:else class="btn-plus iconfont icon-plus disabled" data-id="{{item.id}}" catchtap="cartItemPlus"></button>
+            <view class="cart-product-toolkit">
+              <view class="blank-block">
+                <text class="gift-tag" wx:if="{{product.is_gift}}">赠</text>
+              </view>
+
+              <block wx:if="{{!product.is_gift}}">
+              <view class="cart-product-count-group">
+                <button class="cart-product-minus iconfont icon-minus" disabled="{{product.count <= 1}}" hover-class="cart-product-minus-hover" data-id="{{product.id}}" catchtap="cartItemMinus"></button>
+                <input type="number" class="cart-product-count font-m" data-id="{{product.id}}" value="{{product.count}}" bindblur="inputCartCount"/>
+                <button class="cart-product-plus iconfont icon-plus" disabled="{{product.count >= product.inventory}}" data-id="{{product.id}}" hover-class="cart-product-plus-hover" catchtap="cartItemPlus"></button>
+              </view>
+
+              <button class="cart-remove iconfont icon-trash" data-id="{{product.id}}" catchtap="removeCartItem"></button>
+              </block>
+
+              <block wx:else>
+              <view class="cart-product-count-group gift-number">
+                x{{product.count}}
+              </view>
+              </block>
+            </view>
           </view>
         </view>
-      </view>
+      </checkbox-group>
     </view>
   </view>
-  <view class="cart-toolbar">
-    <checkbox-group bindchange="checkAllProduct">
-      <label class="cart-check-all">
-        <checkbox value="checkAll" checked="{{checkAll}}"/>全选
-      </label>
-    </checkbox-group>
-    <view class="block-empty"></view>
-    <view class="cart-summary">
-      <text>合计: </text>
-      <text class="cart-summary-amount">￥{{filters.toFix(amount, 2)}}</text>
-      <view class="cart-notice">不含运费</view>
-    </view>
-    <view class="btn btn-checkout" catchtap="checkOrder">去结算({{checkedCount}})</view>
-  </view>
-</block>
+</view>
 
-<block wx:if="{{cart.length == 0}}">
-  <view class="cart-empty">
-    <icon class="iconfont icon-cart"></icon>
-    <text>亲，您的购物车没有商品</text>
-    <text class="last-line">赶快去挑选吧~</text>
-    <navigator open-type="switchTab" url="/pages/index/index" class="btn btn-primary">去挑选</navigator>
+<view class="cart-block" wx:if="{{cart.length > 0}}"></view>
+
+<view class="cart-checkout-toolkit" wx:if="{{cart.length > 0}}">
+  <label for="check-all" class="cart-check-all font-l">
+    <checkbox value="1" checked="{{checkAll}}" class="checkbox font-xxl" catchtap="selectAll"></checkbox>
+    <text>全选</text>
+  </label>
+
+  <view class="cart-summary">
+    <view class="cart-amount font-m">
+      <text>合计：</text>
+      <text class="font-red">￥{{filters.toFix(amount, 2)}}</text>
+    </view>
+    <text class="cart-shipping font-m">不含运费</text>
   </view>
-</block>
+
+  <button wx:if="{{!hasUserInfo && canIUse}}" class="cart-checkout-btn font-l" disabled="{{!canCheckout}}" open-type="getUserInfo" catchgetuserinfo="getUserInfo">
+    结算
+  </button>
+
+  <button wx:else class="cart-checkout-btn font-l" disabled="{{!canCheckout}}" catchtap="checkout">
+    结算
+  </button>
+</view>

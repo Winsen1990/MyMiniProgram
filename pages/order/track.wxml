@@ -21,7 +21,7 @@
 
 <view class="express-info" wx:if="{{track.info}}">
   <view class="express-detail" wx:for="{{track.info}}" wx:for-key="index">
-    <icon class="iconfont icon-await-receive" wx:if="{{index == 0}}"></icon>
+    <icon class="iconfont icon-shipping" wx:if="{{index == 0}}"></icon>
     <icon class="iconfont" wx:else></icon>
 
     <view class="express-detail-context">

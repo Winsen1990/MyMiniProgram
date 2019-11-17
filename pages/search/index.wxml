@@ -1,0 +1,29 @@
+<!--pages/search/index.wxml-->
+<!-- 搜索框 -->
+<view class="index-search-bar">
+  <input type="text" placeholder="请输入搜索关键词" class="index-search-input" placeholder-class="index-search-placeholder" bindconfirm="keywordInput" bindblur="keywordInput" confirm-type="search" focus="true"/>
+  <button class="index-search-btn iconfont icon-search" catchtap="keywordSearch"></button>
+</view>
+
+<view class="recent-keywords">
+  <view class="title">最近搜索</view>
+  <view class="keyword-list">
+    <block wx:for="{{search_history}}" wx:for-item="keyword" wx:key="index">
+      <navigator url="/pages/product/index?keyword={{keyword}}" class="keyword-item">
+        {{keyword}}
+      </navigator>
+    </block>
+  </view>
+</view>
+<!--
+<view class="hot-keywords">
+  <view class="title">大家都在搜</view>
+  <view class="keyword-list">
+    <block wx:for="{{keywords}}" wx:for-item="keyword" wx:key="id">
+      <view class="keyword-item" data-id="{{keyword.id}}" data-keyword="{{keyword.keyword}}" catchtap="keywordTap">
+        {{keyword.keyword}}
+      </view>
+    </block>
+  </view>
+</view>
+-->

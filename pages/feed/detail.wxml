@@ -1,7 +1,71 @@
 <!--pages/feed/detail.wxml-->
-<text class="feed-title">{{feed.title}}</text>
+<!-- 种草标题、作者、简介 -->
+<view class="feed-header">
+  <text class="feed-title">{{feed.title}}</text>
+  <view class="feed-author">
+    原创：
+    <text class="font-blue">{{feed.author}}</text>
+  </view>
 
+  <text class="feed-desc">{{feed.desc}}</text>
+</view>
+
+<!-- 种草详情 -->
+<import src="../../assets/wxParse/wxParse.wxml"/>
 <view class="feed-content">
-  <import src="../../wxParse/wxParse.wxml"/>
-  <template is="wxParse" data="{{wxParseData:wap_content.nodes}}"/>
+  <template is="wxParse" data="{{wxParseData:feed.richContent.nodes}}"/>
+</view>
+
+<!-- 种草浏览信息 -->
+<view class="feed-footer">
+  <text class="feed-viewer">阅读 {{feed.view_count}}</text>
+  <view class="feed-thumb-up" catchtap="thumbUp">
+    <icon class="iconfont {{feed.self_thumb_up ? 'icon-fav-checked' : 'icon-fav'}}"></icon>
+    <text class="feed-thumb-up-count">{{feed.thumb_up}}</text>
+  </view>
+</view>
+
+<!-- 评论 -->
+<view class="feed-comments">
+  <view class="feed-comments-toolkit">
+    <text>精选留言</text>
+    <navigator wx:if="{{login}}" url="/pages/feed/comment?id={{feed.id}}&comment_id=0&title={{feed.title}}" class="font-blue">写留言</navigator>
+  </view>
+  <view class="feed-comment-list">
+  <block wx:for="{{feed.comments}}" wx:key="id">
+    <view class="feed-comment">
+      <image class="avatar" src="{{item.avatar}}" mode="widthFix"/>
+      <view class="feed-comment-container">
+        <view class="feed-comment-header">
+          <text class="nickname">{{item.nickname}}</text>
+          <text class="tag-top" wx:if="{{item.top}}">置顶</text>
+          <text class="tag"></text>
+          <view class="fav" catchtap="commentThumbUp" data-id="{{item.id}}" data-index="{{index}}" data-type="comment">
+            <icon class="iconfont {{item.self_thumb_up ? 'icon-fav-checked' : 'icon-fav'}}"></icon>
+            <text class="feed-comment-fav-count" data-id="{{item.id}}">{{item.thumb_up}}</text>
+          </view>
+        </view>
+
+        <view class="feed-comment-body">
+          <template is="wxParse" data="{{wxParseData:item.richComment.nodes}}"/>
+
+          -- 作者回复 --
+          <view wx:if="{{item.has_reply}}" class="feed-comment-reply">
+            <view class="reply-header">
+              <text class="reply-author">作者</text>
+              <view class="feed-comment-fav" catchtap="commentThumbUp" data-id="{{item.reply.id}}" data-index="{{index}}" data-type="reply">
+                <icon class="iconfont {{item.reply.self_thumb_up ? 'icon-fav-checked' : 'icon-fav'}}"></icon>
+                <text class="feed-comment-fav-count">{{item.reply.thumb_up}}</text>
+              </view>
+            </view>
+
+            <view class="reply-body">
+              <template is="wxParse" data="{{wxParseData:item.reply.richReply.nodes}}"/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  </view>
 </view>

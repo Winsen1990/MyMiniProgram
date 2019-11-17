@@ -1,12 +1,52 @@
 {
-	"client": "./",
-	"svr": "./server",
-	"miniprogramRoot": "./",
-	"qcloudRoot": "./server",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
 		"newFeature": true
 	},
-	"appid": "wx25c39c9694697555",
-	"projectname": "Wine",
-	"condition": {}
+	"compileType": "miniprogram",
+	"libVersion": "2.4.0",
+	"appid": "wxf5ea40dda56672bd",
+	"projectname": "%E5%A5%BD%E5%BD%93%E5%AE%B6%E5%AE%98%E6%96%B9%E5%95%86%E5%9F%8E",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "首页带参数",
+					"pathName": "pages/index/index",
+					"query": "recommend=123456"
+				}
+			]
+		}
+	}
 }

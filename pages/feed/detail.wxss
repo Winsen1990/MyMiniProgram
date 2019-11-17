@@ -1,14 +1,160 @@
 /* pages/feed/detail.wxss */
+/* 正文 */
+.feed-header {
+  padding: 30rpx;
+  background-color: #ffffff;
+}
 
-.feed-title {
+.feed-header .feed-title {
+  font-size: 36rpx;
+  font-weight: bold;
   display: block;
-  padding: .5rem;
+}
+
+.feed-header .feed-author {
+  font-size: 30rpx;
+  margin: 25rpx auto;
+}
+
+.feed-header .feed-desc {
+  display: block;
+  font-size: 30rpx;
+  margin: 25rpx auto;
 }
 
 .feed-content {
-  padding: .5rem;
+  padding: 0 30rpx 30rpx;
+  background-color: #ffffff;
 }
 
-.feed-content image {
-  width: 100%;
+.feed-footer {
+  display: flex;
+  padding: 0 30rpx 30rpx;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.feed-footer .feed-viewer {
+  flex-grow: 1;
+  font-size: 32rpx;
+  color: #a3a3a3;
+}
+
+.feed-footer .feed-thumb-up {
+  color: #a3a3a3;
+  font-size: 32rpx;
+}
+
+.feed-footer .feed-thumb-up .feed-thumb-up-count {
+  margin-left: 10rpx;
+}
+
+/* 评论 */
+.feed-comments {
+  padding: 30rpx;
+}
+
+.feed-comments-toolkit {
+  display: flex;
+  font-size: 32rpx;
+}
+
+.feed-comments-toolkit text {
+  flex-grow: 1;
+  color: #a3a3a3;
+}
+
+.feed-comment-list {
+  padding: 30rpx auto;
+  margin-top: 30rpx;
+}
+
+.feed-comment {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.feed-comment:last-child {
+  margin-bottom: 0;
+}
+
+.feed-comment .avatar {
+  width: 80rpx;
+  margin-right: 20rpx;
+  border-radius: 15rpx;
+}
+
+.feed-comment .feed-comment-container {
+  flex-grow: 1;
+}
+
+.feed-comment .feed-comment-header {
+  display: flex;
+  color: #a3a3a3;
+  font-size: 28rpx;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.feed-comment .feed-comment-header .nickname {
+  margin-right: 10rpx;
+}
+
+.feed-comment .feed-comment-header .tag {
+  flex-grow: 1;
+}
+
+.feed-comment .feed-comment-header .tag-top {
+  color: #ffffff;
+  background-color: #a3a3a3;
+  padding: 4rpx 10rpx;
+  border-radius: 15rpx;
+}
+
+.feed-comment .feed-comment-header .fav icon {
+  margin-right: 10rpx;
+  font-size: 32rpx;
+}
+
+.feed-comment .feed-comment-body {
+  display: block;
+  font-size: 28rpx;
+  line-height: 56rpx;
+  color: #565656;
+}
+
+.feed-comment .feed-comment-body view {
+  vertical-align: middle;
+}
+
+.feed-comment .feed-comment-body image {
+  width: 48rpx!important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 回复 */
+.feed-comment-reply {
+
+}
+
+.feed-comment-reply .reply-header {
+  display: flex;
+  font-size: 28rpx;
+  align-items: center;
+  line-height: 32rpx;
+}
+
+.feed-comment-reply .reply-header .reply-author {
+  flex-grow: 1;
+  border-left: 4rpx solid #349828;
+  text-indent: 10rpx;
+}
+
+.feed-comment-reply .feed-comment-fav {
+  color: #a3a3a3;
+}
+
+.feed-comment-reply .feed-comment-fav icon {
+  margin-right: 10rpx
 }

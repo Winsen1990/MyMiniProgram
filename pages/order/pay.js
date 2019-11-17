@@ -1,6 +1,7 @@
 // pages/order/pay.js
 var config = require('../../config');
 var util = require('../../utils/util.js');
+const app = getApp();
 
 Page({
   /**
@@ -22,7 +23,7 @@ Page({
         title: '',
         content: '参数错误',
         showCancel: false,
-        complete: function() {
+        complete: function () {
           wx.navigateBack();
         }
       });
@@ -33,7 +34,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -42,15 +43,15 @@ Page({
   onShow: function () {
     var that = this;
 
-    if(this.data.order_sn != '') {
+    if (this.data.order_sn != '') {
       var data = {
         sn: this.data.order_sn,
         act: 'show',
         token: getApp().globalData.token
       };
 
-      util.request(config.service.order, data, 'GET', function(response) {
-        if(response.data.error == 0) {
+      util.request(config.service.order, data, 'GET', function (response) {
+        if (response.data.error == 0) {
           that.setData({
             order: response.data.order
           });
@@ -59,7 +60,7 @@ Page({
     }
   },
 
-  pay: function() {
+  pay: function () {
     var that = this;
 
     var data = {
@@ -68,24 +69,33 @@ Page({
       opera: 'pay'
     };
 
-    util.request(config.service.order, data, 'POST', function(response) {
-      if(response.data.error == 0) {
+    util.request(config.service.order, data, 'POST', function (response) {
+      if (response.data.error == 0) {
         wx.requestPayment({
           timeStamp: '' + response.data.timestamp,
           nonceStr: response.data.nonce_str,
           package: 'prepay_id=' + response.data.prepay_id,
           signType: 'MD5',
           paySign: response.data.sign,
-          success: function(e) {
-            util.showModal('', e);
+          success: function (e) {
+            console.info(e);
             wx.redirectTo({
               url: '/pages/order/detail?sn=' + data.order_sn,
             });
           },
-          fail: function() {
-
+          fail: function () {
+            wx.showModal({
+              content: '支付遇到问题？',
+              confirmText: '继续支付',
+              cancelText: '遇到问题',
+              success: function(e) {
+                if(e.confirm) {
+                  that.pay();
+                }
+              }
+            });
           },
-          complete: function() {
+          complete: function () {
 
           }
         });
@@ -97,34 +107,27 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
-})
+});

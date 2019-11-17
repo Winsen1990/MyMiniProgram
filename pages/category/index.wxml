@@ -1,35 +1,52 @@
 <!--pages/category/index.wxml-->
-<wxs module="filters" src="../../assets/utils.wxs"></wxs>
-<view class="category">
-  <scroll-view class="categories">
-    <block wx:for="{{categories}}">
-      <view wx:if="{{current_id == item.id}}" class="category-item current" data-id="{{item.id}}" bindtap="selectCategory">
-        <text class="category-name">{{item.name}}</text>
+<view class="category-panel">
+  <!-- 一级分类 -->
+  <scroll-view scroll-y class="category-list" scroll-into-view="category-nav-{{current}}">
+    <block wx:for="{{categories}}" wx:key="id">
+      <view data-id="{{item.id}}" id="category-nav-{{item.id}}" catchtap="categoryTap" class="category-item {{current == item.id ? 'category-item-current' : ''}}">
+      {{item.name}}
       </view>
-      <view wx:else class="category-item" data-id="{{item.id}}" bindtap="selectCategory">
-        <text class="category-name">{{item.name}}</text>
+      <!--
+      <block wx:for="{{item.sub_categories}}" wx:key="id" wx:for-item="sub_category">
+      <view data-id="{{sub_category.id}}" id="category-nav-{{sub_category.id}}" catchtap="categoryTap" class="category-item {{current == sub_category.id ? 'category-item-current' : ''}}">
+      {{sub_category.name}}
       </view>
+      </block>
+      -->
     </block>
   </scroll-view>
 
-  <scroll-view class="product-list" scroll-y="true" enable-back-to-top scroll-into-view="{{current_view}}" bindscroll="scroll">
-    <block wx:for="{{categories}}" wx:for-item="parent_category">
-      <view wx:for="{{parent_category.sub_categories}}" class="product-group" wx:for-item="sub_category" wx:for-index="index">
-        <view class="sub-category" wx:if="{{index == 0}}" id="category-{{parent_category.id}}">{{sub_category.name}}</view>
-        <view class="sub-category" wx:else>{{sub_category.name}}</view>
-        <view class="product-group-list">
-          <navigator url="/pages/product/detail?id={{item.id}}" wx:for="{{sub_category.product_list}}" class="product-item">
-            <image src="{{item.image}}" class="product-image" mode="widthFix"></image>
-            <view class="product-item-info">
-              <text class="product-name">{{item.name}}</text>
-              <view class="product-item-meta">
-                <text class="product-price">￥{{filters.toFix(item.price, 2)}}</text>
-                <text class="product-sale-count">销量: {{item.sale_count}}</text>
-              </view>
+  <!-- 二级分类-产品列表 -->
+  <scroll-view class="category-product-list" scroll-y bindscroll="categoryScroll" enable-back-to-top scroll-into-view="{{current_sub_category}}">
+    <view class="category-segement" data-id="{{item.id}}" id="category-{{item.id}}" wx:for="{{categories}}" wx:key="index">
+      <block wx:for="{{item.products}}" wx:key="index" wx:for-item="product">
+        <navigator url="/pages/product/detail?id={{product.id}}" class="category-product-item">
+          <image class="product-image" src="{{product.img}}" mode="widthFix"/>
+          <view class="product-info">
+            <text class="product-name">{{product.name}}</text>
+            <view class="product-tags"></view>
+            <view class="product-price">
+              <text class="price">￥{{product.price}}</text>
+              <text class="market-price">￥{{product.shop_price}}</text>
+            </view>
+          </view>
+          <button class="category-add-to-cart iconfont icon-cart" catchtap="addToCart" data-id="{{product.id}}"></button>
+        </navigator>
+      </block>
+      <!--
+      <block wx:for="{{item.sub_categories}}" wx:key="index" wx:for-item="category">
+        <text class="sub-category category-segement" data-id="{{category.id}}" id="category-{{category.id}}">{{category.name}}</text>
+        <block wx:for="{{category.products}}" wx:key="index" wx:for-item="product">
+          <navigator url="/pages/product/detail?id={{product.id}}" class="category-product-item">
+            <image class="product-image" src="{{product.img}}" mode="widthFix"/>
+            <view class="product-info">
+              <text class="product-name">{{product.name}}</text>
+              <text class="product-desc">{{product.desc}}</text>
             </view>
           </navigator>
-        </view>
-      </view>
-    </block>
+        </block>
+      </block>
+      -->
+    </view>
   </scroll-view>
 </view>

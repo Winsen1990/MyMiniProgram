@@ -1,58 +1,66 @@
-<view class="order-status-tabs">
-  <view class="order-status-tab current" wx:if="{{status == 0}}" data-status="0">全部</view>
-  <view class="order-status-tab" wx:else data-status="0" catchtap="switchTab">全部</view>
-
-  <view class="order-status-tab current" wx:if="{{status == 1}}" data-status="1">待付款</view>
-  <view class="order-status-tab" wx:else data-status="1" catchtap="switchTab">待付款</view>
-
-  <view class="order-status-tab current" wx:if="{{status == 4}}" data-status="4">待发货</view>
-  <view class="order-status-tab" wx:else data-status="4" catchtap="switchTab">待发货</view>
-
-  <view class="order-status-tab current" wx:if="{{status == 8}}" data-status="8">售后/退款</view>
-  <view class="order-status-tab" wx:else data-status="8" catchtap="switchTab">售后/退款</view>
-</view>
-
+<!--pages/order/index.wxml-->
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
 
-<scroll-view scroll-y="true" class="order-list">
-  <view wx:for="{{order_list}}" wx:for-item="order" class="order-item">
-    <navigator url="/pages/order/detail?sn={{order.order_sn}}">
-      <view class="order-item-header">
-        <text class="order-sn">订单号: {{order.order_sn}}</text>
-        <text class="order-status">{{order.show_status}}</text>
+<scroll-view scroll-y>
+  <view class="tabs">
+    <view class="tab {{status == 0 ? 'current': ''}}" data-status="0" catchtap="switchTab">全部</view>
+    <view class="tab {{status == 1 ? 'current': ''}}" data-status="1" catchtap="switchTab">待付款</view>
+    <view class="tab {{status == 4 ? 'current': ''}}" data-status="4" catchtap="switchTab">待发货</view>
+    <view class="tab {{status == 8 ? 'current': ''}}" data-status="8" catchtap="switchTab">退款/售后</view>
+  </view>
+
+  <view class="order-list">
+    <block wx:for="{{orders}}" wx:key="order_sn" wx:for-item="order">
+    <navigator url="/pages/order/detail?sn={{order.order_sn}}" class="order">
+      <view class="order-header">
+        <text class="order-sn">订单号:{{order.order_sn}}</text>
+        <text class="order-status font-red">{{order.status_str}}</text>
       </view>
 
-      <view class="order-shop-info">商家: {{order.shop_name}}</view>
-      <view class="order-detail">
-        <view class="order-detail-item" wx:for="{{order.order_detail}}" wx:for-item="order_detail">
-          <image src="{{order_detail.image}}" mode="widthFix"/>
-          <view class="order-detail-item-info">
-            <text class="order-detail-name">{{order_detail.product_name}}</text>
-            <view class="order-detail-meta">
-              <text class="order-detail-price">￥{{filters.toFix(order_detail.price, 2)}}</text>
-              <text class="order-detail-count">x{{order_detail.count}}</text>
+      <view class="order-info">
+        <view class="shop-info">商家: {{order.shop_name}}</view>
+        <view class="order-detail" wx:for="{{order.details}}" wx:key="id" wx:for-item="detail">
+          <image src="{{detail.img}}" class="detail-img" mode="widthFix"/>
+          <view class="detail-info">
+            <text class="detail-name">{{detail.name}}</text>
+            <text class="detail-attributes font-s">{{detail.attributes}}</text>
+            <view class="tags">
+              <text wx:if="{{detail.is_gift}}" class="gift-tag">赠</text>
             </view>
           </view>
+          <view class="detail-amount">
+            <text class="detail-price font-red">
+            <block wx:if="{{!detail.is_gift}}">
+            ￥{{filters.toFix(detail.price, 2)}}
+            </block>
+            </text>
+            <text class="detail-count">x{{detail.count}}</text>
+          </view>
         </view>
-        <view class="order-detail-summary">
-          共{{order.detail_count}}件，实付<text class="order-detail-price">￥{{filters.toFix(order.amount)}}</text>
+        <view class="order-summary" wx:if="{{order.delivery_fee > 0}}">
+          <text>运费：￥{{filters.toFix(order.delivery_fee)}}</text>
+        </view>
+        <view class="order-summary">
+          <text>共{{order.total_count}}件，实付</text>
+          <text class="font-red">￥{{filters.toFix(order.amount, 2)}}</text>
         </view>
       </view>
+
+      <view class="order-footer" wx:if="{{order.status == 1}}">
+        <button class="order-opera" data-sn="{{order.order_sn}}" catchtap="cancelOrder">取消订单</button>
+        <button class="order-opera-primary" data-sn="{{order.order_sn}}" catchtap="payOrder">订单支付</button>
+      </view>
+
+      <view class="order-footer" wx:if="{{order.status == 6}}">
+        <button class="order-opera" data-sn="{{order.order_sn}}" catchtap="trackOrder">物流跟踪</button>
+        <button class="order-opera-primary" data-sn="{{order.order_sn}}" catchtap="receiveOrder">确认收货</button>
+      </view>
+
+      <view class="order-footer" wx:if="{{order.status == 7}}">
+        <button catchtap="rollbackOrder" data-sn="{{order.order_sn}}" data-detail-id="{{order.details[0].id}}" class="order-opera">申请退单</button>
+        <button catchtap="commentOrder" data-sn="{{order.order_sn}}" data-detail-id="{{order.details[0].id}}" class="order-opera-primary">订单评论</button>
+      </view>
     </navigator>
-    <view class="order-item-toolkit">
-      <block wx:if="{{order.status == 1}}">
-        <button class="btn btn-negative" catchtap="cancelOrder" data-sn="{{order.order_sn}}">取消订单</button>
-        <navigator url="/pages/order/pay?sn={{order.order_sn}}" class="btn btn-positive">立即支付</navigator>
-      </block>
-
-      <block wx:if="{{order.status == 6}}">
-        <navigator url="/pages/order/track?sn={{order.order_sn}}" class="btn btn-negative">物流跟踪</navigator>
-        <button class="btn btn-positive" catchtap="receiveOrder" data-sn="{{order.order_sn}}">确认收货</button>
-      </block>
-
-      <block wx:if="{{order.status == 7}}">
-        <button class="btn btn-negative" catchtap="rollbackOrder" data-sn="{{order.order_sn}}">申请退单</button>
-      </block>
-    </view>
+    </block>
   </view>
 </scroll-view>

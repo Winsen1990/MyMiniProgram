@@ -1,70 +1,75 @@
 {
-  "debug": true,
   "pages": [
     "pages/index/index",
     "pages/category/index",
-    "pages/product/detail",
-    "pages/cart/index",
-    "pages/home/index",
     "pages/product/index",
-    "pages/order/checkout",
-    "pages/order/index",
-    "pages/order/detail",
-    "pages/order/comment",
+    "pages/feed/index",
+    "pages/feed/detail",
+    "pages/feed/comment",
+    "pages/cart/index",
+    "pages/cart/checkout",
     "pages/address/index",
+    "pages/address/select",
     "pages/address/add",
     "pages/address/edit",
-    "pages/address/select",
-    "pages/feed/index",
+    "pages/search/index",
+    "pages/order/index",
+    "pages/order/detail",
+    "pages/order/serve",
+    "pages/order/comment",
+    "pages/home/index",
+    "pages/home/wallet",
+    "pages/home/reward",
+    "pages/home/integral",
+    "pages/home/coupon",
+    "pages/product/detail",
     "pages/order/pay",
     "pages/order/track",
-    "pages/feed/detail"
+    "pages/home/balance",
+    "pages/block/index"
   ],
   "window": {
-    "backgroundColor": "#fafafa",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#870020",
-    "enablePullDownRefresh": true,
-    "navigationBarTitleText": "森云酒业",
-    "navigationBarTextStyle":"white"
+    "navigationBarBackgroundColor": "#FFC426",
+    "navigationBarTitleText": "好当家官方商城",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff"
   },
   "tabBar": {
-    "color": "#656565",
-    "selectedColor": "#870020",
-    "backgroundColor": "#ffffff",
-    "position": "bottom",
+    "color": "#333333",
+    "selectedColor": "#000000",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "assets/icon/index.png",
-        "selectedIconPath": "assets/icon/index@active.png"
+        "iconPath": "assets/images/index.png",
+        "selectedIconPath": "assets/images/index@active.png"
       },
       {
-        "pagePath": "pages/category/index",
-        "text": "分类",
-        "iconPath": "assets/icon/category.png",
-        "selectedIconPath": "assets/icon/category@active.png"
+        "pagePath": "pages/block/index",
+        "text": "会员专区",
+        "iconPath": "assets/images/vip.png",
+        "selectedIconPath": "assets/images/vip@active.png"
       },
       {
         "pagePath": "pages/feed/index",
-        "text": "种草",
-        "iconPath": "assets/icon/feed.png",
-        "selectedIconPath": "assets/icon/feed@active.png"
+        "text": "发现",
+        "iconPath": "assets/images/found.png",
+        "selectedIconPath": "assets/images/found@active.png"
       },
       {
         "pagePath": "pages/cart/index",
         "text": "购物车",
-        "iconPath": "assets/icon/cart.png",
-        "selectedIconPath": "assets/icon/cart@active.png"
+        "iconPath": "assets/images/cart.png",
+        "selectedIconPath": "assets/images/cart@active.png"
       },
       {
         "pagePath": "pages/home/index",
         "text": "我的",
-        "iconPath": "assets/icon/home.png",
-        "selectedIconPath": "assets/icon/home@active.png"
+        "iconPath": "assets/images/home.png",
+        "selectedIconPath": "assets/images/home@active.png"
       }
     ]
   },
-  "enablePullDownRefresh": true
+  "sitemapLocation": "sitemap.json"
 }

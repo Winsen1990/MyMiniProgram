@@ -1,3 +1,5 @@
+const config = require('../config');
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -14,46 +16,124 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-// 显示繁忙提示
-var showBusy = text => wx.showToast({
-    title: text,
-    icon: 'loading',
-    duration: 10000
-})
+const strReplaceAll = (str, search, replace) => {
+  if (str.indexOf(search) > -1) {
+    return str.split(search).join(replace);
+  }
 
-// 显示成功提示
-var showSuccess = text => wx.showToast({
-    title: text,
-    icon: 'success'
-})
-
-// 显示失败提示
-var showModel = (title, content) => {
-    wx.hideToast();
-
-    wx.showModal({
-        title,
-        content: JSON.stringify(content),
-        showCancel: false
-    })
+  return str;
 }
 
-var getTimestamp = () => {
-  return new Date().getTime();
+const emojis = [
+  {name:'微笑', src: '00.gif'},
+  {name:'撇嘴', src: '01.gif'},
+  {name:'色', src: '02.gif'},
+  {name:'发呆', src: '03.gif'},
+  {name:'得意', src: '04.gif'},
+  {name:'流泪', src: '05.gif'},
+  {name:'害羞', src: '06.gif'},
+  {name:'闭嘴', src: '07.gif'},
+  {name:'睡', src: '08.gif'},
+  {name:'大哭', src: '09.gif'},
+  {name:'尴尬', src: '10.gif'},
+  {name:'发怒', src: '11.gif'},
+  {name:'调皮', src: '12.gif'},
+  {name:'呲牙', src: '13.gif'},
+  {name:'惊讶', src: '14.gif'},
+  {name:'难过', src: '15.gif'},
+  {name:'酷', src: '16.gif'},
+  {name:'冷汗', src: '17.gif'},
+  {name:'抓狂', src: '35.gif'},
+  {name:'吐', src: '19.gif'},
+  {name:'偷笑', src: '20.gif'},
+  {name:'愉快', src: '21.gif'},
+  {name:'白眼', src: '22.gif'},
+  {name:'傲慢', src: '23.gif'},
+  {name:'饥饿', src: '24.gif'},
+  {name:'困', src: '25.gif'},
+  {name:'惊恐', src: '26.gif'},
+  {name:'流汗', src: '27.gif'},
+  {name:'憨笑', src: '28.gif'},
+  {name:'悠闲', src: '29.gif'},
+  {name:'奋斗', src: '30.gif'},
+  {name:'咒骂', src: '31.gif'},
+  {name:'疑问', src: '32.gif'},
+  {name:'嘘', src: '33.gif'},
+  {name:'晕', src: '34.gif'},
+  {name:'衰', src: '36.gif'},
+  {name:'骷髅', src: '37.gif'},
+  {name:'敲打', src: '38.gif'},
+  {name:'再见', src: '39.gif'},
+  {name:'擦汗', src: '40.gif'},
+  {name:'抠鼻', src: '41.gif'},
+  {name:'鼓掌', src: '42.gif'},
+  {name:'坏笑', src: '44.gif'},
+  {name:'左哼哼', src: '45.gif'},
+  {name:'右哼哼', src: '46.gif'},
+  {name:'哈欠', src: '47.gif'},
+  {name:'鄙视', src: '48.gif'},
+  {name:'委屈', src: '49.gif'},
+  {name:'快哭了', src: '50.gif'},
+  {name:'阴险', src: '51.gif'},
+  {name:'亲亲', src: '52.gif'},
+  {name:'可怜', src: '54.gif'},
+  {name:'菜刀', src: '55.gif'},
+  {name:'西瓜', src: '56.gif'},
+  {name:'啤酒', src: '57.gif'},
+  {name:'咖啡', src: '60.gif'},
+  {name:'猪头', src: '62.gif'},
+  {name:'玫瑰', src: '63.gif'},
+  {name:'凋谢', src: '64.gif'},
+  {name:'爱心', src: '66.gif'},
+  {name:'心碎', src: '67.gif'},
+  {name:'蛋糕', src: '68.gif'},
+  {name:'炸弹', src: '70.gif'},
+  {name:'便便', src: '74.gif'},
+  {name:'月亮', src: '75.gif'},
+  {name:'太阳', src: '76.gif'},
+  {name:'拥抱', src: '78.gif'},
+  {name:'强', src: '79.gif'},
+  {name:'弱', src: '80.gif'},
+  {name:'握手', src: '81.gif'},
+  {name:'胜利', src: '82.gif'},
+  {name:'抱拳', src: '83.gif'},
+  {name:'勾引', src: '84.gif'},
+  {name:'拳头', src: '85.gif'},
+  {name:'OK', src: '89.gif'},
+  {name:'跳跳', src: '92.gif'},
+  {name:'发抖', src: '93.gif'},
+  {name:'转圈', src: '95.gif'},
+];
+
+const emojiToImage = (str) => {
+  var emoji_path = '../../assets/wxParse/emojis/';
+  var emoji_regex = /\[([^\w]+)?\]/;
+
+  if(emoji_regex.test(str)) {
+    for(var i = 0; i < emojis.length; i++) {
+      var emoji = emojis[i];
+      str = strReplaceAll(str, '[' + emoji.name + ']', '<img src="' + emoji_path + emoji.src + '"/>');
+    }
+  }
+
+  return str;
 }
 
 // 发起请求
-var request = (url, data, method, success, fail, loading_text) => {
+const request = (url, data, method, success, fail, need_loading, loading_text) => {
   loading_text = loading_text || '';
+  need_loading = need_loading == undefined ? true : need_loading;
 
-  wx.showLoading({
-    title: loading_text,
-    mask: true
-  });
+  if(need_loading) {
+    wx.showLoading({
+      title: loading_text,
+      mask: true
+    });
+  }
 
   var header = {};
 
-  if(method == 'GET') {
+  if (method == 'GET') {
     header = {
       'content-type': 'application/x-www-form-urlencoded'
     };
@@ -66,81 +146,68 @@ var request = (url, data, method, success, fail, loading_text) => {
     success: success,
     header: header,
     fail: fail,
-    complete: function() {
-      wx.hideLoading();
+    complete: function () {
+      if(need_loading) {
+        wx.hideLoading();
+      }
     }
   });
 }
 
 // 登录检查
-var checkAuthorization = () => {
+const checkAuthorization = () => {
   var token = getApp().globalData.token;
   var expired = getApp().globalData.expired;
 
-  if(!token) {
+  if (!token) {
     return false;
   }
 
-  if(expired < getTimestamp()) {
+  /*
+  if (expired < getTimestamp()) {
     return false;
   }
-
-  var user_info = getApp().globalData.userInfo;
-  if(!user_info) {
-    return false;
-  }
+  */
 
   return true;
 }
 
-//登录
-var login = (callback) => {
-  if (getApp().globalData.logining) {
-    return false;
-  }
-  getApp().globalData.logining = true;
-
-  wx.login({
-    success: res => {
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      if (res.errMsg == 'login:ok') {
-        console.info(res);
-        getToken(res.code, callback);
-      }
-    },
-    complete: () => {
-      getApp().globalData.logining = false;
-    }
-  });
-}
-
-var config = require('../config.js');
-
-function getToken(code, callback) {
+/**
+   * 同步用户信息
+   */
+const syncUserInfo = function (res, callback) {
+  var that = this;
+  var app = getApp();
   wx.request({
-    url: config.service.login,
-    data: { code: code },
+    url: config.service.member,
+    data: { res: res, nickname: res.userInfo.nickName, avatar: res.userInfo.avatarUrl, opera: 'sync', account: app.globalData.account, token: app.globalData.token },
     method: 'POST',
     header: {
       'content-type': 'application/x-www-form-urlencoded'
     },
-    success: function(response) {
+    success: function (response) {
       console.info(response);
-      if(response.data.error == 0) {
-        getApp().globalData.userInfo = response.data.user;
-        getApp().globalData.token = response.data.token;
-        getApp().globalData.expired = response.data.expired;
-        if (typeof (callback) == 'function') {
-          callback.apply(this);
-        }
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: response.data.message,
-        });
+      if (!app.globalData.userInfo) {
+        app.globalData.userInfo = {};
+      }
+
+      app.globalData.userInfo.nickname = res.userInfo.nickName;
+      app.globalData.userInfo.avatar = res.userInfo.avatarUrl;
+
+      if (typeof (callback) == 'function') {
+        console.info('sync success call callback');
+        callback();
       }
     }
   });
 }
 
-module.exports = { checkAuthorization, formatTime, showBusy, showSuccess, showModel, login, request }
+module.exports = {
+  formatTime: formatTime,
+  emojis: emojis,
+  strReplaceAll: strReplaceAll,
+  emojiToImage: emojiToImage,
+  request: request,
+  checkAuthorization: checkAuthorization,
+  syncUserInfo: syncUserInfo
+}

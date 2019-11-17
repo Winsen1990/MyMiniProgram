@@ -1,5 +1,5 @@
 /* pages/order/pay.wxss */
-@import "../../assets/icon/iconfont.wxss";
+
 /* 购物车列表 */
 page {
   background-color: #f5f5f5;
@@ -84,8 +84,8 @@ button::after {
 }
 
 .product-info .product-list .product-item .product-item-image {
-  width: 4rem;
-  height: 4rem;
+  width: 180rpx;
+  height: 180rpx;
   margin-right: .5rem;
 }
 
@@ -164,7 +164,7 @@ button::after {
 }
 
 .meta-info-list .meta-info .meta-info-price {
-  color: #870020;
+  color: #E9577C;
 }
 
 /* 金额合计 */
@@ -216,7 +216,7 @@ button::after {
 }
 
 .checkout-toolbar .checkout-summary .checkout-summary-amount {
-  color: #870020;
+  color: #E9577C;
 }
 
 .btn {
@@ -226,6 +226,6 @@ button::after {
 }
 
 .btn-primary {
-  background-color: #870020;
+  background-color: #E9577C;
   color: #ffffff;
 }

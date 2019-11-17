@@ -1,0 +1,45 @@
+/* pages/home/integral.wxss */
+.balance {
+  padding: 60rpx 30rpx;
+}
+
+.balance .balance-helper {
+  display: block;
+  text-align: right;
+}
+
+.balance .balance-amount {
+  margin: 20rpx auto 30rpx;
+}
+
+.balance .balance-amount .amount {
+  font-weight: bold;
+}
+
+.balance-toolkit {
+  display: flex;
+  border-top: 2rpx solid #565656;
+  border-bottom: 2rpx solid #565656;
+  text-align: center;
+}
+
+.balance-toolkit .balance-consume, .balance-toolkit .balance-get {
+  flex-grow: 1;
+  background-color: #870020;
+  color: #ffffff;
+  padding: 20rpx;
+  border-right: 4rpx solid #38000d;
+}
+
+.balance-toolkit .balance-consume {
+  border-right: 0;
+}
+
+.balance-detail {
+  margin-top: 20rpx;
+  background-color: #ffffff;
+}
+
+.balance-detail .meta-with-arrow {
+  border-top: 2rpx solid #e5e5e5;
+}

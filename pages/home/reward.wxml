@@ -1,0 +1,22 @@
+<!--pages/home/reward.wxml-->
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
+<view class="balance">
+  <navigator class="balance-helper font-m">使用帮助</navigator>
+  <view class="balance-amount">
+    <text class="amount font-xxl">{{filters.toFix(reward, 2)}}</text>
+    <text class="unit font-m">元</text>
+  </view>
+  <text class="balance-notice font-m">快乐推广赚佣金</text>
+</view>
+
+<view class="balance-toolkit">
+  <navigator class="balance-get">领</navigator>
+  <navigator class="balance-consume">花</navigator>
+</view>
+
+<view class="balance-detail">
+  <view class="meta-with-arrow">收支明细</view>
+  <view class="balance-detail-list">
+  </view>
+</view>

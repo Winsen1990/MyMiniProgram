@@ -1,38 +1,35 @@
-<view class="address">
-<block wx:if="{{address.length > 0}}">
-  <view wx:for="{{address}}" class="address-item">
-    <view>
-      <view class="address-meta">
-        <text>{{item.consignee}}</text>
-        <text>{{item.mobile}}</text>
+<!--pages/address/index.wxml-->
+<!-- 地址列表 -->
+<radio-group bindchange="defaultAddress">
+<view class="address-item" wx:for="{{addresses}}" wx:key="id" wx:for-item="address">
+  <view class="address">
+    <view class="address-info">
+      <view class="address-consignee">
+        <text>{{address.consignee}}</text>
+        <text class="address-mobile">{{address.mobile}}</text>
       </view>
-
-      <text class="address-detail">
-        <icon class="address-default-tag" wx:if="{{item.is_default}}">[默认]</icon>
-        {{item.address}}
-      </text>
+      <view class="address-detail">
+        <text class="font-red" wx:if="{{address.is_default}}">[默认]</text>
+        <text>{{address.address}}</text>
+      </view>
     </view>
-    <view class="address-opera">
-      <label>
-        <checkbox class="checkbox" name="is_default" checked="{{item.is_default}}" data-id="{{item.id}}" bindtap="defaultAddress"/>
-        设为默认地址
+    <view class="address-toolkit">
+      <label class="address-default">
+        <radio class="checkbox" checked="{{address.is_default}}" value="{{address.id}}" data-id="{{address.id}}"></radio>
+        <text>设为默认地址</text>
       </label>
-      <view class="block-empty"></view>
-
-      <navigator url="/pages/address/edit?id={{item.id}}" class="address-edit iconfont icon-edit"></navigator>
-      <view href="javascript:void(0);" class="address-trash iconfont icon-trash" data-id="{{item.id}}" bindtap="deleteAddress"></view>
+      <navigator url="/pages/address/edit?id={{address.id}}" class="address-edit iconfont icon-edit"></navigator>
+      <button class="address-delete iconfont icon-trash" data-id="{{address.id}}" catchtap="deleteAddress"></button>
     </view>
   </view>
-</block>
-
-<block wx:else>
-<view class="address-empty">
-  <icon class="iconfont icon-location"></icon>
-  <text>您还没有保存常用地址哦~</text>
 </view>
-</block>
-</view>
+</radio-group>
 
-<view class="address-toolbar">
-  <navigator url="/pages/address/add" class="btn btn-primary iconfont icon-plus">添加新地址</navigator>
+<view class="address-blank-block"></view>
+
+<view class="toolbar">
+  <navigator url="/pages/address/add" class="toolbar-btn font-l">
+    <icon class="iconfont icon-plus font-xl"></icon>
+    <text>添加新地址</text>
+  </navigator>
 </view>

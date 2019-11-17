@@ -1,2 +1,27 @@
 <!--pages/order/comment.wxml-->
-<text>pages/order/comment.wxml</text>
+<view class="order-primary-info">
+  <image src="{{detail.img}}" class="order-primary-img" mode="widthFix"/>
+  <view class="order-comment">
+    <view class="order-comment-opera">
+      <text class="label font-l">评分：</text>
+      <image class="star" src="../../assets/images/{{star >= 1 ? 'star@fill.png' : 'star.png'}}" catchtap="selectStar" data-num="1" mode="widthFix"/>
+      <image class="star" src="../../assets/images/{{star >= 2 ? 'star@fill.png' : 'star.png'}}" catchtap="selectStar" data-num="2" mode="widthFix"/>
+      <image class="star" src="../../assets/images/{{star >= 3 ? 'star@fill.png' : 'star.png'}}" catchtap="selectStar" data-num="3" mode="widthFix"/>
+      <image class="star" src="../../assets/images/{{star >= 4 ? 'star@fill.png' : 'star.png'}}" catchtap="selectStar" data-num="4" mode="widthFix"/>
+      <image class="star" src="../../assets/images/{{star >= 5 ? 'star@fill.png' : 'star.png'}}" catchtap="selectStar" data-num="5" mode="widthFix"/>
+    </view>
+    <text class="order-comment-notice">{{comment_str}}</text>
+  </view>
+</view>
+
+<view class="order-comment-input">
+  <textarea bindblur="commentInput" placeholder="快告诉小伙伴宝贝有多好吧，大家都等着你的品尝心得呢" value="{{comment}}"></textarea>
+  <view class="order-comment-hint">
+    <image class="order-comment-hint-icon" src="../../assets/images/five.png" mode="widthFix"/>
+    <text>至少5个字哦</text>
+  </view>
+</view>
+
+<view class="toolbar">
+  <button class="toolbar-btn" disabled="{{!can_submit}}" catchtap="submitComment">提交评价</button>
+</view>

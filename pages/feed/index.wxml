@@ -1,4 +1,17 @@
-<navigator url="/pages/feed/detail?id={{item.id}}" class="feed-item" wx:for="{{feeds}}">
-  <image src="{{item.original}}" mode="widthFix"/>
-  <text class="feed-title">{{item.title}}</text>
-</navigator>
+<!--pages/feed/index.wxml-->
+<scroll-view scroll-y="true" class="feed-list" scroll-top="{{bottom}}" enable-back-to-top="true" catchscrolltoupper="scrollToTop">
+  <block wx:for="{{renderList}}" wx:key="index">
+    <navigator url="/pages/feed/detail?id={{item.id}}" id="feed-{{feed.id}}" wx:if="{{item.mode == 'article'}}" class="feed">
+      <image src="{{item.cover}}" mode="widthFix" class="feed-cover"/>
+      <view class="feed-info">
+        <text class="feed-title">{{item.title}}</text>
+        <text class="feed-desc">{{item.desc}}</text>
+      </view>
+    </navigator>
+
+    <view wx:else class="feed-date">
+      {{item.date}}
+    </view>
+  </block>
+  <view id="feed-bottom"></view>
+</scroll-view>

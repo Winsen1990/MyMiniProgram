@@ -1,1 +1,77 @@
 /* pages/order/comment.wxss */
+/* 订单信息框 */
+.order-primary-info {
+  display: flex;
+  padding: 30rpx;
+  align-items: center;
+}
+
+.order-primary-info .order-primary-img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 30rpx;
+}
+
+.order-primary-info .order-comment {
+  flex-grow: 1;
+}
+
+.order-primary-info .order-comment .order-comment-opera {
+}
+
+.order-primary-info .order-comment .order-comment-opera .label {
+  margin-right: 30rpx;
+}
+
+.order-primary-info .order-comment .order-comment-opera .star {
+  display: inline-block;
+  vertical-align: middle;
+  width: 60rpx;
+  margin-right: 20rpx;
+}
+
+.order-primary-info .order-comment .order-comment-notice {
+  display: block;
+  margin-top: 20rpx;
+}
+
+/* 评价框 */
+.order-comment-input {
+  background-color: #f1f1f1;
+  padding: 30rpx;
+}
+
+.order-comment-input textarea {
+  width: 100%;
+}
+
+.order-comment-input .order-comment-hint {
+  color: #a3a3a3;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.order-comment-input .order-comment-hint .order-comment-hint-icon {
+  width: 32rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+
+.order-comment-input .order-comment-hint text {
+  vertical-align: middle;
+}
+
+/* 工具栏 */
+.toolbar {
+  margin-top: 30rpx;
+}
+
+.toolbar .toolbar-btn {
+  background-color: #ff1400;
+  color: #ffffff;
+  border-radius: 15rpx;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
