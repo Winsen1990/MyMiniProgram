@@ -142,3 +142,13 @@
 		top: 30rpx;
 		right: 70rpx;
 	}
+
+  .mine-banner-img {
+    width: 100%;
+  }
+
+  .mine-top-nav .action {
+    background-color: #65451C;
+    padding: 8rpx 20rpx;
+    border-radius: 6rpx;
+  }

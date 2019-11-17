@@ -24,6 +24,7 @@ var config = {
     keywords: `${host}${api_path}/keywords.php`,//热搜关键词
     exam: `${host}${api_path}/question.php`,//问卷
     coupon: `${host}${api_path}/coupon.php`,
+    mine: `${host}${api_path}/mine.php`,
     // 登录地址，用于建立会话
     login: `${host}${api_path}/authorization.php`//登录
   }

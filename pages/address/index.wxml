@@ -27,9 +27,13 @@
 
 <view class="address-blank-block"></view>
 
-<view class="toolbar">
+<!-- <view class="toolbar">
   <navigator url="/pages/address/add" class="toolbar-btn font-l">
     <icon class="iconfont icon-plus font-xl"></icon>
     <text>添加新地址</text>
   </navigator>
+</view> -->
+
+<view class="toolbar">
+  <button bindtap="goTo" type="primary" style="margin: 30rpx; border-radius:10rpx;">添加新地址</button>
 </view>

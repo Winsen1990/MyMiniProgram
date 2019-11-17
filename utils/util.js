@@ -1,3 +1,4 @@
+
 const config = require('../config');
 
 const formatTime = date => {
@@ -121,6 +122,7 @@ const emojiToImage = (str) => {
 
 // 发起请求
 const request = (url, data, method, success, fail, need_loading, loading_text) => {
+
   loading_text = loading_text || '';
   need_loading = need_loading == undefined ? true : need_loading;
 

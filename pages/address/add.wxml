@@ -38,5 +38,5 @@
 </view>
 
 <view class="toolbar">
-  <button class="toolbar-btn" disabled="{{!can_submit}}" catchtap="saveAddress">保存</button>
+  <button type="primary" style="margin:30rpx;border-radius:10rpx;" disabled="{{!can_submit}}" catchtap="saveAddress">保存</button>
 </view>

@@ -1,0 +1,470 @@
+@import '/assets/css/main.wxss';
+@import '/assets/css/icon.wxss';
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-r {
+  flex-direction: row-reverse;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-column-r {
+  flex-direction: column-reverse;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.icon-1 {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.icon-2 {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.icon-3 {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.font-1 {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
+
+.screen-swiper {
+  height: 360rpx;
+}
+
+.member-card {
+  width: 750rpx;
+  height: 640rpx;
+}
+
+.member-card-bg {
+  background-color: #171314;
+  width: 750rpx;
+  height: 400rpx;
+  top: 0rpx;
+}
+
+.member-card-1 {
+  background-color: #423233;
+  width: 690rpx;
+  height: 460rpx;
+  margin: 156rpx 30rpx 0 30rpx;
+  border-radius: 20rpx;
+}
+
+.member-card-2 {
+  background-image: url('https://img.xms.wiki/a1/hdj/card.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  width: 640rpx;
+  height: 260rpx;
+  margin: 80rpx 55rpx 0 55rpx;
+  padding: 20rpx 0 10rpx 0;
+  z-index: 99;
+}
+
+.member-card-2 .text1 {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #583c30;
+  padding: 60rpx 0 0 40rpx;
+}
+
+.member-card-2 .text2 {
+  font-size: 28rpx;
+  color: #583c30;
+  padding: 60rpx 0 0 40rpx;
+}
+
+.member-card-2 .text3 {
+  font-size: 28rpx;
+  color: #583c30;
+  width: 100%;
+  text-align: center;
+}
+
+.activity-new {
+  padding: 30rpx 30rpx 20rpx 30rpx;
+  background-color: #fff;
+  /* background: linear-gradient(#FFA200, #FFCC26); */
+}
+
+.activity-new-coupon {
+  width: 690rpx;
+  height: 130rpx;
+  background-color: #ffea5e;
+  border-radius: 4rpx;
+}
+
+.activity-new-coupon .text1 {
+  font-size: 28rpx;
+  color: #333;
+  margin-top: 60rpx;
+}
+
+.activity-new-coupon .text2 {
+  font-size: 60rpx;
+  color: #333;
+  margin-top: 40rpx;
+}
+
+.activity-new-coupon .text3 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-top: 60rpx;
+  margin-left: 10rpx;
+  width: 160rpx;
+}
+
+.activity-new-coupon .text4 {
+  font-size: 28rpx;
+  color: #fff;
+  width: 90rpx;
+  height: 44rpx;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+  background-color: #333;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+}
+
+.activity-new-coupon-img {
+  width: 140rpx;
+  height: 140rpx;
+  margin-left: 20rpx;
+  margin-top: -30rpx;
+}
+
+.activity-new-items {
+  width: 690rpx;
+  height: 210rpx;
+  margin-top: 20rpx;
+  padding-top: 10rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+
+.activity-new-items .text1 {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.activity-new-items .text2 {
+  color: #999;
+  font-size: 20rpx;
+  margin: 10rpx 0;
+}
+
+.activity-new-items .text3 {
+  color: #333;
+  font-size: 20rpx;
+  background-color: #ffea5e;
+  width: 100rpx;
+  padding: 8rpx;
+}
+
+.activity-new-items .item-l {
+  width: 210rpx;
+  padding: 20rpx;
+}
+
+.activity-new-items .item-r {
+  width: 160rpx;
+  align-items: center;
+}
+
+.activity-new-items .item-r image {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.activity-new-items .price {
+  background-color: #ff4324;
+  color: #fff;
+  border-radius: 12rpx 0 12rpx 0;
+  width: 80rpx;
+}
+
+.activity-flash-sale {
+  width: 690rpx;
+  height: 400rpx;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+}
+
+.activity-flash-sale .item {
+  width: 160rpx;
+  margin: 10rpx;
+  align-items: center;
+  text-align: center;
+}
+
+.activity-flash-sale .item image {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.activity-flash-sale .item .price {
+  color: #e9577c;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.activity-flash-sale .item .price1 {
+  color: #999;
+  font-size: 20rpx;
+  text-decoration: line-through;
+}
+
+.activity-flash-sale .time-item {
+  background-color: #333;
+  color: #fff;
+  padding: 8rpx;
+  margin: 8rpx;
+}
+
+.member-card-1 .items {
+  margin: 30rpx;
+}
+
+.member-card-1 image {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.member-card-1 text {
+  color: #ffeab2;
+  font-size: 24rpx;
+}
+
+.member-card-1 .item-title {
+  color: #ffeab2;
+  font-size: 28rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.fixed-action-nav {
+  position: fixed;
+  /* bottom: 100rpx; */
+  bottom: 0rpx;
+  height: 100rpx;
+  width: 750rpx;
+  color: #333;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  background-color: #fff;
+  align-content: center;
+}
+
+.fixed-action-btn {
+  width: 280rpx;
+  height: 100rpx;
+  display: inline-block;
+}
+
+.fixed-action-btn:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  background-color: #03031e;
+  width: 280rpx;
+  height: 100rpx;
+  z-index: -1;
+  transform: perspective(0.8em) rotateX(2deg);
+  transform-origin: top right;
+}
+
+.fixed-action-btn .text1 {
+  color: #ffeee2;
+  font-size: 32rpx;
+}
+
+.fixed-action-btn .text2 {
+  color: #ffeee2;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.fixed-action-btn .text3 {
+  color: #ffeee2;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  padding-left: 12rpx;
+  text-align: center;
+}
+
+.fixed-action-2 {
+  width: 280rpx;
+  height: 200rpx;
+  margin-bottom: 20rpx;
+  background-color: #03031e;
+  display: inline-block;
+  position: relative;
+  transform: perspective(0.8em) rotateX(2deg);
+  transform-origin: top right;
+}
+
+.fixed-action-btn1111 {
+  /* position: relative; *//* display: inline-block; *//* padding: 50px 40px 15px 15px; */
+  right: 0;
+  font-size: 24px;
+  color: white;
+  width: 200rpx;
+  /* margin: 50px; */
+  background-color: #000;
+}
+
+.fixed-action-btn1111::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: #000;
+  transform: perspective(0.7em) rotateX(5deg);
+  transform-origin: bottom right;
+}
+
+
+/* 产品专区 */
+.index-block {
+  background-color: #fafafa;
+}
+
+.index-block-cover {
+  height: auto;
+  width: 100%;
+}
+
+.index-block-product-single {
+  display: block;
+  width: 90%;
+  margin: .8rem auto .5rem;
+}
+
+.index-block-product-list {
+  display: block;
+  margin: .8rem auto 0;
+  padding-bottom: 3rem; 
+  width: 90%;
+}
+
+.index-block-product-list .index-block-product {
+  display: inline-block;
+  width: 48%;
+}
+
+.index-block-product-list .index-block-product:nth-child(2n) {
+  margin-left: 4%;
+}
+
+.index-block-product-single .product-image, .index-block-product .product-image {
+  width: 100%;
+}
+
+.index-block-product-single .product-name, .index-block-product .product-name {
+  color: #565656;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  margin: .5rem auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.index-block-product-single .product-price, .index-block-product .product-price {
+  color: #870020;
+  display: block;
+}
+
+/* 查看更多 */
+.index-more {
+  text-align: center;
+  font-size: 1rem;
+  color: #565656;
+  border-top: 1px solid #e5e5e5;
+  line-height: 2.2rem;
+}
+
+.cu-list input {
+  text-align: right;
+}
+
+radio .wx-radio-input{ 
+/* 自定义样式.... */
+  height: 40rpx; 
+  width: 40rpx;
+  margin-top: -4rpx;
+  border-radius: 50%;
+  border: 2rpx solid #999;
+  background: transparent;
+}
+
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+   border: none;
+   background: red!important;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: #f00;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}

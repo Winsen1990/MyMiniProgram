@@ -1,64 +1,74 @@
-		<view style="position:relative;">
-			<view><image src="../../static/image/bg_mine1.png" class="mine-top-bg"></image></view>
-			<view class="mine-top-avatar"><image class="mine-top-avatar-img round" src="../../static/image/avatar.png"></image></view>
-			<view class="mine-top-name">LinLin</view>
+		<view style="position:relative;" wx:if="{{!hasUserInfo && canIUse}}">
+			<view><image src="/assets/images/bg_mine1.png" class="mine-top-bg"></image></view>
+			<view class="mine-top-avatar"><image class="mine-top-avatar-img round" src="/assets/images/avatar.png"></image></view>
+			<view class="mine-top-name"><button hover-class="none" style="color:#ffffff;font-size:32rpx;" open-type="getUserInfo" bindgetuserinfo="getUserInfo">{{userInfo.nickname}}</button></view>
 			<view class="mine-top-nav">
 				<view>开通即享受会员特权</view>
 			</view>
 		</view>
+		<view style="position:relative;" wx:else>
+			<view><image src="/assets/images/bg_mine1.png" class="mine-top-bg"></image></view>
+			<view class="mine-top-avatar"><image class="mine-top-avatar-img round" src="{{userInfo.avatar}}"></image></view>
+			<view class="mine-top-name">{{userInfo.nickname}}</view>
+			<view class="mine-top-nav flex flex-between">
+				<view>开通即享受会员特权</view>
+        <view class="action" bindtap="goTo" data-idx="8">立即开通</view>
+			</view>
+		</view>    
 		<view class="mine-nav flex flex-row">
-			<view class="nav-item">
+			<view class="nav-item" bindtap="goTo" data-idx="0">
 				<icon class="iconfont icon-order-pay"></icon>
 				<text>待付款</text>
 			</view>
-			<view class="nav-item" bindtab="goToCoupon">
+			<view class="nav-item" bindtap="goTo" data-idx="1">
 				<icon class="iconfont icon-shipping"></icon>
 				<text>待收货</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" bindtap="goTo" data-idx="2">
 				<icon class="iconfont icon-comment"></icon>
 				<text>待评价</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" bindtap="goTo" data-idx="3">
 				<icon class="iconfont icon-order-refund"></icon>
 				<text>退款/售后</text>
 			</view>				      		
 		</view>
 		<view class="mine-nav flex flex-row">
-			<view class="nav-item">
+			<view class="nav-item" bindtap="goTo" data-idx="4">
 				<icon class="iconfont icon-reward"></icon>
 				<text>佣金</text>
 			</view>
-			<view class="nav-item" bindtab="goToCoupon">
+			<view class="nav-item" bindtap="goTo" data-idx="5">
 				<icon class="iconfont icon-coupon"></icon>
 				<text>积分</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" bindtap="goTo" data-idx="6">
 				<icon class="iconfont icon-balance"></icon>
 				<text>优惠券</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" bindtap="goTo" data-idx="7">
 				<icon class="iconfont icon-order-refund"></icon>
 				<text>余额</text>
 			</view>				      		
 		</view>    
-		<view class="mine-banner" style="position:relative;">
+		<!-- <view class="mine-banner" style="position:relative;">
 			<view class="text1">即食海参</view>
 			<view class="text2">买5送1</view>
 			<view class="text3">海鲜海生海参礼盒装</view>
 			<image class="banner-img" src="/static/image/g2.jpg"></image>
-		</view>
+		</view> -->
+    <view class="mine-banner flex flex-items-center" bindtap="goTo" data-idx="9">
+      <image mode="aspectFit" class="mine-banner-img" src="{{banner.img}}"></image>
+    </view>
 		<view class="cu-list menu" :class="[menuBorder?'sm-border':'',menuCard?'card-menu margin-top':'']">
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<view class="cu-item arrow" bindtap="goTo" data-idx="10">
 				<view class="content">
-					<!-- <text class="cuIcon-circlefill text-grey"></text> -->
-					<text class="text-grey">订单</text>
+					<text class="text-grey">收货地址</text>
 				</view>
 			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<!-- <view class="cu-item arrow">
 				<view class="content">
-					<!-- <text class="cuIcon-circlefill text-grey"></text> -->
 					<text class="text-grey">资料</text>					
 				</view>
-			</view>
+			</view> -->
 		</view>

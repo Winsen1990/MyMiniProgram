@@ -1,4 +1,4 @@
-<!--pages/home/index.wxml-->
+<!--pages/home/index.wxml--> 
 <!-- 用户信息 -->
 <view class="user-info">
   <block wx:if="{{!hasUserInfo && canIUse}}" >
@@ -95,3 +95,4 @@
   <text>我要加盟</text>
 </navigator>
 -->
+

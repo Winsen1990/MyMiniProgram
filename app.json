@@ -28,7 +28,8 @@
     "pages/home/balance",
     "pages/block/index",
     "pages/member/index",
-    "pages/home/index2"
+    "pages/home/index2",
+    "pages/home/member"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -66,7 +67,7 @@
         "selectedIconPath": "assets/images/cart@active.png"
       },
       {
-        "pagePath": "pages/home/index",
+        "pagePath": "pages/home/index2",
         "text": "我的",
         "iconPath": "assets/images/home.png",
         "selectedIconPath": "assets/images/home@active.png"

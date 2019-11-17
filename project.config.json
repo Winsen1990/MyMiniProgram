@@ -92,6 +92,20 @@
 					"id": -1,
 					"name": "pages/home/index2",
 					"pathName": "pages/home/index2",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/member",
+					"pathName": "pages/home/member",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/index",
+					"pathName": "pages/home/index",
 					"scene": null
 				}
 			]
