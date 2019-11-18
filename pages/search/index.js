@@ -106,6 +106,8 @@ Page({
         keyword: e.detail.value
       });
 
+      console.info(e.detail.value);
+
       this.keywordSearch();
     } else {
       wx.showToast({

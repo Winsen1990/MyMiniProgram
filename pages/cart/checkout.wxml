@@ -78,10 +78,12 @@
 </view>
 
 <!-- 短信通知收件人 -->
+<!--
 <view class="notice">
   <text class="meta-label">接收订单消息提醒</text>
   <switch class="notice-switch" checked="{{notice_checked}}" bindtap="messageNotice"></switch>
 </view>
+-->
 
 <!-- 合计 -->
 <view class="summary">

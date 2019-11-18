@@ -84,7 +84,10 @@ Page({
           id: shipping.id,
           name: shipping.name,
           shipping_fee: shipping.shipping_fee,
-          selected: i == 0
+          business_id: shipping.business_id,
+          selected: i == 0,
+          area_id: shipping.area_id,
+          delivery_id: shipping.id
         });
       }
 
@@ -247,14 +250,14 @@ Page({
       coupon_sn: this.data.coupon.coupon_sn,
       opera: 'add',
       token: app.globalData.token,
-      shipping_id: 0
+      delivery_list: {}
     }
 
     for (var j = 0; j < this.data.shipping.length; j++) {
       var shipping = this.data.shipping[j];
 
       if (shipping.selected) {
-        data.shipping_id = shipping.id;
+        data.delivery_list[shipping.business_id] = [shipping];
         break;
       }
     }

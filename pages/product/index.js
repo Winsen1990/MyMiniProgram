@@ -89,6 +89,8 @@ Page({
       act: 'view'
     };
 
+    console.info(data);
+
     utils.request(config.service.product, data, 'GET', function (response) {
       console.info(response);
 
