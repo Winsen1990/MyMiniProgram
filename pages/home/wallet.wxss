@@ -1,1 +1,14 @@
-/* pages/home/wallet.wxss */
+  @import '/pages/home/index2.wxss';
+
+  .mine-top-nav {
+    height: 280rpx;
+  }
+
+  .mine-top-nav .text1 {
+    font-size: 80rpx;
+    color: #fef798;
+  }
+
+  .cu-item .text1 {
+    font-size: 32rpx;
+  }

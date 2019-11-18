@@ -69,3 +69,47 @@
   </view>  
 </view>
 
+
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+<view wx:for="{{blocks}}" class="index-block mt-20" wx:key="index">
+  <view data-id="{{item.id}}" catchtap="switchCategory">
+    <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>
+  </view>
+  <block wx:if="{{item.products.length%2}}">
+    <!-- 产品总数为单数 -->
+    <view class="index-block-product-single">
+      <navigator url="/pages/product/level?id={{item.products[0].id}}">
+        <image src="{{item.products[0].img}}" class="product-image" mode="widthFix"/>
+        <text class="product-name">{{item.products[0].name}}</text>
+        <text class="product-price">￥{{filters.toFix(item.products[0].price, 2)}}</text>
+      </navigator>
+    </view>
+    <view class="index-block-product-list">
+    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
+      <block wx:if="{{index != 0}}">
+        <template is="productItem" data="{{...product}}"/>
+      </block>
+    </block>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 产品总数为双数 -->
+    <view class="index-block-product-list">
+    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
+        <template is="productItem" data="{{...product}}"/>
+    </block>
+    </view>
+  </block>
+</view>
+
+<!-- 产品专区产品模板 -->
+<template name="productItem">
+  <view class="index-block-product">
+    <navigator url="/pages/product/detail?id={{id}}">
+      <image src="{{img}}" class="product-image" mode="widthFix"/>
+      <text class="product-name">{{name}}</text>
+      <text class="product-price">￥{{filters.toFix(price, 2)}}</text>
+    </navigator>
+  </view>
+</template>

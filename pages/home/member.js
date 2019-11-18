@@ -49,7 +49,7 @@ Page({
       console.log(response.data.memberTypes);
         that.setData({
           // 'banners': response.data.banners,
-          // 'blocks': response.data.blocks,
+          'blocks': response.data.blocks,
           'memberTypes': response.data.memberTypes,
         })
       });

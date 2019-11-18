@@ -137,7 +137,8 @@
   </view>
 
   <view class="panel-toolbar">
-    <button class="confirm-btn" catchtap="buy" disabled="{{product.inventory < count || count <= 0}}">确定</button>
+  <!-- class="confirm-btn" -->
+    <button type="primary" catchtap="buy" disabled="{{product.inventory < count || count <= 0}}">确定</button>
   </view>
 </view>
 
@@ -164,15 +165,10 @@
     <text>购物车</text>
   </navigator>
 
-  <button class="menu-add-to-cart-btn" catchtap="addToCart" disabled="{{!can_checkout || !support_delivery}}">加入购物车</button>
-  <button class="menu-buy-now-btn" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买</button>
-</view> -->
+  <button class="menu-add-to-cart-btn" catchtap="addToCart" disabled="{{!can_checkout || !support_delivery}}">加入购物车</button> -->
+  <!-- <button type="primary" style="margin:30rpx; border-radius:10rpx;" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买</button> -->
+<!-- </view> -->
 
-		<view class="fixed-action-nav fixed flex flex-row flex-between flex-items-center">
-			<view class="fixed-action-text flex flex-items-center ml-30">
-				<image class="icon-2" src="/assets/images/cart2.png"></image><text class="ml-30">购物车</text></view>
-			<view class="fixed-action-btn flex">
-				<view class="btn-1" catchtap="addToCart" disabled="{{!can_checkout || !support_delivery}}">加入购物车</view>
-				<view class="btn-2" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买</view>
-			</view>
-		</view>
+<view style="bottom: 0; width: 750rpx; height: 120rpx; background-color:#ffffff;" class="fixed">
+  <button type="primary" style="margin:30rpx; border-radius:10rpx;" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即开通会员</button>
+</view>

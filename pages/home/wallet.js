@@ -1,18 +1,34 @@
-// pages/home/wallet.js
+const app = getApp();
+var utils = require('../../utils/util');
+var config = require('../../config');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    data: {
+      amount: '',
+      desc: '',
+      items: []
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    var data = {
+      'act': 'wallet',
+      'token': getApp().globalData.token,
+    }
+    utils.request(config.service.account, data, 'GET', function (response) {
+      that.setData({
+        'data': response.data.data,
+      });
+    });
   },
 
   /**

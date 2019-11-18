@@ -261,14 +261,6 @@ Page({
    * 加入购物车
    */
   addToCart: function() {
-
-    if (!this.data.can_checkout || !this.data.support_delivery) {
-      wx.showToast({
-        title: '当前地区缺货',
-      });
-      return;
-    }
-
     this.setData({
       direct_buy: false,
       displayPanel: true
@@ -281,14 +273,6 @@ Page({
    * 直接购买
    */
   buyNow: function() {
-
-    if (!this.data.can_checkout || !this.data.support_delivery) {
-      wx.showToast({
-        title: '当前地区缺货',
-      });
-      return ;
-    }
-
     this.setData({
       direct_buy: true,
       displayPanel: true

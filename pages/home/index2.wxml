@@ -44,11 +44,11 @@
 			</view>
 			<view class="nav-item" bindtap="goTo" data-idx="6">
 				<icon class="iconfont icon-balance"></icon>
-				<text>优惠券</text>
+				<text>余额</text>
 			</view>
 			<view class="nav-item" bindtap="goTo" data-idx="7">
 				<icon class="iconfont icon-order-refund"></icon>
-				<text>余额</text>
+				<text>优惠券</text>
 			</view>				      		
 		</view>    
 		<!-- <view class="mine-banner" style="position:relative;">
@@ -58,7 +58,7 @@
 			<image class="banner-img" src="/static/image/g2.jpg"></image>
 		</view> -->
     <view class="mine-banner flex flex-items-center" bindtap="goTo" data-idx="9">
-      <image mode="aspectFit" class="mine-banner-img" src="{{banner.img}}"></image>
+      <image mode="aspectFit" style="height: 200rpx;" class="mine-banner-img" src="{{banner.img}}"></image>
     </view>
 		<view class="cu-list menu" :class="[menuBorder?'sm-border':'',menuCard?'card-menu margin-top':'']">
 			<view class="cu-item arrow" bindtap="goTo" data-idx="10">

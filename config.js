@@ -4,7 +4,7 @@
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
 var host = 'https://api.hdjshop.cn';
-// host = 'http://easyilife.com/api'
+host = 'http://easyilife.com/api';
 var api_path = '/v1';
 
 var config = {
@@ -25,6 +25,7 @@ var config = {
     exam: `${host}${api_path}/question.php`,//问卷
     coupon: `${host}${api_path}/coupon.php`,
     mine: `${host}${api_path}/mine.php`,
+    account: `${host}${api_path}/account.php`,
     // 登录地址，用于建立会话
     login: `${host}${api_path}/authorization.php`//登录
   }

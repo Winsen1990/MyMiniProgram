@@ -58,7 +58,7 @@
   <block wx:if="{{item.products.length%2}}">
     <!-- 产品总数为单数 -->
     <view class="index-block-product-single">
-      <navigator url="/pages/product/detail?id={{item.products[0].id}}">
+      <navigator url="/pages/product/level?id={{item.products[0].id}}">
         <image src="{{item.products[0].img}}" class="product-image" mode="widthFix"/>
         <text class="product-name">{{item.products[0].name}}</text>
         <text class="product-price">￥{{filters.toFix(item.products[0].price, 2)}}</text>
