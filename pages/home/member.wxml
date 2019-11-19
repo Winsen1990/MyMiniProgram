@@ -1,115 +1,66 @@
-<view class="member-card relative">
-  <view class="member-card-bg absolute"></view>
-  <view class="member-card-1 absolute flex flex-column-r">				
-    <view class="items flex flex-between">
-      <view class="item flex flex-column">
-        <image src="/assets/images/t1.png"></image>
-        <text class="">满减特权</text>
-      </view>
-      <view class="item flex flex-column">
-        <image src="/assets/images/t2.png"></image>
-        <text class="">会员特价</text>
-      </view>
-      <view class="item flex flex-column">
-        <image src="/assets/images/t3.png"></image>
-        <text class="">生日特权</text>
-      </view>
-      <view class="item flex flex-column">
-        <image src="/assets/images/t4.png"></image>
-        <text class="">积分兑换</text>
-      </view>
-      <view class="item flex flex-column">
-        <image src="/assets/images/t5.png"></image>
-        <text class="">积分抵现</text>
-      </view>
-    </view>
-    <view class="item-title">
-    ~ ~ ~ ~ ~ ~ ~ 五大会员特权·永久享用 ~ ~ ~ ~ ~ ~
-    </view>
+<!--pages/product/index.wxml-->
+<!-- <view class="header">
+  <view class="search-bar">
+    <icon class="iconfont icon-search"></icon>
+    <input type="text" class="search-input" placeholder="输入关键词" placeholder-class="search-input-placeholder" bindblur="search" value="{{keyword}}"/>
   </view>
-  <view class="member-card-2 absolute flex flex-column flex-between">
-    <view>
-      <view class="mt-20"><text class="text1">好当家会员卡</text></view>
-      <view><text class="text2">成为会员 立即省钱</text></view>
-    </view>
-    <view class="text3">
-      根据用户平均消费计算，会员每年预可省钱￥660
-    </view>
-  </view>				
-</view>
+</view> -->
 
-<view class="cu-list menu">
-  <view class="cu-item">
-    <view>会员卡</view>
-    <picker bindchange="switchType" mode="selector" range="{{memberTypes}}" value="{{memberType}}" range-key="name">      
-      <view class="picker">{{memberTypes[memberType].name}}</view>
-    </picker>
+<!-- 筛选栏 -->
+<!-- <view class="filters">
+  <view class="filter {{order == 'star'? 'selected' : ''}}" catchtap="tapFilter" data-order="star">综合</view>
+  <view class="filter {{order == 'sale_count'? 'selected' : ''}}" catchtap="tapFilter" data-order="sale_count">销量</view>
+  <view class="filter {{order == 'add_time'? 'selected' : ''}}" catchtap="tapFilter" data-order="add_time">新品</view>
+  <view class="filter {{order == 'price'? 'selected' : ''}}" catchtap="tapFilter" data-order="price">
+    <text>价格</text>
+    <view class="filter-sort">
+      <text class="filter-sort-up {{sort == 'ASC' ? 'selected' : ''}}"></text>
+      <text class="filter-sort-down {{sort == 'DESC' ? 'selected' : ''}}"></text>
+    </view>
   </view>
-  <view class="cu-item">
-    <view>姓名</view>
-    <input type="text" bindinput="inputName" placeholder="请输入姓名" />
+  <view class="filter" catchtap="switchDisplay">
+    <icon class="iconfont icon-category-{{display}}"></icon>
   </view>
-  <!-- <view class="cu-item">
-    <view>性别</view>
-    <radio-group bindchange="radioChange">
-      <label class="radio">
-        男士<radio color="#fff" value="M" checked></radio>
-      </label>
-      <label class="radio">
-        女士<radio color="#fff" value="F" checked></radio>
-      </label>
-    </radio-group>
-  </view> -->
-  <view class="cu-item">
-    <view>电话</view>
-    <input type="text" bindinput="inputPhone" placeholder="请输入电话" />
-  </view>  
-  <view>
-    <button type="primary" bindtap="gainMember" style="margin:30rpx; border-radius:10rpx;">立即成为会员</button>
-  </view>  
-</view>
+</view> -->
 
+<!-- 产品列表 -->
+<view class="product-{{display}}">
+  <block wx:for="{{products}}" wx:key="id" wx:for-item="product">
+    <template is="{{display == 'grid' ? 'productGrid' : 'productList'}}" data="{{product}}"/>
+  </block>
+</view>
 
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
-<view wx:for="{{blocks}}" class="index-block mt-20" wx:key="index">
-  <view data-id="{{item.id}}" catchtap="switchCategory">
-    <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>
-  </view>
-  <block wx:if="{{item.products.length%2}}">
-    <!-- 产品总数为单数 -->
-    <view class="index-block-product-single">
-      <navigator url="/pages/product/level?id={{item.products[0].id}}">
-        <image src="{{item.products[0].img}}" class="product-image" mode="widthFix"/>
-        <text class="product-name">{{item.products[0].name}}</text>
-        <text class="product-price">￥{{filters.toFix(item.products[0].price, 2)}}</text>
-      </navigator>
-    </view>
-    <view class="index-block-product-list">
-    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
-      <block wx:if="{{index != 0}}">
-        <template is="productItem" data="{{...product}}"/>
-      </block>
-    </block>
-    </view>
-  </block>
 
-  <block wx:else>
-    <!-- 产品总数为双数 -->
-    <view class="index-block-product-list">
-    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
-        <template is="productItem" data="{{...product}}"/>
-    </block>
-    </view>
-  </block>
-</view>
+<template name="productGrid">
+  <navigator class="product-grid-item" url="/pages/product/detail?id={{product.id}}">
+    <image class="product-image" src="{{product.img}}" mode="widthFix"/>
+    <text class="product-name">{{product.name}}</text>
+    <view class="product-meta">
+      <view class="product-price font-red font-s">
+        <text>￥</text>
+        <text>{{filters.toFix(product.price, 2)}}</text>
+      </view>
 
-<!-- 产品专区产品模板 -->
-<template name="productItem">
-  <view class="index-block-product">
-    <navigator url="/pages/product/detail?id={{id}}">
-      <image src="{{img}}" class="product-image" mode="widthFix"/>
-      <text class="product-name">{{name}}</text>
-      <text class="product-price">￥{{filters.toFix(price, 2)}}</text>
-    </navigator>
-  </view>
+      <button class="product-add-to-cart iconfont icon-cart" data-id="{{product.id}}" catchtap="addToCart"></button>
+    </view>
+  </navigator>
+</template>
+
+<template name="productList">
+  <navigator class="product-list-item" url="/pages/product/level?id={{product.id}}">
+    <image class="product-image" src="{{product.img}}" mode="widthFix"/>
+    <view class="product-info">
+      <text class="product-name">{{product.name}}</text>
+      <view class="product-meta">
+        <view class="product-price font-red font-s">
+          <text>￥</text>
+          <text>{{filters.toFix(product.price, 2)}}</text>
+        </view>
+
+        <!-- <button class="product-add-to-cart iconfont icon-cart" data-id="{{product.id}}" catchtap="addToCart"></button> -->
+        <button catchtap="buy" class="btn11" data-id="{{ product.id }}">下单</button>
+      </view>
+    </view>
+  </navigator>
 </template>

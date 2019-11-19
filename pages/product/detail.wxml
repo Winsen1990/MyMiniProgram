@@ -12,6 +12,22 @@
     </swiper-item>
   </block>
 </swiper>
+
+<view class="flash-product flex flex-between flex-items-center">
+  <view class="flex flex-items-center">
+    <view class="text1">￥{{filters.toFix(product.price,2 )}}</view>
+    <view class="text2"><del>￥200</del></view>
+    <image class="image1" src="/assets/images/xl.png" />
+  </view>
+  <view class="flex flex-column flex-items-center">
+    <view class='text3'>
+      秒杀款
+    </view>
+    <view class="text4">
+      20：10：20
+    </view>
+  </view>
+</view>
 <!-- 产品名称 价格 -->
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
 <view class="product-primary-info">
@@ -170,7 +186,7 @@
 
 		<view class="fixed-action-nav fixed flex flex-row flex-between flex-items-center">
 			<view class="fixed-action-text flex flex-items-center ml-30">
-				<image class="icon-2" src="/assets/images/cart2.png"></image><text class="ml-30">购物车</text></view>
+				<view class="flex"><image class="icon-2" src="/assets/images/cart2.png"></image></view><text style="padding-left:20rpx;">  购物车</text></view>
 			<view class="fixed-action-btn flex">
 				<view class="btn-1" catchtap="addToCart" disabled="{{!can_checkout || !support_delivery}}">加入购物车</view>
 				<view class="btn-2" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买</view>

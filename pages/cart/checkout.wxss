@@ -1,7 +1,9 @@
 /* pages/cart/checkout.wxss */
+
 /* 地址信息 */
+
 .address {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #565656;
 }
 
@@ -18,7 +20,7 @@
   padding: 20rpx;
   background-color: #ff1400;
   border-radius: 15rpx;
-  color: #ffffff;
+  color: #fff;
   margin-right: 20rpx;
   font-weight: bold;
   font-size: 48rpx;
@@ -46,11 +48,12 @@
 }
 
 /* 商户信息 */
+
 .shop {
   border-top: 2rpx solid #e5e5e5;
   border-bottom: 2rpx solid #e5e5e5;
   margin-top: 20rpx;
-  background-color: #ffffff;
+  background-color: #fff;
   margin-bottom: 20rpx;
 }
 
@@ -122,8 +125,7 @@
 .shop .shop-products .shop-product .shop-product-amount .shop-product-price {
   display: block;
   margin-bottom: 60rpx;
-  /* white-space: nowrap; */
-  /* overflow: hidden; */
+  /* white-space: nowrap; *//* overflow: hidden; */
 }
 
 .shop .shop-products .shop-product .shop-product-amount .shop-product-count {
@@ -131,6 +133,7 @@
 }
 
 /* 配送信息 */
+
 .shop-meta {
   margin-left: 30rpx;
   padding: 30rpx;
@@ -167,8 +170,9 @@
 }
 
 /* 优惠券 */
+
 .coupon {
-  background-color: #ffffff;
+  background-color: #fff;
   border-bottom: 0;
   display: flex;
 }
@@ -184,8 +188,9 @@
 }
 
 /* 短信通知收件人 */
+
 .notice {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 30rpx;
   margin-top: 20rpx;
   position: relative;
@@ -199,8 +204,9 @@
 }
 
 /* 合计 */
+
 .summary {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 30rpx;
   margin-top: 20rpx;
 }
@@ -223,6 +229,7 @@
 }
 
 /* 提交订单 */
+
 .toolbar-block {
   height: 102rpx;
 }
@@ -235,7 +242,7 @@
   bottom: 0;
   width: 100%;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .toolbar .blank-block {
@@ -248,7 +255,7 @@
 
 .toolbar .toolbar-submit-btn {
   background-color: #ff1400;
-  color: #ffffff;
+  color: #fff;
   padding: 28rpx 80rpx;
   border-left: 2rpx solid #e5e5e5;
 }
@@ -256,4 +263,181 @@
 .toolbar .toolbar-submit-btn[disabled] {
   background-color: #fafafa;
   color: #a3a3a3;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-r {
+  flex-direction: row-reverse;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-column-r {
+  flex-direction: column-reverse;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.icon-1 {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.icon-2 {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.icon-3 {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.font-1 {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.ma-10 {
+  margin: 10rpx;
+}
+
+.mt-10 {
+  margin-top: 10rpx;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
+
+.mb-20 {
+  margin-bottom: 20rpx;
+}
+
+.mb-120 {
+  margin-bottom: 120rpx;
+}
+
+.mt-120 {
+  margin-top: 120rpx;
+}
+
+.mt-160 {
+  margin-top: 160rpx;
+}
+
+.ml-10 {
+  margin-left: 10rpx;
+}
+
+.ml-20 {
+  margin-left: 20rpx;
+}
+
+.ml-30 {
+  margin-left: 30rpx;
+}
+
+.ml-40 {
+  margin-left: 40rpx;
+}
+
+.mr-10 {
+  margin-right: 10rpx;
+}
+
+.mr-20 {
+  margin-right: 20rpx;
+}
+
+uni-swiper .uni-swiper-dot-active {
+  background-color: #f0f0f0;
+  width: 6rpx;
+  height: 6rpx;
+}
+
+.fixed-action-nav {
+  position: fixed;
+  bottom: 0rpx;
+  height: 100rpx;
+  width: 750rpx;
+  color: #333;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  background-color: #fff;
+  align-content: center;
+}
+
+.fixed-action-btn {
+  width: 180rpx;
+  height: 100rpx;
+  display: inline-block;
+}
+
+.fixed-action-btn:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  background-color: #03031e;
+  width: 280rpx;
+  height: 100rpx;
+  z-index: -1;
+  transform: perspective(0.8em) rotateX(2deg);
+  transform-origin: top right;
+}
+
+.fixed-action-text {
+  width: 450rpx;
+}
+
+.fixed-action-nav .text1 {
+  color: #ff1e54;
+  font-size: 32rpx;
+  line-height: 100rpx;
+}
+
+.fixed-action-nav .text2 {
+  color: #ff1e54;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.fixed-action-btn .text3 {
+  color: #ffeee2;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  padding-left: 12rpx;
+  text-align: center;
 }

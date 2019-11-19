@@ -19,10 +19,10 @@
     <text>{{product.name}}</text>
     <text>{{product.desc}}</text>
   </view>
-  <view class="product-collection {{product.collection ? 'product-collection-active': ''}}" catchtap="collection">
-    <icon class="iconfont {{product.collection ? 'icon-fav-checked' : 'icon-fav'}}"></icon>
-    <text>{{product.collection ? '已收藏' : '收藏'}}</text>
-  </view>
+  <!-- <view class="product-collection {{product.collection ? 'product-collection-active': ''}}" catchtap="collection"> -->
+    <!-- <icon class="iconfont {{product.collection ? 'icon-fav-checked' : 'icon-fav'}}"></icon> -->
+    <!-- <text>{{product.collection ? '已收藏' : '收藏'}}</text> -->
+  <!-- </view> -->
 </view>
 <view class="product-price-info">
   <text class="product-price">零售价 ￥{{filters.toFix(product.price,2 )}}</text>
@@ -30,7 +30,7 @@
 </view>
 
 <!-- 收货地址 -->
-<view class="consignee-info">
+<!-- <view class="consignee-info">
   <view class="meta-with-arrow">
     <text class="font-gray">配送到：</text>
     <picker mode="multiSelector" bindchange="bindRegionChange" bindcolumnchange="bindRegionColumnChange" range="{{regions}}" range-key="name" value="{{region_index}}" class="region-picker">
@@ -38,16 +38,14 @@
       <view wx:if="{{!support_delivery}}" class="font-red">部分地区无法送达，敬请谅解</view>
     </picker>
   </view>
-</view>
+</view> -->
 
 <!-- 商户信息 -->
-<view class="shop-info">
+<!-- <view class="shop-info">
   <view class="meta-with-arrow">
     <icon class="iconfont icon-shop-title"></icon>
     <text class="shop-name">{{shop.name}}</text>
-    <!--
     <text class="meta-tail">查看品牌商品</text>
-    -->
   </view>
 
   <view class="meta-with-arrow">
@@ -66,7 +64,7 @@
       <text>七天保价</text>
     </view>
   </view>
-</view>
+</view> -->
 
 <!-- 产品详情 -->
 <import src="../../assets/wxParse/wxParse.wxml"/>
@@ -170,5 +168,5 @@
 <!-- </view> -->
 
 <view style="bottom: 0; width: 750rpx; height: 120rpx; background-color:#ffffff;" class="fixed">
-  <button type="primary" style="margin:30rpx; border-radius:10rpx;" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即开通会员</button>
+  <button type="primary" style="margin:30rpx; border-radius:10rpx;" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买成为专属会员</button>
 </view>

@@ -13,6 +13,7 @@ var config = {
     index: `${host}${api_path}/index.php`,//首页
     category: `${host}${api_path}/category.php`,//产品分类
     product: `${host}${api_path}/product.php`,//产品
+    block: `${host}${api_path}/block.php`,//专区产品
     address: `${host}${api_path}/address.php`,//地址
     order: `${host}${api_path}/order.php`,//订单
     cart: `${host}${api_path}/cart.php`,//购物车

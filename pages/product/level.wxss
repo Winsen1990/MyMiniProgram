@@ -8,7 +8,7 @@
 }
 
 .product-primary-info .product-name {
-  border-right: 2rpx solid #e5e5e5;
+  /* border-right: 2rpx solid #e5e5e5; */
   width: 558rpx;
   padding-right: 10rpx;
 }

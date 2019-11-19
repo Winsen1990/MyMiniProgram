@@ -91,6 +91,7 @@
   /* font-size: 40rpx; */
   vertical-align: middle;
   margin-top: -18rpx;
+  margin-right: 6rpx;
 }
 
 .shop-info .shop-name {
@@ -344,4 +345,41 @@
   .icon-2 {
     width: 60rpx;
     height: 60rpx;
+  }
+
+  .flash-product {
+    background-image: url('http://easyilife.com/themes/hdj/images/flash.png');
+
+    width: 690rpx;
+    height: 100rpx;
+    padding: 0 30rpx;
+  }
+
+
+
+  .flash-product .text1 {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 44rpx;
+  }
+
+  .flash-product .text2 {
+    color: #FFFFFF;
+    font-size: 24rpx;
+  }
+
+  .flash-product .text3 {
+    color: #ffffff;
+    font-size: 28rpx;
+  }
+
+  .flash-product .text4 {
+    color: #ffffff;
+    font-size: 20rpx;
+  }
+
+  .flash-product .image1 {
+    width: 132rpx;
+    height: 40rpx;
+    margin-left: 20rpx;
   }

@@ -148,7 +148,7 @@
 
 .cart-checkout-toolkit {
   height: 100rpx;
-  border-top: 2rpx solid #e5e5e5;
+  border-top: 1rpx solid #e5e5e5;
   display: flex;
   position: fixed;
   bottom: 0;

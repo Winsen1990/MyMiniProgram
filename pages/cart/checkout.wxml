@@ -104,6 +104,7 @@
 </view>
 
 <view class="toolbar-block"></view>
+<!-- 
 <view class="toolbar">
   <view class="blank-block"></view>
   <view class="toolbar-summary">
@@ -111,4 +112,20 @@
     <text class="font-red">￥{{filters.toFix(summary.amount, 2)}}</text>
   </view>
   <button class="toolbar-submit-btn" disabled="{{!can_submit}}" catchtap="submitOrder">提交订单</button>
+</view> -->
+
+<view class="fixed-action-nav fixed flex flex-row flex-between">
+  <view class="fixed-action-text flex flex-between flex-items-center ml-30">
+    <view>
+      <text class="cuIcon-roundcheck lg"></text>
+      <text class="ml-30"></text>	
+    </view>
+    <view>
+      <text class="text1">合计￥</text>
+      <text class="text2">{{filters.toFix(summary.amount, 2)}}</text>						
+    </view>
+  </view>
+  <view class="fixed-action-btn" disabled="{{!can_submit}}" catchtap="submitOrder">
+    <text class="text3" >去结算</text>
+  </view>
 </view>

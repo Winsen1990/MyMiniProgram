@@ -27,7 +27,8 @@
 
 <view class="toolbar">
   <navigator url="/pages/address/add?from=select" class="toolbar-btn font-l">
-    <icon class="iconfont icon-plus font-xl"></icon>
-    <text>添加新地址</text>
+    <button type="primary">添加新地址</button>
   </navigator>
 </view>
+
+<!-- <icon class="iconfont icon-plus font-xl"></icon> -->

@@ -26,7 +26,10 @@
             <image src="{{product.img}}" class="cart-product-img" mode="widthFix"/>
           </view>
           <view class="cart-product-r flex flex-column flex-between">
-            <view class="text1 flex">{{product.name}}</view>
+            <view class="flex flex-between flex-items-center">
+              <view class="text1">{{product.name}}</view>
+              <view><icon class="iconfont icon-trash" style="font-size:40rpx;" bindtap="removeCartItem" data-id="{{product.id}}" /></view>
+            </view>
             
             <view class="action flex flex-between">
                 <view class="text2">
