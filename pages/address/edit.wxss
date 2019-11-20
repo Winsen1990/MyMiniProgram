@@ -31,7 +31,7 @@
   display: auto;
   text-align: right;
   flex-grow: 1;
-  color: #870020;
+  color: #E9577C;
   align-items: center;
   margin-left: 20rpx;
   vertical-align: middle;

@@ -17,6 +17,7 @@
 </view>
 
 <!-- 种草浏览信息 -->
+<!--
 <view class="feed-footer">
   <text class="feed-viewer">阅读 {{feed.view_count}}</text>
   <view class="feed-thumb-up" catchtap="thumbUp">
@@ -24,8 +25,10 @@
     <text class="feed-thumb-up-count">{{feed.thumb_up}}</text>
   </view>
 </view>
+-->
 
 <!-- 评论 -->
+<!--
 <view class="feed-comments">
   <view class="feed-comments-toolkit">
     <text>精选留言</text>
@@ -69,3 +72,4 @@
   </block>
   </view>
 </view>
+-->

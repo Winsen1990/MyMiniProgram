@@ -35,7 +35,7 @@
       </block>
  
       <block wx:for="{{item.sub_categories}}" wx:key="index" wx:for-item="category" wx:if="{{item.sub_categories != ''}}">
-        <text class="sub-category category-segement" data-id="{{category.id}}" id="category-{{category.id}}">{{category.name}}</text>
+        <text class="sub-category" data-id="{{category.id}}" id="category-{{category.id}}">{{category.name}}</text>
         <block wx:for="{{category.products}}" wx:key="index" wx:for-item="product">
           <navigator url="/pages/product/detail?id={{product.id}}" class="category-product-item">
             <image class="product-image" src="{{product.img}}" mode="widthFix"/>

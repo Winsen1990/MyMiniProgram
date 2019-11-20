@@ -107,6 +107,10 @@ Page({
     for(var i = 0; i < this.data.feeds.length; i++) {
       var feed = this.data.feeds[i];
       feed.mode = 'article';
+      if(!feed.author) {
+        feed.author = '好当家';
+      }
+      /*
       var publish_date = new Date(feed.publish_time);
       var day_diff = parseInt((today - publish_date)/1000/3600/24);
 
@@ -142,6 +146,7 @@ Page({
           }
         }
       }
+      */
 
       render_list.splice(1, 0, feed);
     }

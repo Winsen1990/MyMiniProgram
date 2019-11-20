@@ -1,4 +1,6 @@
 <!--pages/index/index.wxml-->
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
 <!-- 搜索框 -->
 <view class="index-search-bar-wrapper">
   <navigator url="/pages/search/index" class="index-search-bar">
@@ -35,27 +37,52 @@
 </block>
 
 <!-- 功能区 -->
+<block wx:for="{{function_rows}}" data-index="{{index}}" wx:key="index" wx:for-item="functions">
 <view class="index-functions">
-  <view wx:for="{{functions}}" data-index="{{index}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
+  <view wx:for="{{functions}}" data-url="{{item.url}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
     <image src="{{item.icon}}" mode="widthFix"/>
     <text>{{item.name}}</text>
   </view>
 </view>
-<block wx:for="{{before_block_ads}}" wx:key="id" wx:for-item="ad">
-<block wx:if="{{ad.url == '/pages/category/index' || ad.url == '/pages/feed/index'}}">
-<navigator url="{{ad.url}}" class="index-ad" open-type="switchTab">
-  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
-</navigator>
 </block>
 
-<block wx:else>
-<navigator url="{{ad.url}}" class="index-ad">
+<!-- 展示广告 -->
+<block wx:for="{{before_block_ads}}" wx:key="id" wx:for-item="ad">
+<view data-url="{{ad.url}}" class="index-ad" catchtap="switchCategory">
   <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
-</navigator>
+</view>
 </block>
+
+<!-- 限时促销 -->
+<block wx:if="{{activities.length}}">
+<view wx:for="{{activities}}" wx:for-item="activity" wx:key="id" class="hdj-activity">
+    <view class="hdj-activity-header">
+      <h2>今日秒杀</h2>
+      <view class="hdj-activity-timer">
+          <text class="hour">{{filters.formatNumber(activity.hour)}}</text>
+          <text>:</text>
+          <text class="minute">{{filters.formatNumber(activity.minute)}}</text>
+          <text>:</text>
+          <text class="seconds">{{filters.formatNumber(activity.second)}}</text>
+      </view>
+    </view>
+
+    <view class="hdj-activity-product-list">
+      <block wx:for="{{activity.products}}" wx:for-item="product" wx:key="p_id">
+      <navigator class="hdj-activity-product-item" url="/pages/product/detail?id={{product.p_id}}">
+          <image src="{{product.img}}" class="hdj-activity-product-img" mode="widthFix"/>
+          <view class="hdj-activity-product-name">{{product.name}}</view>
+          <view class="hdj-activity-product-price">
+              <text class="product-price-mark">￥</text>
+              <text class="product-price">{{filters.toFix(product.price, 2)}}</text>
+          </view>
+      </navigator>
+      </block>
+    </view>
+</view>
 </block>
+
 <!-- 首页产品专区 -->
-<wxs module="filters" src="../../assets/utils.wxs"></wxs>
 <view wx:for="{{blocks}}" class="index-block" wx:key="index">
   <view data-id="{{item.id}}" catchtap="switchCategory">
     <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>

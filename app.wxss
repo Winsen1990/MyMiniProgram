@@ -1,5 +1,5 @@
 /**app.wxss**/
-/* @import 'assets/wxParse/wxParse.wxss'; */
+@import 'assets/wxParse/wxParse.wxss';
 @import 'assets/css/iconfont.wxss';
 
 page {
@@ -43,7 +43,7 @@ button::after {
 }
 
 .font-red {
-  color: #870020;
+  color: #E9577C;
 }
 
 .font-gray {

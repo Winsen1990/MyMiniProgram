@@ -1,6 +1,6 @@
 /* pages/product/index.wxss */
 page {
-  background-color: #eeeeee;
+  background-color: #ffffff;
 }
 
 .header {
@@ -169,7 +169,6 @@ page {
 .product-list-item .product-info .product-meta {
   display: flex;
   align-items: center;
-  margin-top: 98rpx;
 }
 
 .product-list-item .product-info .product-meta .product-price {
@@ -193,4 +192,52 @@ page {
   padding: 5px 12px;
   color: #ffffff;
   border-radius: 10rpx;
+}
+
+.jk-vip-tag {
+  border: 2px solid #b3b3b3;
+  border-radius: .5rem;
+  background-color: #999999;
+  color: #ffffff;
+  font-size: .8rem;
+  display: inline-block;
+  padding: 3px 6px;
+}
+.jk-vip-tag .iconfont {
+  font-size: .8rem;
+}
+.jk-vip-tag.jk-vip-tag-2 {
+  background-color: #2a2b2b;
+  border-color: #505151;
+  color: #767778;
+}
+.jk-vip-tag.jk-vip-tag-3 {
+  background-color: #747474;
+  border-color: #9a9a9a;
+  color: #c0c0c0;
+}
+.jk-vip-tag.jk-vip-tag-4 {
+  background-color: #665600;
+  border-color: #b39700;
+  color: #ffd700;
+}
+.jk-vip-tag.jk-vip-tag-5 {
+  background-color: #7d241c;
+  border-color: #de766e;
+  color: #ecb1ac;
+}
+
+.recharge-tips {
+  background-color: #fff;
+  padding: .5rem;
+  font-size: .65rem;
+  color: #6e6e6e;
+  line-height: 1rem;
+  box-shadow: 0 0 3px #707070;
+  margin-bottom: 4rpx;
+}
+.recharge-tips i {
+  color: #f08300;
+  padding-right: .2rem;
+  font-size: .8rem;
 }

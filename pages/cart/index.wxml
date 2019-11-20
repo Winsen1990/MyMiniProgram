@@ -60,9 +60,9 @@
   <view class="cart-summary">
     <view class="cart-amount font-m">
       <text>合计：</text>
-      <text class="font-red">￥{{filters.toFix(amount, 2)}}</text>
+      <text class="font-red font-l">￥{{filters.toFix(amount, 2)}}</text>
     </view>
-    <text class="cart-shipping font-m">不含运费</text>
+    <!-- <text class="cart-shipping font-m">不含运费</text> -->
   </view>
 
   <button wx:if="{{!hasUserInfo && canIUse}}" class="cart-checkout-btn font-l" disabled="{{!canCheckout}}" open-type="getUserInfo" catchgetuserinfo="getUserInfo">

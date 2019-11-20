@@ -2,11 +2,9 @@
 <scroll-view scroll-y="true" class="feed-list" scroll-top="{{bottom}}" enable-back-to-top="true" catchscrolltoupper="scrollToTop">
   <block wx:for="{{renderList}}" wx:key="index">
     <navigator url="/pages/feed/detail?id={{item.id}}" id="feed-{{feed.id}}" wx:if="{{item.mode == 'article'}}" class="feed">
+      <text class="feed-author iconfont icon-user"> {{item.author}}</text>
+      <text class="feed-title">{{item.title}}</text>
       <image src="{{item.cover}}" mode="widthFix" class="feed-cover"/>
-      <view class="feed-info">
-        <text class="feed-title">{{item.title}}</text>
-        <text class="feed-desc">{{item.desc}}</text>
-      </view>
     </navigator>
 
     <view wx:else class="feed-date">

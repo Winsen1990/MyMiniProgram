@@ -9,24 +9,16 @@ Page({
     userInfo: {
       avatar: '../../assets/images/user-unlogin.png',
       nickname: '获取微信信息',
-      level_id: 1
+      level_id: 1,
+      account: '',
+      balance: 0,
+      integral: 0,
+      level_active_time: '',
+      level_expired: '',
+      level_name: '普通会员',
+      mobile: null
     },
-    wine_stock: [
-      {
-        id: 1,
-        name: "西拉子马克贝尔",
-        img: "../../assets/images/wine-1.png",
-        quantity: 1,
-        grow: false
-      },
-      {
-        id: 2,
-        name: "成长红酒",
-        img: "../../assets/images/wine-2.png",
-        quantity: 0.6,
-        grow: true
-      }
-    ],
+    min_grant_price: 999,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -62,6 +54,24 @@ Page({
         }
       });
     }
+  },
+  onShow: function() {
+    var that = this;
+    var data = {
+      act: 'show',
+      token: getApp().globalData.token,
+    };
+
+    utils.request(config.service.member, data, 'GET', function (response) {
+      if(response.data.error == 0) {
+        that.setData({
+          userInfo: response.data.member,
+          banners: response.data.banners,
+          min_grant_price: response.data.min_grant_price,
+          hasUserInfo: true
+        });
+      }
+    });
   },
   /**
    * 获取用户信息

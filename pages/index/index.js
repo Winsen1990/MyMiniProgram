@@ -20,9 +20,12 @@ Page({
     under_banner_ads: [],
     before_block_ads: [],
     //功能区
-    functions: [],
+    function_rows: [],
     //产品专区
-    blocks: []
+    blocks: [],
+    //限时促销
+    activities: [],
+    activity_timer: null
   },
   //事件处理函数
   onLoad: function () {
@@ -53,9 +56,74 @@ Page({
 
       //功能
       if(response.data.functions.length) {
+        var function_rows = [];
+        var _row = [];
+        for(var i = 0; i < response.data.functions.length; i++) {
+          _row.push(response.data.functions[i]);
+
+          if((i + 1)%4 === 0 || (i+1) === response.data.functions.length) {
+            function_rows.push(_row);
+            _row = [];
+          }
+        }
+        
+        var space_padding = Math.ceil(response.data.functions.length / 4) * 4 - response.data.functions.length;
+        while(space_padding--) {
+          function_rows[function_rows.length - 1].push({
+            name: '    ',
+            url: '',
+            icon: '/assets/images/empty.png'
+          });
+        }
+        console.info(function_rows);
+
         that.setData({
-          functions: response.data.functions
+          function_rows: function_rows
         });
+      }
+
+      //限时促销
+      if(response.data.activities.length) {
+        for(var i = 0; i < response.data.activities.length; i++) {
+          response.data.activities[i]['hour'] = 0;
+          response.data.activities[i]['minute'] = 0;
+          response.data.activities[i]['second'] = 0;
+        }
+
+        that.setData({
+          activities: response.data.activities
+        });
+
+        that.data.activity_timer = setInterval(function() {
+          if(that.data.activities.length == 0) {
+            clearInterval(that.data.activity_timer);
+            that.data.activity_timer = null;
+          }
+
+          for (var i = 0; i < that.data.activities.length; i++) {
+            var _activity = that.data.activities[i];
+            
+            var _left_time = _activity.time_left;
+            if(_left_time <= 0) {
+              that.data.activities.splice(i, 1);
+              that.setData({
+                activities: that.data.activities
+              });
+              continue;
+            }
+
+            var _hour = parseInt(_left_time/3600);
+            var _minute = parseInt((_left_time%3600)/60);
+            var _second = _left_time%60;
+            var _activity_status = {};
+            _activity_status['activities[' + i + '].hour'] = _hour;
+            _activity_status['activities[' + i + '].minute'] = _minute;
+            _activity_status['activities[' + i + '].second'] = _second;
+            _activity_status['activities[' + i + '].time_left'] = _left_time - 1;
+
+            that.setData(_activity_status);
+          }
+        }, 1000);
       }
 
       //产品专区
@@ -99,7 +167,7 @@ Page({
 
     console.info('tap on banner[' + index + ']:' + url);
 
-    if(url == '/pages/index/index' || url == '/pages/category/index' || url == '/pages/feed/index' || url == '/pages/cart/index' || url == '/pages/home/index') {
+    if (url == '/pages/index/index' || url == '/pages/feed/index' || url == '/pages/cart/index' || url == '/pages/home/index' || url == '/pages/member/index') {
       wx.switchTab({
         url: url
       });
@@ -112,12 +180,9 @@ Page({
   /*------------------------ 轮播图 End -------------------------------*/
   /*-------------------------------------------------------------------*/
   switchCategory: function(e) {
-    var index = e.currentTarget.dataset.index;
-    var url = this.data.functions[index].url;
+    var url = e.currentTarget.dataset.url;
 
-    console.info('tap on functions[' + index + ']:' + url);
-
-    if(url == '/pages/index/index' || url == '/pages/feed/index' || url == '/pages/cart/index' || url == '/pages/home/index') {
+    if (url == '/pages/index/index' || url == '/pages/feed/index' || url == '/pages/cart/index' || url == '/pages/home/index' || url == '/pages/member/index') {
       wx.switchTab({
         url: url
       });
@@ -130,13 +195,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  /*
   onShareAppMessage: function () {
     return {
-      title: '【森雲酒业】澳洲红酒狂欢节，买就送！仅限11.11日-18日',
+      title: '好当家官方商城，全程定制您的健康生活',
       path: '/pages/index/index?recommend=' + app.globalData.account,
-      imageUrl: 'https://www.buyauwines.com/upload/image/share-cover.png'
+      imageUrl: 'http://img.hdjshop.cn/image/share-cover.png'
     }
   }
-  */
 });

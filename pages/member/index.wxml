@@ -1,12 +1,15 @@
 <!--pages/product/index.wxml-->
+<!--
 <view class="header">
   <view class="search-bar">
     <icon class="iconfont icon-search"></icon>
     <input type="text" class="search-input" placeholder="输入关键词" placeholder-class="search-input-placeholder" bindblur="search" value="{{keyword}}"/>
   </view>
 </view>
+-->
 
 <!-- 筛选栏 -->
+<!--
 <view class="filters">
   <view class="filter {{order == 'star'? 'selected' : ''}}" catchtap="tapFilter" data-order="star">综合</view>
   <view class="filter {{order == 'sale_count'? 'selected' : ''}}" catchtap="tapFilter" data-order="sale_count">销量</view>
@@ -22,6 +25,7 @@
     <icon class="iconfont icon-category-{{display}}"></icon>
   </view>
 </view>
+-->
 
 <!-- 产品列表 -->
 <view class="product-{{display}}">

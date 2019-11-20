@@ -40,7 +40,7 @@
 }
 
 .block .block-title {
-  color: #565656;
+  color: #333333;
   margin-left: -30rpx;
 }
 
@@ -50,16 +50,14 @@
 
 .block .block-cubes .block-cube {
   flex-grow: 1;
-  /* color: #E9577C; */
-  color: #121212;
+  color: #4d525d;
   text-align: center;
-  width: 25%;
   padding: 30rpx 0;
 }
 
 .block .block-cubes .block-cube icon {
   display: block;
-  font-size: 60rpx;
+  font-size: 44rpx;
   margin-bottom: 30rpx;
 }
 
@@ -69,60 +67,128 @@
 /* 小功能 */
 .single-block {
   border: 0;
-  margin-bottom: 20rpx;
   background-color: #ffffff;
   color: #565656;
+  border-bottom: 2rpx solid #ddd;
 }
 
-/* 红酒库 */
-.wine-block {
-  padding-left: 0;
+/* 成为会员 */
+.hdj-join-member-placeholder {
+  display: block;
+  width: 750rpx;
+  height: 108rpx;
 }
 
-.wine-block .block-title {
-  padding: 30rpx;
-  margin-left: 0;
-}
-
-.wine-stock {
+.hdj-join-member {
   display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  background: #fff;
+  border-top: 2rpx solid #ddd;
   align-items: center;
-  flex-flow: row wrap;
-  padding: 0 0 0 30rpx;
 }
-
-.wine-stock .wine {
-  margin-right: 30rpx;
+.hdj-join-member .hdj-join-member-privilege {
   flex-grow: 1;
-  width: 245rpx;
-  padding: 30rpx 20rpx;
-  background-color: #e8dfc5;
+  font-size: 32rpx;
+  padding-left: 20rpx;
+}
+.hdj-join-member .hdj-join-member-btn {
+  background-color: #333333;
+  color: #FFEEE2;
+  padding: 20rpx;
+  font-size: 32rpx;
+}
+.hdj-join-member .hdj-join-member-btn .price {
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #FFEEE2;
+}
+
+/* 会员信息 */
+.hdj-member-info {
+  background-color: #333333;
+  position: relative;
+  /* margin-bottom: 60px; */
+  width: 750rpx;
+  height: 360rpx;
+  overflow: visible;
+  margin-bottom: 100rpx;
+}
+.hdj-member-info .hdj-member-card-top {
+  background-color: #423233;
+  border-radius: 20rpx 20rpx 0 0;
+  width: 720rpx;
+  margin: 0 auto;
+  position: relative;
+  top: 156rpx;
+  overflow: visible;
+}
+.hdj-member-info .hdj-member-card-bottom {
+  background: #322d2a;
+  box-shadow: 0px -6rpx 12rpx rgba(44, 35, 29, 0.4);
+  border-radius: 0px 0px 10px 10px;
+  width: 720rpx;
+  margin: 20rpx auto 0;
+  height: 100rpx;
+  top: 50rpx;
+  position: relative;
+  color: #FFEAB2;
   text-align: center;
-  border-radius: 15rpx;
+  font-size: .8rem;
+  line-height: 1.6;
+  overflow: visible;
 }
-
-.wine-stock .wine-grow {
-  background-color: #E9577C;
+.hdj-member-info .hdj-member-card {
+  background: linear-gradient(309deg, #fcc295 0%, #ffe1b3 100%);
+  top: -80rpx;
+  position: relative;
+  border-radius: 10px 10px 0px 0px;
+  width: 560rpx;
+  margin: 0 auto;
+  padding: 40rpx 5%;
 }
-
-.wine-stock .wine .wine-img {
+.hdj-member-info .hdj-member-card:after {
+  content: '';
+  display: block;
   width: 100%;
-  max-height: 190rpx;
+  height: 100%;
+  background-image: url('http://m.hdjshop.cn/themes/hdj/images/crown.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: 50%;
 }
-
-.wine-stock .wine .wine-name {
-  display: block;
-  margin-top: 20rpx;
+.hdj-member-info .hdj-member-card .hdj-member-card-info {
+  flex-grow: 1;
+  display: flex;
 }
-
-.wine-stock .wine .wine-quantity {
-  display: block;
+.hdj-member-info .hdj-member-card .hdj-member-card-info .hdj-member-card-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #583c30;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  margin-right: 5px;
 }
-
-.wine-stock .wine-grow .wine-name {
-  color: #ffffff;
+.hdj-member-info .hdj-member-card .hdj-member-card-info .hdj-member-name-meta {
+  font-size: 1rem;
+  line-height: 1.8rem;
 }
-
-.wine-stock .wine-grow .wine-quantity {
-  color: #ffffff;
+.hdj-member-info .hdj-member-card .hdj-member-card-info .hdj-member-name-meta .hdj-member-level-name {
+  font-size: .8rem;
+}
+.hdj-member-info .hdj-member-card .hdj-member-card-notice {
+  width: 100%;
+  border: 1px solid rgba(112, 112, 112, 0.1);
+  margin-top: 40rpx;
+}
+.hdj-member-info .hdj-member-card .hdj-member-vip-mark {
+  position: absolute;
+  right: 5%;
+  top: 50rpx;
+  width: 120rpx;
+  height: 120rpx;
 }

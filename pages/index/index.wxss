@@ -114,7 +114,7 @@
 }
 
 .index-block-product-single .product-price, .index-block-product .product-price {
-  color: #870020;
+  color: #E9577C;
   display: block;
 }
 
@@ -131,7 +131,7 @@
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   animation-delay: 2s;
   animation-iteration-count: 5;
-  color: #870020;
+  color: #E9577C;
 }
 
 @keyframes shake {
@@ -150,4 +150,144 @@
   40%, 60% {
     transform: translate3d(4rpx, 0, 0);
   }
+}
+
+.hdj-block,
+.hdj-activity {
+  position: relative;
+  box-shadow: 0 1px 9px #eee;
+}
+.hdj-block .hdj-block-header img,
+.hdj-activity .hdj-block-header img,
+.hdj-block .hdj-activity-header img,
+.hdj-activity .hdj-activity-header img {
+  width: 100%;
+}
+.hdj-block .hdj-block-product-list,
+.hdj-activity .hdj-block-product-list,
+.hdj-block .hdj-activity-product-list,
+.hdj-activity .hdj-activity-product-list {
+  display: block;
+  overflow-y: scroll;
+  position: relative;
+  height: 160px;
+  background: #ffffff;
+  width: 95%;
+  margin: -25% 2.5% 0;
+  white-space: nowrap;
+  letter-spacing: -14px;
+}
+.hdj-block .hdj-block-product-list .hdj-block-product-item,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item {
+  display: inline-block;
+  padding: 16px .5rem;
+  letter-spacing: normal;
+  text-align: center;
+}
+.hdj-block .hdj-block-product-list .hdj-block-product-item .hdj-block-product-img,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item .hdj-block-product-img,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item .hdj-block-product-img,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item .hdj-block-product-img,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item .hdj-block-product-img,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item .hdj-block-product-img,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item .hdj-block-product-img,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item .hdj-block-product-img,
+.hdj-block .hdj-block-product-list .hdj-block-product-item .hdj-activity-product-img,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item .hdj-activity-product-img,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item .hdj-activity-product-img,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item .hdj-activity-product-img,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item .hdj-activity-product-img,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item .hdj-activity-product-img,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item .hdj-activity-product-img,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item .hdj-activity-product-img {
+  width: 80px;
+  margin-bottom: .5rem;
+}
+.hdj-block .hdj-block-product-list .hdj-block-product-item .hdj-block-product-name,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item .hdj-block-product-name,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item .hdj-block-product-name,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item .hdj-block-product-name,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item .hdj-block-product-name,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item .hdj-block-product-name,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item .hdj-block-product-name,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item .hdj-block-product-name,
+.hdj-block .hdj-block-product-list .hdj-block-product-item .hdj-activity-product-name,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item .hdj-activity-product-name,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item .hdj-activity-product-name,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item .hdj-activity-product-name,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item .hdj-activity-product-name,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item .hdj-activity-product-name,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item .hdj-activity-product-name,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item .hdj-activity-product-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 80px;
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+.hdj-block .hdj-block-product-list .hdj-block-product-item .hdj-block-product-price,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item .hdj-block-product-price,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item .hdj-block-product-price,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item .hdj-block-product-price,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item .hdj-block-product-price,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item .hdj-block-product-price,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item .hdj-block-product-price,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item .hdj-block-product-price,
+.hdj-block .hdj-block-product-list .hdj-block-product-item .hdj-activity-product-price,
+.hdj-activity .hdj-block-product-list .hdj-block-product-item .hdj-activity-product-price,
+.hdj-block .hdj-activity-product-list .hdj-block-product-item .hdj-activity-product-price,
+.hdj-activity .hdj-activity-product-list .hdj-block-product-item .hdj-activity-product-price,
+.hdj-block .hdj-block-product-list .hdj-activity-product-item .hdj-activity-product-price,
+.hdj-activity .hdj-block-product-list .hdj-activity-product-item .hdj-activity-product-price,
+.hdj-block .hdj-activity-product-list .hdj-activity-product-item .hdj-activity-product-price,
+.hdj-activity .hdj-activity-product-list .hdj-activity-product-item .hdj-activity-product-price {
+  color: #E9577C;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: left;
+}
+.hdj-activity {
+  background-color: #FFC426;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+.hdj-activity .hdj-activity-header {
+  display: flex;
+  padding: 10px 0 5px;
+  background-color: #ffffff;
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 5px 5px 0 0;
+  align-items: center;
+}
+.hdj-activity .hdj-activity-header h2 {
+  font-weight: normal;
+  font-size: 1rem;
+  padding-left: 10px;
+  line-height: 1.2rem;
+}
+.hdj-activity .hdj-activity-header .hdj-activity-timer {
+  margin-left: 15px;
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+.hdj-activity .hdj-activity-header .hdj-activity-timer .hour,
+.hdj-activity .hdj-activity-header .hdj-activity-timer .minute,
+.hdj-activity .hdj-activity-header .hdj-activity-timer .seconds {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 2px 3px;
+}
+.hdj-activity .hdj-activity-product-list {
+  margin: 0 auto;
+  border-radius: 0 0 5px 5px;
+  padding: 5px 0;
 }

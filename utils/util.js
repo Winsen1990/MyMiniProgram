@@ -206,6 +206,7 @@ const syncUserInfo = function (res, callback) {
 
 module.exports = {
   formatTime: formatTime,
+  formatNumber: formatNumber,
   emojis: emojis,
   strReplaceAll: strReplaceAll,
   emojiToImage: emojiToImage,

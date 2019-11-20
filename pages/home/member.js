@@ -45,7 +45,7 @@ Page({
       token: getApp().globalData.token,
     };
 
-    utils.request(config.service.block, data, 'GET', function (response) {
+    utils.request(config.service.level, data, 'GET', function (response) {
       console.info(response);
 
       if (response.data.error != 0) {
@@ -108,43 +108,12 @@ Page({
   buy: function (e) {
     var product_id = e.currentTarget.dataset.id;
 
-    var that = this;
-    var data = {
-      opera: 'add',
-      product_id: product_id,
-      count: 1,
-      token: app.globalData.token,
-      direct: true
-    };
+    wx.setStorageSync('direct_buy', true);
+    wx.setStorageSync('direct_buy_product_id', product_id);
 
-    utils.request(config.service.cart, data, 'POST', function (response) {
-      if (response.data.error != 0) {
-        wx.showModal({
-          content: response.data.message,
-          showCancel: false
-        });
-      } else {
-        if (data.direct) {
-          //直接购买
-          wx.navigateTo({
-            url: '/pages/cart/checkout'
-          });
-        } else {
-          //加入购物车
-          wx.showModal({
-            content: response.data.message,
-            cancelText: '继续逛逛',
-            confirmText: '购物车',
-            success: function (e) {
-              if (e.confirm) {
-                wx.switchTab({
-                  url: '/pages/cart/index'
-                });
-              }
-            }
-          });
-        }
-      }
+    //直接购买
+    wx.navigateTo({
+      url: '/pages/cart/checkout'
     });
   },
 

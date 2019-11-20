@@ -11,11 +11,16 @@ var filters = {
     var str = value.toFixed(digital);
 
     return str.slice(str.indexOf('.') + 1);
+  },
+  formatNumber: function(n) {
+    n = n.toString();
+    return n[1] ? n : '0' + n;
   }
 }
 
 module.exports = {
   toFix: filters.toFix,
   getInt: filters.getInt,
-  getDigital: filters.getDigital
+  getDigital: filters.getDigital,
+  formatNumber: filters.formatNumber
 }
