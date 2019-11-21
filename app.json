@@ -33,6 +33,7 @@
     "pages/home/member",
     "pages/inventory/index",
     "pages/delivery_order/index",
+    "pages/delivery_order/detail",
     "pages/home/profile",
     "pages/coupon/index",
     "pages/inventory/pickup"
