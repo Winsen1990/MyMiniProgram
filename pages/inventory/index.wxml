@@ -1,2 +1,25 @@
-<!--pages/inventory/index.wxml-->
-<text>pages/inventory/index.wxml</text>
+<view class="wishlist">
+  <view>
+    <view wx:for="{{ product_list }}">
+      <navigator url="/pages/inventory/pickup?id={{item.id}}" class="wishlist-item flex flex-between">
+        <image class="lazy" src="{{item.img}}" data-original="{{item.img}}" alt="{{item.name}}">
+        </image>
+        <view class="content">
+          <view class="title"> {{item.name}} </view>
+          <view class="flex flex-between flex-items-center">
+            <view>
+              <view>会员价: ￥{{item.price}}</view>
+              <view class="flex">
+                <text style="color: #333">库存量: {{item.inventory}}</text>
+                <text>  待发库存: {{item.inventory_await}}</text>
+              </view>
+            </view>
+            <view class="flex flex-row-r action">
+              <text wx:if="{{item.inventory_logic>0}}" class="p-delete pick-up-btn" data-id="{{item.id}}">提货</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

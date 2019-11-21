@@ -127,6 +127,13 @@
 					"id": -1,
 					"name": "pages/home/wallet",
 					"pathName": "pages/home/wallet",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/inventory/index",
+					"pathName": "pages/inventory/index",
 					"scene": null
 				}
 			]

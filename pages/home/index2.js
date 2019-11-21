@@ -1,31 +1,18 @@
-// pages/inventory/index.js
-const app = getApp();
-const utils = require('../../utils/util');
-const config = require('../../config');
-
+// pages/home/index2.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    product_list: [],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var data = {
-      act: 'view',
-      token: getApp().globalData.token,
-    };
-    utils.request(config.service.inventory, data, 'GET', function (response) {
-      that.setData({
-        product_list: response.data.product_list
-      })
-    });
+
   },
 
   /**

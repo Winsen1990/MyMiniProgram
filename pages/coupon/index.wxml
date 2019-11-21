@@ -1,2 +1,29 @@
-<!--pages/coupon/index.wxml-->
-<text>pages/coupon/index.wxml</text>
+		<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+    <scroll-view scroll-x class="bg-white nav">
+			<view class="flex text-center">
+				<view class="cu-item flex-sub" :class="index == tabCur ? 'text-orange cur' : ''" v-for="(item,index) in types" :key="index" tap="tabSelect" :data-id="index">
+					{{ types[index] }}
+				</view>
+			</view>
+		</scroll-view>
+		
+		<view class="hdj-coupon-list menu-avatar">
+			<view class="hdj-coupon-item" wx:for="{{ coupons }}" wx:key="index" bindtap="gainCoupon" data-id="{{ item.id }}">
+				<view class="item-content flex">
+					<view class="item-content-l flex flex-column flex-items-center">
+						<view class="flex mt-20" wx:if="{{ item.type == '3' }}"><text class="text1">{{ item.decrement }}</text><view>元</view></view>
+            <view class="flex mt-20" wx:if="{{ item.type == '2' }}"><text class="text1">{{ item.decrement }}</text><view>元</view></view>
+            <view class="flex mt-20" wx:if="{{ item.type == '1' }}"><text class="text1">{{ item.discount/10 }}</text><view>折</view></view>
+						<view>满¥{{ filters.toFix(item.min_amount, 2) }}可用</view>
+					</view>
+					<view class="item-content-r">
+						<view class="item-content-r-detail">{{ item.name }} {{ item.remark }}</view>
+            <!-- 全场通用（一件包邮，拼团，闪电送门店自提及部分电商仓库商品不支持使用) -->
+						<view class="item-content-r-action"><view class="action">立即使用</view></view>
+					</view>
+				</view>
+				<view class="item-footer">
+					有效期 {{ item.begin_time_str }} 至 {{ item.end_time_str }}
+				</view>
+			</view>
+		</view>

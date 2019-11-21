@@ -1,18 +1,57 @@
-// pages/coupon/index.js
+// pages/home/coupon.js
+const app = getApp();
+var utils = require('../../utils/util');
+var config = require('../../config');
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    coupons: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var data = {
+      id: options.id || 0,
+      act: 'show',
+      token: app.globalData.token
+    };
+    
+    utils.request(config.service.coupon, data, 'GET', function (response) {
+      console.log(response.data.coupons);
+      that.setData({
+        'coupons': response.data.coupons,
+      });
+    });
+  },
 
+  gainCoupon: function(e)
+  {
+    var data = {
+      id: e.currentTarget.dataset.id || 0,
+      opera: 'gain',
+      token: app.globalData.token
+    };
+
+    utils.request(config.service.coupon, data, 'POST', function (response) {
+      wx.showToast({
+        title: response.data.message,
+        duration: 2000,
+      });
+
+      if(response.data.error == 1) {
+        wx.switchTab({
+          url: '/pages/index/index',
+        });
+      }
+    });
   },
 
   /**

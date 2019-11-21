@@ -34,7 +34,8 @@
     "pages/inventory/index",
     "pages/delivery_order/index",
     "pages/home/profile",
-    "pages/coupon/index"
+    "pages/coupon/index",
+    "pages/inventory/pickup"
   ],
   "window": {
     "backgroundTextStyle": "light",
