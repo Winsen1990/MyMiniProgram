@@ -8,20 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    direct_buy: 0,
+    direct_buy_product_id: 0,
     notice_checked: true,
+    use_balance: false,
+    use_integral: false,
+    use_reward: false,
     address: {},
     cart: [],
-    /*
-    {
-      id: 0,
-      coupon_sn: '',
-      name: '不使用优惠券',
-      discount: 0,
-      decrement: 0,
-      decrement_limit: 0,
-      coupon_type: 2
-    }
-    */
     coupons: [],
     coupon: {
       id: 0,
@@ -42,7 +36,17 @@ Page({
       amount: 0,//订单合计
       product_amount: 0,//产品合计
       shipping_amount: 0,//运费合计
-      coupon_decrement: 0//优惠减免
+      coupon_decrement: 0,//优惠减免
+      balance_reduce: 0, //余额抵扣
+      integral_reduce: 0, //积分抵扣
+      reward_reduce: 0, //佣金抵扣
+    },
+    wallet: {
+      integral: 0,//积分
+      balance: 0,//余额
+      reward: 0, //佣金
+      integral_rate: 0, //积分最多可抵用
+      reward_rate: 0 //佣金最多可抵扣
     },
     can_submit: false
   },
@@ -51,7 +55,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      direct_buy: options.direct_buy || 0,
+      direct_buy_product_id: options.direct_buy_product_id || 0
+    });
   },
 
   /**
@@ -68,11 +75,15 @@ Page({
     var that = this;
 
     var address = wx.getStorageSync('address');
+    var direct_buy = this.data.direct_buy;
+    var direct_buy_product_id = this.data.direct_buy_product_id;
 
     var data = {
       token: app.globalData.token,
       address_id: address ? address.id : 0,
-      act: 'view'
+      act: 'view',
+      direct_buy: direct_buy,
+      direct_buy_product_id: direct_buy_product_id
     };
 
     utils.request(config.service.checkout, data, 'GET', function (response) {
@@ -108,6 +119,7 @@ Page({
       }
 
       that.setData({
+        wallet: response.data.wallet,
         address: response.data.address,
         shipping: shipping_list,
         coupons: response.data.coupons,
@@ -148,6 +160,26 @@ Page({
     });
   },
 
+  use_wallet: function (e) {
+    console.info(e.currentTarget.dataset.mode);
+
+    switch (e.currentTarget.dataset.mode) {
+      case 'balance':
+        this.data.use_balance ^= true;
+        break;
+
+      case 'integral':
+        this.data.use_integral ^= true;
+        break;
+
+      case 'reward':
+        this.data.use_reward ^= true;
+        break;
+    }
+
+    this.caculateSummary();
+  },
+
   /**
    * 计算订单金额
    */
@@ -156,7 +188,10 @@ Page({
       amount: 0,//订单合计
       product_amount: 0,//产品合计
       shipping_amount: 0,//运费合计
-      coupon_decrement: 0//优惠减免
+      coupon_decrement: 0,//优惠减免
+      balance_reduce: 0, //余额抵扣
+      integral_reduce: 0, //积分抵扣
+      reward_reduce: 0, //佣金抵扣
     }
 
     //产品合计
@@ -199,6 +234,21 @@ Page({
       summary.amount -= summary.coupon_decrement;
     }
 
+    if(this.data.use_integral) {
+      summary.integral_reduce -= Math.min(summary.amount, this.data.wallet.integral/this.data.wallet.integral_rate);
+      summary.amount -= summary.integral_reduce;
+    }
+
+    if (this.data.use_reward) {
+      summary.reward_reduce -= Math.min(summary.amount, this.data.wallet.reward / this.data.wallet.reward_rate);
+      summary.amount -= summary.reward_reduce;
+    }
+
+    if(this.data.use_balance) {
+      summary.balance_reduce -= Math.min(summary.amount, this.data.wallet.balance);
+      summary.amount -= summary.balance_reduce;
+    }
+
     this.setData({
       summary: summary,
       'cart[0].amount': summary.product_amount
@@ -221,16 +271,6 @@ Page({
   },
 
   /**
-   * 监听短信通知选项
-   */
-  messageNotice: function () {
-    this.setData({
-      messageNotice: this.data.messageNotice ^ true
-    });
-    console.info(this.data.messageNotice);
-  },
-
-  /**
    * 记录留言
    */
   recordRemark: function (e) {
@@ -250,7 +290,9 @@ Page({
       coupon_sn: this.data.coupon.coupon_sn,
       opera: 'add',
       token: app.globalData.token,
-      delivery_list: {}
+      delivery_list: {},
+      direct_buy: this.data.direct_buy,
+      direct_buy_product_id: this.data.direct_buy_product_id
     }
 
     for (var j = 0; j < this.data.shipping.length; j++) {

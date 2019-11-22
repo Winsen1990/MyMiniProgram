@@ -32,7 +32,7 @@
   <view class="form-row">
     <label for="address">详情地址</label>
     <view class="form-text-area">
-      <textarea placeholder="请输入门牌号码" data-name="detail" value="{{detail}}" bind></textarea>
+      <textarea placeholder="请输入门牌号码" data-name="detail" bindblur="validation" value="{{detail}}"></textarea>
     </view>
   </view>
 </view>

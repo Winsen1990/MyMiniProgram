@@ -26,9 +26,7 @@
 <view class="address-blank-block"></view>
 
 <view class="toolbar">
-  <navigator url="/pages/address/add?from=select" class="toolbar-btn font-l">
-    <button type="primary">添加新地址</button>
-  </navigator>
+  <navigator url="/pages/address/add?from=select" class="toolbar-btn">添加新地址</navigator>
 </view>
 
 <!-- <icon class="iconfont icon-plus font-xl"></icon> -->

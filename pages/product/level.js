@@ -273,12 +273,9 @@ Page({
    * 直接购买
    */
   buyNow: function() {
-    this.setData({
-      direct_buy: true,
-      displayPanel: true
+    wx.navigateTo({
+      url: '/pages/cart/checkout?direct_buy=1&direct_buy_product_id=' + this.data.product.id
     });
-
-    // this.buy();
   },
 
   /**

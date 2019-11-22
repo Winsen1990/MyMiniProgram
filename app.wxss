@@ -77,10 +77,14 @@ button::after {
 .meta-with-arrow {
   padding: 30rpx;
   /* border-bottom: 2rpx solid #e5e5e5; */
-  font-size: 30rpx;
+  font-size: 32rpx;
   color: #a3a3a3;
   vertical-align: middle;
   position: relative;
+}
+
+.meta-with-arrow + .meta-with-arrow {
+  border-top: 2rpx solid #dddddd;
 }
 
 .meta-with-arrow::after {

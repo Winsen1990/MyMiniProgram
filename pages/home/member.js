@@ -108,12 +108,12 @@ Page({
   buy: function (e) {
     var product_id = e.currentTarget.dataset.id;
 
-    wx.setStorageSync('direct_buy', true);
-    wx.setStorageSync('direct_buy_product_id', product_id);
+    // wx.setStorageSync('direct_buy', true);
+    // wx.setStorageSync('direct_buy_product_id', product_id);
 
     //直接购买
     wx.navigateTo({
-      url: '/pages/cart/checkout'
+      url: '/pages/cart/checkout?direct_buy=1&direct_buy_product_id=' + product_id
     });
   },
 

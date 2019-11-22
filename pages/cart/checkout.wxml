@@ -72,9 +72,30 @@
 <view class="meta-with-arrow coupon">
   <text class="meta-label">优惠券</text>
   <text class="meta-tail" wx:if="{{coupons.length == 0}}">{{coupon.name}}</text>
-  <picker wx:else range="{{coupons}}" range-key="name" bindchange="selectCoupon">
+  <picker wx:else range="{{coupons}}" range-key="name" bindchange="selectCoupon" disabled="{{coupons.length == 1}}">
     <text class="meta-tail">{{coupon.name}}</text>
   </picker>
+</view>
+
+<!-- 余额 -->
+<view class="meta-with-arrow wallet" wx:if="{{wallet.balance > 0}}">
+  <text class="meta-label">可用余额</text>
+  <text>{{filters.toFix(wallet.balance, 2)}}</text>
+  <checkbox value="1" class="checkbox font-xl meta-tail" data-mode="balance" catchtap="use_wallet" checked="{{user_balance}}"></checkbox>
+</view>
+
+<!-- 积分 -->
+<view class="meta-with-arrow wallet" wx:if="{{wallet.integral > 0}}">
+  <text class="meta-label">可用积分</text>
+  <text>{{filters.toFix(wallet.integral, 2)}}</text>
+  <checkbox value="1" class="checkbox font-xl meta-tail" data-mode="integral" catchtap="use_wallet" checked="{{user_integral}}"></checkbox>
+</view>
+
+<!-- 佣金 -->
+<view class="meta-with-arrow wallet" wx:if="{{wallet.reward > 0}}">
+  <text class="meta-label">可用佣金</text>
+  <text>{{filters.toFix(wallet.reward, 2)}}</text>
+  <checkbox value="1" class="checkbox font-xl meta-tail" data-mode="reward" catchtap="use_wallet" checked="{{user_reward}}"></checkbox>
 </view>
 
 <!-- 短信通知收件人 -->
@@ -104,7 +125,7 @@
 </view>
 
 <view class="toolbar-block"></view>
-<!-- 
+
 <view class="toolbar">
   <view class="blank-block"></view>
   <view class="toolbar-summary">
@@ -112,20 +133,4 @@
     <text class="font-red">￥{{filters.toFix(summary.amount, 2)}}</text>
   </view>
   <button class="toolbar-submit-btn" disabled="{{!can_submit}}" catchtap="submitOrder">提交订单</button>
-</view> -->
-
-<view class="fixed-action-nav fixed flex flex-row flex-between">
-  <view class="fixed-action-text flex flex-between flex-items-center ml-30">
-    <view>
-      <text class="cuIcon-roundcheck lg"></text>
-      <text class="ml-30"></text>	
-    </view>
-    <view>
-      <text class="text1">合计￥</text>
-      <text class="text2">{{filters.toFix(summary.amount, 2)}}</text>						
-    </view>
-  </view>
-  <view class="fixed-action-btn" disabled="{{!can_submit}}" catchtap="submitOrder">
-    <text class="text3" >去结算</text>
-  </view>
 </view>

@@ -1,4 +1,4 @@
-/* pages/product/detail.wxss */
+/* pages/product/level.wxss */
 /* 产品名称 产品简介 */
 .product-primary-info {
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 .product-primary-info .product-name {
-  /* border-right: 2rpx solid #e5e5e5; */
+  border-right: 2rpx solid #e5e5e5;
   width: 558rpx;
   padding-right: 10rpx;
 }
@@ -39,7 +39,7 @@
 }
 
 .product-primary-info .product-collection-active {
-  color: #870020;
+  color: #E9577C;
 }
 
 /*产品价格*/
@@ -51,10 +51,16 @@
 }
 
 .product-price-info .product-price {
-  color: #870020;
+  color: #E9577C;
   font-size: 30rpx;
   flex-grow: 1;
   font-weight: bold;
+}
+
+.product-price-info .product-market-price {
+  color: #999999;
+  font-size: 28rpx;
+  text-decoration: line-through;
 }
 
 .product-price-info .product-shipping {
@@ -91,6 +97,7 @@
   /* font-size: 40rpx; */
   vertical-align: middle;
   margin-top: -18rpx;
+  margin-right: 6rpx;
 }
 
 .shop-info .shop-name {
@@ -103,7 +110,7 @@
 }
 
 .protection-info icon {
-  color: #870020;
+  color: #E9577C;
 }
 
 /* tab面板 */
@@ -123,7 +130,7 @@
 }
 
 .tabs view.current {
-  color: #870020;
+  /* color: #E9577C; */
 }
 
 .tabs view:last-child {
@@ -161,11 +168,11 @@
 }
 
 .product-footer {
-  height: 118rpx;
+  height: 100rpx;
   border-top: 2rpx solid #e5e5e5;
   display: flex;
-  width: 100%;
-  padding-left: 5rpx;
+  width: 690rpx;
+  padding: 10rpx 30rpx;
   position: fixed;
   bottom: 0;
   background-color: #ffffff;
@@ -185,23 +192,24 @@
 }
 
 .menu-service {
-  color: #870020;
+  color: #E9577C;
   line-height: 1.2;
 }
 
-.menu-add-to-cart-btn, .menu-buy-now-btn {
+.menu-buy-now-btn {
   flex-grow: 1;
   background-color: #565656;
   color: #ffffff;
   font-size: 36rpx;
   font-weight: bold;
   text-align: center;
-  padding: 15rpx;
+  border-radius: 10rpx;
 }
-
+/*
 .menu-buy-now-btn {
-  background-color: #870020;
+  background-color: #E9577C;
 }
+*/
 
 /* 购买面板 */
 .mask {
@@ -300,7 +308,7 @@
 }
 
 .panel-toolbar .confirm-btn {
-  background-color: #870020;
+  background-color: #E9577C;
   color: #ffffff;
   display: block;
   width: 90%;
