@@ -18,13 +18,7 @@ Page({
   onLoad: function (options) {
   
   },
-
-  goTo: function(e) {
-    wx.navigateTo({
-      url: '/pages/address/add',
-    });
-  },
-
+  
   /**
    * 设为默认地址
    */

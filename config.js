@@ -4,7 +4,7 @@
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
 var host = 'https://api.hdjshop.cn';
-//  host = 'http://easyilife.com/api';
+ host = 'http://m.easyilife.com/api';
 var api_path = '/v1';
 
 var config = {

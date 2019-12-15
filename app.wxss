@@ -43,7 +43,7 @@ button::after {
 }
 
 .font-red {
-  color: #E9577C;
+  color: #a2002d;
 }
 
 .font-gray {
@@ -135,71 +135,4 @@ button::after {
 
 .blank-block {
   flex-grow: 1;
-}
-
-.float-icon {
-  display: block;
-  width: 80rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 48rpx;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 2rpx solid #e5e5e5;
-  color: #565656;
-  position: fixed;
-  right: 20rpx;
-  bottom: 140rpx;
-  text-align: center;
-  text-shadow: 0 6rpx 12rpx #ffffff;
-}
-
-.float-icon.fl {
-  right: auto;
-  left: 20rpx;
-}
-
-
-.flex {
-  display: flex;
-}
-
-.flex-row {
-  flex-direction: row;
-}
-
-.flex-row-r {
-  flex-direction: row-reverse;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-
-.flex-column-r {
-  flex-direction: column-reverse;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-between {
-  justify-content: space-between;
-}
-
-.flex-items-center {
-  align-items: center;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.fixed {
-  position: fixed;
 }

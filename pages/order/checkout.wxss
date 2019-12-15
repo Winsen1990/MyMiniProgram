@@ -1,4 +1,4 @@
-@import "../../assets/icon/iconfont.wxss";
+@import "../../assets/css/iconfont.wxss";
 /* 购物车列表 */
 page {
   background-color: #f5f5f5;
