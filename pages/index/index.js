@@ -25,7 +25,9 @@ Page({
     blocks: [],
     //限时促销
     activities: [],
-    activity_timer: null
+    activity_timer: null,
+    //猜你喜欢 
+    favorite_products: []
   },
   //事件处理函数
   onLoad: function () {
@@ -136,6 +138,13 @@ Page({
           blocks: response.data.blocks
         });
       }
+    });
+
+    utils.request(config.service.favorite, null, 'GET', function (response) {
+      //猜你喜欢
+      that.setData({
+        favorite_products: response.data.products
+      });
     });
   },
   /*------------------------ 轮播图 -------------------------------*/

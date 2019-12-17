@@ -12,8 +12,8 @@
 }
 
 .tabs .tab.current {
-  color: #E9577C;
-  border-color: #E9577C;
+  color: #C7162B;
+  border-color: #C7162B;
 }
 
 .order-list {
@@ -107,8 +107,8 @@
 }
 
 .order-footer .order-opera-primary {
-  color: #E9577C;
-  border-color: #E9577C;
+  color: #C7162B;
+  border-color: #C7162B;
 }
 
 .tags {
@@ -117,10 +117,10 @@
 
 .order-info .order-detail .detail-info .tags .gift-tag {
   display: inline-block;
-  color: #E9577C;
+  color: #C7162B;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #E9577C;
+  border: 2rpx solid #C7162B;
   padding: 4rpx 8rpx;
 }

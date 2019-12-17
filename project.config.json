@@ -21,7 +21,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.3",
+	"libVersion": "2.9.4",
 	"appid": "wxf5ea40dda56672bd",
 	"projectname": "%E5%A5%BD%E5%BD%93%E5%AE%B6%E5%AE%98%E6%96%B9%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -134,6 +134,28 @@
 					"id": -1,
 					"name": "pages/inventory/index",
 					"pathName": "pages/inventory/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/member/index",
+					"pathName": "pages/member/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "产品搜索",
+					"pathName": "pages/product/index",
+					"query": "keyword=海参",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提交订单",
+					"pathName": "pages/cart/checkout",
+					"query": "",
 					"scene": null
 				}
 			]

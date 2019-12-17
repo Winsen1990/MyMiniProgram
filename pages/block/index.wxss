@@ -61,7 +61,7 @@ page {
 }
 
 .filters .filter.selected {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 .filters .filter .filter-sort {
@@ -86,8 +86,8 @@ page {
 }
 
 .filters .filter.selected .filter-sort-up.selected, .filters .filter.selected .filter-sort-down.selected {
-  border-bottom-color: #E9577C;
-  border-top-color: #E9577C;
+  border-bottom-color: #C7162B;
+  border-top-color: #C7162B;
 }
 
 .product-grid {
@@ -135,7 +135,7 @@ page {
   font-size: 40rpx;
   line-height: 1;
   border-radius: 50%;
-  background-color: #E9577C;
+  background-color: #C7162B;
   color: #ffffff;
   padding: 8rpx;
 }
@@ -181,7 +181,7 @@ page {
   font-size: 40rpx;
   line-height: 1;
   border-radius: 50%;
-  background-color: #E9577C;
+  background-color: #C7162B;
   color: #ffffff;
   padding: 8rpx;
 }

@@ -68,7 +68,7 @@
 }
 
 .toolbar .toolbar-btn {
-  background-color: #ff1400;
+  background-color: #C7162B;
   color: #ffffff;
   border-radius: 15rpx;
   width: 90%;

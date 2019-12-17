@@ -18,7 +18,7 @@
 }
 
 .address-item .checkbox[checked] {
-  color: #ff1400;
+  color: #C7162B;
 }
 
 .address {
@@ -77,17 +77,17 @@
 
 .toolbar-btn {
   display: block;
-  background-color: #ff1400;
+  background-color: #C7162B;
   color: #ffffff;
   text-align: center;
   width: 90%;
   margin: 10rpx auto;
-  border-radius: 15rpx;
+  border-radius: 16rpx;
   padding: 20rpx;
 }
 
 .toolbar-btn icon {
-  font-weight: bold;
+  margin-right: 20rpx;
 }
 
 .toolbar-btn text {

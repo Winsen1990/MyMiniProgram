@@ -39,7 +39,7 @@
 }
 
 .product-primary-info .product-collection-active {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 /*产品价格*/
@@ -51,7 +51,7 @@
 }
 
 .product-price-info .product-price {
-  color: #E9577C;
+  color: #C7162B;
   font-size: 30rpx;
   flex-grow: 1;
   font-weight: bold;
@@ -110,7 +110,7 @@
 }
 
 .protection-info icon {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 /* tab面板 */
@@ -130,7 +130,7 @@
 }
 
 .tabs view.current {
-  /* color: #E9577C; */
+  /* color: #C7162B; */
 }
 
 .tabs view:last-child {
@@ -192,7 +192,7 @@
 }
 
 .menu-service {
-  color: #E9577C;
+  color: #C7162B;
   line-height: 1.2;
 }
 
@@ -207,7 +207,7 @@
 }
 
 .menu-buy-now-btn {
-  background-color: #E9577C;
+  background-color: #C7162B;
 }
 
 /* 购买面板 */
@@ -307,7 +307,7 @@
 }
 
 .panel-toolbar .confirm-btn {
-  background-color: #E9577C;
+  background-color: #C7162B;
   color: #ffffff;
   display: block;
   width: 90%;

@@ -2,14 +2,16 @@
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
 
 <!-- 搜索框 -->
-<view class="index-search-bar-wrapper">
-  <navigator url="/pages/search/index" class="index-search-bar">
-    <view class="index-search-input">
-      <text class="index-search-placeholder iconfont icon-search"> 海参</text>
-    </view>
-  </navigator>
+<view class="search">
+    <navigator class="search-form" url="/pages/search/index">
+        <i class="iconfont icon-search"></i>
+        <view class="hd-input-text">
+            <input type="text" name="keyword" id="keyword" placeholder="商品搜索" disabled="disabled"/>
+        </view>
+    </navigator>
 </view>
 
+<!-- 轮播图 -->
 <swiper indicator-dots="{{banner.displayDots}}"
   autoplay="{{banner.autoplay}}" duration="{{banner.duration}}"
   interval="{{banner.interval}}"
@@ -22,23 +24,17 @@
     </swiper-item>
   </block>
 </swiper>
-<block wx:for="{{under_banner_ads}}" wx:key="id" wx:for-item="ad">
-<block wx:if="{{ad.url == '/pages/category/index' || ad.url == '/pages/feed/index'}}">
-<navigator url="{{ad.url}}" class="index-ad" open-type="switchTab">
-  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
-</navigator>
-</block>
-
-<block wx:else>
-<navigator url="{{ad.url}}" class="index-ad">
-  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
-</navigator>
-</block>
-</block>
 
 <!-- 功能区 -->
 <block wx:for="{{function_rows}}" data-index="{{index}}" wx:key="index" wx:for-item="functions">
-<view class="index-functions">
+<view class="index-functions" wx:if="{{index == 0}}">
+  <view wx:for="{{functions}}" data-url="{{item.url}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
+    <image src="{{item.icon}}" mode="widthFix"/>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+
+<view class="index-functions index-functions-middle" wx:else>
   <view wx:for="{{functions}}" data-url="{{item.url}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
     <image src="{{item.icon}}" mode="widthFix"/>
     <text>{{item.name}}</text>
@@ -46,11 +42,9 @@
 </view>
 </block>
 
-<!-- 展示广告 -->
-<block wx:for="{{before_block_ads}}" wx:key="id" wx:for-item="ad">
-<view data-url="{{ad.url}}" class="index-ad" catchtap="switchCategory">
-  <image src="{{ad.img}}" class="index-ad-img" mode="widthFix"/>
-</view>
+<!-- 平铺广告 -->
+<block wx:for="{{under_banner_ads}}" wx:key="id" wx:for-item="ad">
+  <image src="{{ad.img}}" class="index-ad" mode="widthFix" data-url="{{ad.url}}" catchtap="switchCategory"/>
 </block>
 
 <!-- 限时促销 -->
@@ -72,9 +66,12 @@
       <navigator class="hdj-activity-product-item" url="/pages/product/detail?id={{product.p_id}}">
           <image src="{{product.img}}" class="hdj-activity-product-img" mode="widthFix"/>
           <view class="hdj-activity-product-name">{{product.name}}</view>
+          <view class="hdj-activity-product-desc">{{product.desc}}</view>
           <view class="hdj-activity-product-price">
               <text class="product-price-mark">￥</text>
-              <text class="product-price">{{filters.toFix(product.price, 2)}}</text>
+              <text class="product-price">{{filters.toFix(product.price, 0)}}</text>
+
+              <text class="product-market-price">￥{{filters.toFix(product.shop_price, 0)}}</text>
           </view>
       </navigator>
       </block>
@@ -83,52 +80,41 @@
 </block>
 
 <!-- 首页产品专区 -->
-<view wx:for="{{blocks}}" class="index-block" wx:key="index">
-  <view data-id="{{item.id}}" catchtap="switchCategory">
-    <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>
-  </view>
-  <block wx:if="{{item.products.length%2}}">
-    <!-- 产品总数为单数 -->
-    <view class="index-block-product-single">
-      <navigator url="/pages/product/detail?id={{item.products[0].id}}">
-        <image src="{{item.products[0].img}}" class="product-image" mode="widthFix"/>
-        <text class="product-name">{{item.products[0].name}}</text>
-        <text class="product-price">￥{{filters.toFix(item.products[0].price, 2)}}</text>
-      </navigator>
+<view class="hdj-block" wx:for="{{blocks}}" wx:key="index">
+    <view class="hdj-block-header">
+        <h2>
+            <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>
+        </h2>
     </view>
-    <view class="index-block-product-list">
-    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
-      <block wx:if="{{index != 0}}">
-        <template is="productItem" data="{{...product}}"/>
+    <view class="hdj-block-product-list">
+      <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
+          <template is="productItem" data="{{...product}}"/>
       </block>
-    </block>
     </view>
-  </block>
-
-  <block wx:else>
-    <!-- 产品总数为双数 -->
-    <view class="index-block-product-list">
-    <block wx:for="{{item.products}}" wx:for-item="product" wx:key="index">
-        <template is="productItem" data="{{...product}}"/>
-    </block>
-    </view>
-  </block>
 </view>
 
-<!-- 查看更多 -->
-<!--
-<navigator url="/pages/category/index" class="index-more" open-type="switchTab">
-  查看更多 >
-</navigator>
--->
+<!-- 猜你喜欢 -->
+<view class="hdj-favorite-block hdj-block">
+    <h3>
+        猜你喜欢
+    </h3>
+    <view class="hdj-block-product-list">
+      <block wx:for="{{favorite_products}}" wx:for-item="product" wx:key="index">
+          <template is="productItem" data="{{...product}}"/>
+      </block>
+    </view>
+</view>
 
 <!-- 产品专区产品模板 -->
 <template name="productItem">
-  <view class="index-block-product">
-    <navigator url="/pages/product/detail?id={{id}}">
-      <image src="{{img}}" class="product-image" mode="widthFix"/>
-      <text class="product-name">{{name}}</text>
-      <text class="product-price">￥{{filters.toFix(price, 2)}}</text>
-    </navigator>
-  </view>
+  <navigator class="hdj-block-product-item"  url="/pages/product/detail?id={{id}}">
+        <image src="{{img}}" class="hdj-block-product-img" mode="widthFix"/>
+        <view class="hdj-block-product-name">{{name}}</view>
+        <view class="hdj-block-product-desc">{{desc}}</view>
+        <view class="hdj-block-product-price">
+          <text class="product-price-mark">￥</text>
+          <text class="product-price">{{filters.toFix(price, 0)}}</text>
+          <text class="product-market-price">￥{{filters.toFix(shop_price, 0)}}</text>
+        </view>
+  </navigator>
 </template>

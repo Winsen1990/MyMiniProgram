@@ -13,7 +13,8 @@ Page({
     categories: [],
     current: 0,
     current_category: '',
-    tap_category: false
+    tap_category: false,
+    category_height: 0
   },
 
   /**
@@ -21,6 +22,35 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    const query = wx.createSelectorQuery().in(that);
+
+    //获取屏幕宽高  
+    wx.getSystemInfo({
+      success: (res) => {
+        var window_width = res.windowWidth;
+        var window_height = res.windowHeight;
+        var category_height = window_height;
+
+        query.selectAll('.except').boundingClientRect();
+        query.exec(function (rects) {
+          console.info('except rects:');
+          console.info(rects);
+
+          for(var i = 0; i < rects[0].length; i++) {
+            category_height -= rects[0][i].height;
+            console.info(category_height);
+          }
+
+
+          that.setData({
+            category_height: category_height// - (197 / res.pixelRatio)
+          });
+        });
+
+        console.info('init height ' + category_height);
+      }
+    });
+
     utils.request(config.service.category, null, 'GET', function(response) {
       that.setData({
         categories: response.data.categories
@@ -32,7 +62,6 @@ Page({
         });
 
         setTimeout(function() {
-          const query = wx.createSelectorQuery().in(that);
           query.selectAll('.category-segement').boundingClientRect();
           query.exec(function (rects) {
             for (var i = 0; i < rects[0].length; i++) {
@@ -120,11 +149,27 @@ Page({
     };
 
     utils.request(config.service.cart, data, 'POST', function (response) {
-      wx.showToast({
-        title: response.data.message,
-        icon: response.data.error != 0 ? 'none' : 'success',
-        duration: 3000
-      });
+      if(response.data.error == 0) {
+        wx.showModal({
+          content: '加入购物车成功',
+          showCancel: true,
+          cancelText: '继续逛逛',
+          confirmText: '立即结算',
+          success: (e) => {
+            if(e.confirm) {
+              wx.switchTab({
+                url: '/pages/cart/index',
+              });
+            }
+          }
+        });
+      } else {
+        wx.showToast({
+          title: response.data.message,
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   }
 });

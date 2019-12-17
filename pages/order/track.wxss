@@ -73,7 +73,7 @@
 
 .express-info .express-detail .express-detail-context text:last-child {
   display: block;
-  color: #E9577C;
+  color: #C7162B;
   text-align: right;
   margin-top: .3rem;
 }

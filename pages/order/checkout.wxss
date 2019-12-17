@@ -15,7 +15,7 @@ button::after {
 
 /* 地址栏 */
 .address navigator {
-  border-bottom: 2px dashed #E9577C;
+  border-bottom: 2px dashed #C7162B;
   padding: .5rem;
   position: relative;
   display: flex;
@@ -27,7 +27,7 @@ button::after {
   font-size: 2rem;
   display: inline-flex;
   margin-right: .5rem;
-  color: #E9577C;
+  color: #C7162B;
 }
 
 .address navigator::after {
@@ -176,7 +176,7 @@ button::after {
 }
 
 .meta-info-list .meta-info .meta-info-price {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 /* 金额合计 */
@@ -228,7 +228,7 @@ button::after {
 }
 
 .checkout-toolbar .checkout-summary .checkout-summary-amount {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 .btn {
@@ -238,6 +238,6 @@ button::after {
 }
 
 .btn-primary {
-  background-color: #E9577C;
+  background-color: #C7162B;
   color: #ffffff;
 }

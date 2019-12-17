@@ -109,11 +109,6 @@ Page({
       console.info(e.detail.value);
 
       this.keywordSearch();
-    } else {
-      wx.showToast({
-        title: '请输入关键词',
-        duration: 3000
-      });
     }
   },
 

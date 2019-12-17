@@ -60,7 +60,7 @@
 }
 
 .comment-btn {
-  background-color: #870020;
+  background-color: #C7162B;
   color: #ffffff;
   font-size: 32rpx;
   width: 90%;

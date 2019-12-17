@@ -1,5 +1,15 @@
 <!--pages/category/index.wxml-->
-<view class="category-panel">
+<!-- 搜索框 -->
+<view class="search except">
+  <navigator class="search-form" url="/pages/search/index">
+      <i class="iconfont icon-search"></i>
+      <view class="hd-input-text">
+          <input type="text" name="keyword" id="keyword" placeholder="商品搜索" disabled="disabled"/>
+      </view>
+  </navigator>
+</view>
+
+<view class="category-panel" style="height: {{category_height}}px">
   <!-- 一级分类 -->
   <scroll-view scroll-y class="category-list" scroll-into-view="category-nav-{{current}}">
     <block wx:for="{{categories}}" wx:key="id">
@@ -24,10 +34,13 @@
           <image class="product-image" src="{{product.img}}" mode="widthFix"/>
           <view class="product-info">
             <text class="product-name">{{product.name}}</text>
+            <text class="product-desc">{{product.desc}}</text>
             <view class="product-tags"></view>
             <view class="product-price">
-              <text class="price">￥{{product.price}}</text>
-              <text class="market-price">￥{{product.shop_price}}</text>
+              <text class="price font-price">￥{{product.price}}</text>
+            </view>
+            <view class="product-price">
+              <text class="market-price font-market-price">￥{{product.shop_price}}</text>
             </view>
           </view>
           <button class="category-add-to-cart iconfont icon-cart" catchtap="addToCart" data-id="{{product.id}}"></button>
@@ -38,15 +51,50 @@
         <text class="sub-category" data-id="{{category.id}}" id="category-{{category.id}}">{{category.name}}</text>
         <block wx:for="{{category.products}}" wx:key="index" wx:for-item="product">
           <navigator url="/pages/product/detail?id={{product.id}}" class="category-product-item">
-            <image class="product-image" src="{{product.img}}" mode="widthFix"/>
-            <view class="product-info">
-              <text class="product-name">{{product.name}}</text>
-              <text class="product-desc">{{product.desc}}</text>
+          <image class="product-image" src="{{product.img}}" mode="widthFix"/>
+          <view class="product-info">
+            <text class="product-name">{{product.name}}</text>
+            <text class="product-desc">{{product.desc}}</text>
+            <view class="product-tags"></view>
+            <view class="product-price">
+              <text class="font-price">￥{{product.price}}</text>
             </view>
-          </navigator>
+            <view>
+              <text class="market-price font-market-price">￥{{product.shop_price}}</text>
+            </view>
+          </view>
+          <button class="category-add-to-cart iconfont icon-cart" catchtap="addToCart" data-id="{{product.id}}"></button>
+        </navigator>
         </block>
       </block>
    
     </view>
   </scroll-view>
+</view>
+
+<view class="tabbar except">
+  <navigator open-type="switchTab" url="/pages/index/index" class="tabbar-item">
+    <image src="/assets/images/index.png"/>
+    <text>首页</text>
+  </navigator>
+
+  <navigator open-type="switchTab" url="/pages/member/index" class="tabbar-item">
+    <image src="/assets/images/vip.png"/>
+    <text>会员专区</text>
+  </navigator>
+
+  <navigator open-type="switchTab" url="/pages/feed/index" class="tabbar-item">
+    <image src="/assets/images/found.png"/>
+    <text>发现</text>
+  </navigator>
+
+  <navigator open-type="switchTab" url="/pages/cart/index" class="tabbar-item">
+    <image src="/assets/images/cart.png"/>
+    <text>购物车</text>
+  </navigator>
+
+  <navigator open-type="switchTab" url="/pages/home/index" class="tabbar-item">
+    <image src="/assets/images/home.png"/>
+    <text>我的</text>
+  </navigator>
 </view>

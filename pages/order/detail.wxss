@@ -1,6 +1,6 @@
 /* pages/order/detail.wxss */
 .order-status-block {
-  background-color: #E9577C;
+  background-color: #C7162B;
   padding: 20rpx 50rpx;
   align-items: center;
   display: flex;
@@ -155,8 +155,8 @@
 
 .toolbar .order-opera, .toolbar .order-opera-primary {
   display: inline-block;
-  color: #a3a3a3;
-  border: 2rpx solid #a3a3a3;
+  color: #333333;
+  border: 2rpx solid #333333;
   border-radius: 15rpx;
   vertical-align: middle;
   padding: 8rpx 16rpx;
@@ -165,9 +165,10 @@
 }
 
 .toolbar .order-opera-primary {
-  color: #E9577C;
-  border-color: #E9577C;
+  background-color: #C7162B;
+  border-color: #C7162B;
   margin-right: 30rpx;
+  color: #ffffff;
 }
 
 .tags {
@@ -176,10 +177,10 @@
 
 .order-detail .detail-info .tags .gift-tag {
   display: inline-block;
-  color: #E9577C;
+  color: #C7162B;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #E9577C;
+  border: 2rpx solid #C7162B;
   padding: 4rpx 8rpx;
 }

@@ -1,4 +1,7 @@
 /* pages/cart/checkout.wxss */
+page {
+  background-color: #f2f2f2;
+}
 
 /* 地址信息 */
 
@@ -7,19 +10,19 @@
   color: #565656;
 }
 
-.address.meta-with-arrow {
-  border-bottom: 6rpx dashed #FF4324;
+.address .address-decoration {
+  height: 6rpx;
+  background: url('http://m.hdjshop.cn/themes/hdj/images/colourBar.png') repeat-x;
+  background-size: contain;
 }
 
 .address navigator {
-  display: flex;
-  align-items: center;
-  font-size: 36rpx;
+  font-size: 32rpx;
 }
 
 .address .icon-plus {
-  padding: 20rpx;
-  background-color: #FF4324;
+  padding: 20rpx 10rpx;
+  background-color: #C7162B;
   border-radius: 15rpx;
   color: #fff;
   margin-right: 20rpx;
@@ -27,21 +30,28 @@
   font-size: 48rpx;
 }
 
-.address .icon-location {
-  font-size: 60rpx;
-  margin-right: 20rpx;
-  font-weight: bold;
-  color: #FF4324;
+.address .icon-plus::before {
+  margin-left: 10rpx;
+}
+
+.address .address-meta {
+  border-bottom: 2rpx solid #dddddd;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+}
+
+.address .icon-address {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+  color: #999999;
 }
 
 .address .address-info {
-  flex-grow: 1;
-  margin-right: 30rpx;
 }
 
 .address .address-consignee {
   display: flex;
-  margin-bottom: 20rpx;
+  margin: 0 30rpx 20rpx 0;
 }
 
 .address .address-consignee .address-mobile {
@@ -111,11 +121,11 @@
 }
 
 .shop .shop-products .shop-product .gift-tag {
-  color: #FF4324;
+  color: #C7162B;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #FF4324;
+  border: 2rpx solid #C7162B;
   padding: 0 8rpx;
 }
 
@@ -158,7 +168,7 @@
 }
 
 .shop-meta .shop-meta-tail.font-red {
-  color: #FF4324;
+  color: #C7162B;
 }
 
 .shop-meta .shop-remark-input {
@@ -281,7 +291,7 @@
 }
 
 .toolbar .toolbar-submit-btn {
-  /* background-color: #333333; */
+  background-color: #C7162B;
   color: #fff;
   padding: 28rpx 80rpx;
   border-left: 2rpx solid #e5e5e5;
@@ -293,16 +303,6 @@
   color: #a3a3a3;
 }
 
-.toolbar .toolbar-submit-btn::before {
-  content: '';
-  display: block;
-  position: absolute;
-  background-color: #03031e;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  transform: perspective(0.8em) rotateX(2deg);
-  transform-origin: top right;
+.checkbox[checked] {
+  color: #C7162B;
 }

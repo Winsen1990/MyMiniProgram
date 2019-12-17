@@ -9,11 +9,9 @@
 -->
 
 <!-- 筛选栏 -->
-<!--
 <view class="filters">
   <view class="filter {{order == 'star'? 'selected' : ''}}" catchtap="tapFilter" data-order="star">综合</view>
   <view class="filter {{order == 'sale_count'? 'selected' : ''}}" catchtap="tapFilter" data-order="sale_count">销量</view>
-  <view class="filter {{order == 'add_time'? 'selected' : ''}}" catchtap="tapFilter" data-order="add_time">新品</view>
   <view class="filter {{order == 'price'? 'selected' : ''}}" catchtap="tapFilter" data-order="price">
     <text>价格</text>
     <view class="filter-sort">
@@ -21,11 +19,13 @@
       <text class="filter-sort-down {{sort == 'DESC' ? 'selected' : ''}}"></text>
     </view>
   </view>
+  <view class="filter {{order == 'add_time'? 'selected' : ''}}" catchtap="tapFilter" data-order="add_time">新品</view>
+  <!--
   <view class="filter" catchtap="switchDisplay">
     <icon class="iconfont icon-category-{{display}}"></icon>
   </view>
+  -->
 </view>
--->
 
 <!-- 产品列表 -->
 <view class="product-{{display}}">
@@ -56,14 +56,18 @@
     <image class="product-image" src="{{product.img}}" mode="widthFix"/>
     <view class="product-info">
       <text class="product-name">{{product.name}}</text>
+      <text class="product-desc font-gray">{{product.desc}}</text>
       <view class="product-meta">
-        <view class="product-price font-red font-s">
+        <view class="product-price font-price">
           <text>￥</text>
           <text>{{filters.toFix(product.price, 2)}}</text>
         </view>
+        <view class="product-market-price font-market-price">
+          ￥{{filters.toFix(product.shop_price, 2)}}
+        </view>
 
-        <button class="product-add-to-cart iconfont icon-cart" data-id="{{product.id}}" catchtap="addToCart"></button>
       </view>
+      <button class="product-add-to-cart iconfont icon-cart" data-id="{{product.id}}" catchtap="addToCart"></button>
     </view>
   </navigator>
 </template>

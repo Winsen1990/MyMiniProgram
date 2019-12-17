@@ -20,7 +20,7 @@ Page({
     sort: 'DESC',
     category_id: 0,
     focus: false,
-    display: 'grid',
+    display: 'list',
     loading: false
   },
 
@@ -240,11 +240,27 @@ Page({
     };
 
     utils.request(config.service.cart, data, 'POST', function (response) {
-      wx.showToast({
-        title: response.data.message,
-        icon: response.data.error != 0 ? 'none' : 'success',
-        duration: 3000
-      });
+      if (response.data.error == 0) {
+        wx.showModal({
+          content: '加入购物车成功',
+          showCancel: true,
+          cancelText: '继续逛逛',
+          confirmText: '立即结算',
+          success: (e) => {
+            if (e.confirm) {
+              wx.switchTab({
+                url: '/pages/cart/index',
+              });
+            }
+          }
+        });
+      } else {
+        wx.showToast({
+          title: response.data.message,
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   }
 });

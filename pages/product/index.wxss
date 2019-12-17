@@ -61,7 +61,7 @@ page {
 }
 
 .filters .filter.selected {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 .filters .filter .filter-sort {
@@ -86,8 +86,8 @@ page {
 }
 
 .filters .filter.selected .filter-sort-up.selected, .filters .filter.selected .filter-sort-down.selected {
-  border-bottom-color: #E9577C;
-  border-top-color: #E9577C;
+  border-bottom-color: #C7162B;
+  border-top-color: #C7162B;
 }
 
 .product-grid {
@@ -135,17 +135,16 @@ page {
   font-size: 40rpx;
   line-height: 1;
   border-radius: 50%;
-  background-color: #E9577C;
+  background-color: #C7162B;
   color: #ffffff;
   padding: 8rpx;
 }
 
 .product-list {
-  
 }
 
 .product-list .product-list-item {
-  border-bottom: 2rpx solid #dddddd;
+  border-top: 2rpx solid #dddddd;
   display: flex;
   padding: 20rpx;
   align-items: center;
@@ -153,35 +152,53 @@ page {
 }
 
 .product-list-item .product-image {
-  width: 200rpx;
-  height: 200rpx;
+  width: 160rpx;
+  height: 160rpx;
   margin-right: 20rpx;
 }
 
 .product-list-item .product-info {
-  flex-grow: 1;
+  width: 550rpx;
+  position: relative;
 }
 
 .product-list-item .product-info .product-name {
   display: block;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.product-list-item .product-info .product-desc {
+  display: block;
+  font-size: 20rpx;
+  margin: 12rpx auto 28rpx;
 }
 
 .product-list-item .product-info .product-meta {
-  display: flex;
-  align-items: center;
-  margin-top: 98rpx;
 }
 
 .product-list-item .product-info .product-meta .product-price {
-  flex-grow: 1;
-  font-size: 32rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.product-list-item .product-info .product-meta .product-add-to-cart {
+.product-list-item .product-info .product-meta .product-market-price {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.product-list-item .product-info .product-add-to-cart {
   font-size: 40rpx;
   line-height: 1;
   border-radius: 50%;
-  background-color: #E9577C;
+  background-color: #b80333;
   color: #ffffff;
-  padding: 8rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  display: block;
+  text-align: center;
+  padding: 10rpx;
+  height: 60rpx;
 }

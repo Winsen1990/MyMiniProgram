@@ -30,5 +30,5 @@
   color: #ffffff;
   padding: 10rpx 30rpx;
   border-radius: 10rpx;
-  background-color: red;
+  background-color: C7162B;
 }

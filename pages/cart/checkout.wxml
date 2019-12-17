@@ -1,9 +1,10 @@
 <!--pages/cart/checkout.wxml-->
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
 <!-- 收货地址 -->
-<view class="address meta-with-arrow">
+<view class="address">
+  <view class="address-decoration"></view>
   <block wx:if="{{address.id == 0}}">
-  <navigator url="/pages/address/add?from=checkout">
+  <navigator url="/pages/address/add?from=checkout" class="meta-with-arrow">
     <icon class="address-plus iconfont icon-plus"></icon>
     <text>新增收货地址</text>
   </navigator>
@@ -11,8 +12,11 @@
 
   <block wx:else>
   <navigator url="/pages/address/select">
-    <icon class="iconfont icon-location"></icon>
-    <view class="address-info">
+    <view class="address-meta">
+      <icon class="iconfont icon-address"></icon>
+      <text>收货信息</text>
+    </view>
+    <view class="address-info" class="meta-with-arrow">
       <view class="address-consignee">
         <text>{{address.consignee}}</text>
         <text class="address-mobile">{{address.mobile}}</text>
@@ -21,12 +25,14 @@
     </view>
   </navigator>
   </block>
+
+  <view class="address-decoration"></view>
 </view>
 
 <!-- 产品信息 -->
 <view class="shop" wx:for="{{cart}}" wx:key="shop_id" wx:for-item="shop">
   <view class="shop-info">
-    <icon class="iconfont icon-shop-title font-xl"></icon>
+    <icon class="iconfont icon-shop font-xl"></icon>
     <text class="font-m">{{shop.shop_name}}</text>
   </view>
 
@@ -61,19 +67,14 @@
       <input type="text" placeholder="点击给商家留言" value="{{shop.remark}}" bindblur="recordRemark"/>
     </view>
   </view>
-
-  <view class="shop-meta">
-    <text>合计</text>
-    <text class="shop-meta-tail font-red">￥{{filters.toFix(shop.amount, 2)}}</text>
-  </view>
 </view>
 
 <!-- 优惠券 -->
 <view class="meta-with-arrow coupon">
   <text class="meta-label">优惠券</text>
   <text class="meta-tail" wx:if="{{coupons.length == 0}}">{{coupon.name}}</text>
-  <picker wx:else range="{{coupons}}" range-key="name" bindchange="selectCoupon" disabled="{{coupons.length == 1}}">
-    <text class="meta-tail">{{coupon.name}}</text>
+  <picker class="meta-tail" wx:else range="{{coupons}}" range-key="name" bindchange="selectCoupon" disabled="{{coupons.length == 1}}">
+    {{coupon.name}}
   </picker>
 </view>
 
@@ -107,6 +108,7 @@
 -->
 
 <!-- 合计 -->
+<!--
 <view class="summary">
   <view class="summary-row">
     <text class="label">商品金额</text>
@@ -123,14 +125,15 @@
     <text class="value">-{{filters.toFix(summary.coupon_decrement, 2)}}</text>
   </view>
 </view>
+-->
 
 <view class="toolbar-block"></view>
 
 <view class="toolbar">
   <view class="blank-block"></view>
   <view class="toolbar-summary">
-    <text>合计：</text>
-    <text class="font-red">￥{{filters.toFix(summary.amount, 2)}}</text>
+    <text>{{summary.product_count}}件商品, 总额：</text>
+    <text class="font-red font-price">￥{{filters.toFix(summary.amount, 2)}}</text>
   </view>
   <button class="toolbar-submit-btn" disabled="{{!can_submit}}" catchtap="submitOrder">提交订单</button>
 </view>

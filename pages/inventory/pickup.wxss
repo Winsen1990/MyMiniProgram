@@ -8,7 +8,7 @@
 }
 
 .address.meta-with-arrow {
-  border-bottom: 4rpx dashed #ff1400;
+  border-bottom: 4rpx dashed #C7162B;
 }
 
 .address navigator {
@@ -18,7 +18,7 @@
 
 .address .icon-plus {
   padding: 20rpx;
-  background-color: #ff1400;
+  background-color: #C7162B;
   border-radius: 15rpx;
   color: #fff;
   margin-right: 20rpx;
@@ -141,11 +141,11 @@
 }
 
 .shop .shop-products .shop-product .gift-tag {
-  color: #ff1400;
+  color: #C7162B;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #ff1400;
+  border: 2rpx solid #C7162B;
   padding: 0 8rpx;
 }
 
@@ -188,7 +188,7 @@
 }
 
 .shop-meta .shop-meta-tail.font-red {
-  color: #ff1400;
+  color: #C7162B;
 }
 
 .shop-meta .shop-remark-input {
@@ -287,7 +287,7 @@
 }
 
 .toolbar .toolbar-submit-btn {
-  background-color: #ff1400;
+  background-color: #C7162B;
   color: #fff;
   padding: 28rpx 80rpx;
   border-left: 2rpx solid #e5e5e5;

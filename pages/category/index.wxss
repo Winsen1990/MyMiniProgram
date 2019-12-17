@@ -4,6 +4,39 @@ page {
   height: 100%;
 }
 
+/* 搜索框 */
+.search {
+  background: #ffffff;
+  padding: 20rpx 28rpx;
+}
+.search .search-form {
+  display: flex;
+  align-items: center;
+  border-radius: 10rpx;
+  background-color: #f2f2f2;
+  padding: 8rpx 20rpx;
+}
+.search .search-form .icon-search {
+  padding: 0 16rpx;
+  color: #999999;
+  font-size: 28rpx;
+}
+.search .search-form .hd-input-text {
+  flex-grow: 1;
+  border-bottom-right-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  font-size: 28rpx;
+  background-color: #f2f2f2;
+}
+.search .search-form .hd-input-text input {
+  width: 100%;
+  text-align: center;
+  text-indent: -28rpx;
+  background-color: #f2f2f2;
+  font-size: 28rpx;
+}
+
+/* 分类列表 */
 .category-panel {
   display: flex;
   width: 100%;
@@ -13,20 +46,20 @@ page {
 .category-panel .category-list {
   text-align: center;
   background-color: #F3F3F3;
-  border-right: 2rpx solid #e5e5e5;
+  /* border-right: 2rpx solid #e5e5e5; */
   display: inline-block;
   height: 100%;
-  width: 192rpx;
+  width: 194rpx;
   vertical-align: top;
 }
 
 .category-panel .category-list .category-item {
   color: #333333;
-  font-size: .8rem;
+  font-size: 28rpx;
   /* line-height: 1.6rem; */
   text-align: center;
   display: block;
-  padding: 30rpx 0;
+  padding: 28rpx 0;
 }
 
 .category-panel .category-list .category-item-current {
@@ -38,7 +71,7 @@ page {
 .category-panel .category-product-list {
   display: inline-block;
   width: 520rpx;
-  padding: 40rpx;
+  padding: 0 40rpx 40rpx;
   background-color: #ffffff;
 }
 
@@ -49,7 +82,8 @@ page {
   padding-left: 5%;
   display: block;
   margin-top: 40rpx;
-  border-left: 6rpx solid #FFC426;
+  border-left: 6rpx solid #ffbb1d;
+  background-color: rbga(114, 114, 114, 0.1);
 }
 
 .category-product-item {
@@ -78,38 +112,42 @@ page {
 
 .category-product-item .product-name {
   display: block;
-  font-size: 28rpx;
   color: #333333;
-  font-weight: bold;
   margin-bottom: 10rpx;
+  font-size: 24rpx;
+  line-height: 1;
+  text-align: left;
+  margin: 30rpx auto 12rpx;
+  font-weight: bold;
 }
 
 .category-product-item .product-desc {
+  display: block;
+  max-height: 64rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
   font-size: 20rpx;
-  color: #565656;
-  max-height: 60rpx;
+  color: #b6b6b5;
+  margin: 0 auto 16rpx;
+  line-height: 1.2;
+  font-weight: normal;
 }
 
 .wx-swiper-dots {
   display: none;
 }
 
+.category-product-item .product-price {
+}
+
 .category-product-item .price {
-  color: #E9577C;
-  font-size: 36rpx;
-  line-height: 44rpx;
 }
 
 .category-product-item .market-price {
-  color: #999999;
-  font-size: 24rpx;
-  line-height: 44rpx;
-  margin-left: 16rpx;
-  text-decoration: line-through;
 }
 
 .category-add-to-cart {
-  background-color: #E9577C;
+  background-color: #b80333;
   color: #ffffff;
   position: absolute;
   font-size: 36rpx;
@@ -121,4 +159,33 @@ page {
   height: 50rpx;
   text-align: center;
   border-radius: 50%;
+}
+
+.tabbar {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+}
+
+.tabbar .tabbar-item {
+  flex-grow: 1;
+  text-align: center;
+  padding: 12rpx 0 8rpx;
+}
+
+.tabbar .tabbar-item image {
+  width: 46rpx;
+  height: 46rpx;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.tabbar .tabbar-item text {
+  font-size: 20rpx;
+  display: block;
+  text-align: center;
+  line-height: 1;
 }

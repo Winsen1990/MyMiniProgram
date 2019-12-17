@@ -12,16 +12,12 @@ Page({
    */
   data: {
     products: [],
-    keyword: '',
-    total_page: 1,
-    page: 0,
-    page_size: 10,
+    id: 1,
     order: 'star',
     sort: 'DESC',
-    category_id: 0,
-    focus: false,
     display: 'list',
-    loading: false
+    loading: false,
+    block: null
   },
 
   /**
@@ -29,16 +25,9 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    this.setData({
-      category_id: options.category_id || 0,
-      keyword: options.keyword || ''
-    });
 
     var data = {
-      page: this.data.page,
-      keyword: this.data.keyword,
-      page_size: this.data.page_size,
-      category_id: this.data.category_id,
+      id: this.data.id,
       order: this.data.order,
       sort: this.data.sort,
       act: 'view',
@@ -46,8 +35,6 @@ Page({
     };
 
     utils.request(config.service.block, data, 'GET', function (response) {
-      console.info(response);
-
       if (response.data.error != 0) {
         wx.showToast({
           title: response.data.message,
@@ -60,15 +47,12 @@ Page({
 
         that.setData({
           products: [],
-          total_page: 1,
-          page: 1,
           loading: false
         });
       } else {
         that.setData({
           products: response.data.products,
-          total_page: response.data.total_page,
-          page: response.data.page,
+          block: response.data.block,
           loading: false
         });
       }
@@ -120,20 +104,13 @@ Page({
     var that = this;
 
     var data = {
-      page: this.data.page,
-      keyword: this.data.keyword,
-      page_size: this.data.page_size,
-      category_id: this.data.category_id,
+      id: this.data.id,
       order: this.data.order,
       sort: this.data.sort,
       act: 'view'
     };
 
-    console.info(data);
-
     utils.request(config.service.block, data, 'GET', function(response) {
-      console.info(response);
-
       if (response.data.error != 0) {
         wx.showToast({
           title: response.data.message,
@@ -146,73 +123,17 @@ Page({
 
         that.setData({
           products: [],
-          total_page: 1,
-          page: 1,
           loading: false
         });
       } else {
         that.setData({
           products: response.data.products,
-          total_page: response.data.total_page,
-          page: response.data.page,
+          block: response.data.block,
           loading: false
         });
       }
 
       wx.stopPullDownRefresh();
-    });
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    if (this.data.page >= this.data.total_page || this.data.loading) {
-      return false;
-    }
-
-    this.data.loading = true;
-
-    var that = this;
-
-    var data = {
-      page: (this.data.page + 1),
-      keyword: this.data.keyword,
-      page_size: this.data.page_size,
-      category_id: this.data.category_id,
-      order: this.data.order,
-      sort: this.data.sort,
-      act: 'view'
-    };
-
-    utils.request(config.service.block, data, 'GET', function(response) {
-      console.info(response);
-
-      if (response.data.error != 0) {
-        wx.showToast({
-          title: response.data.message,
-          icon: 'none'
-        });
-
-        setTimeout(function() {
-          wx.hideToast();
-        }, 3000);
-
-        that.setData({
-          loading: false
-        });
-      } else {
-        var products = that.data.products;
-        for (var i = 0; i < response.data.products.length; i++) {
-          products.push(response.data.products[i]);
-        }
-        that.setData({
-          products: products,
-          total_page: response.data.total_page,
-          page: response.data.page,
-          loading: false
-        });
-      }
     });
   },
 
@@ -243,23 +164,6 @@ Page({
   },
 
   /**
-   * 搜索产品
-   */
-  search: function(e) {
-    var keyword = e.detail.value;
-
-    keyword = keyword.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g, '');
-
-    if (keyword != '') {
-      this.setData({
-        keyword: keyword
-      });
-
-      wx.startPullDownRefresh();
-    }
-  },
-
-  /**
    * 切换显示样式
    */
   switchDisplay: function() {
@@ -280,11 +184,27 @@ Page({
     };
 
     utils.request(config.service.cart, data, 'POST', function(response) {
-      wx.showToast({
-        title: response.data.message,
-        icon: response.data.error != 0 ? 'none' : 'success',
-        duration: 3000
-      });
+      if (response.data.error == 0) {
+        wx.showModal({
+          content: '加入购物车成功',
+          showCancel: true,
+          cancelText: '继续逛逛',
+          confirmText: '立即结算',
+          success: (e) => {
+            if (e.confirm) {
+              wx.switchTab({
+                url: '/pages/cart/index',
+              });
+            }
+          }
+        });
+      } else {
+        wx.showToast({
+          title: response.data.message,
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   }
 });

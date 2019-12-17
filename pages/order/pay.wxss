@@ -164,7 +164,7 @@ button::after {
 }
 
 .meta-info-list .meta-info .meta-info-price {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 /* 金额合计 */
@@ -216,7 +216,7 @@ button::after {
 }
 
 .checkout-toolbar .checkout-summary .checkout-summary-amount {
-  color: #E9577C;
+  color: #C7162B;
 }
 
 .btn {
@@ -226,6 +226,6 @@ button::after {
 }
 
 .btn-primary {
-  background-color: #E9577C;
+  background-color: #C7162B;
   color: #ffffff;
 }

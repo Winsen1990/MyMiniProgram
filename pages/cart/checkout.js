@@ -40,6 +40,7 @@ Page({
       balance_reduce: 0, //余额抵扣
       integral_reduce: 0, //积分抵扣
       reward_reduce: 0, //佣金抵扣
+      product_count: 0, //产品数量
     },
     wallet: {
       integral: 0,//积分
@@ -192,6 +193,7 @@ Page({
       balance_reduce: 0, //余额抵扣
       integral_reduce: 0, //积分抵扣
       reward_reduce: 0, //佣金抵扣
+      product_count: 0, //产品数量
     }
 
     //产品合计
@@ -199,6 +201,7 @@ Page({
       var product = this.data.cart[0].products[i];
       summary.amount += product.price * product.count;
       summary.product_amount += product.price * product.count;
+      summary.product_count += product.count;
     }
 
     //运费
@@ -235,17 +238,17 @@ Page({
     }
 
     if(this.data.use_integral) {
-      summary.integral_reduce -= Math.min(summary.amount, this.data.wallet.integral/this.data.wallet.integral_rate);
+      summary.integral_reduce = Math.min(summary.amount, this.data.wallet.integral/this.data.wallet.integral_rate);
       summary.amount -= summary.integral_reduce;
     }
 
     if (this.data.use_reward) {
-      summary.reward_reduce -= Math.min(summary.amount, this.data.wallet.reward / this.data.wallet.reward_rate);
+      summary.reward_reduce = Math.min(summary.amount, this.data.wallet.reward / this.data.wallet.reward_rate);
       summary.amount -= summary.reward_reduce;
     }
 
     if(this.data.use_balance) {
-      summary.balance_reduce -= Math.min(summary.amount, this.data.wallet.balance);
+      summary.balance_reduce = Math.min(summary.amount, this.data.wallet.balance);
       summary.amount -= summary.balance_reduce;
     }
 

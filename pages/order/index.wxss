@@ -1,4 +1,8 @@
 /* pages/order/index.wxss */
+page {
+  background-color: #f2f2f2;
+}
+
 .tabs {
   display: flex;
   background-color: #ffffff;
@@ -12,8 +16,8 @@
 }
 
 .tabs .tab.current {
-  color: #E9577C;
-  border-color: #E9577C;
+  color: #C7162B;
+  border-color: #C7162B;
 }
 
 .order-list {
@@ -97,8 +101,8 @@
 
 .order-footer .order-opera, .order-footer .order-opera-primary {
   display: inline-block;
-  color: #a3a3a3;
-  border: 2rpx solid #a3a3a3;
+  color: #333333;
+  border: 2rpx solid #333333;
   border-radius: 15rpx;
   vertical-align: middle;
   padding: 8rpx 16rpx;
@@ -107,8 +111,9 @@
 }
 
 .order-footer .order-opera-primary {
-  color: #E9577C;
-  border-color: #E9577C;
+  background-color: #C7162B;
+  border-color: #C7162B;
+  color: #ffffff;
 }
 
 .tags {
@@ -117,10 +122,10 @@
 
 .order-info .order-detail .detail-info .tags .gift-tag {
   display: inline-block;
-  color: #E9577C;
+  color: #C7162B;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #E9577C;
+  border: 2rpx solid #C7162B;
   padding: 4rpx 8rpx;
 }

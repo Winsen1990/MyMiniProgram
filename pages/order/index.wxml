@@ -18,7 +18,9 @@
       </view>
 
       <view class="order-info">
+        <!--
         <view class="shop-info">商家: {{order.shop_name}}</view>
+        -->
         <view class="order-detail" wx:for="{{order.details}}" wx:key="id" wx:for-item="detail">
           <image src="{{detail.img}}" class="detail-img" mode="widthFix"/>
           <view class="detail-info">

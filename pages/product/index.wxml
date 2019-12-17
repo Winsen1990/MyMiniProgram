@@ -18,9 +18,11 @@
       <text class="filter-sort-down {{sort == 'DESC' ? 'selected' : ''}}"></text>
     </view>
   </view>
+  <!--
   <view class="filter" catchtap="switchDisplay">
     <icon class="iconfont icon-category-{{display}}"></icon>
   </view>
+  -->
 </view>
 
 <!-- 产品列表 -->
@@ -52,14 +54,18 @@
     <image class="product-image" src="{{product.img}}" mode="widthFix"/>
     <view class="product-info">
       <text class="product-name">{{product.name}}</text>
+      <text class="product-desc font-gray">{{product.desc}}</text>
       <view class="product-meta">
-        <view class="product-price font-red font-s">
+        <view class="product-price font-price">
           <text>￥</text>
           <text>{{filters.toFix(product.price, 2)}}</text>
         </view>
+        <view class="product-market-price font-market-price">
+          ￥{{filters.toFix(product.shop_price, 2)}}
+        </view>
 
-        <button class="product-add-to-cart iconfont icon-cart" data-id="{{product.id}}" catchtap="addToCart"></button>
       </view>
+      <button class="product-add-to-cart iconfont icon-cart" data-id="{{product.id}}" catchtap="addToCart"></button>
     </view>
   </navigator>
 </template>

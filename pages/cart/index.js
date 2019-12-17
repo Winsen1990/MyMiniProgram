@@ -11,6 +11,7 @@ Page({
   data: {
     cart: [],
     amount: 0,
+    product_count: 0,
     canCheckout: false,
     checkAll: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -61,14 +62,7 @@ Page({
 
         if(response.data.cart.length) {
           that.setData({
-            cart: [
-              {
-                shop_id: response.data.shop.id,
-                shop_name: response.data.shop.name,
-                checked: checked,
-                products: response.data.cart
-              }
-            ]
+            cart: response.data.cart
           });
         } else {
           that.setData({
@@ -365,6 +359,7 @@ Page({
    */
   summary: function() {
     var amount = 0;
+    var product_count = 0;
     var can_checkout = false;
     var cart = this.data.cart;
     for(var i = 0; i < cart.length; i++) {
@@ -375,12 +370,14 @@ Page({
         if(product.checked) {
           can_checkout = true;
           amount += product.price * product.count;
+          product_count += product.count;
         }
       }
     }
 
     this.setData({
       amount: amount,
+      product_count: product_count,
       canCheckout: can_checkout
     });
   },
