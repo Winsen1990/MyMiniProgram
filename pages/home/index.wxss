@@ -33,7 +33,6 @@
 .block {
   background-color: #ffffff;
   border-top: 1rpx solid #e5e5e5;
-  padding-left: 30rpx;
   margin-bottom: 20rpx;
   border-bottom: 1rpx solid #e5e5e5;
   padding-bottom: 30rpx;
@@ -41,7 +40,6 @@
 
 .block .block-title {
   color: #333333;
-  margin-left: -30rpx;
 }
 
 .block .block-cubes {
@@ -125,6 +123,7 @@
   overflow: visible;
 }
 .hdj-member-info .hdj-member-card-bottom {
+  padding-top: 30rpx;
   background: #322d2a;
   box-shadow: 0px -6rpx 12rpx rgba(44, 35, 29, 0.4);
   border-radius: 0px 0px 10px 10px;

@@ -3,12 +3,6 @@ var WxParse = require('../../assets/wxParse/wxParse');
 const utils = require('../../utils/util');
 const config = require('../../config');
 const app = getApp();
-var regions = {};
-var address = {
-  province: 1,
-  city: 1,
-  district: 1
-};
 
 Page({
 
@@ -26,7 +20,7 @@ Page({
       autoplay: false,
       displayDots: true,
       indicatorColor: '#bbbbbb',
-      indicatorActiveColor: '#870020',
+      indicatorActiveColor: '#0b0b0b',
       duration: 800,
       interval: 5000
     },
@@ -34,15 +28,9 @@ Page({
       current: 0,
       index: 'tab-0'
     },
-    support_delivery: false,
-    can_checkout: false,
-    region: ['省', '市', '区'],//省市区
-    region_index: [0, 0, 0],
-    regions: [
-      [], //省
-      [], //市
-      [] //区
-    ],
+    //猜你喜欢 
+    favorite_products: [],
+    can_checkout: true,
     displayPanel: false, //购买面板
     direct_buy: false, //直接购买
     count: 1 //购买数量
@@ -68,65 +56,6 @@ Page({
         });
       }
     });
-
-    //配送地址相关
-    var province = wx.getStorageSync('province');
-    var city = wx.getStorageSync('city');
-    var district = wx.getStorageSync('district');
-    var group = wx.getStorageSync('group');
-
-    if (!province || !city || !district) {
-      utils.request(config.service.address, { act: 'data', token: app.globalData.token }, 'GET', function (response) {
-        province = response.data.province;
-        city = response.data.city;
-        district = response.data.district;
-        group = response.data.group;
-
-        regions.province = province;
-        regions.city = city;
-        regions.district = district;
-
-        wx.setStorage({
-          key: 'province',
-          data: province
-        });
-
-        wx.setStorage({
-          key: 'city',
-          data: city
-        });
-
-        wx.setStorage({
-          key: 'district',
-          data: district
-        });
-
-        wx.setStorage({
-          key: 'group',
-          data: group
-        });
-
-        that.setData({
-          'regions[0]': response.data.province
-        });
-
-        that.seekCity(regions.province[0].id);
-
-        that.getDefaultAddress();
-      });
-    } else {
-      regions.province = province;
-      regions.city = city;
-      regions.district = district;
-
-      that.setData({
-        'regions[0]': province
-      });
-
-      this.seekCity(regions.province[0].id);
-
-      this.getDefaultAddress();
-    }
 
     var data = {
       id: options.id || 0,
@@ -157,7 +86,45 @@ Page({
         wx.setNavigationBarTitle({
           title: response.data.product.name,
         });
+
+        //限时促销计时器
+        if (that.data.product.is_promote) {
+          // setTimeout(function() {
+            var activity_timer = setInterval(function () {
+              if (that.data.product.promote_left <= 0) {
+                clearInterval(activity_timer);
+                activity_timer = null;
+              }
+
+              var _left_time = that.data.product.promote_left;
+              if (_left_time <= 0) {
+                that.setData({
+                  'product.promote_left': 0,
+                  'product.is_promote': false
+                });
+              } else {
+                var _hour = parseInt(_left_time / 3600);
+                var _minute = parseInt((_left_time % 3600) / 60);
+                var _second = _left_time % 60;
+                var _activity_status = {};
+                _activity_status['product.hour'] = _hour;
+                _activity_status['product.minute'] = _minute > 9 ? _minute : '0' + _minute;
+                _activity_status['product.second'] = _second > 9 ? _second : '0' + _second;
+                _activity_status['product.promote_left'] = _left_time - 1;
+
+                that.setData(_activity_status);
+              }
+            }, 1000);
+          // }, 600);
+        }
       }
+    });
+
+    utils.request(config.service.favorite, null, 'GET', function (response) {
+      //猜你喜欢
+      that.setData({
+        favorite_products: response.data.products
+      });
     });
   },
 
@@ -262,7 +229,7 @@ Page({
    */
   addToCart: function() {
 
-    if (!this.data.can_checkout || !this.data.support_delivery) {
+    if (!this.data.can_checkout) {
       wx.showToast({
         title: '当前地区缺货',
       });
@@ -270,11 +237,10 @@ Page({
     }
 
     this.setData({
-      direct_buy: false,
-      displayPanel: true
+      direct_buy: false
     });
 
-    // this.buy();
+    this.buy();
   },
 
   /**
@@ -282,7 +248,7 @@ Page({
    */
   buyNow: function() {
 
-    if (!this.data.can_checkout || !this.data.support_delivery) {
+    if (!this.data.can_checkout) {
       wx.showToast({
         title: '当前地区缺货',
       });
@@ -290,11 +256,19 @@ Page({
     }
 
     this.setData({
-      direct_buy: true,
-      displayPanel: true
+      direct_buy: true
     });
 
-    // this.buy();
+    this.buy();
+  },
+
+  /**
+   * 定级产品直接购买
+   */
+  directBuy: function() {
+    wx.navigateTo({
+      url: '/pages/cart/checkout?direct_buy=1&direct_buy_product_id=' + this.data.product.id,
+    });
   },
 
   /**
@@ -370,20 +344,6 @@ Page({
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
@@ -432,222 +392,4 @@ Page({
     });
   },
   /*------------------------ tabs End -------------------------------*/
-  /*------------------------ 客服电话 -------------------------------*/
-  serviceCall: function (e) {
-    console.info(e);
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.phone
-    });
-  },
-  /*------------------------ 客服电话 End -------------------------------*/
-  /*------------------------ 地址选择 -------------------------------*/
-  /**
-   * 读取默认地址或初始化收货地址
-   */
-  getDefaultAddress: function() {
-    var that = this;
-    var default_region_index = [0, 0, 0];
-    var default_region = ['北京', '北京', '海淀'];
-    if (utils.checkAuthorization()) {
-      utils.request(config.service.address, { act: 'get_default', token: app.globalData.token }, 'GET', function(response) {
-        if(response.data.error == 0) {
-          var i = 0;
-          default_region_index[0] = that.seekProvince(response.data.address.province);
-          default_region[0] = that.data.regions[0][default_region_index[0]].name;
-          address.province = response.data.address.province;
-          address.city = response.data.address.city;
-          address.district = response.data.address.district;
-          console.info(address);
-
-          if (that.data.regions[1].length) {
-            for (i = 0; i < that.data.regions[1].length; i++) {
-              var city = that.data.regions[1][i];
-
-              if (city.id == response.data.address.city) {
-                default_region[1] = city.name;
-                default_region_index[1] = i;
-                that.seekDistrict(city.id);
-                break;
-              }
-            }
-          }
-
-          if (that.data.regions[2].length) {
-            for (i = 0; i < that.data.regions[2].length; i++) {
-              var district = that.data.regions[2][i];
-
-              if (district.id == response.data.address.district) {
-                default_region[2] = district.name;
-                default_region_index[2] = i;
-                break;
-              }
-            }
-          }
-
-          console.info(default_region_index);
-        }
-
-        that.setData({
-          region_index: default_region_index,
-          region: default_region
-        });
-
-        that.checkDelivery();
-      });
-    } else {
-      that.setData({
-        region_index: default_region_index,
-        region: default_region
-      });
-      that.checkDelivery();
-    }
-  },
-  /**
-   * 检查地址是否支持配送
-   */
-  checkDelivery: function() {
-    var that = this;
-    var data = {
-      token: app.globalData.token,
-      opera: 'delivery_check',
-      province: address.province,
-      city: address.city,
-      district: address.district
-    };
-
-    utils.request(config.service.address, data, 'POST', function(response) {
-      that.setData({
-        support_delivery: response.data.error == 0
-      });
-    }, null, false);
-  },
-
-  /**
-   * 查找省份
-   */
-  seekProvince: function (province_id) {
-    var province = regions.province;
-    if (province.length) {
-      for (var i = 0; i < province.length; i++) {
-        var province_item = province[i];
-
-        if (province_item.id == province_id) {
-          this.seekCity(province_id);
-          console.info('seek ' + province_item.name + ' at ' + i);
-          return i;
-        }
-      }
-    }
-
-    return 0;
-  },
-  /**
-   * 查找城市
-   */
-  seekCity: function (province_id) {
-    var city = regions.city;
-    var city_result = [];
-
-    if (city.length) {
-      for (var i = 0; i < city.length; i++) {
-        var city_item = city[i];
-
-        if (city_item.province_id == province_id) {
-          city_result.push(city_item);
-        }
-      }
-    }
-
-    this.setData({
-      'regions[1]': city_result
-    });
-
-    if (regions.district.length) {
-      this.seekDistrict(city_result[0].id);
-    }
-  },
-
-  /**
-   * 查找区
-   */
-  seekDistrict: function (city_id) {
-    var district = regions.district;
-    var district_result = [];
-
-    if (district.length) {
-      for (var i = 0; i < district.length; i++) {
-        var district_item = district[i];
-
-        if (district_item.city_id == city_id) {
-          district_result.push(district_item);
-        }
-      }
-    }
-
-    this.setData({
-      'regions[2]': district_result
-    });
-  },
-
-  /**
-   * 地区选择
-   */
-  bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
-
-
-    for (var i = 0; i < e.detail.value.length; i++) {
-      if (e.detail.value[i] == null) {
-        e.detail.value[i] = 0;
-      }
-    }
-
-    var province = this.data.regions[0][e.detail.value[0]];
-    var city = this.data.regions[1][e.detail.value[1]];
-    var district = this.data.regions[2][e.detail.value[2]];
-
-    this.setData({
-      region: [
-        province.name,
-        city.name,
-        district.name
-      ],
-      region_index: e.detail.value
-    });
-
-    address.province = province.id;
-    address.city = city.id;
-    address.district = district.id;
-
-    this.checkDelivery();
-  },
-
-  /**
-   * 改变可选项
-   */
-  bindRegionColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    switch (e.detail.column) {
-      case 0:
-        //选择省
-        var province = this.data.regions[0][e.detail.value];
-        this.seekCity(province.id);
-        break;
-
-      case 1:
-        //选择市
-        var city = this.data.regions[1][e.detail.value];
-        this.seekDistrict(city.id);
-        break;
-
-      case 2:
-        //选择区
-        /*
-        var district = this.data.regions[2][e.detail.value];
-        this.seekGroup(district.id);
-        */
-        break;
-    }
-  },
-  /*------------------------ 地址选择 End -------------------------------*/
 });

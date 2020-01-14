@@ -1,0 +1,111 @@
+/* pages/level/index.wxss */
+/* 会员专区 */
+.hdj-member-card-block {
+  height: 690rpx;
+}
+
+.hdj-member-card-wrapper {
+  background: linear-gradient(to bottom, #0b0b0b 55%, transparent 55%);
+  padding-top: 67rpx;
+}
+
+.hdj-member-card-wrapper .hdj-member-card {
+  width: 562rpx;
+  height: 217rpx;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-image: url(http://m.hdjshop.cn/themes/hdj/images/member_card_bg_2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 60rpx 46rpx 78rpx;
+  position: relative;
+}
+.hdj-member-card-wrapper .hdj-member-card .hdj-member-rule {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  font-size: 20rpx;
+}
+.hdj-member-card-wrapper .hdj-member-card.hdj-member-card-3 {
+  background-image: url(http://m.hdjshop.cn/themes/hdj/images/member_card_bg_3.png);
+}
+.hdj-member-card-wrapper .hdj-member-card.hdj-member-card-4 {
+  background-image: url(http://m.hdjshop.cn/themes/hdj/images/member_card_bg_4.png);
+}
+.hdj-member-card-wrapper .hdj-member-card.hdj-member-card-5 {
+  background-image: url(http://m.hdjshop.cn/themes/hdj/images/member_card_bg_5.png);
+}
+.hdj-member-card-wrapper .hdj-member-card h3 {
+  font-size: 43rpx;
+  display: block;
+  margin-bottom: 21rpx;
+}
+.hdj-member-card-wrapper .hdj-member-card .hdj-member-slogan {
+  font-size: 24rpx;
+}
+.hdj-member-card-wrapper .hdj-member-card .hdj-member-slogan .hdj-member-level-extend {
+  border: 2rpx solid #999999;
+  padding: 2rpx 5px;
+  border-radius: 14rpx;
+}
+.hdj-member-card-wrapper .hdj-member-card .hdj-member-notice {
+  margin: 86rpx 0 0;
+  font-size: 16rpx;
+}
+.hdj-member-card-wrapper .hdj-member-card .benefit-avg {
+  color: #a2002d;
+}
+.hdj-member-card-wrapper .privilege-title {
+  font-size: 24rpx;
+  color: #939292;
+  margin-bottom: 30rpx;
+}
+.hdj-member-card-wrapper .hdj-member-card-privilege {
+  background: url(http://m.hdjshop.cn/themes/hdj/images/member_center_bg.png) no-repeat transparent center center;
+  background-size: 100% 100%;
+  width: 720rpx;
+  padding: 78rpx 0 32rpx;
+  text-align: center;
+  align-items: center;
+  margin: -78rpx auto 0;
+  position: relative;
+}
+.hdj-member-card-wrapper .hdj-member-card-privilege .hdj-member-card-privilege-slide {
+  display: flex;
+}
+.hdj-member-card-wrapper .hdj-member-card-privilege .hdj-member-card-privilege-slide .privilege-item {
+  flex-grow: 1;
+}
+.hdj-member-card-wrapper .hdj-member-card-privilege .hdj-member-card-privilege-slide .privilege-item image {
+  width: 33px;
+}
+.hdj-member-card-wrapper .hdj-member-card-privilege .hdj-member-card-privilege-slide .privilege-item view {
+  font-size: 24rpx;
+  margin-top: 6px;
+  color: #ffffff;
+}
+.hdj-member-card-navigator ul {
+  display: block;
+  margin: 24rpx auto 60rpx;
+  text-align: center;
+  font-size: 0;
+}
+.hdj-member-card-navigator ul li {
+  font-size: 0;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #0b0b0b;
+  width: 16rpx;
+  height: 16rpx;
+  margin-right: 16rpx;
+}
+.hdj-member-card-navigator ul li:last-child {
+  margin-right: 0;
+}
+.hdj-member-card-navigator ul li.on {
+  background-color: #0b0b0b;
+}
+
+.hdj-block {
+  margin-top: 50rpx;
+}

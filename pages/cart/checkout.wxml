@@ -16,7 +16,7 @@
       <icon class="iconfont icon-address"></icon>
       <text>收货信息</text>
     </view>
-    <view class="address-info" class="meta-with-arrow">
+    <view class="address-info meta-with-arrow">
       <view class="address-consignee">
         <text>{{address.consignee}}</text>
         <text class="address-mobile">{{address.mobile}}</text>

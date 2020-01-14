@@ -1,0 +1,33 @@
+<!--pages/level/detail.wxml-->
+<import src="../../assets/wxParse/wxParse.wxml"/>
+
+<view class="hdj-level-privileges">
+  <view class="hdj-level-privilege-tabs">
+    <view wx:for="{{level.privileges}}" wx:for-index="id" wx:for-item="privilege" class="hdj-level-privilege-tab" id="tab-{{privilege.id}}">
+      <image src="{{privilege.icon}}" mode="widthFix"/>
+      <view>{{privilege.name}}</view>
+    </view>
+  </view>
+
+  <view class="hdj-level-privilege-contents">
+    <view class="hdj-level-privilege-content" id="tab-content-{{privilege.id}}">
+      <view class="privilege-title">{{privilege.name}}</view>
+      <view class="privilege-content">
+        <template is="wxParse" data="{{wxParseData:privilege.richContent.nodes}}"/>
+      </view>
+    </view>
+    <!-- <view class="arrow" style="left: 136.5px;"></view> -->
+  </view>
+</view>
+
+
+<!-- 导航栏 -->
+<view class="hdj-toolbar-placeholder"></view>
+
+<view class="hdj-toolbar" wx:if="{{user.level_id == 1}}">
+  <navigator class="btn-primary" url="/pages/home/member">即刻购参 成为会员</navigator>
+</view>
+
+<view class="hdj-toolbar" wx:else>
+  <navigator class="btn-primary" url="/pages/home/member">立即续费</navigator>
+</view>

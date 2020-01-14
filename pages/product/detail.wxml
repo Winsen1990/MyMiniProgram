@@ -1,6 +1,8 @@
 <!--pages/product/detail.wxml-->
 <!-- 产品相册 -->
 <swiper indicator-dots="{{gallery.displayDots}}"
+  indicator-color="{{gallery.indicatorColor}}"
+  indicator-active-color="{{gallery.indicatorActiveColor}}"
   autoplay="{{gallery.autoplay}}" duration="{{gallery.duration}}"
   interval="{{gallery.interval}}"
   style="height:{{gallery.heights[gallery.index]}}px"
@@ -15,92 +17,112 @@
 
 <!-- 产品名称 价格 -->
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
-<view class="product-primary-info">
-  <view class="product-name">
-    <text>{{product.name}}</text>
-    <text>{{product.desc}}</text>
+<view class="product-meta">
+  <!-- 限时促销 -->
+  <view class="product-promotion" wx:if="{{product.is_promote}}">
+      <strong class="product-price">￥<text>{{filters.toFix(product.price, 2)}}</text></strong>
+      <view class="product-promotion-tags">
+          <view class="product-market-price">￥{{filters.toFix(product.market_price, 2)}}</view>
+          <view class="product-promotion-tag">
+              <i class="iconfont icon-clock"></i>
+              <text>限时秒杀</text>
+          </view>
+      </view>
+      <view class="product-promotion-timer">
+          <view>距结束还剩</view>
+          <view class="product-promotion-left">
+              <text>{{product.hour}}</text>:<text>{{product.min}}</text>:<text>{{product.second}}</text>
+          </view>
+      </view>
   </view>
-  <!--
-  <view class="product-collection {{product.collection ? 'product-collection-active': ''}}" catchtap="collection">
-    <icon class="iconfont {{product.collection ? 'icon-fav-checked' : 'icon-fav'}}"></icon>
-    <text>{{product.collection ? '已收藏' : '收藏'}}</text>
+
+  <!-- 产品名称 -->
+  <view class="product-info">
+    <view class="product-name">{{product.name}}</view>
+    <button open-type="share" class="product-share">
+      <i class="iconfont icon-share"></i>
+      <view>分享</view>
+    </button>
   </view>
-  -->
-</view>
-<view class="product-promote-info" wx:if="{{product.is_promote}}">
-</view>
-<view class="product-price-info" wx:else>
-  <text class="product-price">￥{{filters.toFix(product.price, 2)}}</text>
-  <text class="product-market-price">￥{{filters.toFix(product.market_price, 2)}}</text>
-  <text class="product-shipping">{{product.shipping_free ? '全场包邮' : ''}}</text>
-</view>
+  
+  <!-- 产品价格 -->
+  <view class="product-price-info" wx:if="{{!product.is_promote}}">
+    <strong>￥<text>{{filters.toFix(product.price, 2)}}</text></strong>
 
-<!-- 收货地址 -->
-<!--
-<view class="consignee-info">
-  <view class="meta-with-arrow">
-    <text class="font-gray">配送到：</text>
-    <picker mode="multiSelector" bindchange="bindRegionChange" bindcolumnchange="bindRegionColumnChange" range="{{regions}}" range-key="name" value="{{region_index}}" class="region-picker">
-      <view>{{region[0]}} {{region[1]}} {{region[2]}}</view>
-      <view wx:if="{{!support_delivery}}" class="font-red">部分地区无法送达，敬请谅解</view>
-    </picker>
-  </view>
-</view>
--->
-
-<!-- 商户信息 -->
-<view class="shop-info">
-  <!--
-  <view class="meta-with-arrow">
-    <icon class="iconfont icon-shop-title"></icon>
-    <text class="shop-name">{{shop.name}}</text>
-    <text class="meta-tail">查看品牌商品</text>
-  </view>
-  -->
-
-  <view class="meta-with-arrow">
-    <view class="protection-info">
-      <icon class="iconfont icon-radio-checked"></icon>
-      <text>正品保障</text>
-    </view>
-
-    <view class="protection-info">
-      <icon class="iconfont icon-radio-checked"></icon>
-      <text>售后无忧</text>
-    </view>
-
-    <view class="protection-info">
-      <icon class="iconfont icon-radio-checked"></icon>
-      <text>七天保价</text>
+    <view class="product-discount">
+      <text class="product-market-price">￥{{filters.toFix(product.market_price, 2)}}</text>
+      <text class="product-discount-tag">{{filters.toFix(product.discount, 1)}}折</text>
     </view>
   </view>
+
+    
+  <!-- 物流信息 -->
+  <view class="product-express-info">
+    <block wx:if="{{product.shipping_free}}">
+    包邮
+    </block>
+    <block wx:else>
+    重量: {{product.weight}}g
+    </block>
+
+    <block wx:if="{{product.spec != ''}}">
+    规格: {{product.spec}}
+    </block>
+  </view>
+
+  <!-- 优惠信息 -->
+  <view class="product-discount-info" wx:if="{{product.given_integral > 0}}">
+    <view>
+      <label class="product-discount-label">优惠</label>
+      <text class="product-discount-content">赠送{{filters.toFix(product.given_integral, 2)}}积分</text>
+    </view>
+  </view>
 </view>
+
+<view class="product-meta quantity">
+  <label for="buy_num">数量</label>
+  <view class="quantity-number">
+      <text class="minus iconfont icon-minus {{ count > 1 ? 'on': ''}}" catchtap="countMinus"></text>
+      <input class="quantity-input" name="buy_num" type="number" value="{{count}}" bindblur="countInput"/>
+      <text class="plus on iconfont icon-plus {{ count < product.inventory ? 'on': ''}}" catchtap="countPlus"></text>
+  </view>
+  <text id="inventory_count" class="inventory-count">库存: {{product.inventory}}</text>
+</view>
+
+<navigator url="/pages/product/comment?product_sn={{product.product_sn}}" class="meta-with-arrow product-comment">
+    宝贝评价({{product.comments.count}})
+</navigator>
+
+<!-- 猜你喜欢 -->
+<view class="hdj-favorite-block hdj-block">
+    <h3>
+        猜你喜欢
+    </h3>
+    <view class="hdj-block-product-list">
+      <block wx:for="{{favorite_products}}" wx:for-item="product" wx:key="index">
+          <template is="productItem" data="{{...product}}"/>
+      </block>
+    </view>
+</view>
+
+<!-- 产品专区产品模板 -->
+<template name="productItem">
+  <navigator class="hdj-block-product-item"  url="/pages/product/detail?id={{id}}">
+        <image src="{{img}}" class="hdj-block-product-img" mode="widthFix"/>
+        <view class="hdj-block-product-name">{{name}}</view>
+        <view class="hdj-block-product-desc">{{desc}}</view>
+        <view class="hdj-block-product-price">
+          <text class="product-price-mark">￥</text>
+          <text class="product-price">{{filters.toFix(price, 0)}}</text>
+          <text class="product-market-price">￥{{filters.toFix(shop_price, 0)}}</text>
+        </view>
+  </navigator>
+</template>
 
 <!-- 产品详情 -->
 <import src="../../assets/wxParse/wxParse.wxml"/>
-<view class="tabs">
-  <view class="{{tabs.current == 0 ? 'current' : ''}}" bindtap="tabSwitch" data-id="0">图文介绍</view>
-  <!-- <view class="{{tabs.current == 1 ? 'current' : ''}}" bindtap="tabSwitch" data-id="1">规格参数</view>
-  <view class="{{tabs.current == 2 ? 'current' : ''}}" bindtap="tabSwitch" data-id="2">包装售后</view> -->
-</view>
-<view class="tabs-container">
-  <view id="tab-0" class="tab-panel {{tabs.current == 0 ? 'current' : ''}}">
-    <text class="tab-title">图文介绍</text>
-    <template is="wxParse" data="{{wxParseData:product_detail.nodes}}"/>
-  </view>
-  <view id="tab-1" class="tab-panel {{tabs.current == 1 ? 'current' : ''}}">
-    <text class="tab-title">规格参数</text>
-    <block wx:for="{{product.specification}}" wx:key="index">
-      <view class="table-view">
-        <text class="table-label">{{item.name}}：</text>
-        <text class="table-value">{{item.value}}</text>
-      </view>
-    </block>
-  </view>
-  <view id="tab-2" class="tab-panel {{tabs.current == 2 ? 'current' : ''}}">
-    <text class="tab-title">包装售后</text>
-    <template is="wxParse" data="{{wxParseData:product_after_sale.nodes}}"/>
-  </view>
+<view class="product-content">
+  <template is="wxParse" data="{{wxParseData:product_detail.nodes}}"/>
 </view>
 
 <view class="footer-block"></view>
@@ -150,37 +172,26 @@
 </view>
 
 <!-- 底部操作菜单 -->
-<!-- <view class="product-footer"> -->
-<!--
-  <view class="menu-service" catchtap="serviceCall" data-phone="{{shop.service}}">
-    <icon class="iconfont icon-service"></icon>
-    <text>客服</text>
-  </view>
--->
-  <!-- <button class="menu-service" open-type="contact">
-    <icon class="iconfont icon-service"></icon>
-    <text>客服</text>
-  </button>
-
-  <navigator url="/pages/index/index" open-type="switchTab" class="menu-home">
-    <icon class="iconfont icon-cup"></icon>
-    <text>首页</text>
-  </navigator> -->
-
-  <!-- <navigator url="/pages/cart/index" open-type="switchTab" class="menu-cart">
+<block wx:if="{{product.is_grant == 0}}">
+<view class="product-footer">
+  <navigator url="/pages/cart/index" open-type="switchTab" class="menu-cart">
     <icon class="iconfont icon-cart"></icon>
     <text>购物车</text>
   </navigator>
 
-  <button class="menu-add-to-cart-btn" catchtap="addToCart" disabled="{{!can_checkout || !support_delivery}}">加入购物车</button>
-  <button class="menu-buy-now-btn" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买</button>
-</view> -->
+  <button class="menu-add-to-cart-btn" catchtap="addToCart" disabled="{{!can_checkout}}">加入购物车</button>
+  <button class="menu-buy-now-btn" catchtap="buyNow" disabled="{{!can_checkout}}">立即购买</button>
+</view>
+</block>
 
-		<view class="fixed-action-nav fixed flex flex-row flex-between flex-items-center">
-			<view class="fixed-action-text flex flex-items-center ml-30">
-				<view class="flex"><image class="icon-2" src="/assets/images/cart2.png"></image></view><text style="padding-left:20rpx;">  购物车</text></view>
-			<view class="fixed-action-btn flex">
-				<view class="btn-1" catchtap="addToCart" disabled="{{!can_checkout || !support_delivery}}">加入购物车</view>
-				<view class="btn-2" catchtap="buyNow" disabled="{{!can_checkout || !support_delivery}}">立即购买</view>
-			</view>
-		</view>
+<block wx:else>
+<view class="product-footer">
+  <block wx:if="{{member.level_id == 1}}">
+  <button class="menu-direct-buy-btn iconfont icon-vip" catchtap="directBuy" disabled="{{!can_checkout}}"> 成为会员</button>
+  </block>
+
+  <block wx:else>
+  <button class="menu-direct-buy-btn iconfont icon-vip" catchtap="directBuy" disabled="{{!can_checkout}}"> 立即续费</button>
+  </block>
+</view>
+</block>

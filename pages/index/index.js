@@ -12,8 +12,8 @@ Page({
       index: 0,
       heights: [],
       width: 0,
-      autoplay: false,
-      displayDots: false,
+      autoplay: true,
+      displayDots: true,
       duration: 800,
       interval: 5000
     },

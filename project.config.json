@@ -21,7 +21,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.10.0",
 	"appid": "wxf5ea40dda56672bd",
 	"projectname": "%E5%A5%BD%E5%BD%93%E5%AE%B6%E5%AE%98%E6%96%B9%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -156,6 +156,27 @@
 					"name": "提交订单",
 					"pathName": "pages/cart/checkout",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "产品详情",
+					"pathName": "pages/product/detail",
+					"query": "id=76",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员专区",
+					"pathName": "pages/level/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员权益说明",
+					"pathName": "pages/level/detail",
+					"query": "id=9&tab=31",
 					"scene": null
 				}
 			]

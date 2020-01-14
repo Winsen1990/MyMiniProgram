@@ -29,14 +29,16 @@
     "pages/home/balance",
     "pages/block/index",
     "pages/member/index",
-    "pages/home/index2",
     "pages/home/member",
     "pages/inventory/index",
     "pages/delivery_order/index",
     "pages/delivery_order/detail",
     "pages/home/profile",
     "pages/coupon/index",
-    "pages/inventory/pickup"
+    "pages/inventory/pickup",
+    "pages/product/comment",
+    "pages/level/index",
+    "pages/level/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -56,7 +58,7 @@
         "selectedIconPath": "assets/images/index@active.png"
       },
       {
-        "pagePath": "pages/member/index",
+        "pagePath": "pages/level/index",
         "text": "会员专区",
         "iconPath": "assets/images/vip.png",
         "selectedIconPath": "assets/images/vip@active.png"

@@ -1,4 +1,4 @@
-// pages/home/index2.js
+// pages/product/comment.js
 Page({
 
   /**

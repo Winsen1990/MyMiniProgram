@@ -1,0 +1,46 @@
+/* pages/level/detail.wxss */
+/* 会员权益 */
+.hdj-level-privileges .hdj-level-privilege-tabs {
+  background-color: #0b0b0b;
+  padding: 50rpx 6%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab {
+  flex-grow: 1;
+}
+.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab img {
+  width: 33px;
+}
+.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab p {
+  font-size: 12px;
+  margin-top: 6px;
+  color: #ffffff;
+}
+.hdj-level-privileges .hdj-level-privilege-contents {
+  position: relative;
+}
+.hdj-level-privileges .hdj-level-privilege-contents .arrow {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border: 10px solid #ffffff;
+  border-color: transparent transparent #ffffff transparent;
+  position: absolute;
+  top: -20px;
+}
+.hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content {
+  padding: 35px 22px;
+  display: none;
+}
+.hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content .privilege-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+.hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content .privilege-content {
+  color: #999999;
+  font-size: 12px;
+}

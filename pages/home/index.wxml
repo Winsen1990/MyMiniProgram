@@ -1,8 +1,21 @@
 <!--pages/home/index.wxml--> 
 <!-- 用户信息 -->
-<view class="user-info" wx:if="{{!hasUserInfo && canIUse}}">
-    <image class="avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
-    <button class="nickname login-btn font-m" open-type="getUserInfo" bindgetuserinfo="getUserInfo">{{userInfo.nickname}}</button>
+<view class="hdj-member-info" wx:if="{{!hasUserInfo && canIUse}}">
+    <button class="hdj-member-card-top" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <view class="hdj-member-card">
+            <view class="hdj-member-card-info">
+                <image src="{{userInfo.avatar}}" background-size="cover" class="hdj-member-card-avatar"/>
+                <view class="hdj-member-name-meta">
+                    <view class="hdj-member-nickname">{{userInfo.nickname}}</view>
+                </view>
+            </view>
+            <view class="hdj-member-card-notice"></view>
+            <image src="/assets/images/vip_tag.png" class="hdj-member-vip-mark"/>
+        </view>
+    </button>
+    <view class="hdj-member-card-bottom">
+        畅享会员特权
+    </view>
 </view>
 
 <view class="hdj-member-info" wx:else>
@@ -88,35 +101,39 @@
   </view>
 </view>
 
-<navigator class="slide-link" url="/pages/inventory/index" class="single-block meta-with-arrow">
+<navigator url="/pages/inventory/index" class="single-block meta-with-arrow">
     <text class="iconfont icon-product"> 我的库存</text>
 </navigator>
-<navigator class="slide-link" url="/pages/delivery_order/index" class="single-block meta-with-arrow">
+
+<navigator url="/pages/delivery_order/index" class="single-block meta-with-arrow">
     <text class="iconfont icon-order-list"> 库存订单</text>
 </navigator>
+
 <!--
-<navigator class="slide-link" url="/pages/home/profile" class="single-block meta-with-arrow">
+<navigator url="/pages/home/profile" class="single-block meta-with-arrow">
     <text class="iconfont icon-account"> 我的资料</text>
 </navigator>
 -->
-<!--
-<navigator class="slide-link" url="/pages/recharge/index">
+
+<navigator url="/pages/recharge/index" class="single-block meta-with-arrow">
     <text class="iconfont icon-recharge"> 账户充值</text>
 </navigator>
--->
+
 <!--
-<navigator class="slide-link" url="/pages/home/password">
+<navigator url="/pages/home/password">
     <text class="iconfont icon-lock"> 修改密码</text>
 </navigator>
-<navigator class="slide-link" url="/pages/bank/index">
+-->
+
+<navigator url="/pages/bank/index" class="single-block meta-with-arrow">
     <text class="iconfont icon-bank-card"> 我的银行卡</text>
 </navigator>
--->
+
 <navigator url="/pages/address/index" class="single-block meta-with-arrow">
   <text class="iconfont icon-address"> 收货地址</text>
 </navigator>
 <!--
-<navigator class="slide-link" url="/pages/withdraw/index">
+<navigator url="/pages/withdraw/index">
     <text class="iconfont icon-withdraw"> 我要提现</text>
 </navigator>
 -->
@@ -127,7 +144,9 @@
     <view class="hdj-join-member-privilege">成为会员，纵享特权</view>
 
     <navigator url="/pages/home/member" class="hdj-join-member-btn">
+        <!--
         <text class="price">￥{{filters.toFix(min_grant_price, 2)}}</text>
+        -->
         开通会员
     </navigator>
 </view>

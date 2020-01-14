@@ -37,12 +37,13 @@
 
 /* 评价框 */
 .order-comment-input {
-  background-color: #f1f1f1;
   padding: 30rpx;
 }
 
 .order-comment-input textarea {
-  width: 100%;
+  width: 676rpx;
+  padding: 10rpx;
+  border: 2rpx solid #f2f2f2;
 }
 
 .order-comment-input .order-comment-hint {
@@ -68,7 +69,7 @@
 }
 
 .toolbar .toolbar-btn {
-  background-color: #C7162B;
+  background-color: #a2002d;
   color: #ffffff;
   border-radius: 15rpx;
   width: 90%;
