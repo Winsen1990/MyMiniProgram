@@ -13,14 +13,14 @@
     <block wx:for="{{orders}}" wx:key="order_sn" wx:for-item="order">
     <navigator url="/pages/order/detail?sn={{order.order_sn}}" class="order">
       <view class="order-header">
-        <text class="order-sn">订单号:{{order.order_sn}}</text>
+        <view class="order-sn">
+            <icon class="iconfont icon-shop"></icon>
+            <text> {{order.order_sn}}</text>
+        </view>
         <text class="order-status font-red">{{order.status_str}}</text>
       </view>
 
       <view class="order-info">
-        <!--
-        <view class="shop-info">商家: {{order.shop_name}}</view>
-        -->
         <view class="order-detail" wx:for="{{order.details}}" wx:key="id" wx:for-item="detail">
           <image src="{{detail.img}}" class="detail-img" mode="widthFix"/>
           <view class="detail-info">

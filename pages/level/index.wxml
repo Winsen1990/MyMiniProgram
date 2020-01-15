@@ -3,8 +3,8 @@
 
 <!-- 会员等级 -->
 <swiper indicator-dots="true" indicator-active-color="#0b0b0b"
-  autoplay="false" circular="true"
-  interval="999999" class="hdj-member-card-block"
+  autoplay="true" circular="true"
+  interval="5000" class="hdj-member-card-block"
   >
   <block wx:for="{{levels}}" wx:key="index">
     <swiper-item class="hdj-member-card-wrapper">
@@ -26,7 +26,7 @@
       <view class="hdj-member-card-privilege">
         <view class="privilege-title">五大会员特权 尊享权益</view>
         <view class="hdj-member-card-privilege-slide">
-          <block wx:for="{{item.privileges}}" wx:for-index="id" wx:for-item="privilege">
+          <block wx:for="{{item.privileges}}" wx:key="id" wx:for-item="privilege">
             <navigator url="/pages/level/detail?id={{item.id}}&tab={{privilege.id}}" class="privilege-item">
               <image src="{{privilege.icon}}" mode="widthFix"/>
               <view>{{privilege.name}}</view>

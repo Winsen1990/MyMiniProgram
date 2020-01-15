@@ -3,13 +3,13 @@
 
 <!-- 订单状态 -->
 <view class="order-status-block" wx:if="{{order.status == 6}}">
-  <view class="order-status">订单{{order.status_str}}</view>
   <icon class="iconfont icon-await-receive"></icon>
+  <text class="order-status"> 订单状态: {{order.status_str}}</text>
 </view>
 
 <view class="order-status-block" wx:else>
   <icon class="iconfont icon-order-list"></icon>
-  <view class="order-status">订单状态: {{order.status_str}}</view>
+  <text class="order-status"> 订单状态: {{order.status_str}}</text>
 </view>
 
 <!-- 收货人信息 -->
@@ -17,8 +17,8 @@
   <view class="address-decoration"></view>
   <view>
     <view class="address-meta">
-      <icon class="iconfont icon-address"></icon>
-      <text>收货信息</text>
+      <icon class="iconfont icon-express"></icon>
+      <text> 收货信息</text>
     </view>
     <view class="address-info meta-with-arrow">
       <view class="address-consignee">
@@ -33,7 +33,7 @@
 
 <!-- 订单信息 -->
 <view class="order">
-  <view class="shop-info meta-with-arrow">商家：{{order.shop_name}}</view>
+  <view class="shop-info meta-with-arrow"><icon class="iconfont icon-shop"></icon> {{order.shop_name}}</view>
   <view class="order-detail" wx:for="{{order.details}}" wx:key="id" wx:for-item="detail">
     <image src="{{detail.img}}" class="detail-img" mode="widthFix"/>
     <view class="detail-info">

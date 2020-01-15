@@ -1,4 +1,6 @@
 /* pages/order/index.wxss */
+@import '/assets/icon/iconfont.wxss';
+
 page {
   background-color: #f2f2f2;
 }

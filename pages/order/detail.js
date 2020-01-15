@@ -127,7 +127,8 @@ Page({
             complete: function () {
               if (response.data.error == 0) {
                 that.setData({
-                  'order.status': 11
+                  'order.status': 11,
+                  'order.status_str': '无效订单'
                 });
               }
             }
@@ -166,7 +167,8 @@ Page({
             complete: function () {
               if (response.data.error == 0) {
                 that.setData({
-                  'order.status': 7
+                  'order.status': 7,
+                  'order.status_str': '待评价'
                 });
               }
             }

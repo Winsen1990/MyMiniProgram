@@ -542,3 +542,16 @@ button::after {
   font-size: 13px;
   line-height: 2;
 }
+
+.jk-button {
+    font-size: 1rem;
+    line-height: 2.2rem;
+    background-color: #a2002d;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    padding: 0 1.8rem;
+    border-radius: 5px;
+    text-shadow: 0 0 1px #f1f1f1;
+    box-shadow: 0 2px 6px #cecece;
+}

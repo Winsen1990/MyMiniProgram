@@ -22,7 +22,7 @@ page {
 
 .address .icon-plus {
   padding: 20rpx 10rpx;
-  background-color: #C7162B;
+  background-color: #a2002d;
   border-radius: 15rpx;
   color: #fff;
   margin-right: 20rpx;
@@ -102,47 +102,49 @@ page {
 
 .shop .shop-products .shop-product .shop-product-img {
   width: 180rpx;
+  min-width: 180rpx;
   margin-right: 20rpx;
 }
 
 .shop .shop-products .shop-product .shop-product-info {
-  display: flex;
+  /* display: flex; */
   flex-grow: 1;
 }
 
 .shop .shop-products .shop-product .shop-product-name {
   /* flex-grow: 1; */
-  width: 310rpx;
+  /* width: 310rpx; */
 }
 
 .shop .shop-products .shop-product .shop-product-name .name {
   display: block;
-  margin-bottom: 30rpx;
+  /* margin-bottom: 30rpx; */
 }
 
 .shop .shop-products .shop-product .gift-tag {
-  color: #C7162B;
+  color: #a2002d;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #C7162B;
+  border: 2rpx solid #a2002d;
   padding: 0 8rpx;
 }
 
 .shop .shop-products .shop-product .shop-product-amount {
-  margin-left: 20rpx;
-  text-align: right;
-  flex-grow: 1;
+  /* margin-left: 20rpx; */
+  /* text-align: right; */
+  /* flex-grow: 1; */
 }
 
 .shop .shop-products .shop-product .shop-product-amount .shop-product-price {
-  display: block;
-  margin-bottom: 60rpx;
+  /* display: block; */
+  /* margin-bottom: 60rpx; */
   /* white-space: nowrap; *//* overflow: hidden; */
+  margin-right: 10rpx;
 }
 
 .shop .shop-products .shop-product .shop-product-amount .shop-product-count {
-  display: block;
+  /* display: block; */
 }
 
 /* 配送信息 */
@@ -168,7 +170,7 @@ page {
 }
 
 .shop-meta .shop-meta-tail.font-red {
-  color: #C7162B;
+  color: #a2002d;
 }
 
 .shop-meta .shop-remark-input {
@@ -291,7 +293,7 @@ page {
 }
 
 .toolbar .toolbar-submit-btn {
-  background-color: #C7162B;
+  background-color: #a2002d;
   color: #fff;
   padding: 28rpx 80rpx;
   border-left: 2rpx solid #e5e5e5;
@@ -304,5 +306,5 @@ page {
 }
 
 .checkbox[checked] {
-  color: #C7162B;
+  color: #a2002d;
 }

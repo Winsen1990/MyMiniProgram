@@ -1,7 +1,5 @@
 @font-face {font-family: "iconfont";
-  src: url('//at.alicdn.com/t/font_1501292_04zm55aofpys.eot?t=1574605975394'); /* IE9 */
-  src: url('//at.alicdn.com/t/font_1501292_04zm55aofpys.eot?t=1574605975394#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1501292_04zm55aofpys.woff?t=1574605975394') format('woff'),
+  src: url('//at.alicdn.com/t/font_1501292_04zm55aofpys.woff?t=1574605975394') format('woff'),
   url('//at.alicdn.com/t/font_1501292_04zm55aofpys.ttf?t=1574605975394') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
   url('//at.alicdn.com/t/font_1501292_04zm55aofpys.svg?t=1574605975394#iconfont') format('svg'); /* iOS 4.1- */
 }

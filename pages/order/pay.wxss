@@ -1,4 +1,5 @@
 /* pages/order/pay.wxss */
+@import '/assets/icon/iconfont.wxss';
 
 /* 购物车列表 */
 page {
@@ -16,36 +17,53 @@ button::after {
 }
 
 /* 地址栏 */
-.order-shipping-info {
-  background-color: #ffffff;
+/* 地址信息 */
+.address {
+  background-color: #fff;
+  color: #565656;
+}
+
+.address .address-decoration {
+  height: 6rpx;
+  background: url('http://m.hdjshop.cn/themes/hdj/images/colourBar.png') repeat-x;
+  background-size: contain;
+}
+
+.address view {
+  font-size: 32rpx;
+}
+
+.address .icon-plus::before {
+  margin-left: 10rpx;
+}
+
+.address .address-meta {
+  border-bottom: 2rpx solid #dddddd;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+}
+
+.address .icon-address {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+  color: #999999;
+}
+
+.address .address-info {
+}
+
+.address .address-info.meta-with-arrow::after {
+  display: none;
+}
+
+.address .address-consignee {
   display: flex;
-  align-items: center;
-  font-size: 1rem;
-  line-height: 1.6rem;
-  color: #a3a3a3;
-  padding: .5rem;
+  margin: 0 30rpx 20rpx 0;
 }
 
-.order-shipping-info icon {
-  font-size: 1.6rem;
-  margin-right: .5rem;
-}
-
-.order-shipping-info .order-shipping {
+.address .address-consignee .address-mobile {
   flex-grow: 1;
-}
-
-.order-shipping-info>view {
-  position: relative;
-}
-
-.order-shipping-info view:first-child {
-  margin-bottom: .5rem;
-}
-
-.order-shipping-info view:first-child text:last-child {
-  position: absolute;
-  right: 0;
+  text-align: right;
 }
 
 

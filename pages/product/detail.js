@@ -33,7 +33,10 @@ Page({
     can_checkout: true,
     displayPanel: false, //购买面板
     direct_buy: false, //直接购买
-    count: 1 //购买数量
+    count: 1, //购买数量
+    member: {
+      level_id: 1
+    }
   },
 
   /**
@@ -41,20 +44,18 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //获取屏幕宽高  
-    wx.getSystemInfo({
-      success: (res) => {
-        var window_width = res.windowWidth;
-        var window_height = res.windowHeight;
+    //获取屏幕宽高
+    var res = wx.getSystemInfoSync();
+    var window_width = res.windowWidth;
+    var window_height = res.windowHeight;
 
-        that.setData({
-          screen: {
-            width: window_width,
-            height: window_height
-          },
-          'gallery.width': window_width
-        });
-      }
+    that.setData({
+      screen: {
+        width: window_width,
+        height: window_height
+      },
+      'gallery.width': window_width,
+      member: app.globalData.userInfo
     });
 
     var data = {

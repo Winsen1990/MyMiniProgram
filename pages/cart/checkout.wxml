@@ -45,7 +45,7 @@
           <text class="gift-tag" wx:if="{{product.is_gift}}">赠</text>
         </view>
         <view class="shop-product-amount">
-          <text class="shop-product-price font-m">
+          <text class="shop-product-price font-m font-red">
             <block wx:if="{{!product.is_gift}}">
             ￥{{filters.toFix(product.price, 2)}}
             </block>
@@ -58,7 +58,10 @@
 
   <view class="shop-meta">
     <text>配送方式</text>
-    <text class="shop-meta-tail">{{shipping[0].name}}</text>
+    <view class="shop-meta-tail">
+      {{shipping[0].name}}
+      <text class="font-red">￥{{filters.toFix(shipping[0].shipping_fee, 2)}}</text>
+    </view>
   </view>
 
   <view class="shop-meta">
@@ -98,34 +101,6 @@
   <text>{{filters.toFix(wallet.reward, 2)}}</text>
   <checkbox value="1" class="checkbox font-xl meta-tail" data-mode="reward" catchtap="use_wallet" checked="{{user_reward}}"></checkbox>
 </view>
-
-<!-- 短信通知收件人 -->
-<!--
-<view class="notice">
-  <text class="meta-label">接收订单消息提醒</text>
-  <switch class="notice-switch" checked="{{notice_checked}}" bindtap="messageNotice"></switch>
-</view>
--->
-
-<!-- 合计 -->
-<!--
-<view class="summary">
-  <view class="summary-row">
-    <text class="label">商品金额</text>
-    <text class="value">{{filters.toFix(summary.product_amount, 2)}}</text>
-  </view>
-
-  <view class="summary-row">
-    <text class="label">运费</text>
-    <text class="value">+{{filters.toFix(summary.shipping_amount, 2)}}</text>
-  </view>
-
-  <view class="summary-row" wx:if="{{summary.coupon_decrement > 0}}">
-    <text class="label">优惠减免</text>
-    <text class="value">-{{filters.toFix(summary.coupon_decrement, 2)}}</text>
-  </view>
-</view>
--->
 
 <view class="toolbar-block"></view>
 

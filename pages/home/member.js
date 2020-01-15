@@ -41,11 +41,12 @@ Page({
       category_id: this.data.category_id,
       order: this.data.order,
       sort: this.data.sort,
+      is_grant: 1,
       act: 'view',
       token: getApp().globalData.token,
     };
 
-    utils.request(config.service.level, data, 'GET', function (response) {
+    utils.request(config.service.product, data, 'GET', function (response) {
       console.info(response);
 
       if (response.data.error != 0) {
@@ -138,12 +139,13 @@ Page({
       category_id: this.data.category_id,
       order: this.data.order,
       sort: this.data.sort,
+      is_grant: 1,
       act: 'view'
     };
 
     console.info(data);
 
-    utils.request(config.service.block, data, 'GET', function(response) {
+    utils.request(config.service.product, data, 'GET', function(response) {
       console.info(response);
 
       if (response.data.error != 0) {
@@ -194,10 +196,11 @@ Page({
       category_id: this.data.category_id,
       order: this.data.order,
       sort: this.data.sort,
+      is_grant: 1,
       act: 'view'
     };
 
-    utils.request(config.service.block, data, 'GET', function(response) {
+    utils.request(config.service.product, data, 'GET', function(response) {
       console.info(response);
 
       if (response.data.error != 0) {

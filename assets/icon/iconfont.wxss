@@ -1,359 +1,357 @@
-@font-face {font-family: "iconfont";
-  src: url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.eot?t=1559198557083'); /* IE9 */
-  src: url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.eot?t=1559198557083#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.woff?t=1559198557083') format('woff'),
-  url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.ttf?t=1559198557083') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.svg?t=1559198557083#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+    font-family: "iconfont";
+    src: url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.ttf?t=1559198557083') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url('//at.alicdn.com/t/font_529342_1hdjg3rogjp.svg?t=1559198557083#iconfont') format('svg');
+    /* iOS 4.1- */
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: "iconfont" !important;
+    font-size: 32rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-wallet:before {
-  content: "\e632";
+    content: "\e632";
 }
 
 .icon-tianjiashangjia:before {
-  content: "\e605";
+    content: "\e605";
 }
 
 .icon-liwu:before {
-  content: "\e633";
+    content: "\e633";
 }
 
 .icon-add:before {
-  content: "\e634";
+    content: "\e634";
 }
 
 .icon-coupon:before {
-  content: "\e616";
+    content: "\e616";
 }
 
 .icon-team:before {
-  content: "\e641";
+    content: "\e641";
 }
 
 .icon-qr-code:before {
-  content: "\e60f";
+    content: "\e60f";
 }
 
 .icon-edit:before {
-  content: "\e61f";
+    content: "\e61f";
 }
 
 .icon-gongyi:before {
-  content: "\e606";
+    content: "\e606";
 }
 
 .icon-tubiao:before {
-  content: "\e617";
+    content: "\e617";
 }
 
 .icon-company:before {
-  content: "\e646";
+    content: "\e646";
 }
 
 .icon-locked:before {
-  content: "\e642";
+    content: "\e642";
 }
 
 .icon-refresh:before {
-  content: "\e618";
+    content: "\e618";
 }
 
 .icon-credit-card:before {
-  content: "\e643";
+    content: "\e643";
 }
 
 .icon-order-refund:before {
-  content: "\e607";
+    content: "\e607";
 }
 
 .icon-recharge:before {
-  content: "\e619";
+    content: "\e619";
 }
 
 .icon-plus:before {
-  content: "\e62b";
+    content: "\e62b";
 }
 
 .icon-concat:before {
-  content: "\e62c";
+    content: "\e62c";
 }
 
 .icon-jiaruwomen:before {
-  content: "\e608";
+    content: "\e608";
 }
 
 .icon-you:before {
-  content: "\e63a";
+    content: "\e63a";
 }
 
 .icon-location:before {
-  content: "\e61a";
+    content: "\e61a";
 }
 
 .icon-home:before {
-  content: "\e601";
+    content: "\e601";
 }
 
 .icon-cart:before {
-  content: "\e602";
+    content: "\e602";
 }
 
 .icon-talk:before {
-  content: "\e61b";
+    content: "\e61b";
 }
 
 .icon-shop-manager:before {
-  content: "\e61c";
+    content: "\e61c";
 }
 
 .icon-college:before {
-  content: "\e62d";
+    content: "\e62d";
 }
 
 .icon-balance:before {
-  content: "\e61d";
+    content: "\e61d";
 }
 
 .icon-clock:before {
-  content: "\e6bb";
+    content: "\e6bb";
 }
 
 .icon-healthy:before {
-  content: "\e62e";
+    content: "\e62e";
 }
 
 .icon-teach:before {
-  content: "\e647";
+    content: "\e647";
 }
 
 .icon-star:before {
-  content: "\e639";
+    content: "\e639";
 }
 
 .icon-star-fill:before {
-  content: "\e638";
+    content: "\e638";
 }
 
 .icon-distribution:before {
-  content: "\e612";
+    content: "\e612";
 }
 
 .icon-address:before {
-  content: "\e628";
+    content: "\e628";
 }
 
 .icon-tixian:before {
-  content: "\e621";
+    content: "\e621";
 }
 
 .icon-checked:before {
-  content: "\e635";
+    content: "\e635";
 }
 
 .icon-order-list:before {
-  content: "\e622";
+    content: "\e622";
 }
 
 .icon-lianxikefu:before {
-  content: "\e613";
+    content: "\e613";
 }
 
 .icon-express:before {
-  content: "\e623";
+    content: "\e623";
 }
 
 .icon-order-pay:before {
-  content: "\e629";
+    content: "\e629";
 }
 
 .icon-ranking:before {
-  content: "\e644";
+    content: "\e644";
 }
 
 .icon-shop:before {
-  content: "\e63b";
+    content: "\e63b";
 }
 
 .icon-comment:before {
-  content: "\e624";
+    content: "\e624";
 }
 
 .icon-gift:before {
-  content: "\e63d";
+    content: "\e63d";
 }
 
 .icon-construct:before {
-  content: "\e63f";
+    content: "\e63f";
 }
 
 .icon-trash:before {
-  content: "\e611";
+    content: "\e611";
 }
 
 .icon-heart:before {
-  content: "\e648";
+    content: "\e648";
 }
 
 .icon-fanli:before {
-  content: "\e614";
+    content: "\e614";
 }
 
 .icon-product:before {
-  content: "\e63c";
+    content: "\e63c";
 }
 
 .icon-withdraw:before {
-  content: "\e60a";
+    content: "\e60a";
 }
 
 .icon-business:before {
-  content: "\e62f";
+    content: "\e62f";
 }
 
 .icon-thumb-up:before {
-  content: "\e60d";
+    content: "\e60d";
 }
 
 .icon-category:before {
-  content: "\e603";
+    content: "\e603";
 }
 
 .icon-shelid:before {
-  content: "\e630";
+    content: "\e630";
 }
 
 .icon-account:before {
-  content: "\e625";
+    content: "\e625";
 }
 
 .icon-share-link:before {
-  content: "\e626";
+    content: "\e626";
 }
 
 .icon-user:before {
-  content: "\e604";
+    content: "\e604";
 }
 
 .icon-share:before {
-  content: "\e66e";
+    content: "\e66e";
 }
 
 .icon-ticket:before {
-  content: "\e627";
+    content: "\e627";
 }
 
 .icon-link:before {
-  content: "\e615";
+    content: "\e615";
 }
 
 .icon-integral:before {
-  content: "\e60b";
+    content: "\e60b";
 }
 
 .icon-duihuanjilu:before {
-  content: "\e60e";
+    content: "\e60e";
 }
 
 .icon-reward:before {
-  content: "\e62a";
+    content: "\e62a";
 }
 
 .icon-collection:before {
-  content: "\e640";
+    content: "\e640";
 }
 
 .icon-info:before {
-  content: "\e60c";
+    content: "\e60c";
 }
 
 .icon-service:before {
-  content: "\e65f";
+    content: "\e65f";
 }
 
 .icon-creativity:before {
-  content: "\e631";
+    content: "\e631";
 }
 
 .icon-bank-card:before {
-  content: "\e645";
+    content: "\e645";
 }
 
 .icon-minus:before {
-  content: "\e637";
+    content: "\e637";
 }
 
 .icon-view:before {
-  content: "\e64a";
+    content: "\e64a";
 }
 
 .icon-travel:before {
-  content: "\e649";
+    content: "\e649";
 }
 
 .icon-arrow-left:before {
-  content: "\e64f";
+    content: "\e64f";
 }
 
 .icon-tip:before {
-  content: "\e609";
+    content: "\e609";
 }
 
 .icon-level-up:before {
-  content: "\e620";
+    content: "\e620";
 }
 
 .icon-fav:before {
-  content: "\e636";
+    content: "\e636";
 }
 
 .icon-unchecked:before {
-  content: "\e61e";
+    content: "\e61e";
 }
 
 .icon-fav-fill:before {
-  content: "\e610";
+    content: "\e610";
 }
 
 .icon-menu:before {
-  content: "\e64c";
+    content: "\e64c";
 }
 
 .icon-vip:before {
-  content: "\e64b";
+    content: "\e64b";
 }
 
 .icon-times:before {
-  content: "\e654";
+    content: "\e654";
 }
 
 .icon-picture:before {
-  content: "\e791";
+    content: "\e791";
 }
 
 .icon-dancer:before {
-  content: "\e600";
+    content: "\e600";
 }
 
 .icon-arrow-top:before {
-  content: "\e66f";
+    content: "\e66f";
 }
 
 .icon-arrow-right:before {
-  content: "\e670";
+    content: "\e670";
 }
 
 .icon-arrow-bottom:before {
-  content: "\e671";
+    content: "\e671";
 }
 
 .icon-medal:before {
-  content: "\e63e";
+    content: "\e63e";
 }

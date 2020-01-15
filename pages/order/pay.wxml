@@ -1,26 +1,30 @@
 <!--pages/order/pay.wxml-->
 <wxs module="filters" src="../../assets/utils.wxs"></wxs>
 
-<view class="order-pay">
-  <view class="order-shipping-info">
-    <icon class="iconfont icon-location"></icon>
-    <view class="order-shipping">
-      <view>
-        <text>收货人: {{order.consignee}}</text>
-        <text>{{order.mobile}}</text>
+<!-- 收货人信息 -->
+<view class="address">
+  <view class="address-decoration"></view>
+  <view>
+    <view class="address-meta">
+      <icon class="iconfont icon-express"></icon>
+      <text> 收货信息</text>
+    </view>
+    <view class="address-info meta-with-arrow">
+      <view class="address-consignee">
+        <text>{{order.consignee}}</text>
+        <text class="address-mobile">{{order.mobile}}</text>
       </view>
-
-      <view>
-        <label>收货地址: </label>
-        <text>{{order.address}}</text>
-      </view>
+      <text class="address-detail">{{order.address}}</text>
     </view>
   </view>
+  <view class="address-decoration"></view>
+</view>
 
+<view class="order-pay">
   <view class="product-info">
     <view class="shop-info">
-      <icon class="iconfont icon-shop-title"></icon>
-      <text>{{order.shop_name}}</text>
+      <icon class="iconfont icon-shop"></icon>
+      <text> {{order.shop_name}}</text>
     </view>
     <view class="product-list">
       <view class="product-item" wx:for="{{order.details}}">
@@ -57,6 +61,3 @@
   </view>
   <view class="btn btn-primary" catchtap="pay">微信支付</view>
 </view>
-
-<button class="iconfont icon-service float-icon" open-type="contact">
-</button>

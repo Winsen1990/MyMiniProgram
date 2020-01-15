@@ -24,7 +24,8 @@ Page({
       discount: 0,//折扣
       decrement: 0,//减免金额
       decrement_limit: 0,//减免金额上限
-      coupon_type: 0//优惠券类型
+      coupon_type: 0,//优惠券类型
+      reduce: 0//实际减免金额
     },
     shipping: [{
       id: 1,//物流方式ID
@@ -111,7 +112,8 @@ Page({
           discount: 0,
           decrement: 0,
           decrement_limit: 0,
-          coupon_type: 2
+          coupon_type: 2,
+          reduce: 0
         });
 
         that.setData({
@@ -217,24 +219,11 @@ Page({
 
     //优惠减免
     if (this.data.coupon.id >= 0) {
-      var coupon_reduce = 0;
-      switch(this.data.coupon.coupon_type) {
-        case 1:
-          //折扣券
-          coupon_reduce = summary.product_amount * this.data.coupon.discount;
-          coupon_reduce = Math.min(coupon_reduce, this.data.coupon.decrement_limit);
-          break;
+      var coupon_reduce = this.data.coupon.reduce;
+      coupon_reduce = Math.min(coupon_reduce, summary.amount);
 
-        case 2:
-          //代金券
-        case 3:
-          //满减券
-          coupon_reduce = this.data.coupon.decrement;
-          break;
-      }
       summary.coupon_decrement = coupon_reduce;
-
-      summary.amount -= summary.coupon_decrement;
+      summary.amount -= coupon_reduce;
     }
 
     if(this.data.use_integral) {
@@ -290,21 +279,33 @@ Page({
       message_notice: this.data.messageNotice,
       address_id: this.data.address.id,
       remark: this.data.cart[0].remark,
-      coupon_sn: this.data.coupon.coupon_sn,
+      coupon_list: [],
       opera: 'add',
       token: app.globalData.token,
       delivery_list: {},
       direct_buy: this.data.direct_buy,
-      direct_buy_product_id: this.data.direct_buy_product_id
+      direct_buy_product_id: this.data.direct_buy_product_id,
+      use_integral: this.data.use_integral ? true : false,
+      use_reward: this.data.use_reward ? true : false,
+      use_balance: this.data.use_balance ? true : false
     }
 
+    var shop_id = 0;
     for (var j = 0; j < this.data.shipping.length; j++) {
       var shipping = this.data.shipping[j];
 
       if (shipping.selected) {
         data.delivery_list[shipping.business_id] = [shipping];
+        shop_id = shipping.business_id;
         break;
       }
+    }
+
+    if(this.data.coupon.coupon_sn != '') {
+      data.coupon_list.push({
+        coupon_sn: this.data.coupon.coupon_sn,
+        shop_id: shop_id
+      });
     }
 
     if (data.address_id <= 0) {
@@ -329,28 +330,47 @@ Page({
       method: 'POST',
       success: function (response) {
         if (response.data.error == 0) {
-          wx.showModal({
-            title: '',
-            content: response.data.message,
-            confirmText: '前往支付',
-            cancelText: '查看订单',
-            success: function (e) {
-              if (e.confirm) {
-                wx.redirectTo({
-                  url: '/pages/order/pay?sn=' + response.data.order_sn
-                });
-              }
+          if (response.data.order_status == 4) {
+            wx.showModal({
+              title: '',
+              content: response.data.message,
+              confirmText: '继续逛逛',
+              cancelText: '查看订单',
+              success: function (e) {
+                if (e.confirm) {
+                  wx.switchTab({
+                    url: '/pages/index/index'
+                  });
+                }
 
-              if (e.cancel) {
-                wx.redirectTo({
-                  url: '/pages/order/detail?sn=' + response.data.order_sn
-                });
+                if (e.cancel) {
+                  wx.redirectTo({
+                    url: '/pages/order/detail?sn=' + response.data.order_sn
+                  });
+                }
               }
-            },
-            fail: function () {
+            });
+          } else {
+            wx.showModal({
+              title: '',
+              content: response.data.message,
+              confirmText: '前往支付',
+              cancelText: '查看订单',
+              success: function (e) {
+                if (e.confirm) {
+                  wx.redirectTo({
+                    url: '/pages/order/pay?sn=' + response.data.order_sn
+                  });
+                }
 
-            }
-          });
+                if (e.cancel) {
+                  wx.redirectTo({
+                    url: '/pages/order/detail?sn=' + response.data.order_sn
+                  });
+                }
+              }
+            });
+          }
         } else {
           wx.showModal({
             title: '提示',

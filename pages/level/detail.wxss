@@ -1,46 +1,62 @@
 /* pages/level/detail.wxss */
+page {
+  background: #ffffff;
+}
+
 /* 会员权益 */
 .hdj-level-privileges .hdj-level-privilege-tabs {
   background-color: #0b0b0b;
-  padding: 50rpx 6%;
+  padding: 63rpx 78rpx;
   display: flex;
+  width: 594rpx;
   text-align: center;
   align-items: center;
+  position: relative;
 }
 .hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab {
   flex-grow: 1;
 }
-.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab img {
-  width: 33px;
+.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab image {
+  width: 70rpx;
+  height: 70rpx;
 }
-.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab p {
-  font-size: 12px;
-  margin-top: 6px;
+.hdj-level-privileges .hdj-level-privilege-tabs .hdj-level-privilege-tab view {
+  font-size: 20rpx;
+  margin-top: 14rpx;
   color: #ffffff;
 }
 .hdj-level-privileges .hdj-level-privilege-contents {
   position: relative;
+  background: #ffffff;
 }
-.hdj-level-privileges .hdj-level-privilege-contents .arrow {
+.hdj-level-privileges .hdj-level-privilege-contents .arrow, .hdj-level-privileges .hdj-level-privilege-tabs .arrow {
   content: '';
   display: block;
   width: 0;
   height: 0;
-  border: 10px solid #ffffff;
+  border: 24rpx solid #ffffff;
   border-color: transparent transparent #ffffff transparent;
   position: absolute;
-  top: -20px;
+  top: -33rpx;
+  left: -1000rpx;
+}
+.hdj-level-privileges .hdj-level-privilege-tabs .arrow {
+  top: auto;
+  bottom: 0;
 }
 .hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content {
-  padding: 35px 22px;
+  padding: 72rpx 50rpx;
   display: none;
+}
+.hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content.show {
+  display: block;
 }
 .hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content .privilege-title {
   font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 16px;
+  font-size: 29rpx;
+  margin-bottom: 30rpx;
 }
 .hdj-level-privileges .hdj-level-privilege-contents .hdj-level-privilege-content .privilege-content {
   color: #999999;
-  font-size: 12px;
+  font-size: 24rpx;
 }

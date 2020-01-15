@@ -3,20 +3,22 @@
 
 <view class="hdj-level-privileges">
   <view class="hdj-level-privilege-tabs">
-    <view wx:for="{{level.privileges}}" wx:for-index="id" wx:for-item="privilege" class="hdj-level-privilege-tab" id="tab-{{privilege.id}}">
+    <view wx:for="{{level.privileges}}" wx:key="id" wx:for-item="privilege" class="hdj-level-privilege-tab" id="tab-{{privilege.id}}" data-id="{{privilege.id}}" catchtap="switchTab">
       <image src="{{privilege.icon}}" mode="widthFix"/>
       <view>{{privilege.name}}</view>
     </view>
+    <view class="arrow" style="left: {{arrow_left}}px"></view>
   </view>
 
   <view class="hdj-level-privilege-contents">
-    <view class="hdj-level-privilege-content" id="tab-content-{{privilege.id}}">
-      <view class="privilege-title">{{privilege.name}}</view>
-      <view class="privilege-content">
-        <template is="wxParse" data="{{wxParseData:privilege.richContent.nodes}}"/>
+    <block wx:for="{{level.privileges}}" wx:key="id" wx:for-item="privilege">
+      <view class="hdj-level-privilege-content {{tab == privilege.id ? 'show' : ''}}" id="tab-content-{{privilege.id}}">
+        <view class="privilege-title">{{privilege.name}}</view>
+        <view class="privilege-content">
+          <template is="wxParse" data="{{wxParseData:privilege.richContent.nodes}}"/>
+        </view>
       </view>
-    </view>
-    <!-- <view class="arrow" style="left: 136.5px;"></view> -->
+    </block>
   </view>
 </view>
 

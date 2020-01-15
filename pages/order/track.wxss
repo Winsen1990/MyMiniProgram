@@ -1,4 +1,5 @@
 /* pages/order/track.wxss */
+@import '/assets/icon/iconfont.wxss';
 
 .express-head {
   padding: .5rem;

@@ -23,7 +23,6 @@
     "pages/home/integral",
     "pages/home/coupon",
     "pages/product/detail",
-    "pages/product/level",
     "pages/order/pay",
     "pages/order/track",
     "pages/home/balance",

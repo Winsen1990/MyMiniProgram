@@ -1,4 +1,6 @@
 /* pages/order/detail.wxss */
+@import '/assets/icon/iconfont.wxss';
+
 /* 地址信息 */
 .address {
   background-color: #fff;
@@ -49,22 +51,17 @@
 }
 
 .order-status-block {
-  background-color: #C7162B;
-  padding: 20rpx 50rpx;
-  align-items: center;
-  display: flex;
-}
-
-.order-status-block .order-status {
-  color: #ffffff;
-  flex-grow: 1;
-  vertical-align: middle;
-  font-weight: bold;
+  background-color: #ffffff;
+  display: block;
+  font-size: 32rpx;
+  padding: 16rpx 28rpx;
+  color: #a2002d;
+  border-bottom: 2rpx solid #dddddd;
+  margin-bottom: 20rpx;
 }
 
 .order-status-block icon {
-  font-size: 120rpx;
-  color: #a3a3a3;
+  display: inline;
 }
 
 .order {
@@ -157,27 +154,29 @@
 
 .toolbar {
   border-top: 2rpx solid #e5e5e5;
-  padding: 20rpx 0;
+  padding: 20rpx 15rpx;
   text-align: right;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 720rpx;
+  background-color: #ffffff;
+  display: flex;
 }
 
 .toolbar .order-opera, .toolbar .order-opera-primary {
-  display: inline-block;
   color: #333333;
   border: 2rpx solid #333333;
-  border-radius: 15rpx;
-  vertical-align: middle;
-  padding: 8rpx 16rpx;
+  border-radius: 10rpx;
+  padding: 16rpx 16rpx;
   margin-left: 20rpx;
   line-height: 1;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .toolbar .order-opera-primary {
-  background-color: #C7162B;
-  border-color: #C7162B;
+  background-color: #a2002d;
+  border-color: #a2002d;
   margin-right: 30rpx;
   color: #ffffff;
 }
@@ -188,10 +187,10 @@
 
 .order-detail .detail-info .tags .gift-tag {
   display: inline-block;
-  color: #C7162B;
+  color: #a2002d;
   font-size: 28rpx;
   line-height: 32rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #C7162B;
+  border: 2rpx solid #a2002d;
   padding: 4rpx 8rpx;
 }

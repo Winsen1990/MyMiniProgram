@@ -68,12 +68,11 @@ Page({
    */
   onReachBottom: function () {
     if(this.data.to_end) {
-      /*
       wx.showToast({
         title: '没有更多订单',
-        duration: 3000
+        duration: 3000,
+        icon: 'none'
       });
-      */
 
       return false;
     }
@@ -114,9 +113,19 @@ Page({
 
         if(response.data.order_list.length < page_size) {
           params.to_end = true;
+        } else {
+          params.to_end = false;
         }
 
-        params.orders = response.data.order_list;
+        if(page == 1) {
+          params.orders = response.data.order_list;
+        } else {
+          var order_list = that.data.orders;
+          for(var i = 0; i < response.data.order_list.length; i++) {
+            order_list.push(response.data.order_list[i]);
+          }
+          params.orders = order_list;
+        }
 
         console.info(params);
         that.setData(params);
@@ -176,7 +185,7 @@ Page({
    */
   rollbackOrder: function(e) {
     var sn = e.currentTarget.dataset.sn;
-    var detail_id = e.currentTarget.data.detailId;
+    var detail_id = e.currentTarget.dataset.detailId;
 
     wx.navigateTo({
       url: '/pages/order/serve?sn=' + sn + '&id=' + detail_id
