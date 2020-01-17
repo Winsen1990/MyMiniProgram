@@ -1,0 +1,77 @@
+<!--pages/home/level.wxml-->
+<wxs module="filters" src="../../assets/utils.wxs"></wxs>
+
+<!-- 会员等级 -->
+<view class="hdj-member-card-wrapper">
+  <view class="hdj-member-card hdj-member-card-{{level.senior}}">
+      <h3>好当家会员·{{level.alias_name}}</h3>
+      <view class="hdj-member-slogan">
+        {{level.level_expired}}
+
+        <navigator url="/pages/home/member" class="hdj-member-level-extend">
+          立即续费
+        </navigator>
+      </view>
+
+      <view class="hdj-member-notice">
+          开通{{level.alias_name}}会员预计全年至少可省
+          <text class="benefit-avg">¥{{level.benefit_avg}}</text>
+          （数据来自好当家会员平均省钱金额）
+      </view>
+
+      <navigator url="/pages/feed/detail?id=15" class="hdj-member-rule">
+        会员规则 >
+      </navigator>
+  </view>
+
+  <view class="hdj-member-card-privilege">
+    <view class="privilege-title">五大会员特权 尊享权益</view>
+    <view class="hdj-member-card-privilege-slide">
+      <block wx:for="{{level.privileges}}" wx:key="id" wx:for-item="privilege">
+        <navigator url="/pages/level/detail?id={{level.id}}&tab={{privilege.id}}" class="privilege-item">
+          <image src="{{privilege.icon}}" mode="widthFix"/>
+          <view>{{privilege.name}}</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>
+
+<!-- 产品专区 -->
+<view class="hdj-block">
+    <view class="hdj-block-header">
+        <h2>
+            <image src="{{block.banner}}" mode="widthFix" class="index-block-cover"/>
+        </h2>
+    </view>
+    <view class="hdj-block-product-list">
+      <block wx:for="{{products}}" wx:for-item="product" wx:key="index">
+          <template is="productItem" data="{{...product}}"/>
+      </block>
+    </view>
+</view>
+
+<!-- 产品专区产品模板 -->
+<template name="productItem">
+  <navigator class="hdj-block-product-item"  url="/pages/product/detail?id={{id}}">
+        <image src="{{img}}" class="hdj-block-product-img" mode="widthFix"/>
+        <view class="hdj-block-product-name">{{name}}</view>
+        <view class="hdj-block-product-desc">{{desc}}</view>
+        <view class="hdj-block-product-price">
+          <text class="product-price-mark">￥</text>
+          <text class="product-price">{{filters.toFix(price, 0)}}</text>
+          <text class="product-market-price">￥{{filters.toFix(shop_price, 0)}}</text>
+        </view>
+  </navigator>
+</template>
+
+<!-- 导航栏 -->
+<view class="hdj-toolbar-placeholder"></view>
+
+<view class="hdj-toolbar" wx:if="{{user.level_id == 1}}">
+  <navigator class="btn-primary" url="/pages/home/member">即刻购参 成为会员</navigator>
+</view>
+
+<view class="hdj-toolbar" wx:else>
+  <navigator class="btn-primary" url="/pages/home/member">立即续费</navigator>
+</view>

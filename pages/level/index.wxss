@@ -47,6 +47,7 @@
   border: 2rpx solid #999999;
   padding: 2rpx 5px;
   border-radius: 14rpx;
+  display: inline-block;
 }
 .hdj-member-card-wrapper .hdj-member-card .hdj-member-notice {
   margin: 86rpx 0 0;

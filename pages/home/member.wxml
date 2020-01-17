@@ -20,8 +20,7 @@
         <view class="jk-product-name">{{product.name}}</view>
         <view class="jk-product-desc">{{product.desc}}</view>
         <view class="jk-product-price">
-            <text class="price-mark">￥</text>
-            <text class="price"> {{filters.toFix(product.price, 2)}}</text>
+            <text class="price">￥{{filters.toFix(product.price, 2)}}</text>
         </view>
         <view class="jk-product-option">
             <view class="jk-vip-tag jk-vip-tag-{{product.target_level.senior}}" wx:if="{{product.target_level}}">

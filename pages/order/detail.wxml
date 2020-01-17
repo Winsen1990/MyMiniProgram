@@ -51,7 +51,7 @@
       </text>
       <text class="detail-count">x{{detail.count}}</text>
       <block wx:if="{{!detail.is_gift}}">
-      <navigator wx:if="{{order.status == 7 || order.status == 12}}" url="/pages/order/comment?sn={{order.order_sn}}&id={{detail.id}}" class="detail-serve">
+      <navigator wx:if="{{order.status == 7}}" url="/pages/order/comment?sn={{order.order_sn}}&id={{detail.id}}" class="detail-serve">
         <block wx:if="{{detail.is_comment == '1'}}">
           追评
         </block>

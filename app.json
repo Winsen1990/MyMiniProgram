@@ -37,7 +37,8 @@
     "pages/inventory/pickup",
     "pages/product/comment",
     "pages/level/index",
-    "pages/level/detail"
+    "pages/level/detail",
+    "pages/home/level"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,2 @@
+/* pages/home/level.wxss */
+@import '/pages/level/index.wxss';

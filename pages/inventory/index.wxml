@@ -1,25 +1,15 @@
-<view class="wishlist">
-  <view>
-    <view wx:for="{{ product_list }}">
-      <navigator url="/pages/inventory/pickup?id={{item.id}}" class="wishlist-item flex flex-between">
-        <image class="lazy" src="{{item.img}}" data-original="{{item.img}}" alt="{{item.name}}">
-        </image>
-        <view class="content">
-          <view class="title"> {{item.name}} </view>
-          <view class="flex flex-between flex-items-center">
-            <view>
-              <view>会员价: ￥{{item.price}}</view>
-              <view class="flex">
-                <text style="color: #333">库存量: {{item.inventory}}</text>
-                <text>  待发库存: {{item.inventory_await}}</text>
-              </view>
-            </view>
-            <view class="flex flex-row-r action">
-              <text wx:if="{{item.inventory_logic>0}}" class="p-delete pick-up-btn" data-id="{{item.id}}">提货</text>
-            </view>
-          </view>
-        </view>
-      </navigator>
+<view class="product-list">
+  <view class="product-list-item" wx:for="{{inventories}}" wx:key="id" wx:for-item="product">
+    <image class="product-image" src="{{product.img}}" mode="widthFix"/>
+    <view class="product-info">
+      <text class="product-name">{{product.name}}</text>
+      <text class="product-desc font-gray">{{product.spec}}</text>
+      <view class="product-meta">
+        <text>库存量: {{product.inventory}} </text>
+        <text> 待发库存: {{product.inventory_await}}</text>
+      </view>
+
+      <navigator url="/pages/inventory/pickup?id={{product.id}}" class="inventory-pickup-btn">提货</navigator>
     </view>
   </view>
 </view>

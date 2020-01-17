@@ -19,32 +19,49 @@
 </view>
 
 <view class="hdj-member-info" wx:else>
-    <view class="hdj-member-card-top">
-        <view class="hdj-member-card">
-            <view class="hdj-member-card-info">
-                <image src="{{userInfo.avatar}}" background-size="cover" class="hdj-member-card-avatar"/>
-                <view class="hdj-member-name-meta">
-                    <view class="hdj-member-nickname">{{userInfo.nickname}}</view>
-                    <view class="hdj-member-level-name">
-                        <i class="iconfont icon-vip"></i>
-                        {{userInfo.level_name}}
-                    </view>
+    <view class="hdj-member-card">
+      <image src="{{userInfo.avatar}}"  background-size="cover" class="hdj-member-card-avatar"/>
+      <view class="hdj-member-name-meta">
+          <view class="hdj-member-nickname">{{userInfo.nickname}}</view>
+          <view class="hdj-member-desc">
+              <view class="hdj-member-level-name">
+                  <icon class="iconfont icon-vip"></icon>
+                  {{userInfo.level_name}}
+              </view>
+
+              <navigator url="/pages/home/member" class="hdj-member-level-expired" wx:if="{{userInfo.level_expired != '长期'}}">
+              {{userInfo.level_expired}}
+              </navigator>
+              
+              <block wx:if="{{userInfo.level_id > 1}}">
+              <navigator url="/pages/home/level?id={{userInfo.level_id}}" class="hdj-member-level-link">
+                  <view class="hdj-member-level-privileges">
+                    <block wx:for="{{userInfo.level_privileges}}" wx:key="id" wx:for-item="privilege">
+                    <image src="{{privilege.icon}}" class="hdj-member-level-privilege"/>
+                    </block>
+                  </view>
+                  <view>五项专属权益 ></view>
+              </navigator>
+              </block>
+
+              <block wx:else>
+              <navigator url="/pages/home/member" class="hdj-co-partner-link">
+                <image src="http://www.hdjshop.cn/themes/hdj/images/gift-icon.png" mode="widthFix"/>
+                <view>
+                  <view>超级会员</view>
+                  <view>购参开通 ></view>
                 </view>
+              </navigator>
+              </block>
             </view>
-            <view class="hdj-member-card-notice"></view>
-            <image src="/assets/images/vip_tag.png" class="hdj-member-vip-mark"/>
-        </view>
-    </view>
-    <view class="hdj-member-card-bottom">
-        畅享会员特权
-        <view>{{userInfo.level_active_time}}至{{userInfo.level_expired}}</view>
+      </view>
     </view>
 </view>
 
 <!-- 我的订单 -->
 <view class="block">
   <navigator url="/pages/order/index" class="meta-with-arrow">
-    <text class="block-title iconfont icon-order-list"> 我的订单</text>
+    <text class="block-title"> 我的订单</text>
     <text class="meta-tail">查看全部订单</text>
   </navigator>
 
@@ -74,7 +91,7 @@
 <!-- 我的资产 -->
 <view class="block">
   <navigator url="/pages/home/wallet" class="meta-with-arrow">
-    <text class="block-title iconfont icon-wallet"> 我的资产</text>
+    <text class="block-title"> 我的资产</text>
     <text class="meta-tail">查看全部资产</text>
   </navigator>
 
@@ -102,11 +119,11 @@
 </view>
 
 <navigator url="/pages/inventory/index" class="single-block meta-with-arrow">
-    <text class="iconfont icon-product"> 我的库存</text>
+    <text> 我的库存</text>
 </navigator>
 
 <navigator url="/pages/delivery_order/index" class="single-block meta-with-arrow">
-    <text class="iconfont icon-order-list"> 库存订单</text>
+    <text> 库存订单</text>
 </navigator>
 
 <!--
@@ -116,7 +133,7 @@
 -->
 
 <navigator url="/pages/recharge/index" class="single-block meta-with-arrow">
-    <text class="iconfont icon-recharge"> 账户充值</text>
+    <text> 账户充值</text>
 </navigator>
 
 <!--
@@ -126,27 +143,14 @@
 -->
 
 <navigator url="/pages/bank/index" class="single-block meta-with-arrow">
-    <text class="iconfont icon-bank-card"> 我的银行卡</text>
+    <text> 我的银行卡</text>
 </navigator>
 
 <navigator url="/pages/address/index" class="single-block meta-with-arrow">
-  <text class="iconfont icon-address"> 收货地址</text>
+  <text> 收货地址</text>
 </navigator>
 <!--
 <navigator url="/pages/withdraw/index">
     <text class="iconfont icon-withdraw"> 我要提现</text>
 </navigator>
 -->
-
-<view wx:if="{{userInfo.level_id == 1}}" class="hdj-join-member-placeholder"></view>
-<wxs module="filters" src="../../assets/utils.wxs"></wxs>
-<view class="hdj-join-member" wx:if="{{userInfo.level_id == 1}}">
-    <view class="hdj-join-member-privilege">成为会员，纵享特权</view>
-
-    <navigator url="/pages/home/member" class="hdj-join-member-btn">
-        <!--
-        <text class="price">￥{{filters.toFix(min_grant_price, 2)}}</text>
-        -->
-        开通会员
-    </navigator>
-</view>
