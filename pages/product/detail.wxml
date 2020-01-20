@@ -89,7 +89,7 @@
   <text id="inventory_count" class="inventory-count">库存: {{product.inventory}}</text>
 </view>
 
-<navigator url="/pages/product/comment?product_sn={{product.product_sn}}" class="meta-with-arrow product-comment">
+<navigator url="/pages/product/comment?id={{product.id}}" class="meta-with-arrow product-comment">
     宝贝评价({{product.comments.count}})
 </navigator>
 

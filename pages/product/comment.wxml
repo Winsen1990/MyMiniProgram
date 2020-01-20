@@ -1,2 +1,54 @@
 <!--pages/product/comment.wxml-->
-<text>pages/product/comment.wxml</text>
+<import src="../../assets/wxParse/wxParse.wxml"/>
+
+<block wx:if="{{comments.length}}">
+    <view class="product-comment-list">
+        <view class="product-comment-item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
+            <view class="comment-info">
+                <image src="{{comment.headimg}}" class="comment-user-avatar" mode="widthFix"/>
+                <view class="comment-user-info">
+                    <view class="comment-user-name">{{comment.nickname}}</view>
+                    <view class="comment-date">{{comment.add_time}}</view>
+                </view>
+
+                <view class="comment-star">
+                    <block wx:for="{{comment.star}}" wx:key="index">
+                      <icon class="iconfont icon-star-fill"></icon>
+                    </block>
+
+                    <block wx:for="{{comment.star_fill}}" wx:key="index">
+                      <icon class="iconfont icon-star"></icon>
+                    </block>
+                </view>
+            </view>
+            <view class="comment-content">
+                <!-- {{comment.comment}} -->
+                <template is="wxParse" data="{{wxParseData:comment.commentRich.nodes}}"/>
+            </view>
+
+            <block wx:if="{{comment.reply}}">
+            <view class="comment-reply">
+                <view class="comment-info">
+                    <span class="comment-reply-name">客服回复:</span>
+                </view>
+                <view class="comment-content">
+                    <!-- {{comment.reply.comment}} -->
+                    <template is="wxParse" data="{{wxParseData:comment.reply.comment.commentRich.nodes}}"/>
+                </view>
+            </view>
+            </block>
+        </view>
+    </view>
+</block>
+
+<block wx:else>
+    <view class="comment-empty">
+        <icon class="iconfont icon-comment"></icon>
+        <view>期待您的评价噢~</view>
+        <view>
+            <navigator url="/pages/product/detail?id={$product.id}" class="hdj-button hdj-positive-button iconfont icon-product">
+                马上入手
+            </navigator>
+        </view>
+    </view>
+</block>

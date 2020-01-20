@@ -1,1 +1,59 @@
 /* pages/product/comment.wxss */
+.comment-empty {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #999999;
+}
+.comment-empty i {
+  font-size: 6rem;
+  margin-bottom: 10px;
+}
+.comment-empty p {
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: 10px;
+}
+.product-comment-list .product-comment-item {
+  padding: 20px;
+  border-bottom: 1px solid #f1f1f1;
+  background-color: #ffffff;
+}
+.product-comment-list .product-comment-item .comment-reply {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-left: 50px;
+}
+.product-comment-list .product-comment-item .comment-reply .comment-content {
+  padding-left: 0;
+}
+.product-comment-list .product-comment-item .comment-info {
+  display: flex;
+}
+.product-comment-list .product-comment-item .comment-info .comment-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.product-comment-list .product-comment-item .comment-info .comment-user-info .comment-user-name {
+  font-size: 16px;
+  line-height: 20px;
+}
+.product-comment-list .product-comment-item .comment-info .comment-user-info .comment-date {
+  color: #999999;
+  font-size: 16px;
+  line-height: 20px;
+}
+.product-comment-list .product-comment-item .comment-info .comment-star {
+  text-align: right;
+  flex-grow: 1;
+  color: #a2002d;
+}
+.product-comment-list .product-comment-item .comment-content {
+  padding: 15px 0 15px 50px;
+  font-size: 1rem;
+  line-height: 1.5;
+}

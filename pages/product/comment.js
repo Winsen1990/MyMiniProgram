@@ -1,25 +1,59 @@
 // pages/product/comment.js
+'use strict';
+var WxParse = require('../../assets/wxParse/wxParse');
+var config = require('../../config');
+var utils = require('../../utils/util');
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    comments: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var data = {
+      id: options.id,
+      token: app.globalData.token,
+      act: 'comments'
+    };
 
-  },
+    utils.request(config.service.product, data, 'GET', function (response) {
+      if (response.data.error != 0) {
+        wx.showModal({
+          content: response.data.message,
+          showCancel: false,
+          success: function () {
+            wx.navigateBack();
+          }
+        });
+      } else {
+        that.setData({
+          comments: response.data.comments
+        });
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+        if(response.data.comments.length) {
+          for(var i = 0; i < response.data.comments.length; i++) {
+            var comment = response.data.comments[i];
 
+            //评价
+            WxParse.wxParse('comments[' + i + '].comment.commentRich', 'html', comment.comment, that, 5);
+
+            if(comment.reply) {
+              //评价回复
+              WxParse.wxParse('comments[' + i + '].comment.reply.commentRich', 'html', comment.reply.comment, that, 5);
+            }
+          }
+        }
+      }
+    });
   },
 
   /**
@@ -27,40 +61,5 @@ Page({
    */
   onShow: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
-})
+});
