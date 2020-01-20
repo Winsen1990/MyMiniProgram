@@ -1,0 +1,22 @@
+<!--pages/home/accounts.wxml-->
+<view class="accounts-header">
+  <text class="accounts-amount">{{amount}}</text>
+  <text class="accounts-desc">{{desc}}</text>
+</view>
+
+
+<view class="single-block meta-with-arrow">
+    <text> 明细</text>
+</view>
+<view class="accounts-records">
+  <view class="accounts-record" wx:for="{{records}}" wx:key="id" wx:for-item="record">
+    <view class="accounts-record-info">
+      <view class="desc">{{record.desc}}</view>
+      <view class="date">{{record.operate_date}}</view>
+    </view>
+
+    <view class="accounts-record-increment {{record.increment <= 0 ? 'decrement': ''}}">
+      {{record.increment}}
+    </view>
+  </view>
+</view>

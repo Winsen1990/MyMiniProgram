@@ -52,7 +52,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -72,76 +72,6 @@
 					"name": "购物车",
 					"pathName": "pages/cart/index",
 					"query": "recommend=123456",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/category/index",
-					"pathName": "pages/category/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/coupon",
-					"pathName": "pages/home/coupon",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/index2",
-					"pathName": "pages/home/index2",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/member",
-					"pathName": "pages/home/member",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/index",
-					"pathName": "pages/home/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "pages/product/level",
-					"pathName": "pages/product/level",
-					"query": "id=2",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/product/detail",
-					"pathName": "pages/product/detail",
-					"query": "id=2",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/wallet",
-					"pathName": "pages/home/wallet",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/inventory/index",
-					"pathName": "pages/inventory/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/member/index",
-					"pathName": "pages/member/index",
-					"query": "",
 					"scene": null
 				},
 				{
@@ -177,6 +107,20 @@
 					"name": "会员权益说明",
 					"pathName": "pages/level/detail",
 					"query": "id=9&tab=31",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "领券中心",
+					"pathName": "pages/coupon/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "产品评价",
+					"pathName": "pages/product/detail",
+					"query": "id=1",
 					"scene": null
 				}
 			]

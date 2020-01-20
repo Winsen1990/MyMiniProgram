@@ -1,0 +1,2 @@
+/* pages/delivery_order/track.wxss */
+@import '/pages/order/track.wxss';

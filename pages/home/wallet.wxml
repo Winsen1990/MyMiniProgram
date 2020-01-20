@@ -1,18 +1,42 @@
-<view style="position:relative;">
-  <view><image src="/assets/images/bg_mine1.png" class="mine-top-bg"></image></view>
-  <view class="mine-top-nav flex flex-column">
-    <view class="text1">{{ data.amount }}</view>
-    <view>{{ data.desc }}</view>
-  </view>
-</view> 
+<!-- /pages/home/wallet.wxml -->
+<navigator url="/pages/home/accounts?mode=balance" class="single-block meta-with-arrow">
+  <icon class="iconfont icon-balance"></icon>
+  <text> 我的余额</text>
 
-<view class="cu-list menu">
-  <view class="cu-item">明细：</view>
-  <view class="cu-item flex flex-between" wx:for="{{data.items}}">
-    <view class="flex flex-column" >
-      <view class="text1">{{ item.title }}</view>
-      <view>{{ item.detail }}</view>
-    </view>
-    <view>{{ item.amount }}</view>
-  </view>
-</view>
+  <text class="meta-tail">{{balance}}</text>
+</navigator>
+
+<navigator url="/pages/home/accounts?mode=reward" class="single-block meta-with-arrow">
+  <icon class="iconfont icon-reward"></icon>
+  <text> 我的佣金</text>
+
+  <text class="meta-tail">{{reward}}</text>
+</navigator>
+
+<navigator url="/pages/home/accounts?mode=reward_await" class="single-block meta-with-arrow">
+  <icon class="iconfont icon-reward"></icon>
+  <text> 待发佣金</text>
+
+  <text class="meta-tail">{{reward_await}}</text>
+</navigator>
+
+<navigator url="/pages/home/accounts?mode=integral" class="single-block meta-with-arrow">
+  <icon class="iconfont icon-integral"></icon>
+  <text> 我的积分</text>
+
+  <text class="meta-tail">{{integral}}</text>
+</navigator>
+
+<navigator url="/pages/home/accounts?mode=integral_await" class="single-block meta-with-arrow">
+  <icon class="iconfont icon-integral"></icon>
+  <text> 待发积分</text>
+
+  <text class="meta-tail">{{integral_await}}</text>
+</navigator>
+
+<navigator url="/pages/home/coupon" class="single-block meta-with-arrow">
+  <icon class="iconfont icon-coupon"></icon>
+  <text> 优惠券</text>
+
+  <text class="meta-tail">{{coupon_count}}</text>
+</navigator>

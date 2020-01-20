@@ -13,7 +13,7 @@ Page({
     consignee: '',//收货人
     mobile: '',//手机号码
     region: ['省', '市', '区', ''],//省市区
-    region_index: [],
+    region_index: [0,0,0,0],
     detail: '',//详细地址
     from_checkout: false,
     regions: [

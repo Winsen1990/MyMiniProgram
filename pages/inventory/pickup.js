@@ -8,84 +8,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    notice_checked: true,
     address: {},
-    product: {},
-    cart: [],
-    /*
-    {
-      id: 0,
-      coupon_sn: '',
-      name: '不使用优惠券',
-      discount: 0,
-      decrement: 0,
-      decrement_limit: 0,
-      coupon_type: 2
-    }
-    */
-    coupons: [],
-    coupon: {
-      id: 0,
-      coupon_sn: '',//优惠券号
-      name: '暂无可用优惠',//优惠券名称
-      discount: 0,//折扣
-      decrement: 0,//减免金额
-      decrement_limit: 0,//减免金额上限
-      coupon_type: 0//优惠券类型
-    },
-    shipping: [{
-      id: 1,//物流方式ID
-      name: '免运费',//物流方式名称
-      shipping_fee: 0,//运费
-      selected: true//是否选择
-    }],
-    summary: {
-      amount: 0,//订单合计
-      product_amount: 0,//产品合计
-      shipping_amount: 0,//运费合计
-      coupon_decrement: 0//优惠减免
-    },
+    inventory: {},
     can_submit: false,
-    pickupId: 0,
+    id: 0
+  },
+
+  onLoad: function(options) {
+    this.setData({
+      id: options.id
+    });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    if (options.hasOwnProperty('id')) {
-      this.data.pickupId = options.id;
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  onShow: function (options) {
     var that = this;
 
+    //默认收货地址
     var address = wx.getStorageSync('address');
+    if(!address) {
+      utils.request(config.service.address, {
+          token: app.globalData.token,
+          act: 'get_default' 
+        }, 'GET', function(response) {
+          if(response.data.error == 0) {
 
+            that.setData({
+              address: response.data.address
+            });
+          }
+        });
+    } else {
+      that.setData({
+        address: address
+      });
+      that.checkAvailable();
+    }
+
+    //库存详情
     var data = {
       token: app.globalData.token,
-      address_id: address ? address.id : 0,
-      act: 'view',
-      id: this.data.pickupId,
+      act: 'show',
+      id: this.data.id
     };
 
-    utils.request(config.service.pickup, data, 'GET', function (response) {
-
-      that.setData({
-        address: response.data.address,
-        product: response.data.product,
-      });
+    utils.request(config.service.inventory, data, 'GET', function (response) {
 
       if (response.data.error != 0) {
         wx.showModal({
@@ -93,112 +62,14 @@ Page({
           content: response.data.message,
           showCancel: false
         });
-
-        that.setData({
-          can_submit: false
-        });
       } else {
-        if (response.data.address.id) {
-          that.setData({
-            can_submit: true
-          });
-        } else {
-          that.setData({
-            can_submit: false
-          });
-        }
+        response.data.inventory.count = Math.min(1, response.data.inventory.inventory_logic);
+        that.setData({
+          inventory: response.data.inventory
+        });
+
+        that.checkAvailable();
       }
-    });
-  },
-
-  /**
-   * 计算订单金额
-   */
-  caculateSummary: function () {
-    var summary = {
-      amount: 0,//订单合计
-      product_amount: 0,//产品合计
-      shipping_amount: 0,//运费合计
-      coupon_decrement: 0//优惠减免
-    }
-
-    //产品合计
-    for (var i = 0; i < this.data.cart[0].products.length; i++) {
-      var product = this.data.cart[0].products[i];
-      summary.amount += product.price * product.count;
-      summary.product_amount += product.price * product.count;
-    }
-
-    //运费
-    for (var i = 0; i < this.data.shipping.length; i++) {
-      var shipping = this.data.shipping[i];
-
-      if (shipping.selected) {
-        summary.amount += shipping.shipping_fee;
-        summary.shipping_amount = shipping.shipping_fee;
-        break;
-      }
-    }
-
-    //优惠减免
-    if (this.data.coupon.id >= 0) {
-      var coupon_reduce = 0;
-      switch(this.data.coupon.coupon_type) {
-        case 1:
-          //折扣券
-          coupon_reduce = summary.product_amount * this.data.coupon.discount;
-          coupon_reduce = Math.min(coupon_reduce, this.data.coupon.decrement_limit);
-          break;
-
-        case 2:
-          //代金券
-        case 3:
-          //满减券
-          coupon_reduce = this.data.coupon.decrement;
-          break;
-      }
-      summary.coupon_decrement = coupon_reduce;
-
-      summary.amount -= summary.coupon_decrement;
-    }
-
-    this.setData({
-      summary: summary,
-      'cart[0].amount': summary.product_amount
-    });
-  },
-
-  /**
-   * 选择优惠券
-   */
-  selectCoupon: function(e) {
-    var coupon = this.data.coupons[e.detail.value];
-
-    if(coupon) {
-      this.setData({
-        coupon: coupon
-      });
-
-      this.caculateSummary();
-    }
-  },
-
-  /**
-   * 监听短信通知选项
-   */
-  messageNotice: function () {
-    this.setData({
-      messageNotice: this.data.messageNotice ^ true
-    });
-    console.info(this.data.messageNotice);
-  },
-
-  /**
-   * 记录留言
-   */
-  recordRemark: function (e) {
-    this.setData({
-      'cart[0].remark': e.detail.value
     });
   },
 
@@ -207,22 +78,10 @@ Page({
    */
   submitOrder: function () {
     var data = {
-      message_notice: this.data.messageNotice,
-      address_id: this.data.address.id,
-      remark: this.data.cart[0].remark,
-      coupon_sn: this.data.coupon.coupon_sn,
-      opera: 'add',
+      opera: 'create',
       token: app.globalData.token,
-      delivery_list: {}
-    }
-
-    for (var j = 0; j < this.data.shipping.length; j++) {
-      var shipping = this.data.shipping[j];
-
-      if (shipping.selected) {
-        data.delivery_list[shipping.business_id] = [shipping];
-        break;
-      }
+      products: [],
+      address_id: this.data.address.id
     }
 
     if (data.address_id <= 0) {
@@ -237,12 +96,28 @@ Page({
       return false;
     }
 
+    if(this.data.inventory.count <= 0) {
+      wx.showToast({
+        title: '请输入提货数量'
+      });
+
+      setTimeout(function () {
+        wx.hideToast();
+      }, 3000);
+
+      return false;
+    }
+    data.products.push({
+      id: this.data.inventory.id,
+      count: this.data.inventory.count
+    });
+
     wx.showLoading({
-      title: '正在提交订单',
+      title: '正在提交库存订单',
     });
 
     wx.request({
-      url: config.service.order,
+      url: config.service.delivery_order,
       data: data,
       method: 'POST',
       success: function (response) {
@@ -250,18 +125,18 @@ Page({
           wx.showModal({
             title: '',
             content: response.data.message,
-            confirmText: '前往支付',
+            confirmText: '查看库存',
             cancelText: '查看订单',
             success: function (e) {
               if (e.confirm) {
                 wx.redirectTo({
-                  url: '/pages/order/pay?sn=' + response.data.order_sn
+                  url: '/pages/inventory/index'
                 });
               }
 
               if (e.cancel) {
                 wx.redirectTo({
-                  url: '/pages/order/detail?sn=' + response.data.order_sn
+                  url: '/pages/delivery_order/detail?sn=' + response.data.delivery_order_sn
                 });
               }
             },
@@ -284,30 +159,69 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+ * 减少数量
+ */
+  cartItemMinus: function (e) {
+    var count = this.data.inventory.count;
+    count = Math.min(count, this.data.inventory.inventory_logic);
+
+    if (count > 1) {
+      count--;
+    }
+
+    var data = {};
+    data['inventory.count'] = count;
+
+    this.setData(data);
+    this.checkAvailable();
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 增加数量
    */
-  onUnload: function () {
-  
+  cartItemPlus: function (e) {
+    var count = this.data.inventory.count;
+    count = Math.min(count, this.data.inventory.inventory_logic);
+
+    if (count < this.data.inventory.inventory_logic) {
+      count++;
+    }
+
+    var data = {};
+    data['inventory.count'] = count;
+
+    this.setData(data);
+    this.checkAvailable();
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 填写数量
    */
-  onPullDownRefresh: function () {
-  
+  inputCartCount: function (e) {
+    var count = e.detail.value;
+    var cart_id = e.currentTarget.dataset.id;
+
+    count = parseInt(count);
+
+    if (isNaN(count) || count <= 0) {
+      count = 1;
+    }
+
+    count = Math.min(this.data.inventory.inventory_logic, count);
+
+    var data = {};
+    data['inventory.count'] = count;
+
+    this.setData(data);
+    this.checkAvailable();
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  checkAvailable: function () {
+    var flag = this.data.address.id > 0;
+    flag &= this.data.inventory.count <= this.data.inventory.inventory_logic;
+
+    this.setData({
+      can_submit: flag
+    });
   }
 });

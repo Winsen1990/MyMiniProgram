@@ -96,12 +96,12 @@
   </navigator>
 
   <view class="block-cubes">
-    <navigator url="/pages/home/reward" class="block-cube">
+    <navigator url="/pages/home/accounts?mode=reward" class="block-cube">
       <icon class="iconfont icon-reward"></icon>
       <text>佣金</text>
     </navigator>
 
-    <navigator url="/pages/home/integral" class="block-cube">
+    <navigator url="/pages/home/accounts?mode=integral" class="block-cube">
       <icon class="iconfont icon-integral"></icon>
       <text>积分</text>
     </navigator>
@@ -111,7 +111,7 @@
       <text>优惠券</text>
     </navigator>
 
-    <navigator url="/pages/home/balance" class="block-cube">
+    <navigator url="/pages/home/accounts?mode=balance" class="block-cube">
       <icon class="iconfont icon-balance"></icon>
       <text>余额</text>
     </navigator>
@@ -130,21 +130,21 @@
 <navigator url="/pages/home/profile" class="single-block meta-with-arrow">
     <text class="iconfont icon-account"> 我的资料</text>
 </navigator>
--->
 
 <navigator url="/pages/recharge/index" class="single-block meta-with-arrow">
     <text> 账户充值</text>
 </navigator>
+-->
 
 <!--
 <navigator url="/pages/home/password">
     <text class="iconfont icon-lock"> 修改密码</text>
 </navigator>
--->
 
 <navigator url="/pages/bank/index" class="single-block meta-with-arrow">
     <text> 我的银行卡</text>
 </navigator>
+-->
 
 <navigator url="/pages/address/index" class="single-block meta-with-arrow">
   <text> 收货地址</text>

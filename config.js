@@ -25,13 +25,14 @@ var config = {
     keywords: `${host}${api_path}/keywords.php`,//热搜关键词
     coupon: `${host}${api_path}/coupon.php`,
     mine: `${host}${api_path}/mine.php`,
-    account: `${host}${api_path}/account.php`,
+    account: `${host}${api_path}/accounts.php`,
     level: `${host}${api_path}/level.php`,
     // 登录地址，用于建立会话
     login: `${host}${api_path}/authorization.php`,//登录
     inventory: `${host}${api_path}/inventory.php`,
     pickup: `${host}${api_path}/pickup.php`,
     favorite: `${host}${api_path}/favorite.php`,//猜你喜欢
+    delivery_order: `${host}${api_path}/delivery_order.php`,//发货单
   }
 };
 

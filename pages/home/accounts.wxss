@@ -1,0 +1,51 @@
+/* pages/home/accounts.wxss */
+/* 我的积分 */
+.accounts-header {
+  background-color: #a2002d;
+  padding: 40rpx;
+}
+
+.accounts-amount {
+  font-size: 80rpx;
+  color: #fef798;
+  text-shadow: 2rpx 2rpx 2rpx #000000;
+  display: block;
+  font-weight: bold;
+}
+
+.accounts-desc {
+  font-size: 38rpx;
+  color: #ffffff;
+  margin-top: 20rpx;
+  display: block;
+  font-weight: bold;
+}
+
+.accounts-records {
+  padding-bottom: 60rpx;
+}
+
+.accounts-record {
+  display: flex;
+  border-bottom: 2rpx solid #dddddd;
+  width: 710rpx;
+  padding: 20rpx;
+  align-items: center;
+}
+
+.accounts-record .accounts-record-info {
+  flex-grow: 1;
+}
+
+.accounts-record .accounts-record-info view {
+  line-height: 2;
+}
+
+.accounts-record .accounts-record-increment {
+  color: #a2002d;
+  margin-left: 20rpx;
+}
+
+.accounts-record .accounts-record-increment.decrement {
+  color: #999999;
+}

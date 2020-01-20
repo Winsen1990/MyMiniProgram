@@ -27,31 +27,10 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.loadOrderList(this.data.status, 1, this.data.page_size);
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
   },
 
   /**
@@ -106,17 +85,17 @@ Page({
       act: 'view'
     };
 
-    utils.request(config.service.order, data, 'GET', function(response) {
+    utils.request(config.service.delivery_order, data, 'GET', function(response) {
       if(response.data.error == 0) {
         var params = {
           page: page
         };
 
-        if(response.data.order_list.length < page_size) {
+        if (response.data.delivery_orders.length < page_size) {
           params.to_end = true;
         }
 
-        params.orders = response.data.order_list;
+        params.orders = response.data.delivery_orders;
 
         console.info(params);
         that.setData(params);
@@ -150,48 +129,13 @@ Page({
   },
 
   /**
-   * 支付订单
-   */
-  payOrder: function(e) {
-    var sn = e.currentTarget.dataset.sn;
-
-    wx.navigateTo({
-      url: '/pages/order/pay?sn=' + sn
-    });
-  },
-
-  /**
    * 物流跟踪
    */
   trackOrder: function(e) {
     var sn = e.currentTarget.dataset.sn;
 
     wx.navigateTo({
-      url: '/pages/order/track?sn=' + sn
-    });
-  },
-
-  /**
-   * 申请退单
-   */
-  rollbackOrder: function(e) {
-    var sn = e.currentTarget.dataset.sn;
-    var detail_id = e.currentTarget.data.detailId;
-
-    wx.navigateTo({
-      url: '/pages/order/serve?sn=' + sn + '&id=' + detail_id
-    });
-  },
-
-  /**
-   * 订单评论
-   */
-  commentOrder: function (e) {
-    var sn = e.currentTarget.dataset.sn;
-    var detail_id = e.currentTarget.data.detailId;
-
-    wx.navigateTo({
-      url: '/pages/order/comment?sn=' + sn + '&id=' + detail_id
+      url: '/pages/delivery_order/track?sn=' + sn
     });
   },
 
@@ -214,52 +158,12 @@ Page({
         }
 
         var data = {
-          sn: sn,
+          delivery_order_sn: sn,
           opera: 'cancel',
           token: getApp().globalData.token
         };
 
-        utils.request(config.service.order, data, 'POST', function (response) {
-          wx.showModal({
-            title: '',
-            content: response.data.message,
-            showCancel: false,
-            complete: function () {
-              if (response.data.error == 0) {
-                that.onPullDownRefresh();
-              }
-            }
-          });
-        });
-      }
-    });
-  },
-
-  /**
-   * 确定收货
-   */
-  receiveOrder: function (e) {
-    var that = this;
-    console.info(e);
-
-    var sn = e.currentTarget.dataset.sn;
-
-    wx.showModal({
-      title: '',
-      content: '您确定已收货？',
-      success: function (e) {
-        console.info(e);
-        if (e.cancel) {
-          return false;
-        }
-
-        var data = {
-          sn: sn,
-          opera: 'receive',
-          token: getApp().globalData.token
-        };
-
-        utils.request(config.service.order, data, 'POST', function (response) {
+        utils.request(config.service.delivery_order, data, 'POST', function (response) {
           wx.showModal({
             title: '',
             content: response.data.message,

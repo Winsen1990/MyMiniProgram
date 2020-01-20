@@ -17,7 +17,7 @@
   <view class="form-row">
     <label>省/市/区</label>
     <view class="form-input">
-      <picker  mode="multiSelector" bindchange="bindRegionChange" bindcolumnchange="bindRegionColumnChange" range="{{regions}}" range-key="name">
+      <picker  mode="multiSelector" bindchange="bindRegionChange" bindcolumnchange="bindRegionColumnChange" range="{{regions}}" range-key="name" value="{{region_index}}">
         <text>{{region[0]}} {{region[1]}} {{region[2]}} {{region[3]}}</text>
       </picker>
       <!--

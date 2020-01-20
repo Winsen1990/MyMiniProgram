@@ -1,0 +1,10 @@
+.meta-with-arrow {
+  border-bottom: none;
+  background-color: #ffffff;
+  color: #0b0b0b;
+}
+
+.meta-with-arrow icon {
+  margin-top: -25rpx;
+  margin-right: 16rpx;
+}

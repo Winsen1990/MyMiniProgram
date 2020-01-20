@@ -19,13 +19,10 @@
     "pages/order/comment",
     "pages/home/index",
     "pages/home/wallet",
-    "pages/home/reward",
-    "pages/home/integral",
     "pages/home/coupon",
     "pages/product/detail",
     "pages/order/pay",
     "pages/order/track",
-    "pages/home/balance",
     "pages/block/index",
     "pages/member/index",
     "pages/home/member",
@@ -38,7 +35,9 @@
     "pages/product/comment",
     "pages/level/index",
     "pages/level/detail",
-    "pages/home/level"
+    "pages/home/level",
+    "pages/delivery_order/track",
+    "pages/home/accounts"
   ],
   "window": {
     "backgroundTextStyle": "light",
