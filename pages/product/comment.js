@@ -44,11 +44,11 @@ Page({
             var comment = response.data.comments[i];
 
             //评价
-            WxParse.wxParse('comments[' + i + '].comment.commentRich', 'html', comment.comment, that, 5);
+            WxParse.wxParse('comments[' + i + '].commentRich', 'html', comment.comment, that, 5);
 
             if(comment.reply) {
               //评价回复
-              WxParse.wxParse('comments[' + i + '].comment.reply.commentRich', 'html', comment.reply.comment, that, 5);
+              WxParse.wxParse('comments[' + i + '].reply.commentRich', 'html', comment.reply.comment, that, 5);
             }
           }
         }

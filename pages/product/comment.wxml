@@ -1,5 +1,5 @@
 <!--pages/product/comment.wxml-->
-<import src="../../assets/wxParse/wxParse.wxml"/>
+<import src="/assets/wxParse/wxParse.wxml"/>
 
 <block wx:if="{{comments.length}}">
     <view class="product-comment-list">

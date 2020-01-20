@@ -117,9 +117,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "产品评价",
-					"pathName": "pages/product/detail",
+					"pathName": "pages/product/comment",
 					"query": "id=1",
 					"scene": null
 				}
