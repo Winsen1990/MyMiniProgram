@@ -21,7 +21,7 @@ Page({
   },
 
   onLoad: function() {
-    wx.hideTabBar();
+    // wx.hideTabBar();
   },
 
   onShow: function (options) {

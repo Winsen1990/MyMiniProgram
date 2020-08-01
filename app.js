@@ -11,7 +11,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        utils.request(config.service.login, { code: res.code, recommend: e.query.recommend }, 'POST', function(response) {
+        utils.request(config.service.login, { code: res.code, recommend: e.query.recommend, scene: e.query.scene }, 'POST', function(response) {
           console.log(response);
           console.log('login success ' + response.data.user.account);
           if (response.data.error == 0) {

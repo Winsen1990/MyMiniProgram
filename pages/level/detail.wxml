@@ -15,7 +15,8 @@
       <view class="hdj-level-privilege-content {{tab == privilege.id ? 'show' : ''}}" id="tab-content-{{privilege.id}}">
         <view class="privilege-title">{{privilege.name}}</view>
         <view class="privilege-content">
-          <template is="wxParse" data="{{wxParseData:privilege.richContent.nodes}}"/>
+          <rich-text nodes="{{privilege.content}}"></rich-text>
+          <!-- <template is="wxParse" data="{{wxParseData:privilege.richContent.nodes}}"/> -->
         </view>
       </view>
     </block>

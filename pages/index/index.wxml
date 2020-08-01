@@ -12,7 +12,7 @@
 </view>
 
 <!-- 轮播图 -->
-<swiper indicator-dots="{{banner.displayDots}}"
+<swiper wx:if="{{banners.length}}" indicator-dots="{{banner.displayDots}}"
   autoplay="{{banner.autoplay}}" duration="{{banner.duration}}"
   interval="{{banner.interval}}"
   style="height:{{banner.heights[banner.index]}}px"
@@ -20,7 +20,7 @@
   >
   <block wx:for="{{banners}}" wx:key="index">
     <swiper-item>
-      <image src="{{item.img}}" class="slide-image" style="height:{{banner.heights[banner.index]}}px;width:{{banner.width}}px;" bindload="bannerLoad" bindtap="bannerTap" data-id="{{index}}"/>
+      <image src="{{item.img}}" class="slide-image" style="height:{{banner.heights[banner.index]}}px;width:{{banner.width}}px;" lazy-load="true" bindload="bannerLoad" bindtap="bannerTap" data-id="{{index}}"/>
     </swiper-item>
   </block>
 </swiper>
@@ -29,14 +29,14 @@
 <block wx:for="{{function_rows}}" data-index="{{index}}" wx:key="index" wx:for-item="functions">
 <view class="index-functions" wx:if="{{index == 0}}">
   <view wx:for="{{functions}}" data-url="{{item.url}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
-    <image src="{{item.icon}}" mode="widthFix"/>
+    <image src="{{item.icon}}" mode="widthFix" lazy-load="true"/>
     <text>{{item.name}}</text>
   </view>
 </view>
 
 <view class="index-functions index-functions-middle" wx:else>
   <view wx:for="{{functions}}" data-url="{{item.url}}" wx:key="index" class="index-function-item" catchtap="switchCategory">
-    <image src="{{item.icon}}" mode="widthFix"/>
+    <image src="{{item.icon}}" mode="widthFix" lazy-load="true"/>
     <text>{{item.name}}</text>
   </view>
 </view>
@@ -44,7 +44,7 @@
 
 <!-- 平铺广告 -->
 <block wx:for="{{under_banner_ads}}" wx:key="id" wx:for-item="ad">
-  <image src="{{ad.img}}" class="index-ad" mode="widthFix" data-url="{{ad.url}}" catchtap="switchCategory"/>
+  <image src="{{ad.img}}" class="index-ad" lazy-load="true" mode="widthFix" data-url="{{ad.url}}" catchtap="switchCategory"/>
 </block>
 
 <!-- 限时促销 -->
@@ -64,7 +64,7 @@
     <view class="hdj-activity-product-list">
       <block wx:for="{{activity.products}}" wx:for-item="product" wx:key="p_id">
       <navigator class="hdj-activity-product-item" url="/pages/product/detail?id={{product.p_id}}">
-          <image src="{{product.img}}" class="hdj-activity-product-img" mode="widthFix"/>
+          <image src="{{product.img}}" lazy-load="true" class="hdj-activity-product-img" mode="widthFix"/>
           <view class="hdj-activity-product-name">{{product.name}}</view>
           <view class="hdj-activity-product-desc">{{product.desc}}</view>
           <view class="hdj-activity-product-price">
@@ -83,7 +83,7 @@
 <view class="hdj-block" wx:for="{{blocks}}" wx:key="index">
     <view class="hdj-block-header">
         <h2>
-            <image src="{{item.cover}}" mode="widthFix" class="index-block-cover"/>
+            <image src="{{item.cover}}" mode="widthFix" class="index-block-cover" lazy-load="true"/>
         </h2>
     </view>
     <view class="hdj-block-product-list">
@@ -108,7 +108,7 @@
 <!-- 产品专区产品模板 -->
 <template name="productItem">
   <navigator class="hdj-block-product-item"  url="/pages/product/detail?id={{id}}">
-        <image src="{{img}}" class="hdj-block-product-img" mode="widthFix"/>
+        <image src="{{img}}" class="hdj-block-product-img" mode="widthFix" lazy-load="true"/>
         <view class="hdj-block-product-name">{{name}}</view>
         <view class="hdj-block-product-desc">{{desc}}</view>
         <view class="hdj-block-product-price">

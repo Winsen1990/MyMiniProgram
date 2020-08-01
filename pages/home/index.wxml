@@ -1,21 +1,21 @@
 <!--pages/home/index.wxml--> 
 <!-- 用户信息 -->
 <view class="hdj-member-info" wx:if="{{!hasUserInfo && canIUse}}">
-    <button class="hdj-member-card-top" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        <view class="hdj-member-card">
-            <view class="hdj-member-card-info">
-                <image src="{{userInfo.avatar}}" background-size="cover" class="hdj-member-card-avatar"/>
-                <view class="hdj-member-name-meta">
-                    <view class="hdj-member-nickname">{{userInfo.nickname}}</view>
-                </view>
-            </view>
-            <view class="hdj-member-card-notice"></view>
-            <image src="/assets/images/vip_tag.png" class="hdj-member-vip-mark"/>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="hdj-member-card">
+    <image src="{{userInfo.avatar}}"  background-size="cover" class="hdj-member-card-avatar"/>
+    <view class="hdj-member-name-meta">
+        <view class="hdj-member-nickname">{{userInfo.nickname}}</view>
+        <view class="hdj-member-desc">
+          <view class="hdj-member-level-name">
+              <icon class="iconfont icon-vip"></icon>
+          </view>
+
+          <view class="hdj-co-partner-link">
+            畅享会员权益
+          </view>
         </view>
-    </button>
-    <view class="hdj-member-card-bottom">
-        畅享会员特权
     </view>
+  </button>
 </view>
 
 <view class="hdj-member-info" wx:else>
@@ -54,6 +54,9 @@
               </navigator>
               </block>
             </view>
+      </view>
+      <view class="hdj-member-qr-code" catchtap="getMemberQrCode">
+        <text class="iconfont icon-qr-code"></text>
       </view>
     </view>
 </view>
@@ -154,3 +157,16 @@
     <text class="iconfont icon-withdraw"> 我要提现</text>
 </navigator>
 -->
+
+<!-- 推广二维码 -->
+<view class="hdj-board {{ boardLoading ? 'skt-loading' : '' }}" wx:if="{{ showBoard }}">
+  <text class="close iconfont icon-times" catchtap="closeBoard"></text>
+  <view class="board">
+    <image src="{{ qr_code }}" class="qr-code" mode="widthFix"/>
+  </view>
+  <view class="toolbar">
+    <button class="save-btn" catchtap="saveQrCode">保存至相册</button>
+  </view>
+</view>
+
+<painter customStyle='position: absolute; left: -9999rpx;' class="painter" palette="{{ boardDraw }}" bind:imgOK="qrCodeReady" />

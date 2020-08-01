@@ -13,7 +13,8 @@
 <!-- 种草详情 -->
 <import src="../../assets/wxParse/wxParse.wxml"/>
 <view class="feed-content">
-  <template is="wxParse" data="{{wxParseData:feed.richContent.nodes}}"/>
+  <rich-text nodes="{{feed.content}}"></rich-text>
+  <!-- <template is="wxParse" data="{{wxParseData:feed.richContent.nodes}}"/> -->
 </view>
 
 <!-- 种草浏览信息 -->
